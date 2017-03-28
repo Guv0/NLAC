@@ -18,7 +18,7 @@ gem 'simple_form'
 gem 'autoprefixer-rails'
 
 # Sign in with LinkedIn
-gem 'omniauth-linkedin-oauth2'
+gem 'omniauth-linkedin'
 
 group :development, :test do
   gem 'binding_of_caller'
