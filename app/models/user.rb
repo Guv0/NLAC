@@ -10,7 +10,7 @@ class User < ApplicationRecord
     user_params.merge! auth.info.slice(:email, :first_name, :last_name)
     user_params[:linkedin_picture_url] = auth.info.image
     user_params[:token] = auth.credentials.token
-    user_params[:token_expiry] = Time.at(auth.credentials.expires_at)
+    # user_params[:token_expiry] = Time.at(auth.params.oauth_expires_in)
     user_params = user_params.to_h
 
     user = User.where(provider: auth.provider, uid: auth.uid).first
