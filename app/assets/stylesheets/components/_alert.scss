@@ -3,12 +3,12 @@
 * ------------------------------------- */
 
 .alert {
-  margin: 0;
+  margin: 0 0 0 800px;
   text-align: center;
   color: white;
 }
 .alert-info {
-  background: $green;
+  background: $brand-color;
 }
 .alert-warning {
   background: $red;
