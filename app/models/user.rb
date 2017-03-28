@@ -10,7 +10,12 @@ class User < ApplicationRecord
     user_params.merge! auth.info.slice(:email, :first_name, :last_name)
     user_params[:linkedin_picture_url] = auth.info.image
     user_params[:token] = auth.credentials.token
-    # user_params[:token_expiry] = Time.at(auth.params.oauth_expires_in)
+    user_params[:industry] = auth.info.industry
+    user_params[:location] = auth.info.location
+    user_params[:phone] = auth.info.phone
+    user_params[:linkedin_profile_url] = auth.info.urls.public_profile
+    user_params[:description] = auth.info.description
+    # user_params[:token_expiry] = Time.at(auth.extra.oauth_authorization_expires_in)
     user_params = user_params.to_h
 
     user = User.where(provider: auth.provider, uid: auth.uid).first
