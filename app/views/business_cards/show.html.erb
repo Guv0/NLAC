@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="flex-center">
+  <div class="flex-center flex-column">
     <div class="business-card">
       <div class="card-left flex-around flex-column">
         <div class="card-avatar">
@@ -39,8 +39,8 @@
         </div>
       </div>
     </div>
-    <div class="tag-card">
-      <%= react_component "TagForm", {tags: @tags} %>
+    <div class="tags-card flex-around">
+      <%= react_component "TagsCard", {tags: @tags} %>
     </div>
   </div>
 </div>
