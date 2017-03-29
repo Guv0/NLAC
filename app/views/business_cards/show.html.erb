@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="flex-center">
+    <div class="business-card">
+      <div class="card-left flex-around flex-column">
+        <div class="card-avatar">
+          <%= image_tag "#{@business_card.linkedin_picture_url}" %>
+        </div>
+        <div class="card-name flex-center">
+          <h3><strong><%= @business_card.full_name %></strong></h3>
+        </div>
+        <div class="card-job">
+          <p><strong><%= @business_card.industry %></strong></p>
+        </div>
+      </div>
+      <div class="card-right flex-around flex-column">
+        <div class="info flex">
+          <div class="info-icon flex-center">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+          </div>
+          <p><%= @business_card.phone %></p>
+        </div>
+        <div class="info flex">
+          <div class="info-icon flex-center">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+          </div>
+          <p><%= truncate(@business_card.email, length: 25) %></p>
+        </div>
+        <div class="info flex">
+          <div class="info-icon flex-center">
+            <i class="fa fa-home" aria-hidden="true"></i>
+          </div>
+          <p><%= @business_card.linkedin_profile_url %></p>
+        </div>
+        <div class="info flex">
+          <div class="info-icon flex-center">
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+          </div>
+          <p><%= @business_card.location %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

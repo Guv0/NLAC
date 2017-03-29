@@ -72,16 +72,8 @@ ActiveRecord::Schema.define(version: 20170329160841) do
     t.datetime "updated_at",                             null: false
     t.string   "provider"
     t.string   "uid"
-    t.string   "linkedin_picture_url"
-    t.string   "first_name"
-    t.string   "last_name"
     t.string   "token"
     t.datetime "token_expiry"
-    t.string   "industry"
-    t.string   "location"
-    t.string   "linkedin_profile_url"
-    t.string   "phone"
-    t.text     "description"
     t.boolean  "company",                default: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
