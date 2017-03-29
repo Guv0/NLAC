@@ -15,6 +15,7 @@ class User < ApplicationRecord
     user_params[:email] = auth.info.email
     bc_params[:first_name] = auth.info.first_name
     bc_params[:last_name] = auth.info.last_name
+    bc_params[:email] = auth.info.email
     bc_params[:linkedin_picture_url] = auth.info.image
     user_params[:token] = auth.credentials.token
     bc_params[:industry] = auth.info.industry
