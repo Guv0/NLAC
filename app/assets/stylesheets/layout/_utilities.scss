@@ -23,3 +23,41 @@
 .bg-dark-blue {
   background: #3b5998;
 }
+
+// Flexbox
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Font icons
+.fa-envelope {
+  font-size: 20px !important;
+}
+
+.fa-map-marker {
+  padding-left: 3px !important;
+}
