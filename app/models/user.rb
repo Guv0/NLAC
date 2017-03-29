@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: [:linkedin]
 
-  has_one :business_card
+  has_one :business_card, dependent: :destroy
   has_many :connections, dependent: :destroy
   has_many :contacts, through: :connections, :foreign_key => 'contact_id'
 
