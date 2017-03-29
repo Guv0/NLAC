@@ -5,7 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: [:linkedin]
 
-  has_one :business_card, as: :owner
+  has_one :business_card
+  has_many :connections, dependent: :destroy
+  has_many :contacts, through: :connections, :foreign_key => 'contact_id'
 
   def self.find_for_linkedin_oauth(auth)
     bc_params = {}
