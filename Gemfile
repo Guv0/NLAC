@@ -17,6 +17,12 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 
+#React
+gem 'react-rails', '~> 1.8'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-classnames'
+end
+
 # Sign in with LinkedIn
 gem 'omniauth-linkedin'
 
