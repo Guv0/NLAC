@@ -5,25 +5,32 @@
         <h3><strong>Edit your business card</strong></h3>
       </div>
       <%= simple_form_for @business_card do |f| %>
-        <div class="flex-between">
-          <%= f.input :first_name, label: false, input_html: { style: 'flex: 0 0 50%;', class: 'input-inline' } %>
-          <%= f.input :last_name, label: false, input_html: { style: 'flex: 0 0 50%;', class: 'input-inline' } %>
+        <div class="flex">
+          <%= f.input :first_name, input_html: { style: 'flex: 0 0 50%;', class: 'input-inline' }, label_html: { class: 'label' } %>
+          <div class="flex-end">
+            <%= f.input :last_name, input_html: { style: 'flex: 0 0 50%;', class: 'input-inline' }, label_html: { class: 'label' } %>
+          </div>
         </div>
         <div class="flex-start">
-          <%= f.input :email, label: false, input_html: { class: 'input-horizontal' } %>
+          <%= f.input :email, label_html: { class: 'label' } %>
         </div>
-        <div class="flex-between">
-          <%= f.input :phone, label: false, input_html: { style: 'flex: 0 0 50%;', class: 'input-inline' } %>
-          <%= f.input :location, label: false, input_html: { style: 'flex: 0 0 50%;', class: 'input-inline' } %>
-        </div>
-        <div class="flex-start">
-          <%= f.input :industry, label: false, input_html: { class: 'input-horizontal' } %>
-        </div>
-        <div class="flex-start">
-          <%= f.input :company_name, label: false, input_html: { class: 'input-horizontal' } %>
+        <div class="flex">
+          <%= f.input :phone, input_html: { style: 'flex: 0 0 50%;', class: 'input-inline' }, label_html: { class: 'label' } %>
+          <div class="flex-end">
+            <%= f.input :location, input_html: { style: 'flex: 0 0 50%;', class: 'input-inline' }, label_html: { class: 'label' } %>
+          </div>
         </div>
         <div class="flex-start">
-          <%= f.input :description, label: false, input_html: { class: 'input-horizontal' } %>
+          <%= f.input :industry, label_html: { class: 'label' } %>
+        </div>
+        <div class="flex-start">
+          <%= f.input :company_name, label_html: { class: 'label' } %>
+        </div>
+        <div class="flex-start">
+          <%= f.input :description, label_html: { class: 'label' } %>
+        </div>
+        <div class="flex-center">
+          <%= f.submit 'UPDATE', class: 'btn update-btn' %>
         </div>
       <% end %>
     </div>
