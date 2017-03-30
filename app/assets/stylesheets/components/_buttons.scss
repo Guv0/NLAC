@@ -3,11 +3,43 @@
   width: 215px;
 }
 
+.btn {
+  background-color: $brand-color;
+  color: white;
+  border-radius: 2px;
+  border: none;
+  box-shadow: 1px 1px 4px 1px $shadow;
+  &:hover {
+    background-color: $brand-color-hover;
+    color: white;
+    box-shadow: 2px 2px 4px 1px $shadow;
+  }
+}
+
 .nlac-btn {
   height: 30px;
   width: 100px;
-  background-color: $brand-color;
-  color: white;
-  border-radius: 3px;
+}
+
+.update-btn {
+  height: 50px;
+  width: 200px;
+  font-weight: bold;
+  font-size: 22px;
+  letter-spacing: 5px;
+}
+
+.edit-link {
+  color: $brand-color;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 14px;
+  p {
+    float: left;
+  }
+  i {
+    margin-left: 5px;
+  }
 }
 

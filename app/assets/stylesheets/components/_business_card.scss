@@ -8,6 +8,10 @@
   box-shadow: 1px 1px 4px 1px $shadow;
   display: flex;
   align-items: center;
+  position: relative;
+  i {
+    color: $brand-color;
+  }
 }
 
 .card-left {
@@ -25,7 +29,6 @@
   width: 85%;
   i {
   padding-right: 20px;
-  color: $brand-color;
   font-size: 25px;
   }
   p {

@@ -1,0 +1,111 @@
+.edit-form {
+  margin-top: 50px;
+  padding: 0 40px 30px 40px;
+  width: 675px;
+  background-color: white;
+  border: 1px solid $border;
+  border-radius: 2px;
+  box-shadow: 1px 1px 4px 1px $shadow;
+  h3 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .flex {
+    display: flex;
+    align-items: center;
+  }
+  .input-inline {
+    width: 280px;
+  }
+}
+
+.label {
+  padding-left: 0;
+  padding-right: 0;
+  display: block;
+  color: $brand-color;
+  float: left;
+}
+
+
+// Media queries
+  // Large phones
+  @media (max-width: 425px) and (min-width: 376px) {
+    .edit-form {
+      margin-top: 40px;
+      padding: 0 30px 20px 30px;
+      width: 400px;
+      h3 {
+        font-size: 25px;
+      }
+      .flex {
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+      .input-inline {
+        width: 333px;
+      }
+    }
+
+    .update-btn {
+      height: 40px;
+      width: 170px;
+      font-weight: bold;
+      font-size: 20px;
+      letter-spacing: 5px;
+    }
+  }
+
+  // Medium phones
+  @media (max-width: 375px) and (min-width: 321px) {
+    .edit-form {
+      margin-top: 40px;
+      padding: 0 30px 20px 30px;
+      width: 400px;
+      h3 {
+        font-size: 23px;
+      }
+      .flex {
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+      .input-inline {
+        width: 284px;
+      }
+    }
+
+    .update-btn {
+      height: 40px;
+      width: 160px;
+      font-weight: bold;
+      font-size: 19px;
+      letter-spacing: 5px;
+    }
+  }
+
+  // Small phones
+  @media (max-width: 320px) {
+    .edit-form {
+      margin-top: 30px;
+      padding: 0 20px 10px 20px;
+      width: 300px;
+      h3 {
+        font-size: 20px;
+      }
+      .flex {
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+      .input-inline {
+        width: 248px;
+      }
+    }
+
+    .update-btn {
+      height: 40px;
+      width: 140px;
+      font-weight: bold;
+      font-size: 18px;
+      letter-spacing: 5px;
+    }
+  }
