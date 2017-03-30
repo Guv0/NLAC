@@ -3,6 +3,7 @@ class BusinessCardsController < ApplicationController
 before_action :set_business_card, :set_user, only: [ :show, :edit, :update, :destroy ]
 
   def show
+    @tags = @business_card.tags
   end
 
   def edit

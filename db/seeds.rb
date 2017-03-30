@@ -7,6 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.destroy_all
+BusinessCard.destroy_all
+Tag.destroy_all
+TagRelation.destroy_all
 
 User.create(email: 'barack.obama@gmail.com', password: '123456')
 BusinessCard.create(user_id: 1, first_name: 'Barack', last_name: 'Obama', email: 'barack.obama@gmail.com', location:'Washington, DC, US', phone: '+1 202 555 0147', industry: 'Politics', company_name: 'USA', description: 'I was better than Trump...', linkedin_picture_url: 'https://consequenceofsound.files.wordpress.com/2016/11/barack.png?w=1614')
@@ -39,3 +42,23 @@ User.create(email: 'sandrine.ayral@gmail.com', password: '123456')
 BusinessCard.create(user_id: 10, first_name: 'Sandrine', last_name: 'Ayral', email: 'sandrine.ayral@gmail.com', location: 'London, United Kingdom, GB', phone: '+ 44 6576 871424', industry: 'Tech', company_name: 'Le Wagon', description: '(Not so) secretely looking forward to Demo Day', linkedin_picture_url: '')
 
 puts 'fake users created'
+
+Tag.create(label: 'javascript')
+Tag.create(label: 'ruby')
+Tag.create(label: 'React')
+Tag.create(label: 'entrepreneur')
+Tag.create(label: 'design')
+Tag.create(label: 'Freelancer')
+Tag.create(label: 'growthhacking')
+Tag.create(label: 'charity')
+Tag.create(label: 'teaching')
+Tag.create(label: 'AI')
+
+(1..10).to_a.each do |x|
+  id_array = (1..10).to_a.sample(4)
+  id_array.each do |tag_id|
+    TagRelation.create(tag_id: tag_id, business_card_id: x, creator_id: x)
+  end
+end
+
+puts 'own tags seeded'
