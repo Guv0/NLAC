@@ -12,10 +12,15 @@ var TagsCard = React.createClass({
   },
 
   handleEnter: function(obj) {
-    console.log('fuck');
     newTagsArr = this.props.tags;
     newTagsArr.push(obj);
     this.setState({ tags: newTagsArr });
+  },
+
+  killTag: function(index) {
+    var tagsArr = this.state.tags;
+    tagsArr.splice(index, 1);
+    this.setState({tags: tagsArr});
   },
 
   render: function() {
@@ -24,8 +29,8 @@ var TagsCard = React.createClass({
     var tags = [];
 
     this.state.tags.map(function(tag, i) {
-      tags.push(<Tag tag={tag} key={i} />)
-    })
+      tags.push(<Tag tag={tag} key={i} index={i} handleCancelTag={this.killTag} />)
+    }.bind(this))
 
     return (
       <div>
