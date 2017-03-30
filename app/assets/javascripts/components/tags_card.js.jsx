@@ -8,16 +8,14 @@ var TagsCard = React.createClass({
 
   handleClick: function(e) {
     e.preventDefault();
-    this.setState({ display_form: true })
+    this.setState({ display_form: true });
   },
 
-  handleUserInput: function(obj, e) {
+  handleEnter: function(obj) {
+    console.log('fuck');
     newTagsArr = this.props.tags;
     newTagsArr.push(obj);
-    if (e.keyCode == 13) {
-      console.log(obj)
-      this.setState({ tags: newTagsArr})
-    }
+    this.setState({ tags: newTagsArr });
   },
 
   render: function() {
@@ -37,7 +35,7 @@ var TagsCard = React.createClass({
       {!display_form && <button className="nlac-btn" onClick={this.handleClick}>Add Tags</button>}
       <div>
           {display_form && <TagsForm onFormSubmit={this.handleFormSubmit}
-            onUserInput={this.handleUserInput} />}
+            onUserInput={this.handleUserInput} onEnter={this.handleEnter}/>}
         </div>
       </div>
     )
