@@ -12,7 +12,6 @@ var TagsCard = React.createClass({
   },
 
   handleEnter: function(obj) {
-    console.log('fuck');
     newTagsArr = this.props.tags;
     newTagsArr.push(obj);
     this.setState({ tags: newTagsArr });
