@@ -23,6 +23,26 @@ var TagsCard = React.createClass({
     this.setState({tags: tagsArr});
   },
 
+  handleFormSubmit: function() {
+    var newTags = [];
+
+    this.state.tags.map(function(tag){
+      if (!tag.id) {
+        newTags.push(tag.label)
+      }
+    })
+
+    console.log(newTags)
+    this.setState({display_form: false});
+      $.ajax({
+        type: 'POST',
+        url: '/business_cards/' + this.props.business_card.id,
+        data: {tags: newTags}
+      }).done(function() {
+          console.log("done");
+        })
+  },
+
   render: function() {
     console.log(this.props)
     var display_form = this.state.display_form

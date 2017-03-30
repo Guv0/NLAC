@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  post 'business_cards/:id', to: 'business_cards#create_tags'
+
   # root
   root to: 'connections#root'
 
