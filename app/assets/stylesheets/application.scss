@@ -24,6 +24,12 @@ h1, h2, h3, h4, h5, h6, p {
   margin: 0;
 }
 
+.container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
 .container-fluid {
   height: calc(100vh - 50px);
 }
