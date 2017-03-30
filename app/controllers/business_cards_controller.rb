@@ -1,6 +1,7 @@
 class BusinessCardsController < ApplicationController
 
-before_action :set_business_card, :set_user, only: [ :show, :edit, :update, :destroy ]
+before_action :set_business_card, only: [ :show, :edit, :update, :destroy ]
+before_action :set_user, only: [ :destroy ]
 
   def show
     @tags = @business_card.tags
@@ -10,11 +11,16 @@ before_action :set_business_card, :set_user, only: [ :show, :edit, :update, :des
   end
 
   def update
-    @business_card.update(business_card_params)
+    if @business_card.update(business_card_params)
+      redirect_to business_card_path(@business_card)
+    else
+      render :edit
+    end
   end
 
   def destroy
     @user.destroy
+    redirect_to new_user_registration_path
   end
 
 private

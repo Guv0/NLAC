@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <div class="flex-center">
+    <div class="edit-form">
+      <div class="flex-center">
+        <h3><strong>Edit your business card</strong></h3>
+      </div>
+      <%= simple_form_for @business_card do |f| %>
+        <div class="flex-between">
+          <%= f.input :first_name, label: false, input_html: { style: 'flex: 0 0 50%;', class: 'input-inline' } %>
+          <%= f.input :last_name, label: false, input_html: { style: 'flex: 0 0 50%;', class: 'input-inline' } %>
+        </div>
+        <div class="flex-start">
+          <%= f.input :email, label: false, input_html: { class: 'input-horizontal' } %>
+        </div>
+        <div class="flex-between">
+          <%= f.input :phone, label: false, input_html: { style: 'flex: 0 0 50%;', class: 'input-inline' } %>
+          <%= f.input :location, label: false, input_html: { style: 'flex: 0 0 50%;', class: 'input-inline' } %>
+        </div>
+        <div class="flex-start">
+          <%= f.input :industry, label: false, input_html: { class: 'input-horizontal' } %>
+        </div>
+        <div class="flex-start">
+          <%= f.input :company_name, label: false, input_html: { class: 'input-horizontal' } %>
+        </div>
+        <div class="flex-start">
+          <%= f.input :description, label: false, input_html: { class: 'input-horizontal' } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

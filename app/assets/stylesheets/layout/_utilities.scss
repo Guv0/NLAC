@@ -53,6 +53,12 @@
   flex-direction: column;
 }
 
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 // Font icons
 .fa-envelope {
   font-size: 20px !important;
