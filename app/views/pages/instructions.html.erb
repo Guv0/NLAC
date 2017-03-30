@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div class="flex-center" id="instructions-title">
+    <h2><strong>Email signature instructions</strong></h2>
+  </div>
+  <div class="flex-center">
+    <div class="instructions-card" id="gmail">
+      <h4><strong>Gmail instructions</strong></h4>
+      <%= image_tag "gmail.png" %>
+      <p>1 - Click the cog icon on the right</p>
+      <p>2 - Click 'Settings' from the drop-down menu</p>
+      <p>3 - Under the General tab, scroll down to 'Signature'</p>
+      <p>4 - Click the 'Insert Image' icon</p>
+      <p>5 - Click 'Web Adress (URL)'</p>
+      <p>6 - Paste in the web address: <strong><a href="nlac-logo.png" target="blank">http://www.nlac.io/nlac-logo.png</a></strong></p>
+      <p>7 - Highlight the image and click the 'Link' icon</p>
+      <p>8 - Paste in the web address: <strong><a href="business_cards/<%= current_user.business_card.id %>" target="blank">http://www.nlac.io/business_card/<%= "#{current_user.business_card.id}" %></a></strong></p>
+      <p>9 - Click 'OK'</p>
+      <p>10 - Check the bow which says <em>"Insert the signature before quoted text in replies and remove the '--' that precedes it"</em></p>
+      <p>11 - Scroll to the bottom and click 'Save Changes'</p>
+    </div>
+  </div>
+  <div class="flex-center">
+    <div class="instructions-card" id="mac">
+      <h4><strong>Mac Mail instructions</strong></h4>
+      <%= image_tag "mac.png" %>
+      <p>1 - Launch Mac Mail and open 'Preferences' under the Mail menu</p>
+      <p>2 - Click the 'Signature' tab</p>
+      <p>3 - Click the '+' to add a new signature</p>
+      <p>4 - Enter the name 'NeverLoseAContact'</p>
+      <p>5 - Delete the default text</p>
+      <p>6 - Download the NLAC icon at this url: <strong><a href="nlac-logo.png">http://www.nlac.io/nlac-logo.png</a></strong></p>
+      <p>7 - Drag it into the signature box</p>
+      <p>8 - Highlight the image, then from the Edit menu click 'Add link (⌘K)'</p>
+      <p>9 - Paste in the web address: <strong><a href="business_cards/<%= current_user.business_card.id %>" target="blank">http://www.nlac.io/business_card/<%= "#{current_user.business_card.id}" %></a></strong></p>
+      <p>10 - Press 'OK', then close the Preferences window</p>
+    </div>
+  </div>
+</div>
