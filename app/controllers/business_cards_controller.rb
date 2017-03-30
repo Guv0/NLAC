@@ -1,7 +1,7 @@
 class BusinessCardsController < ApplicationController
 
-before_action :set_business_card, only: [ :show, :edit, :update, :destroy ]
 before_action :set_user, only: [ :destroy ]
+before_action :set_business_card, :set_user, only: [ :show, :edit, :update, :destroy, :create_tags ]
 
   def show
     @tags = @business_card.tags
@@ -21,6 +21,19 @@ before_action :set_user, only: [ :destroy ]
   def destroy
     @user.destroy
     redirect_to new_user_registration_path
+  end
+
+  def create_tags
+    params["tags"].each do |tag|
+      normalized_tag = tag.downcase
+      if Tag.where(label: normalized_tag) && TagRelation.where(tag_id: Tag.where(label: normalized_tag).first.id, business_card_id: @business_card.id) == nil
+        existing_tag = Tag.where(label: normalized_tag).first
+        TagRelation.create(tag_id: existing_tag.id, business_card_id: @business_card.id, creator_id: current_user.id)
+      elsif Tag.where(label: normalized_tag) == nil
+        Tag.create(label: normalized_tag)
+        TagRelation.create(tag_id: Tag.where(label: normalized_tag).first.id, business_card_id: @business_card.id, creator_id: current_user.id)
+      end
+    end
   end
 
 private
