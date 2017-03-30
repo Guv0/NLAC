@@ -1,6 +1,12 @@
 <div class="container-fluid">
   <div class="flex-center flex-column">
     <div class="business-card">
+      <% if @business_card.user_id === current_user.id %>
+        <%= link_to edit_business_card_path(@business_card), class: 'edit-link' do %>
+          <p>Edit</p>
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
       <div class="card-left flex-around flex-column">
         <div class="card-avatar">
           <%= image_tag "#{@business_card.linkedin_picture_url}" %>
