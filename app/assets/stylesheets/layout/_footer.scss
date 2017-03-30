@@ -1,1 +1,100 @@
-// Your footer style
+#footer {
+  padding: 0 100px;
+  height: 100px;
+  width: 100%;
+  background-color: $black;
+  color: white;
+  font-weight: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  a {
+    color: white;
+    opacity: 0.6;
+    &:hover {
+      opacity: 1;
+      text-decoration: none;
+    }
+  }
+}
+
+#footer-links {
+  flex: 0 0 35%;
+}
+
+#copyrights {
+  flex: 0 0 20%;
+}
+
+
+// Media queries
+  // Small laptop
+  @media (max-width: 1024px) and (min-width: 769px) {
+    #footer-links {
+      flex: 0 0 45%;
+    }
+
+    #copyrights {
+      flex: 0 0 30%;
+    }
+  }
+
+  // Tablets
+  @media (max-width: 768px) and (min-width: 426px) {
+    #footer {
+      padding: 50px;
+      font-size: 15px;
+    }
+    #footer-links {
+      flex: 0 0 50%;
+    }
+
+    #copyrights {
+      flex: 0 0 35%;
+    }
+  }
+
+  // Large/Medium phones
+  @media (max-width: 425px) and (min-width: 321px) {
+    #footer {
+      padding: 0;
+      flex-direction: column;
+      font-size: 14px;
+    }
+
+    #footer-links {
+      padding-top: 20px;
+      flex: 0 0 50%;
+      a {
+        padding: 0 10px;
+      }
+    }
+
+    #copyrights {
+      flex: 0 0 50%;
+    }
+  }
+
+  // Small phones
+  @media (max-width: 320px) {
+    #footer {
+      padding: 0;
+      flex-direction: column;
+      font-size: 12px;
+    }
+
+    #footer-links {
+      padding-top: 20px;
+      flex: 0 0 50%;
+      a {
+        padding: 0 10px;
+      }
+    }
+
+    #copyrights {
+      flex: 0 0 50%;
+    }
+  }
+
+
+
