@@ -1,7 +1,9 @@
 var CancelTag = React.createClass({
+
+
   render: function() {
     return (
-      <span>x</span>
+      <a onClick={this.props.handleClick}>x</a>
     )
   }
 })
