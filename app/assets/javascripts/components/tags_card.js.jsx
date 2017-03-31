@@ -57,7 +57,9 @@ var TagsCard = React.createClass({
         <div className="flex">
           {tags}
         </div>
+        <div className="add-tags flex-center">
         {!display_form && <button className="add-tags-btn btn" onClick={this.handleClick}>Add Tags</button>}
+        </div>
         <div>
           {display_form && <TagsForm onFormSubmit={this.handleFormSubmit}
             onUserInput={this.handleUserInput} onEnter={this.handleEnter}/>}
