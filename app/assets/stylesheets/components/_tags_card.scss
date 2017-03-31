@@ -1,5 +1,6 @@
 .tags-card {
   margin-top: 20px;
+  margin-bottom: 20px;
   height: 100%;
   width: 675px;
   background-color: white;
@@ -8,5 +9,35 @@
   box-shadow: 1px 1px 4px 1px $shadow;
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding: 15px 20px 20px 20px;
+  span {
+    color: $brand-color;
+    font-weight: 500;
+  }
+  h4 {
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+}
+
+//Contains all react components for tags
+.react-tags-card {
+  width: 675px;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  .flex {
+    flex-wrap: wrap;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+.add-tags {
+  margin-top: 10px;
+}
+
+.add-tags-input {
+  width: 250px;
+  height: 35px;
 }
