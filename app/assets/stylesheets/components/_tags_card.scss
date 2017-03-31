@@ -19,8 +19,12 @@
   }
 }
 
+//Contains all react components for tags
 .react-tags-card {
   width: 675px;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
   .flex {
     flex-wrap: wrap;
     margin-left: 20px;
