@@ -4,3 +4,7 @@
 <div class="flex-center">
   <p><%= current_user.business_card.full_name %></p>
 </div>
+<hr>
+<% @business_card.user.connections.each do |connection| %>
+  <%= connection.contact.business_card.first_name %>
+<% end %>
