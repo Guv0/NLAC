@@ -15,9 +15,9 @@ var TagsForm = React.createClass({
 
   render: function() {
     return (
-      <div className="flex-center">
-        <input className='add-tags-input' name='label' placeholder='Type tag and hit ENTER' onChange={this.handleChange} onKeyPress={this.handleKeyPress}></input>
-       <button className="add-tags-btn btn" onClick={this.props.onFormSubmit} >Confirm</button>
+      <div className="flex-column flex-center">
+        <input className='add-tags-input' name='label' placeholder='Type your tag and hit ENTER' onChange={this.handleChange} onKeyPress={this.handleKeyPress}></input>
+       <button className="confirm-add-tags-btn btn" onClick={this.props.onFormSubmit}>Confirm these tags</button>
        </div>
     )
   }
