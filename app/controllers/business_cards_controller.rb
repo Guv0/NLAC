@@ -4,7 +4,7 @@ before_action :set_user, only: [ :destroy ]
 before_action :set_business_card, :set_user, only: [ :show, :edit, :update, :destroy, :create_tags ]
 
   def show
-    @tags = @business_card.tags
+    @tags = @business_card.tags_to_display(@business_card, @business_card.id, current_user.id)
   end
 
   def edit
@@ -26,13 +26,8 @@ before_action :set_business_card, :set_user, only: [ :show, :edit, :update, :des
   def create_tags
     params["tags"].each do |tag|
       normalized_tag = tag.downcase
-      if Tag.where(label: normalized_tag) && TagRelation.where(tag_id: Tag.where(label: normalized_tag).first.id, business_card_id: @business_card.id) == nil
-        existing_tag = Tag.where(label: normalized_tag).first
-        TagRelation.create(tag_id: existing_tag.id, business_card_id: @business_card.id, creator_id: current_user.id)
-      elsif Tag.where(label: normalized_tag) == nil
-        Tag.create(label: normalized_tag)
-        TagRelation.create(tag_id: Tag.where(label: normalized_tag).first.id, business_card_id: @business_card.id, creator_id: current_user.id)
-      end
+      @tag_relation = TagRelation.new
+      @tag_relation.add_tag(normalized_tag, @business_card.id, current_user.id)
     end
   end
 
