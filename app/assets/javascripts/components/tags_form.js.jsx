@@ -18,7 +18,7 @@ var TagsForm = React.createClass({
       <div>
         <input name='label' onChange={this.handleChange} onKeyPress={this.handleKeyPress}></input>
 
-       <button className="nlac-btn" onClick={this.props.onFormSubmit} >Confirm</button>
+       <button className="nlac-btn btn" onClick={this.props.onFormSubmit} >Confirm</button>
        </div>
     )
   }
