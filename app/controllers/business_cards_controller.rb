@@ -5,6 +5,7 @@ before_action :set_business_card, :set_user, only: [ :show, :edit, :update, :des
 
   def show
     @tags = @business_card.tags_to_display(@business_card, @business_card.id, current_user.id)
+    @current_user = current_user
   end
 
   def edit

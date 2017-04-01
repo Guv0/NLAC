@@ -7,6 +7,7 @@ var Tag = React.createClass({
   render: function() {
     var cancel;
 
+
     if (!this.props.tag.id) {
       cancel = <CancelTag handleClick={this.cancelTag} />;
     }
