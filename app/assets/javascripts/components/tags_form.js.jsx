@@ -6,6 +6,7 @@ var TagsForm = React.createClass({
     obj = {};
 
     obj[label] = e.target.value;
+
     if (e.key === 'Enter') {
       console.log('enter');
       this.props.onEnter(obj);

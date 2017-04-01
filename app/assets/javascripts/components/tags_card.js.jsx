@@ -78,7 +78,8 @@ var TagsCard = React.createClass({
         {!display_form && <button className="add-tags-btn btn" onClick={this.handleClick}>Add Tags</button>}
         </div>
         <div>
-          {display_form && <TagsForm onFormSubmit={this.handleFormSubmit}
+          {display_form && <TagsForm current_user={this.props.current_user}
+          onFormSubmit={this.handleFormSubmit}
             onUserInput={this.handleUserInput} onEnter={this.handleEnter}/>}
         </div>
       </div>

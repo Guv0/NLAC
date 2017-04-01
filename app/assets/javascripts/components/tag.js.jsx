@@ -12,6 +12,7 @@ var Tag = React.createClass({
   render: function() {
     var cancel;
     var destroy;
+
     console.log(this.props.tag[0].label);
     console.log(this.props.tag[1]);
 
