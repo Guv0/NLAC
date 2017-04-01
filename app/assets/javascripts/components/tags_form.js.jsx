@@ -3,12 +3,15 @@ var TagsForm = React.createClass({
   handleKeyPress: function(e) {
     e.preventDefault;
     var label = e.target.name
+    var newTag = [];
     obj = {};
-
     obj[label] = e.target.value;
+    newTag.push(obj);
+    newTag.push("new");
+
     if (e.key === 'Enter') {
       console.log('enter');
-      this.props.onEnter(obj);
+      this.props.onEnter(newTag);
       e.target.value = '';
     }
   },

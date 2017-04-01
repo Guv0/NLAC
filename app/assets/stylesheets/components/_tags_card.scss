@@ -41,3 +41,27 @@
   width: 250px;
   height: 35px;
 }
+// Media queries
+  // Large/Medium phones
+  @media (max-width: 425px) and (min-width: 321px) {
+    .tags-card {
+      margin-top: 20px;
+      height: 100%;
+      width: 345px;
+    }
+    .react-tags-card {
+    width: 345px;
+    }
+  }
+
+// Small phones
+  @media (max-width: 320px) {
+    .tags-card {
+      margin-top: 30px;
+      height: 100%;
+      width: 290px;
+    }
+    .react-tags-card {
+    width: 290px;
+    }
+  }

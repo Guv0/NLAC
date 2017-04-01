@@ -29,7 +29,7 @@
           <div class="info-icon flex-center">
             <i class="fa fa-envelope" aria-hidden="true"></i>
           </div>
-          <p><%= truncate(@business_card.email, length: 25) %></p>
+          <p><a href=<%= "mailto:#{@business_card.email}" %>><%= truncate(@business_card.email, length: 25) %></a></p>
         </div>
         <div class="info flex">
           <div class="info-icon flex-center">
@@ -45,9 +45,9 @@
         </div>
       </div>
     </div>
-    <div class="tags-card flex-around flex-column">
+    <div class="tags-card flex-column">
       <h4><span>#</span>tags</h4>
-      <%= react_component "TagsCard", {tags: @tags, business_card: @business_card} %>
+      <%= react_component "TagsCard", {tags: @tags, business_card: @business_card, current_user: @current_user} %>
     </div>
   </div>
 </div>

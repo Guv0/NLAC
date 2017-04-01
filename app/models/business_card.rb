@@ -10,10 +10,10 @@ class BusinessCard < ApplicationRecord
   def tags_to_display(business_card, owner_id, current_user_id)
     tags = []
     business_card.tag_relations.where(creator_id: owner_id).each do |relation|
-      tags << Tag.find(relation.tag_id)
+      tags << [Tag.find(relation.tag_id), relation.creator_id]
     end
     business_card.tag_relations.where(creator_id: current_user_id).each do |relation|
-      tags << Tag.find(relation.tag_id)
+      tags << [Tag.find(relation.tag_id), relation.creator_id]
     end
     return tags.uniq
   end

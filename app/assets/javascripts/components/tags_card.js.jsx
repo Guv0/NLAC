@@ -23,12 +23,28 @@ var TagsCard = React.createClass({
     this.setState({tags: tagsArr});
   },
 
+  deleteTag: function(tag) {
+    console.log(tag);
+    var deleteTag = {};
+    deleteTag["id"] = tag[0].id;
+    deleteTag["creator_id"] = tag[1];
+    deleteTag["business_card_id"] = this.props.business_card.id;
+
+    $.ajax({
+        type: 'DELETE',
+        url: '/business_cards/' + this.props.business_card.id,
+        data: {deleteTag}
+      }).done(function() {
+          console.log("done");
+        })
+  },
+
   handleFormSubmit: function() {
     var newTags = [];
 
     this.state.tags.map(function(tag){
-      if (!tag.id) {
-        newTags.push(tag.label)
+      if (!tag[0].id) {
+        newTags.push(tag[0].label)
       }
     })
 
@@ -49,7 +65,8 @@ var TagsCard = React.createClass({
     var tags = [];
 
     this.state.tags.map(function(tag, i) {
-      tags.push(<Tag tag={tag} key={i} index={i} handleCancelTag={this.killTag} />)
+      tags.push(<Tag tag={tag} key={i} index={i} current_user={this.props.current_user}
+        handleCancelTag={this.killTag} handleDeleteTag={this.deleteTag} />)
     }.bind(this))
 
     return (
@@ -61,7 +78,8 @@ var TagsCard = React.createClass({
         {!display_form && <button className="add-tags-btn btn" onClick={this.handleClick}>Add Tags</button>}
         </div>
         <div>
-          {display_form && <TagsForm onFormSubmit={this.handleFormSubmit}
+          {display_form && <TagsForm current_user={this.props.current_user}
+          onFormSubmit={this.handleFormSubmit}
             onUserInput={this.handleUserInput} onEnter={this.handleEnter}/>}
         </div>
       </div>
