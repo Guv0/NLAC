@@ -25,7 +25,7 @@ before_action :set_business_card, :set_user, only: [ :show, :edit, :update, :des
 
   def create_tags
     params["tags"].each do |tag|
-      normalized_tag = tag.downcase
+      normalized_tag = tag.split.join.downcase
       @tag_relation = TagRelation.new
       @tag_relation.add_tag(normalized_tag, @business_card.id, current_user.id)
     end
