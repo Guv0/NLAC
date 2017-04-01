@@ -27,7 +27,7 @@ var TagsCard = React.createClass({
     var newTags = [];
 
     this.state.tags.map(function(tag){
-      if (!tag.id) {
+      if (!tag[0].id) {
         newTags.push(tag.label)
       }
     })
