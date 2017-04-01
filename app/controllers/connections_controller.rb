@@ -1,7 +1,5 @@
 class ConnectionsController < ApplicationController
 
-before_action :set_business_card, only: [ :index ]
-
   def index
   end
 
@@ -13,11 +11,5 @@ before_action :set_business_card, only: [ :index ]
   def root
     redirect_to business_card_connections_path(current_user)
   end
-
-private
-
-def set_business_card
-  @business_card = BusinessCard.find(params[:business_card_id])
-end
 
 end
