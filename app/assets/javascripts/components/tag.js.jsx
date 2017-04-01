@@ -4,6 +4,11 @@ var Tag = React.createClass({
     this.props.handleCancelTag(this.props.index);
   },
 
+  deleteTag: function(e){
+    e.preventDefault();
+    this.props.handleDeleteTag(this.props.tag);
+  },
+
   render: function() {
     var cancel;
     var destroy;
@@ -12,8 +17,9 @@ var Tag = React.createClass({
 
     if (!this.props.tag[0].id) {
       cancel = <CancelTag handleClick={this.cancelTag} />;
+    } else if (this.props.tag[1] == this.props.current_user.id) {
+      cancel = <DeleteTag handleClick={this.deleteTag} />;
     }
-
 
     return (
       <div className="tag flex-around">

@@ -23,9 +23,21 @@ var TagsCard = React.createClass({
     this.setState({tags: tagsArr});
   },
 
-  deleteTag: function() {
+  deleteTag: function(tag) {
+    console.log(tag);
+    var deleteTag = {};
+    deleteTag["id"] = tag[0].id;
+    deleteTag["creator_id"] = tag[1];
+    deleteTag["business_card_id"] = this.props.business_card.id;
 
-  }
+    $.ajax({
+        type: 'DELETE',
+        url: '/business_cards/' + this.props.business_card.id,
+        data: {deleteTag}
+      }).done(function() {
+          console.log("done");
+        })
+  },
 
   handleFormSubmit: function() {
     var newTags = [];
