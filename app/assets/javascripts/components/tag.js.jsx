@@ -7,16 +7,17 @@ var Tag = React.createClass({
   render: function() {
     var cancel;
     var destroy;
+    console.log(this.props.tag[0].label);
+    console.log(this.props.tag[1]);
 
-    if (!this.props.tag.first.id) {
+    if (!this.props.tag[0].id) {
       cancel = <CancelTag handleClick={this.cancelTag} />;
     }
-    console.log(this.props)
 
 
     return (
       <div className="tag flex-around">
-        <p>#</p>{this.props.tag.first.label}{cancel}
+        <p>#</p>{this.props.tag[0].label}{cancel}
       </div>
     )
   }

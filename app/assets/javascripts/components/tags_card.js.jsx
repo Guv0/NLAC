@@ -23,11 +23,15 @@ var TagsCard = React.createClass({
     this.setState({tags: tagsArr});
   },
 
+  deleteTag: function() {
+
+  }
+
   handleFormSubmit: function() {
     var newTags = [];
 
     this.state.tags.map(function(tag){
-      if (!tag[0].id) {
+      if (!tag.id) {
         newTags.push(tag.label)
       }
     })
@@ -49,7 +53,8 @@ var TagsCard = React.createClass({
     var tags = [];
 
     this.state.tags.map(function(tag, i) {
-      tags.push(<Tag tag={tag} key={i} index={i} handleCancelTag={this.killTag} />)
+      tags.push(<Tag tag={tag} key={i} index={i} current_user={this.props.current_user}
+        handleCancelTag={this.killTag} handleDeleteTag={this.deleteTag} />)
     }.bind(this))
 
     return (
