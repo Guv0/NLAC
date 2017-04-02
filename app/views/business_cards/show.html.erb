@@ -29,13 +29,13 @@
           <div class="info-icon flex-center">
             <i class="fa fa-envelope" aria-hidden="true"></i>
           </div>
-          <p><a href=<%= "mailto:#{@business_card.email}" %>><%= truncate(@business_card.email, length: 25) %></a></p>
+          <p><a href=<%= "mailto:#{@business_card.email}" %>><%= truncate(@business_card.email, length: 30) %></a></p>
         </div>
         <div class="info flex">
           <div class="info-icon flex-center">
             <i class="fa fa-home" aria-hidden="true"></i>
           </div>
-          <p><a href=<%= "#{@business_card.linkedin_profile_url}" %>><%= @business_card.linkedin_profile_url %></a></p>
+          <p><a href=<%= "#{@business_card.linkedin_profile_url}" %>><%= truncate(@business_card.linkedin_profile_url, length: 30) %></a></p>
         </div>
         <div class="info flex">
           <div class="info-icon flex-center">
