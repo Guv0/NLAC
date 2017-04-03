@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   # tags
   post 'business_cards/:id', to: 'business_cards#create_tags'
+  delete 'business_cards/:id', to: 'business_cards#delete_tag'
 
   # pages
   get 'about', to: 'pages#about'
