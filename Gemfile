@@ -25,6 +25,7 @@ end
 
 # Sign in with LinkedIn
 gem 'omniauth-linkedin'
+gem 'linkedin'
 
 group :development, :test do
   gem 'binding_of_caller'
