@@ -16,7 +16,9 @@ class User < ApplicationRecord
     bc_params[:first_name] = auth.info.first_name
     bc_params[:last_name] = auth.info.last_name
     bc_params[:email] = auth.info.email
-    bc_params[:linkedin_picture_url] = auth.info.image
+    client = LinkedIn::Client.new
+    client.authorize_from_access(auth.extra.access_token.token, auth.extra.access_token.secret)
+    bc_params[:linkedin_picture_url] = client.picture_urls.all.first
     user_params[:token] = auth.credentials.token
     bc_params[:industry] = auth.info.industry
     bc_params[:location] = auth.info.location
