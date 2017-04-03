@@ -29,8 +29,8 @@
         <div class="flex-start">
           <%= f.input :description, label_html: { class: 'label' } %>
         </div>
-        <div class="flex-start">
-          <%= f.input :photo %>
+        <div class="flex-center photo-upload">
+          <%= f.input :photo, label_html: { class: 'label' } %>
           <%= f.input :photo_cache, as: :hidden %>
         </div>
         <div class="flex-center">
