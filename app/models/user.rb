@@ -42,5 +42,14 @@ class User < ApplicationRecord
 
     return user
   end
+
+  def get_contacts_business_card
+    business_card_arr = []
+    self.contacts.each do |contact|
+      business_card_arr << contact.business_card
+    end
+    return business_card_arr
+  end
+
 end
 

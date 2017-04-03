@@ -1,6 +1,33 @@
-<div class="flex-center">
-  <h2>My contacts</h2>
-</div>
-<div class="flex-center">
-  <p><%= current_user.business_card.full_name %></p>
+<div class="container-fluid">
+  <div class="flex-center" id="contacts-list-title">
+    <h2><strong>My contacts</strong></h2>
+  </div>
+  <div class="flex-center">
+    <div class="contacts-list-container">
+      <table>
+        <tr>
+          <th><%= sortable 'first_name', 'First Name' %></th>
+          <th><%= sortable 'last_name', 'Last Name' %></th>
+          <th><%= sortable 'company_name', 'Company' %></th>
+          <th><%= sortable 'location', 'Location' %></th>
+          <th>Tags</th>
+        </tr>
+        <% @contacts.each do |contact| %>
+          <tr>
+            <td><%= contact.first_name %></td>
+            <td><%= contact.last_name %></td>
+            <td><%= contact.company_name %></td>
+            <td><%= (contact.location).truncate(15) %></td>
+            <td>
+              <% tags = [] %>
+              <% contact.tags.each do |tag| %>
+                <% tags << tag.label %>
+              <% end  %>
+              <%= (tags.join(', ')).truncate(25) %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
 </div>

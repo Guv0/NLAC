@@ -1,18 +1,21 @@
 Rails.application.routes.draw do
 
-  post 'business_cards/:id', to: 'business_cards#create_tags'
-  delete 'business_cards/:id', to: 'business_cards#delete_tag'
-
   # root
   root to: 'connections#root'
 
+  # users
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   # business_cards
   resources :business_cards, only: [ :show, :edit, :update, :destroy ] do
-    resources :connections, only: [ :index ]
+    # connections
+    resources :connections, only: [ :index, :create ]
   end
+
+  # tags
+  post 'business_cards/:id', to: 'business_cards#create_tags'
+  delete 'business_cards/:id', to: 'business_cards#delete_tag'
 
   # pages
   get 'about', to: 'pages#about'
