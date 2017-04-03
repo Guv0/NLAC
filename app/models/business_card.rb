@@ -4,19 +4,36 @@ belongs_to :user
 has_many :tag_relations, dependent: :destroy
 has_many :tags, through: :tag_relations
 
+include PgSearch
+pg_search_scope :search_for, against: [:first_name, :last_name, :company_name, :location]
+pg_search_scope :search_tag, associated_against: {
+  tags: :label
+}
+
 mount_uploader :photo, AvatarUploader
 
   def full_name
     "#{self.first_name} #{self.last_name}"
   end
 
-  def tags_to_display(business_card, owner_id, current_user_id)
+  def tags_to_display(owner_id, current_user_id)
     tags = []
-    business_card.tag_relations.where(creator_id: owner_id).each do |relation|
+    self.tag_relations.where(creator_id: owner_id).each do |relation|
       tags << [Tag.find(relation.tag_id), relation.creator_id]
     end
-    business_card.tag_relations.where(creator_id: current_user_id).each do |relation|
+    self.tag_relations.where(creator_id: current_user_id).each do |relation|
       tags << [Tag.find(relation.tag_id), relation.creator_id]
+    end
+    return tags.uniq
+  end
+
+  def valid_tags(contact_id, current_user_id)
+    tags = []
+    self.tag_relations.where(creator_id: contact_id).each do |relation|
+      tags << Tag.find(relation.tag_id)
+    end
+    self.tag_relations.where(creator_id: current_user_id).each do |relation|
+      tags << Tag.find(relation.tag_id)
     end
     return tags.uniq
   end
