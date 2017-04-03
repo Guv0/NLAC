@@ -1,16 +1,22 @@
 <div class="container-fluid">
-  <%= cl_image_tag("rsa5lkr6pm64sbwdi6vu", width: 200, height: 200) %>
   <div class="flex-center" id="contacts-list-title">
     <h2><strong>My contacts</strong></h2>
+  </div>
+  <div class="flex-center">
+    <%= form_tag business_card_connections_path(@business_card), method: :get do %>
+      <%= text_field_tag :query, params[:query] %>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag 'Search', name: nil %>
+    <% end %>
   </div>
   <div class="flex-center">
     <div class="contacts-list-container">
       <table>
         <tr>
-          <th><%= sortable 'first_name', 'First Name' %></th>
-          <th><%= sortable 'last_name', 'Last Name' %></th>
-          <th><%= sortable 'company_name', 'Company' %></th>
-          <th><%= sortable 'location', 'Location' %></th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Company</th>
+          <th>Location</th>
           <th>Tags</th>
         </tr>
         <% @contacts.each do |contact| %>
@@ -21,10 +27,10 @@
             <td><%= (contact.location).truncate(15) %></td>
             <td>
               <% tags = [] %>
-              <% contact.tags.each do |tag| %>
+              <% contact.valid_tags(contact.id, current_user.id).each do |tag| %>
                 <% tags << tag.label %>
               <% end  %>
-              <%= (tags.join(', ')).truncate(25) %>
+              <%= tags.join(', ') %>
             </td>
           </tr>
         <% end %>
