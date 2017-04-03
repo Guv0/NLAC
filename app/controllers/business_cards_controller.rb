@@ -49,7 +49,7 @@ before_action :set_business_card, :set_user, only: [ :show, :edit, :update, :des
     respond_to do |format|
         format.json { render json: @tags, status: :created }
     end
-    # redirect_to business_card_path(@business_card)
+
   end
 
 private

@@ -32,7 +32,7 @@ var TagsCard = React.createClass({
 
     $.ajax({
         type: 'DELETE',
-        url: '/business_cards/' + this.props.business_card.id,
+        url: '/business_cards/' + this.props.business_card.id + '/deletetag',
         dataType: 'json',
         data: {deleteTag}
       }).done(function(data) {

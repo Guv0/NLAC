@@ -9,7 +9,7 @@
       <% end %>
       <div class="card-left flex-around flex-column">
         <div class="card-avatar">
-        <% if @business_card.photo %>
+        <% if @business_card.photo? %>
           <%= image_tag @business_card.photo.url(:standard) %>
         <% else %>
           <%= image_tag "#{@business_card.linkedin_picture_url}" %>
