@@ -6,10 +6,10 @@ class TagRelation < ApplicationRecord
     if Tag.where(label: normalized_tag) == []
       Tag.create(label: normalized_tag)
       TagRelation.create(tag_id: Tag.last.id, business_card_id: business_card_id, creator_id: current_user_id)
-    elsif TagRelation.where(tag_id: Tag.where(label: normalized_tag).first.id, business_card_id: business_card_id)
-      TagRelation.create(tag_id: Tag.where(label: normalized_tag).first.id, business_card_id: business_card_id, creator_id: current_user_id) == []
-    elsif TagRelation.where(tag_id: Tag.where(label: normalized_tag).first.id, business_card_id: business_card_id, creator_id: @business_card.id)
-      TagRelation.create(tag_id: Tag.where(label: normalized_tag).first.id, business_card_id: business_card_id, creator_id: current_user_id) == []
+    elsif TagRelation.where(tag_id: Tag.where(label: normalized_tag).first.id, business_card_id: business_card_id) == []
+      TagRelation.create(tag_id: Tag.where(label: normalized_tag).first.id, business_card_id: business_card_id, creator_id: current_user_id)
+    elsif TagRelation.where(tag_id: Tag.where(label: normalized_tag).first.id, business_card_id: business_card_id, creator_id: business_card_id) == []
+      TagRelation.create(tag_id: Tag.where(label: normalized_tag).first.id, business_card_id: business_card_id, creator_id: current_user_id)
     end
   end
 end
