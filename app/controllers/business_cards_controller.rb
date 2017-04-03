@@ -63,7 +63,7 @@ private
   end
 
   def business_card_params
-    params.require(:business_card).permit(:first_name, :last_name, :email, :location, :phone, :industry, :company_name, :description)
+    params.require(:business_card).permit(:first_name, :last_name, :email, :location, :phone, :industry, :company_name, :description, :photo, :photo_cache)
   end
 
 end

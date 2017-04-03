@@ -29,6 +29,10 @@
         <div class="flex-start">
           <%= f.input :description, label_html: { class: 'label' } %>
         </div>
+        <div class="flex-start">
+          <%= f.input :photo %>
+          <%= f.input :photo_cache, as: :hidden %>
+        </div>
         <div class="flex-center">
           <%= f.submit 'UPDATE', class: 'btn update-btn' %>
         </div>

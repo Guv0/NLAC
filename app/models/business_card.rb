@@ -4,6 +4,8 @@ belongs_to :user
 has_many :tag_relations, dependent: :destroy
 has_many :tags, through: :tag_relations
 
+mount_uploader :photo, AvatarUploader
+
   def full_name
     "#{self.first_name} #{self.last_name}"
   end

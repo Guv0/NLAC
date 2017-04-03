@@ -27,6 +27,10 @@ end
 gem 'omniauth-linkedin'
 gem 'linkedin'
 
+#Images
+gem 'cloudinary', '1.1.0'
+gem 'carrierwave'
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
