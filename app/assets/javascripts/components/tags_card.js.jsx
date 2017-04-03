@@ -56,9 +56,10 @@ var TagsCard = React.createClass({
         type: 'POST',
         url: '/business_cards/' + this.props.business_card.id,
         data: {tags: newTags}
-      }).done(function() {
-          console.log("done");
-        })
+      }).done(function(data) {
+          console.log(data);
+          this.setState({ tags: data});
+        }.bind(this));
   },
 
   render: function() {
