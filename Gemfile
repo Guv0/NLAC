@@ -23,6 +23,9 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-classnames'
 end
 
+#Jbuilder for building react props
+gem 'jbuilder', '~> 2.0'
+
 # Sign in with LinkedIn
 gem 'omniauth-linkedin'
 

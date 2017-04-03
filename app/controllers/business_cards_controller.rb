@@ -37,8 +37,15 @@ before_action :set_business_card, :set_user, only: [ :show, :edit, :update, :des
     business_card_id = params["deleteTag"]["business_card_id"]
     creator_id = params["deleteTag"]["creator_id"]
     @tag_relation = TagRelation.where(tag_id: tag_id, business_card_id: business_card_id, creator_id: creator_id)
+
     TagRelation.destroy(@tag_relation.first.id)
-    redirect_to business_card_path(@business_card)
+
+    @tags = @business_card.tags_to_display(@business_card, @business_card.id, current_user.id)
+
+    respond_to do |format|
+        format.json { render json: @tags, status: :created }
+      end
+    # redirect_to business_card_path(@business_card)
   end
 
 private
