@@ -1,0 +1,43 @@
+#contacts-list-title {
+  margin-top: 30px;
+}
+
+.contacts-list-container {
+  margin-top: 30px;
+  width: 1000px;
+  background-color: white;
+  border: 1px solid $border;
+  border-radius: 2px;
+  box-shadow: 1px 1px 4px 1px $shadow;
+  tr {
+    width: 1000px;
+    display: flex;
+    padding: 5px 15px;
+    &:first-child {
+      border-bottom: 2px solid $brand-color;
+    }
+  }
+  th {
+    flex: 0 0 20%;
+    color: $brand-color;
+    a {
+      color: $brand-color;
+    }
+  }
+  th .current {
+    padding-right: 15px;
+    background-repeat: no-repeat;
+    background-position: right center;
+  }
+  th .asc {
+    background-image: url('arrow-up.png');
+    background-size: 12px;
+  }
+  th .desc {
+    background-image: url('arrow-down.png');
+    background-size: 12px;
+  }
+  td {
+    flex: 0 0 20%;
+  }
+}
