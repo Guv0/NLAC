@@ -12,7 +12,7 @@ var TagsCard = React.createClass({
   },
 
   handleEnter: function(obj) {
-    newTagsArr = this.props.tags;
+    newTagsArr = this.state.tags;
     newTagsArr.push(obj);
     this.setState({ tags: newTagsArr });
   },
@@ -48,7 +48,6 @@ var TagsCard = React.createClass({
       }
     })
 
-    console.log(newTags)
     this.setState({display_form: false});
       $.ajax({
         type: 'POST',
