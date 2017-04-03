@@ -24,7 +24,6 @@ var TagsCard = React.createClass({
   },
 
   deleteTag: function(tag) {
-    console.log(tag);
     var deleteTag = {};
     deleteTag["id"] = tag[0].id;
     deleteTag["creator_id"] = tag[1];
@@ -36,7 +35,6 @@ var TagsCard = React.createClass({
         dataType: 'json',
         data: {deleteTag}
       }).done(function(data) {
-        console.log(data);
         this.setState({ tags: data});
         }.bind(this));
   },
@@ -63,7 +61,6 @@ var TagsCard = React.createClass({
   },
 
   render: function() {
-    console.log(this.props)
     var display_form = this.state.display_form
     var tags = [];
 

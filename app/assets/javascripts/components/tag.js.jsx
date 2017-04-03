@@ -13,9 +13,6 @@ var Tag = React.createClass({
     var cancel;
     var destroy;
 
-    console.log(this.props.tag[0].label);
-    console.log(this.props.tag[1]);
-
     if (!this.props.tag[0].id) {
       cancel = <CancelTag handleClick={this.cancelTag} />;
     } else if (this.props.tag[1] == this.props.current_user.id) {

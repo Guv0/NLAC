@@ -10,7 +10,6 @@ var TagsForm = React.createClass({
     newTag.push("new");
 
     if (e.key === 'Enter') {
-      console.log('enter');
       this.props.onEnter(newTag);
       e.target.value = '';
     }
