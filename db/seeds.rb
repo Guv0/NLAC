@@ -45,10 +45,10 @@ puts 'fake users created'
 
 Tag.create(label: 'javascript')
 Tag.create(label: 'ruby')
-Tag.create(label: 'React')
+Tag.create(label: 'react')
 Tag.create(label: 'entrepreneur')
 Tag.create(label: 'design')
-Tag.create(label: 'Freelancer')
+Tag.create(label: 'freelancer')
 Tag.create(label: 'growthhacking')
 Tag.create(label: 'charity')
 Tag.create(label: 'teaching')
