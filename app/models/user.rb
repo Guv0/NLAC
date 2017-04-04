@@ -9,6 +9,14 @@ class User < ApplicationRecord
   has_many :connections, dependent: :destroy
   has_many :contacts, through: :connections, :foreign_key => 'contact_id'
 
+  def self.current
+    Thread.current[:user]
+  end
+
+  def self.current=(user)
+    Thread.current[:user] = user
+  end
+
   def self.find_for_linkedin_oauth(auth)
     bc_params = {}
     user_params = auth.slice(:provider, :uid)
