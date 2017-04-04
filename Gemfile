@@ -17,6 +17,9 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 
+# search
+gem 'pg_search'
+
 #React
 gem 'react-rails', '~> 1.8'
 source 'https://rails-assets.org' do
