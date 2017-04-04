@@ -4,11 +4,11 @@ belongs_to :user
 has_many :tag_relations, dependent: :destroy
 has_many :tags, through: :tag_relations
 
-include PgSearch
-pg_search_scope :search_for, against: [:first_name, :last_name, :company_name, :location]
-pg_search_scope :search_tag, associated_against: {
-  tags: :label
-}
+# include PgSearch
+# pg_search_scope :search_for, against: [:first_name, :last_name, :company_name, :location]
+# pg_search_scope :search_tag, associated_against: {
+#   tags: :label
+# }
 
 mount_uploader :photo, AvatarUploader
 

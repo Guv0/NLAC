@@ -69,7 +69,8 @@ var TagsCard = React.createClass({
     }.bind(this))
 
     return (
-      <div className="react-tags-card">
+      <div className="react-tags-card flex-column flex-center">
+        <h4><span>#</span>tags</h4>
         <div className="flex">
           {tags}
         </div>

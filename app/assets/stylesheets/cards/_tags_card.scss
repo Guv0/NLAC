@@ -20,9 +20,15 @@
   }
 }
 
+.QRCode {
+  width: 200px;
+  flex: 0 0 30%;
+}
+
 //Contains all react components for tags
 .react-tags-card {
-  width: 675px;
+  width: 475px;
+  flex: 0 0 70%;
   // display: flex;
   // flex-direction: column;
   // justify-content: center;

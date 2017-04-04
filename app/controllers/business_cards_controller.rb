@@ -6,6 +6,7 @@ before_action :set_business_card, :set_user, only: [ :show, :edit, :update, :des
   def show
     @tags = @business_card.tags_to_display(@business_card.id, current_user.id)
     @current_user = current_user
+    @qr = RQRCode::QRCode.new("http://www.bbc.co.uk").to_img.resize(150, 150).to_data_url
   end
 
   def edit

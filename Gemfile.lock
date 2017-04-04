@@ -63,6 +63,7 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    chunky_png (1.3.8)
     cloudinary (1.1.0)
       aws_cf_signer
       rest-client
@@ -191,6 +192,11 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rqrcode (0.10.1)
+      chunky_png (~> 1.0)
+    rqrcode_png (0.1.5)
+      chunky_png
+      rqrcode
     sass (3.4.23)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -257,6 +263,7 @@ DEPENDENCIES
   rails-assets-classnames!
   react-rails (~> 1.8)
   redis
+  rqrcode_png
   sass-rails
   simple_form
   spring
