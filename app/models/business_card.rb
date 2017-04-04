@@ -27,15 +27,4 @@ mount_uploader :photo, AvatarUploader
     return tags.uniq
   end
 
-  def valid_tags(contact_id, current_user_id)
-    tags = []
-    self.tag_relations.where(creator_id: contact_id).each do |relation|
-      tags << Tag.find(relation.tag_id)
-    end
-    self.tag_relations.where(creator_id: current_user_id).each do |relation|
-      tags << Tag.find(relation.tag_id)
-    end
-    return tags.uniq
-  end
-
 end
