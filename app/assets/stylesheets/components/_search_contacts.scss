@@ -30,8 +30,11 @@
   //Large and Medium Phones
   @media (max-width: 425px) {
     .search-contacts {
-      form{
+      form {
         flex-direction: column;
+      }
+      input {
+        font-size: 12px;
       }
     }
   }
