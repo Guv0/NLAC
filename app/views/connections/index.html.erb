@@ -4,7 +4,7 @@
   </div>
   <div class="search-contacts flex-center">
     <%= form_tag business_card_connections_path(@business_card), method: :get do %>
-      <%= text_field_tag :query, params[:query], placeholder: 'Search Name, Location, Company' %>
+      <%= text_field_tag :query, params[:query], placeholder: 'Search Name, Location, Industry, Company' %>
       <%= text_field_tag :search, params[:search], placeholder: 'Search Tags' %>
       <%= submit_tag 'Search', name: nil , class: "btn search-btn" %>
     <% end %>
