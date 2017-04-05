@@ -21,20 +21,24 @@
           <th>Tags</th>
         </tr>
         <% @contacts.each do |contact| %>
-          <tr data-link=<%= business_card_path(contact.id) %>>
-            <td><%= contact.first_name %></td>
-            <td><%= contact.last_name %></td>
-            <td><%= contact.company_name %></td>
-            <td><%= contact.industry %></td>
-            <td><%= (contact.location).truncate(15) %></td>
-            <td>
-              <% tags = [] %>
-              <% contact.tags.each do |tag| %>
-                <% tags << tag.label %>
-              <% end  %>
-              <%= tags.join(', ') %>
-            </td>
-          </tr>
+          <% if current_user.id == @business_card.user.id %>
+            <tr data-link=<%= business_card_path(contact.id) %>>
+          <% else %>
+            <tr>
+          <% end %>
+              <td><%= contact.first_name %></td>
+              <td><%= contact.last_name %></td>
+              <td><%= contact.company_name %></td>
+              <td><%= contact.industry %></td>
+              <td><%= (contact.location).truncate(15) %></td>
+              <td>
+                <% tags = [] %>
+                <% contact.tags.each do |tag| %>
+                  <% tags << tag.label %>
+                <% end  %>
+                <%= tags.join(', ') %>
+              </td>
+            </tr>
         <% end %>
       </table>
     </div>
