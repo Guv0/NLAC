@@ -8,4 +8,8 @@ private
   def set_current_user
     User.current = current_user
   end
+
+  def after_sign_in_path_for(resource)
+    session["user_return_to"] || root_path
+  end
 end
