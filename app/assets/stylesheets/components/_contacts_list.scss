@@ -3,24 +3,36 @@
 }
 
 .contacts-list-container {
-  margin-top: 30px;
+  margin-top: 20px;
   width: 1000px;
   background-color: white;
   border: 1px solid $border;
   border-radius: 2px;
   box-shadow: 1px 1px 4px 1px $shadow;
-  tr {
-    width: 1000px;
-    display: flex;
-    padding: 5px 15px;
-    &:first-child {
-      border-bottom: 2px solid $brand-color;
-    }
-  }
   th {
     flex: 0 0 20%;
     color: $brand-color;
   }
+  tr {
+    width: 1000px;
+    display: flex;
+    padding: 5px 15px;
+    cursor: pointer;
+    &:first-child {
+      border-bottom: 2px solid $brand-color;
+      cursor: default;
+      &:hover {
+        background-color: white;
+      }
+    }
+    &:nth-child(even) {
+      background-color: rgba(13, 115, 119, 0.1);
+    }
+    &:hover {
+      background-color: rgba(13, 115, 119, 0.3);
+    }
+  }
+
   // th .current {
   //   padding-right: 15px;
   //   background-repeat: no-repeat;

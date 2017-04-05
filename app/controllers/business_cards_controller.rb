@@ -30,7 +30,7 @@ before_action :set_business_card, :set_user, only: [ :show, :edit, :update, :des
       @tag_relation = TagRelation.new
       @tag_relation.add_tag(normalized_tag, @business_card.id, current_user.id)
     end
-    @tags = @business_card.tags_to_display(@business_card, @business_card.id, current_user.id)
+    @tags = @business_card.tags_to_display(@business_card.id, current_user.id)
     respond_to do |format|
         format.json { render json: @tags, status: :created }
     end
@@ -44,7 +44,7 @@ before_action :set_business_card, :set_user, only: [ :show, :edit, :update, :des
 
     TagRelation.destroy(@tag_relation.first.id)
 
-    @tags = @business_card.tags_to_display(@business_card, @business_card.id, current_user.id)
+    @tags = @business_card.tags_to_display(@business_card.id, current_user.id)
 
     respond_to do |format|
         format.json { render json: @tags, status: :created }

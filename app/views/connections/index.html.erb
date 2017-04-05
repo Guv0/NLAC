@@ -2,11 +2,11 @@
   <div class="flex-center" id="contacts-list-title">
     <h2><strong>My contacts</strong></h2>
   </div>
-  <div class="flex-center">
+  <div class="search-contacts flex-center">
     <%= form_tag business_card_connections_path(@business_card), method: :get do %>
-      <%= text_field_tag :query, params[:query] %>
-      <%= text_field_tag :search, params[:search] %>
-      <%= submit_tag 'Search', name: nil %>
+      <%= text_field_tag :query, params[:query], placeholder: 'Search Name, Location, Company' %>
+      <%= text_field_tag :search, params[:search], placeholder: 'Search Tags' %>
+      <%= submit_tag 'Search', name: nil , class: "btn search-btn" %>
     <% end %>
   </div>
   <div class="flex-center">
@@ -20,7 +20,7 @@
           <th>Tags</th>
         </tr>
         <% @contacts.each do |contact| %>
-          <tr>
+          <tr data-link=<%= business_card_path(contact.id) %>>
             <td><%= contact.first_name %></td>
             <td><%= contact.last_name %></td>
             <td><%= contact.company_name %></td>
