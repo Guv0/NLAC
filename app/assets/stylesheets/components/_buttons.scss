@@ -43,6 +43,11 @@
     width: 350px !important;
   }
 }
+@media (max-width: 320px){
+  .search-btn {
+    width: 300px !important;
+  }
+}
 
 .edit-link {
   color: $brand-color;
