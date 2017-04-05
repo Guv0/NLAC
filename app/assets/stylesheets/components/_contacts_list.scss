@@ -3,7 +3,8 @@
 }
 
 .contacts-list-container {
-  margin-top: 20px;
+  margin-top: 20px !important;
+  margin: auto;
   width: 1000px;
   background-color: white;
   border: 1px solid $border;
@@ -59,6 +60,17 @@
 }
 
 // Media queries
+  //Tablet
+  @media (max-width: 768px) and (min-width: 426px) {
+    .contacts-list-container {
+      -webkit-transform:scale(0.7);
+      -moz-transform:scale(0.7);
+      -ms-transform:scale(0.7);
+      transform:scale(0.7);
+      margin-left: -200px;
+    }
+  }
+
   // Large/Medium phones
   @media (max-width: 425px) and (min-width: 321px) {
     .contacts-list-container {
@@ -67,5 +79,6 @@
       -ms-transform:scale(0.6);
       transform:scale(0.6);
       justify-content: flex-start;
+      margin-left: -200px;
     }
   }
