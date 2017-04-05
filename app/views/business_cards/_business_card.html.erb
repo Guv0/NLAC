@@ -48,8 +48,10 @@
         </div>
       </div>
     </div>
+    <%= link_to "See #{@business_card.first_name}'s Contacts", business_card_connections_path(@business_card), class: 'btn contacts-contacts' %>
     <div class="tags-card flex-column">
       <h4><span>#</span>tags</h4>
       <%= react_component "TagsCard", {tags: @tags, business_card: @business_card, current_user: @current_user} %>
     </div>
+
   </div>

@@ -5,7 +5,7 @@ before_action :set_business_card, only: [ :index ]
 helper_method :sort_column, :sort_direction
 
   def index
-    contacts_ids =  current_user.contacts do |contact|
+    contacts_ids =  @business_card.user.contacts do |contact|
                       contact.id
                     end
 
@@ -20,11 +20,12 @@ helper_method :sort_column, :sort_direction
       @contacts = BusinessCard.where(user_id: contacts_ids).sort_by { |e| e.first_name }
       # order(sort_column + ' ' + sort_direction)
     end
+
   end
 
   def create
-    @connection = Connection.new(user_id: current_user.id, contact_id: params[:id])
-    @connection.save
+      @connection = Connection.new(user_id: current_user.id, contact_id: params[:id])
+      @connection.save
   end
 
   def root
