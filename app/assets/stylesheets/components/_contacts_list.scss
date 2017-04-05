@@ -19,10 +19,11 @@
   tr {
     width: 1000px;
     display: flex;
-    padding: 5px 15px;
+    padding: 8px 15px;
     cursor: pointer;
     &:first-child {
       border-bottom: 2px solid $brand-color;
+      padding: 5px 15px;
       cursor: default;
       &:hover {
         background-color: white;
