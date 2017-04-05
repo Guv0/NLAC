@@ -16,6 +16,7 @@
           <th>First Name</th>
           <th>Last Name</th>
           <th>Company</th>
+          <th>Industry</th>
           <th>Location</th>
           <th>Tags</th>
         </tr>
@@ -24,7 +25,8 @@
             <td><%= contact.first_name %></td>
             <td><%= contact.last_name %></td>
             <td><%= contact.company_name %></td>
-            <td><%= (contact.location).truncate(15) %></td>
+            <td><%= contact.industry %></td>
+            <td><%= (contact.location).truncate(20) %></td>
             <td>
               <% tags = [] %>
               <% contact.tags.each do |tag| %>
