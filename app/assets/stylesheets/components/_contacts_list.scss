@@ -10,8 +10,11 @@
   border-radius: 2px;
   box-shadow: 1px 1px 4px 1px $shadow;
   th {
-    flex: 0 0 20%;
+    flex: 0 0 14%;
     color: $brand-color;
+    &:last-child {
+      flex: 0 0 30%;
+    }
   }
   tr {
     width: 1000px;
@@ -47,6 +50,9 @@
   //   background-size: 12px;
   // }
   td {
-    flex: 0 0 20%;
+    flex: 0 0 14%;
+    &:last-child {
+      flex: 0 0 30%;
+    }
   }
 }

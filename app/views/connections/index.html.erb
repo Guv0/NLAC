@@ -26,7 +26,7 @@
             <td><%= contact.last_name %></td>
             <td><%= contact.company_name %></td>
             <td><%= contact.industry %></td>
-            <td><%= (contact.location).truncate(20) %></td>
+            <td><%= (contact.location).truncate(15) %></td>
             <td>
               <% tags = [] %>
               <% contact.tags.each do |tag| %>
