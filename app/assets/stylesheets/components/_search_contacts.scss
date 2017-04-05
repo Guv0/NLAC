@@ -14,12 +14,13 @@
   .search-contacts {
     form {
     display: flex;
-    justify-content: space-around;
-  }
+    justify-content: space-between;
+    }
     input {
-      width: 250px;
+      width: 240px;
       height: 30px;
-      font-size: 12px;
+      margin-right: 5px;
+      font-size: 11px;
     }
   }
 }
