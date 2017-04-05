@@ -16,6 +16,9 @@
     &:first-child {
       border-bottom: 2px solid $brand-color;
     }
+    &:nth-child(even) {
+      background-color: rgba(13, 115, 119, 0.15);
+    }
   }
   th {
     flex: 0 0 20%;
