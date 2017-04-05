@@ -57,3 +57,15 @@
     }
   }
 }
+
+// Media queries
+  // Large/Medium phones
+  @media (max-width: 425px) and (min-width: 321px) {
+    .contacts-list-container {
+      -webkit-transform:scale(0.6);
+      -moz-transform:scale(0.6);
+      -ms-transform:scale(0.6);
+      transform:scale(0.6);
+      justify-content: flex-start;
+    }
+  }

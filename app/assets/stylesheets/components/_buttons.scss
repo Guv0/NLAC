@@ -38,6 +38,12 @@
   margin-bottom: 3px;
 }
 
+@media (max-width: 425px) and (min-width: 321px) {
+  .search-btn {
+    width: 350px !important;
+  }
+}
+
 .edit-link {
   color: $brand-color;
   position: absolute;
