@@ -1,6 +1,12 @@
 <div class="container-fluid">
   <div class="flex-center" id="contacts-list-title">
-    <h2><strong>My contacts</strong></h2>
+    <h2><strong>
+      <% if current_user.id == @business_card.user.id %>
+        My contacts
+      <% else %>
+        <%= "#{@business_card.first_name}'s Contacts" %>
+      <% end %>
+        </strong></h2>
   </div>
   <div class="search-contacts flex-center">
     <%= form_tag business_card_connections_path(@business_card), method: :get do %>
