@@ -10,16 +10,20 @@
   border-radius: 2px;
   box-shadow: 1px 1px 4px 1px $shadow;
   th {
-    flex: 0 0 20%;
+    flex: 0 0 14%;
     color: $brand-color;
+    &:last-child {
+      flex: 0 0 30%;
+    }
   }
   tr {
     width: 1000px;
     display: flex;
-    padding: 5px 15px;
+    padding: 8px 15px;
     cursor: pointer;
     &:first-child {
       border-bottom: 2px solid $brand-color;
+      padding: 5px 15px;
       cursor: default;
       &:hover {
         background-color: white;
@@ -47,6 +51,9 @@
   //   background-size: 12px;
   // }
   td {
-    flex: 0 0 20%;
+    flex: 0 0 14%;
+    &:last-child {
+      flex: 0 0 30%;
+    }
   }
 }
