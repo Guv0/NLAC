@@ -13,11 +13,15 @@
     width: 1000px;
     display: flex;
     padding: 5px 15px;
+    cursor: pointer;
     &:first-child {
       border-bottom: 2px solid $brand-color;
     }
     &:nth-child(even) {
-      background-color: rgba(13, 115, 119, 0.15);
+      background-color: rgba(13, 115, 119, 0.1);
+    }
+    &:hover {
+      background-color: rgba(13, 115, 119, 0.3);
     }
   }
   th {

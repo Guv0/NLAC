@@ -20,7 +20,7 @@
           <th>Tags</th>
         </tr>
         <% @contacts.each do |contact| %>
-          <tr>
+          <tr data-link=<%= business_card_path(contact.id) %>>
             <td><%= contact.first_name %></td>
             <td><%= contact.last_name %></td>
             <td><%= contact.company_name %></td>
