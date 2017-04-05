@@ -1,6 +1,30 @@
 .linkedin-btn {
-  height: 40px;
-  width: 215px;
+  height: 70px;
+  width: 400px;
+  margin: 15px 0 10px 0;
+  background-color: $linkedin-default;
+  border-radius: 2px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  .in {
+    flex: 0 0 15%;
+    margin: 10px 0;
+    border-right: 2px solid white;
+    h2 {
+      font-weight: bold;
+      font-size: 35px;
+    }
+  }
+  .sign-linkedin {
+    flex: 0 0 85%;
+    h2 {
+      font-size: 30px;
+    }
+  }
+  &:hover {
+    background-color: $linkedin-hover;
+  }
 }
 
 .btn {
@@ -47,3 +71,7 @@
   }
 }
 
+.sign-btn {
+  height: 35px;
+  width: 120px;
+}
