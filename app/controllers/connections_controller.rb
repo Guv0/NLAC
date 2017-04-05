@@ -1,6 +1,6 @@
 class ConnectionsController < ApplicationController
-
-before_action :set_business_card, only: [ :index ]
+skip_before_action :authenticate_user!, only: [ :create ]
+before_action :set_business_card, only: [ :index, :create ]
 
 helper_method :sort_column, :sort_direction
 
@@ -24,8 +24,13 @@ helper_method :sort_column, :sort_direction
   end
 
   def create
-      @connection = Connection.new(user_id: current_user.id, contact_id: params[:id])
+    if current_user
+      @connection = Connection.new(user_id: current_user.id, contact_id: params[:business_card_id])
       @connection.save
+      redirect_to business_card_path(@business_card)
+    else
+      redirect_to business_card_path(@business_card)
+    end
   end
 
   def root
