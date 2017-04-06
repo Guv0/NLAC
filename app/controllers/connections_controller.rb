@@ -1,11 +1,11 @@
 class ConnectionsController < ApplicationController
-
-before_action :set_business_card, only: [ :index ]
+skip_before_action :authenticate_user!, only: [ :create ]
+before_action :set_business_card, only: [ :index, :create ]
 
 helper_method :sort_column, :sort_direction
 
   def index
-    contacts_ids =  current_user.contacts do |contact|
+    contacts_ids =  @business_card.user.contacts do |contact|
                       contact.id
                     end
 
@@ -20,11 +20,17 @@ helper_method :sort_column, :sort_direction
       @contacts = BusinessCard.where(user_id: contacts_ids).sort_by { |e| e.first_name }
       # order(sort_column + ' ' + sort_direction)
     end
+
   end
 
   def create
-    @connection = Connection.new(user_id: current_user.id, contact_id: params[:id])
-    @connection.save
+    if current_user
+      @connection = Connection.new(user_id: current_user.id, contact_id: params[:business_card_id])
+      @connection.save
+      redirect_to business_card_path(@business_card)
+    else
+      redirect_to business_card_path(@business_card)
+    end
   end
 
   def root

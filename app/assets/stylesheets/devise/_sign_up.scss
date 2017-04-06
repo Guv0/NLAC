@@ -1,0 +1,333 @@
+// Background
+.back-green {
+  background-color: $brand-color;
+  height: calc(50vh - 40px);
+  img {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    padding: 8px;
+    border-radius: 50%;
+    margin-top: 40px;
+  }
+  h1 {
+    color: white;
+    font-weight: bold;
+    font-size: 55px;
+    margin-left: 20px;
+    margin-top: 40px;
+  }
+}
+.back-grey {
+  background-color: $grey;
+  height: calc(50vh - 40px);
+}
+
+// Card
+.sign-up-card {
+  width: 900px;
+  position: absolute;
+  padding: 10px 0 15px 0;
+  top: 20vh;
+  background-color: white;
+  border: 1px solid $border;
+  border-radius: 4px;
+  box-shadow: 1px 2px 3px rgba(93, 93, 93, 0.35);
+  h5 {
+    font-size: 13px;
+    font-weight: 100;
+    color: #B2B2B2;
+    margin: 25px 25px 0 25px;
+  }
+}
+
+.line {
+  border-bottom: 1px solid $border;
+  width: 350px;
+  margin-top: 24px;
+}
+
+.sign-email {
+  margin: 5px 250px 0 250px;
+}
+.sign-password {
+  margin: 0 100px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  .input-inline {
+    width: 321px;
+  }
+}
+.sign-up {
+  margin: 0 100px;
+  .user_remember_me {
+    font-size: 10px;
+    color: #B2B2B2;
+    .checkbox {
+      margin: 0;
+    }
+    input[type="checkbox"] {
+      margin: 2px -20px;
+    }
+  }
+  p {
+    color: #B2B2B2;
+    font-size: 12px;
+    margin-right: 3px;
+  }
+}
+
+
+// Media queries
+  // Tablets
+  @media (max-width: 768px) and (min-width: 426px) {
+    .back-green {
+      img {
+        height: 50px;
+        width: 50px;
+        padding: 6px;
+      }
+      h1 {
+        font-size: 50px;
+      }
+    }
+
+    .sign-up-card {
+      width: 730px;
+    }
+
+    .line {
+      width: 300px;
+    }
+
+    .sign-email {
+      margin: 5px 195px 0 195px;
+    }
+
+    .sign-password {
+      margin: 0 40px;
+      .input-inline {
+        width: 296px;
+      }
+    }
+
+    .sign-up {
+      margin: 0 40px;
+    }
+  }
+
+  // Large phones
+  @media (max-width: 425px) and (min-width: 376px) {
+    .back-green {
+      img {
+        height: 40px;
+        width: 40px;
+        padding: 6px;
+        margin-top: 30px
+      }
+      h1 {
+        font-size: 30px;
+        margin-top: 30px;
+      }
+    }
+
+    .sign-up-card {
+      width: 400px;
+      top: 13vh;
+      h5 {
+        margin: 20px 25px 0 25px;
+      }
+    }
+
+    .line {
+      width: 130px;
+    }
+
+    .sign-email {
+      margin: 5px 35px 0 35px;
+    }
+
+    .sign-password {
+      flex-direction: column;
+      margin: -10px 35px;
+      height: 50px;
+      .input-width{
+        width: 328px;
+      }
+      .flex-end {
+        margin-top: 28px;
+      }
+    }
+
+    .sign-up {
+      margin: 86px 35px 0 35px;
+      padding-top: 4px;
+      .flex-end {
+        margin-top: 10px;
+        justify-content: center;
+      }
+    }
+
+    .linkedin-btn {
+      height: 65px;
+      width: 300px;
+      .in {
+        h2 {
+          font-size: 30px;
+        }
+      }
+      .sign-linkedin {
+        h2 {
+          font-size: 23px;
+        }
+      }
+      &:hover {
+        background-color: $linkedin-hover;
+      }
+    }
+  }
+
+  // Medium phones
+  @media (max-width: 375px) and (min-width: 321px) {
+    .back-green {
+      img {
+        height: 40px;
+        width: 40px;
+        padding: 6px;
+        margin-top: 20px
+      }
+      h1 {
+        font-size: 25px;
+        margin-top: 20px;
+      }
+    }
+
+    .sign-up-card {
+      width: 350px;
+      top: 12vh;
+      h5 {
+        margin: 20px 25px 0 25px;
+      }
+    }
+
+    .line {
+      width: 120px;
+    }
+
+    .sign-email {
+      margin: 5px 35px 0 35px;
+    }
+
+    .sign-password {
+      flex-direction: column;
+      margin: -10px 35px;
+      height: 50px;
+      .input-width{
+        width: 279px;
+      }
+      .flex-end {
+        margin-top: 28px;
+      }
+    }
+
+    .sign-up {
+      margin: 86px 35px 0 35px;
+      padding-top: 4px;
+      .flex-end {
+        margin-top: 10px;
+        justify-content: center;
+      }
+    }
+
+    .linkedin-btn {
+      height: 65px;
+      width: 300px;
+      .in {
+        h2 {
+          font-size: 30px;
+        }
+      }
+      .sign-linkedin {
+        h2 {
+          font-size: 23px;
+        }
+      }
+      &:hover {
+        background-color: $linkedin-hover;
+      }
+    }
+  }
+
+  // Small phones
+  @media (max-width: 320px) {
+    .back-green {
+      img {
+        height: 35px;
+        width: 35px;
+        padding: 6px;
+        margin-top: 20px
+      }
+      h1 {
+        font-size: 20px;
+        margin-top: 20px;
+      }
+    }
+
+    .sign-up-card {
+      width: 300px;
+      top: 12vh;
+      h5 {
+        margin: 15px 25px 0 25px;
+      }
+    }
+
+    .line {
+      width: 100px;
+    }
+
+    .sign-email {
+      margin: 5px 30px 0 30px;
+    }
+
+    .sign-password {
+      flex-direction: column;
+      margin: -10px 30px;
+      height: 50px;
+      .input-width{
+        width: 239px;
+      }
+      .flex-end {
+        margin-top: 28px;
+      }
+    }
+
+    .sign-up {
+      margin: 86px 30px 0 30px;
+      padding-top: 4px;
+      .flex-end {
+        margin-top: 10px;
+        justify-content: center;
+      }
+    }
+
+    .linkedin-btn {
+      height: 60px;
+      width: 260px;
+      .in {
+        h2 {
+          font-size: 27px;
+        }
+      }
+      .sign-linkedin {
+        h2 {
+          font-size: 20px;
+        }
+      }
+      &:hover {
+        background-color: $linkedin-hover;
+      }
+    }
+  }
+
+

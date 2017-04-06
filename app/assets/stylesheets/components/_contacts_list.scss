@@ -3,24 +3,43 @@
 }
 
 .contacts-list-container {
-  margin-top: 30px;
+  margin-top: 20px !important;
+  margin: auto;
   width: 1000px;
   background-color: white;
   border: 1px solid $border;
   border-radius: 2px;
   box-shadow: 1px 1px 4px 1px $shadow;
+  th {
+    flex: 0 0 14%;
+    color: $brand-color;
+    &:last-child {
+      flex: 0 0 30%;
+    }
+  }
   tr {
     width: 1000px;
     display: flex;
-    padding: 5px 15px;
+    padding: 8px 15px;
+    cursor: pointer;
     &:first-child {
       border-bottom: 2px solid $brand-color;
+      padding: 5px 15px;
+      cursor: default;
+      &:hover {
+        background-color: white;
+        border-left: 1px solid $border;
+        border-right: 1px solid $border;
+      }
+    }
+    &:nth-child(even) {
+      background-color: rgba(13, 115, 119, 0.1);
+    }
+    &:hover {
+      background-color: rgba(13, 115, 119, 0.3);
     }
   }
-  th {
-    flex: 0 0 20%;
-    color: $brand-color;
-  }
+
   // th .current {
   //   padding-right: 15px;
   //   background-repeat: no-repeat;
@@ -35,6 +54,33 @@
   //   background-size: 12px;
   // }
   td {
-    flex: 0 0 20%;
+    flex: 0 0 14%;
+    &:last-child {
+      flex: 0 0 30%;
+    }
   }
 }
+
+// Media queries
+  //Tablet
+  @media (max-width: 768px) and (min-width: 426px) {
+    .contacts-list-container {
+      -webkit-transform:scale(0.7);
+      -moz-transform:scale(0.7);
+      -ms-transform:scale(0.7);
+      transform:scale(0.7);
+      margin-left: -130px;
+    }
+  }
+
+  // Large/Medium/Small phones
+  @media (max-width: 425px) {
+    .contacts-list-container {
+      -webkit-transform:scale(0.6);
+      -moz-transform:scale(0.6);
+      -ms-transform:scale(0.6);
+      transform:scale(0.6);
+      justify-content: flex-start;
+      margin-left: -200px;
+    }
+  }

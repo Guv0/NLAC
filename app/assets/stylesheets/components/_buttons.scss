@@ -1,6 +1,30 @@
 .linkedin-btn {
-  height: 40px;
-  width: 215px;
+  height: 70px;
+  width: 400px;
+  margin: 15px 0 10px 0;
+  background-color: $linkedin-default;
+  border-radius: 2px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  .in {
+    flex: 0 0 15%;
+    margin: 10px 0;
+    border-right: 2px solid white;
+    h2 {
+      font-weight: bold;
+      font-size: 35px;
+    }
+  }
+  .sign-linkedin {
+    flex: 0 0 85%;
+    h2 {
+      font-size: 30px;
+    }
+  }
+  &:hover {
+    background-color: $linkedin-hover;
+  }
 }
 
 .btn {
@@ -14,6 +38,10 @@
     color: white;
     box-shadow: 2px 2px 4px 1px $shadow;
   }
+}
+
+.contacts-contacts {
+  margin-top: 15px;
 }
 
 .add-tags-btn {
@@ -33,6 +61,22 @@
   letter-spacing: 5px;
 }
 
+.search-btn {
+  width: 200px !important;
+  margin-bottom: 3px;
+}
+
+@media (max-width: 425px) and (min-width: 321px) {
+  .search-btn {
+    width: 350px !important;
+  }
+}
+@media (max-width: 320px){
+  .search-btn {
+    width: 300px !important;
+  }
+}
+
 .edit-link {
   color: $brand-color;
   position: absolute;
@@ -47,3 +91,7 @@
   }
 }
 
+.sign-btn {
+  height: 35px;
+  width: 120px;
+}

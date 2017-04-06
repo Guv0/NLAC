@@ -1,0 +1,70 @@
+<div class="flex-center flex-column">
+    <div class="business-card">
+      <% if @business_card.user_id === current_user.id %>
+        <%= link_to edit_business_card_path(@business_card), class: 'edit-link' do %>
+          <p>Edit</p>
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
+      <div class="card-left flex-around flex-column">
+        <div class="card-avatar">
+        <% if @business_card.photo == "" %>
+          <%= image_tag @business_card.photo.url(:standard) %>
+        <% else %>
+          <%= image_tag "#{@business_card.linkedin_picture_url}" %>
+        <% end %>
+        </div>
+        <div class="card-name flex-center">
+          <h3><strong><%= @business_card.full_name %></strong></h3>
+        </div>
+        <div class="card-job">
+          <p><strong><%= @business_card.industry %></strong></p>
+        </div>
+      </div>
+      <div class="card-right flex-around flex-column">
+        <div class="info flex">
+          <div class="info-icon flex-center">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+          </div>
+          <p><%= @business_card.phone %></p>
+        </div>
+        <div class="info flex">
+          <div class="info-icon flex-center">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+          </div>
+          <p><a href=<%= "mailto:#{@business_card.email}" %>><%= truncate(@business_card.email, length: 30) %></a></p>
+        </div>
+        <div class="info flex">
+          <div class="info-icon flex-center">
+            <i class="fa fa-home" aria-hidden="true"></i>
+          </div>
+          <p><a href=<%= "#{@business_card.linkedin_profile_url}" %>><%= truncate(@business_card.linkedin_profile_url, length: 30) %></a></p>
+        </div>
+        <div class="info flex">
+          <div class="info-icon flex-center">
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+          </div>
+          <p><%= @business_card.location %></p>
+        </div>
+      </div>
+    </div>
+    <div class="flex-between">
+    <% if current_user.id != @business_card.id %>
+      <% if @connection == nil && current_user.id %>
+        <%= link_to "Add #{@business_card.first_name} to your contacts", business_card_connections_path(@business_card), method: :post, class: 'btn contacts-contacts' %>
+      <% end %>
+      <% unless current_user.id %>
+        <%= link_to "Add #{@business_card.first_name} to your contacts", new_user_registration_path, class: 'btn contacts-contacts' %>
+      <% end %>
+      <%= link_to "See #{@business_card.first_name}'s Contacts", business_card_connections_path(@business_card), class: 'btn contacts-contacts' %>
+      <% end %>
+    </div>
+    <div class="tags-card flex">
+
+      <%= react_component "TagsCard", {tags: @tags, business_card: @business_card, current_user: @current_user} %>
+      <div class="QR-code">
+        <%= image_tag @qr %>
+      </div>
+    </div>
+</div>
+

@@ -1,13 +1,19 @@
 class BusinessCardsController < ApplicationController
-
+skip_before_action :authenticate_user!, only: [ :show ]
 before_action :set_user, only: [ :destroy ]
 before_action :set_business_card, :set_user, only: [ :show, :edit, :update, :destroy, :create_tags, :delete_tag ]
 
   def show
-    @tags = @business_card.tags_to_display(@business_card.id, current_user.id)
-    @current_user = current_user
+    if current_user
+      @current_user = current_user
+      @tags = @business_card.tags_to_display(@business_card.id, current_user.id)
+      @connection = Connection.where(user_id: current_user.id, contact_id: @business_card.id).first
+    else
+      @current_user = User.new
+      @current_user.business_card = BusinessCard.new
+    end
     #Change to domainname.com/business_cards/#{@business_card.id}
-    @qr = RQRCode::QRCode.new("http://www.bbc.co.uk").to_img.resize(100, 100).to_data_url
+      @qr = RQRCode::QRCode.new("http://www.bbc.co.uk").to_img.resize(100, 100).to_data_url
   end
 
   def edit
@@ -32,7 +38,7 @@ before_action :set_business_card, :set_user, only: [ :show, :edit, :update, :des
       @tag_relation = TagRelation.new
       @tag_relation.add_tag(normalized_tag, @business_card.id, current_user.id)
     end
-    @tags = @business_card.tags_to_display(@business_card, @business_card.id, current_user.id)
+    @tags = @business_card.tags_to_display(@business_card.id, current_user.id)
     respond_to do |format|
         format.json { render json: @tags, status: :created }
     end
@@ -46,7 +52,7 @@ before_action :set_business_card, :set_user, only: [ :show, :edit, :update, :des
 
     TagRelation.destroy(@tag_relation.first.id)
 
-    @tags = @business_card.tags_to_display(@business_card, @business_card.id, current_user.id)
+    @tags = @business_card.tags_to_display(@business_card.id, current_user.id)
 
     respond_to do |format|
         format.json { render json: @tags, status: :created }

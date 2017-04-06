@@ -10,6 +10,7 @@ User.destroy_all
 BusinessCard.destroy_all
 Tag.destroy_all
 TagRelation.destroy_all
+Connection.destroy_all
 
 User.create(email: 'barack.obama@gmail.com', password: '123456')
 BusinessCard.create(user_id: 1, first_name: 'Barack', last_name: 'Obama', email: 'barack.obama@gmail.com', location:'Washington, DC, US', phone: '+1 202 555 0147', industry: 'Politics', company_name: 'USA', description: 'I was better than Trump...', linkedin_picture_url: 'https://consequenceofsound.files.wordpress.com/2016/11/barack.png?w=1614')
@@ -53,6 +54,7 @@ Tag.create(label: 'growthhacking')
 Tag.create(label: 'charity')
 Tag.create(label: 'teaching')
 Tag.create(label: 'AI')
+Tag.create(label: 'personal')
 
 (1..10).to_a.each do |x|
   id_array = (1..10).to_a.sample(4)
@@ -62,3 +64,13 @@ Tag.create(label: 'AI')
 end
 
 puts 'own tags seeded'
+
+(1..10).to_a.each do |x|
+  contact_array = (1..10).to_a.sample(5)
+  contact_array.each do |y|
+    Connection.create(user_id: x, contact_id: y)
+    TagRelation.create(tag_id: 11, business_card_id: y, creator_id: x)
+  end
+end
+
+puts 'connections with personal tag seeded'
