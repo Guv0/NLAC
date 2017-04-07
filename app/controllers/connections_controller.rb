@@ -10,15 +10,25 @@ helper_method :sort_column, :sort_direction
                     end
 
     if params[:query].present? && params[:search].present?
-      first_search = BusinessCard.where(user_id: contacts_ids).search_for(params[:query])
-      @contacts = first_search.search_tag(params[:search]).sort_by { |e| e.first_name }
+      tags = Tag.valid_tags(@business_card.id, current_user.id).search_tag(params[:search])
+      business_cards_tags = []
+      tags.each do |tag|
+        business_cards_tags << tag.tag_relations.first.business_card
+      end
+
+      business_cards = BusinessCard.where(user_id: contacts_ids).search_for(params[:query])
+      @contacts = business_cards_tags.concat(business_cards).uniq
     elsif params[:query].present?
       @contacts = BusinessCard.where(user_id: contacts_ids).search_for(params[:query]).sort_by { |e| e.first_name }
     elsif params[:search].present?
-      @contacts = BusinessCard.where(user_id: contacts_ids).search_tag(params[:search]).sort_by { |e| e.first_name }
+      tags = Tag.valid_tags(@business_card.id, current_user.id).search_tag(params[:search])
+      business_cards_tags = []
+      tags.each do |tag|
+        business_cards_tags << tag.tag_relations.first.business_card
+      end
+      @contacts = business_cards_tags
     else
-      @contacts = BusinessCard.where(user_id: contacts_ids).sort_by { |e| e.first_name }
-      # order(sort_column + ' ' + sort_direction)
+      @contacts = BusinessCard.where(user_id: contacts_ids)
     end
 
   end

@@ -11,6 +11,7 @@ before_action :set_business_card, :set_user, only: [ :show, :edit, :update, :des
     else
       @current_user = User.new
       @current_user.business_card = BusinessCard.new
+      @tags = @business_card.tags
     end
   end
 

@@ -39,7 +39,7 @@
               <td><%= (contact.location).truncate(15) %></td>
               <td>
                 <% tags = [] %>
-                <% contact.tags.each do |tag| %>
+                <% contact.tags.valid_tags(contact.id, current_user.id).uniq.each do |tag| %>
                   <% tags << tag.label %>
                 <% end  %>
                 <%= tags.join(', ') %>
