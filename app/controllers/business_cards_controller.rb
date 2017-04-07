@@ -12,8 +12,6 @@ before_action :set_business_card, :set_user, only: [ :show, :edit, :update, :des
       @current_user = User.new
       @current_user.business_card = BusinessCard.new
     end
-    #Change to domainname.com/business_cards/#{@business_card.id}
-      @qr = RQRCode::QRCode.new("http://www.bbc.co.uk").to_img.resize(100, 100).to_data_url
   end
 
   def edit
