@@ -20,15 +20,9 @@
   }
 }
 
-.QRCode {
-  width: 170px;
-  flex: 0 0 25%;
-}
-
 //Contains all react components for tags
 .react-tags-card {
-  width: 505px;
-  flex: 0 0 75%;
+  width: 675px;
   // display: flex;
   // flex-direction: column;
   // justify-content: center;
@@ -54,13 +48,9 @@
       margin-top: 20px;
       height: 100%;
       width: 345px;
-      flex-direction: column;
     }
     .react-tags-card {
     width: 345px;
-    }
-    .QRCode {
-      margin-top: 20px;
     }
   }
 
@@ -70,12 +60,8 @@
       margin-top: 30px;
       height: 100%;
       width: 290px;
-      flex-direction: column;
     }
     .react-tags-card {
     width: 290px;
-    }
-    .QRCode {
-      margin-top: 20px;
     }
   }

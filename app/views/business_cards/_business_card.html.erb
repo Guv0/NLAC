@@ -49,22 +49,17 @@
       </div>
     </div>
     <div class="flex-between">
-    <% if current_user.id != @business_card.id %>
-      <% if @connection == nil && current_user.id %>
-        <%= link_to "Add #{@business_card.first_name} to your contacts", business_card_connections_path(@business_card), method: :post, class: 'btn contacts-contacts' %>
-      <% end %>
-      <% unless current_user.id %>
-        <%= link_to "Add #{@business_card.first_name} to your contacts", new_user_registration_path, class: 'btn contacts-contacts' %>
-      <% end %>
-      <%= link_to "See #{@business_card.first_name}'s Contacts", business_card_connections_path(@business_card), class: 'btn contacts-contacts' %>
-      <% end %>
+    <% if @connection == nil && current_user.id %>
+      <%= link_to "Add #{@business_card.first_name} to your contacts", business_card_connections_path(@business_card), method: :post, class: 'btn contacts-contacts' %>
+    <% end %>
+    <% unless current_user.id %>
+      <%= link_to "Add #{@business_card.first_name} to your contacts", new_user_session_path, class: 'btn contacts-contacts' %>
+    <% end %>
+    <%= link_to "See #{@business_card.first_name}'s Contacts", business_card_connections_path(@business_card), class: 'btn contacts-contacts' %>
     </div>
-    <div class="tags-card flex">
-
+    <div class="tags-card flex-column">
+      <h4><span>#</span>tags</h4>
       <%= react_component "TagsCard", {tags: @tags, business_card: @business_card, current_user: @current_user} %>
-      <div class="QR-code">
-        <%= image_tag @qr %>
-      </div>
     </div>
-</div>
 
+  </div>
