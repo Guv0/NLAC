@@ -34,6 +34,9 @@ gem 'linkedin'
 gem 'cloudinary', '1.1.0'
 gem 'carrierwave'
 
+#Mailer testing
+gem "letter_opener", group: :development
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
