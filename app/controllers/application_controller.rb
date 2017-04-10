@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
-  before_action :set_business_card, only: [:after_sign_in_path_for]
   before_filter :set_current_user
   after_filter :store_location
 
@@ -13,9 +12,7 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(resource)
-    if session[:previous_url] =~ /\/business_cards/ && current_user.provider == nil
-      redirect_to edit_business_card_path(@business_card.id)
-    elsif session[:previous_url] =~ /\/business_cards/
+    if session[:previous_url] =~ /\/business_cards/
       session[:previous_url] || root_path
     else
       instructions_path
@@ -27,9 +24,5 @@ private
 
   def set_current_user
     User.current = current_user
-  end
-
-  def set_business_card
-    @business_card = BusinessCard.find(current_user.id)
   end
 end
