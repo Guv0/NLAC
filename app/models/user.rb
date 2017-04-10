@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: [:linkedin]
 
-  after_create :send_welcome_email
+  after_create  :manual_business_card, :send_welcome_email
 
   has_one :business_card, dependent: :destroy
   has_many :connections, dependent: :destroy
@@ -61,6 +61,12 @@ class User < ApplicationRecord
       business_card_arr << contact.business_card
     end
     return business_card_arr
+  end
+
+  def manual_business_card
+    if self.provider == nil
+      self.business_card = BusinessCard.create(id: self.id, email: self.email)
+    end
   end
 
   private
