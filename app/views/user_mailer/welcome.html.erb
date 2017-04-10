@@ -1,4 +1,9 @@
 <h1>Never Lose A Contact!</h1>
 
-<p>Hi <%= @user.business_card.first_name %>,</p>
+<% if @user.provider %>
+  <p>Hi <%= @user.business_card.first_name %>,</p>
+<% else %>
+  <p>Hi <%= @user.email %></p>
+<% end %>
+
 
