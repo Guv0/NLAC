@@ -65,7 +65,7 @@ class User < ApplicationRecord
 
   def manual_business_card
     if self.provider == nil
-      BusinessCard.create!(id: self.id, email: self.email, user_id: self.id)
+      self.business_card = BusinessCard.create(id: self.id, email: self.email)
     end
   end
 
