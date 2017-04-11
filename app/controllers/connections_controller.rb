@@ -10,25 +10,40 @@ helper_method :sort_column, :sort_direction
                     end
 
     if params[:query].present? && params[:search].present?
-      tags = Tag.valid_tags(@business_card.id, current_user.id).search_tag(params[:search])
-      business_cards_tags = []
-      tags.each do |tag|
-        business_cards_tags << tag.tag_relations.first.business_card
+      business_cards_query = BusinessCard.where(user_id: contacts_ids).search_for(params[:query])
+      search = params[:search].split(' ')
+      valid_tags_search = []
+      search.each do |keyword|
+        business_cards_query.each do |business_card|
+          valid_tags_search << Tag.valid_tags(business_card.id, current_user.id).search_tag(keyword)
+        end
       end
-
-      business_cards = BusinessCard.where(user_id: contacts_ids).search_for(params[:query])
-      @contacts = business_cards_tags.concat(business_cards).uniq
+      business_cards_search = []
+      valid_tags_search.flatten.each do |tag|
+      tag.tag_relations.where(business_card_id: contacts_ids).each do |tag_relation|
+        business_cards_search << tag_relation.business_card
+      end
+      end
+      @contacts = business_cards_query & business_cards_search.sort_by { |e| e.first_name }
     elsif params[:query].present?
       @contacts = BusinessCard.where(user_id: contacts_ids).search_for(params[:query]).sort_by { |e| e.first_name }
     elsif params[:search].present?
-      tags = Tag.valid_tags(@business_card.id, current_user.id).search_tag(params[:search])
-      business_cards_tags = []
-      tags.each do |tag|
-        business_cards_tags << tag.tag_relations.first.business_card
+      search = params[:search].split(' ')
+      valid_tags_search = []
+      search.each do |keyword|
+        @business_card.user.contacts.each do |contact|
+          valid_tags_search << Tag.valid_tags(contact.id, current_user.id).search_tag(keyword)
+        end
       end
-      @contacts = business_cards_tags
+      @contacts = []
+      valid_tags_search.flatten.each do |tag|
+        tag.tag_relations.where(business_card_id: contacts_ids).each do |tag_relation|
+          @contacts << tag_relation.business_card
+        end
+      end
+      @contacts = @contacts.uniq.sort_by { |e| e.first_name }
     else
-      @contacts = BusinessCard.where(user_id: contacts_ids)
+      @contacts = BusinessCard.where(user_id: contacts_ids).sort_by { |e| e.first_name }
     end
 
   end
