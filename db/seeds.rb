@@ -68,8 +68,10 @@ puts 'own tags seeded'
 (1..10).to_a.each do |x|
   contact_array = (1..10).to_a.sample(5)
   contact_array.each do |y|
+    if x != y
     Connection.create(user_id: x, contact_id: y)
     TagRelation.create(tag_id: 11, business_card_id: y, creator_id: x)
+    end
   end
 end
 
