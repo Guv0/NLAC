@@ -1,62 +1,43 @@
-<div class="navbar-wagon">
+<div class="navbar-container flex-between">
+
   <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand" do %>
+  <%= link_to root_path, class: "navbar-logo" do %>
     <%= image_tag "NLAC.png" %>
   <% end %>
 
-  <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
-
-    <!-- Search form -->
-    <form action="" class="navbar-wagon-search">
-      <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
-      <button type="submit" class="navbar-wagon-search-btn">
-        <i class="fa fa-search"></i>
-      </button>
-    </form>
-
-    <!-- Different navigation if login or not -->
+  <!-- Right section -->
+  <div class="navbar-right flex-between">
     <% if user_signed_in? %>
 
-      <!-- Profile picture and dropdown -->
-      <div class="navbar-wagon-item">
-        <div class="dropdown">
-          <% if current_user.business_card.photo == "" %>
-            <%= image_tag current_user.business_card.photo.url(:navbar), class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-          <% else %>
-            <% avatar_url = current_user.business_card.linkedin_picture_url || "http://placehold.it/30x30" %>
-            <%= image_tag avatar_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-          <% end %>
+      <!-- Contacts -->
+      <%= link_to 'My Contacts', business_card_connections_path(current_user), class: "navbar-link" %>
 
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-              <% end %>
-            </li>
-          </ul>
+      <!-- Cog -->
+      <div class="navbar-cog">
+        <div class="dropdown">
+          <i class="fa fa-cog dropdown-toggle" data-toggle="dropdown"></i>
+            <ul class="dropdown-menu navbar-dropdown-menu">
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+                <% end %>
+              </li>
+            </ul>
         </div>
       </div>
 
-    <% else %>
-
-      <!-- Login text link -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <!-- Avatar -->
+      <%= link_to business_card_path(current_user) do %>
+        <% if current_user.business_card.photo == "" %>
+          <%= image_tag current_user.business_card.photo.url(:navbar), class: "navbar-avatar" %>
+        <% else %>
+          <% avatar_url = current_user.business_card.linkedin_picture_url %>
+          <%= image_tag avatar_url, class: "navbar-avatar" %>
+        <% end %>
+      <% end %>
 
     <% end %>
-
   </div>
 
-  <!-- Dropdown list appearing on mobile only -->
-  <div class="navbar-wagon-item hidden-md hidden-lg">
-    <div class="dropdown">
-      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
-      </ul>
-    </div>
-  </div>
 </div>
 

@@ -16,7 +16,7 @@ User.create(email: 'barack.obama@gmail.com', password: '123456')
 BusinessCard.create(user_id: 1, first_name: 'Barack', last_name: 'Obama', email: 'barack.obama@gmail.com', location:'Washington, DC, US', phone: '+1 202 555 0147', industry: 'Politics', company_name: 'USA', description: 'I was better than Trump...', linkedin_picture_url: 'https://consequenceofsound.files.wordpress.com/2016/11/barack.png?w=1614')
 
 User.create(email: 'roger.federer@gmail.com', password: '123456')
-BusinessCard.create(user_id: 2, first_name: 'Roger', last_name: 'Federer', email: 'roger.federer@gmail.com', location:'Basel, CH', phone: '+41 977225489', industry: 'Sport', company_name: 'Nike', description: 'Nadal is on steroids...', linkedin_picture_url: '')
+BusinessCard.create(user_id: 2, first_name: 'Roger', last_name: 'Federer', email: 'roger.federer@gmail.com', location:'Basel, CH', phone: '+41 977225489', industry: 'Sport', company_name: 'Nike', description: 'Nadal is on steroids...', linkedin_picture_url: 'http://1v1d1e1lmiki1lgcvx32p49h8fe.wpengine.netdna-cdn.com/wp-content/uploads/2017/01/Roger-Federer-2017-960x540.jpg')
 
 User.create(email: 'bob.marley@gmail.com', password: '123456')
 BusinessCard.create(user_id: 3, first_name: 'Bob', last_name: 'Marley', email: 'bob.marley@gmail.com', location: 'Heaven', phone: '', industry: 'Music', company_name: 'Rizla', description: 'Smoke a joint and try to fly!', linkedin_picture_url: '')
