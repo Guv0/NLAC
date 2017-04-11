@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: [:linkedin]
 
+  #comment this out when seeding
   after_create  :manual_business_card, :send_welcome_email
 
   has_one :business_card, dependent: :destroy
