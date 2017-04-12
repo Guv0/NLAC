@@ -5,4 +5,7 @@ class ConnectionPolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    true
+  end
 end
