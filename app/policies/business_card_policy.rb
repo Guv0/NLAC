@@ -29,7 +29,5 @@ class BusinessCardPolicy < ApplicationPolicy
     true
   end
 
-  def root?
-    true
-  end
+
 end
