@@ -53,6 +53,7 @@ helper_method :sort_column, :sort_direction
     if current_user
       @connection = Connection.new(user_id: current_user.id, contact_id: params[:business_card_id])
       @connection.save
+      flash[:notice] = "#{BusinessCard.find(params[:business_card_id]).first_name} is now in your contacts"
       redirect_to business_card_path(@business_card)
     else
       redirect_to business_card_path(@business_card)
