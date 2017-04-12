@@ -1,6 +1,6 @@
 <div class="flex-center flex-column">
     <div class="business-card">
-      <% if @business_card.user_id === current_user.id %>
+      <% if policy(@business_card).edit? %>
         <%= link_to edit_business_card_path(@business_card), class: 'edit-link' do %>
           <p>Edit</p>
           <i class="fa fa-pencil" aria-hidden="true"></i>

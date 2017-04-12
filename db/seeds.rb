@@ -12,6 +12,8 @@ Tag.destroy_all
 TagRelation.destroy_all
 Connection.destroy_all
 
+puts 'comment out user.rb line 6'
+
 User.create(email: 'barack.obama@gmail.com', password: '123456')
 BusinessCard.create(user_id: 1, first_name: 'Barack', last_name: 'Obama', email: 'barack.obama@gmail.com', location:'Washington, DC, US', phone: '+1 202 555 0147', industry: 'Politics', company_name: 'USA', description: 'I was better than Trump...', linkedin_picture_url: 'https://consequenceofsound.files.wordpress.com/2016/11/barack.png?w=1614')
 

@@ -37,6 +37,9 @@ gem 'carrierwave'
 #Mailer testing
 gem "letter_opener", group: :development
 
+#Pundit
+gem 'pundit'
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
