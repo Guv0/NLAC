@@ -71,6 +71,7 @@ helper_method :sort_column, :sort_direction
   end
 
   def root
+
     redirect_to business_card_connections_path(current_user)
   end
 
