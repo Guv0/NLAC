@@ -40,6 +40,10 @@ gem "letter_opener", group: :development
 #Pundit
 gem 'pundit'
 
+#Rails-Admin
+gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'rails_admin', '>= 1.0.0.rc'
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
