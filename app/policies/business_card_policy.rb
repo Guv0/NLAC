@@ -10,8 +10,7 @@ class BusinessCardPolicy < ApplicationPolicy
   end
 
   def show?
-    true
-    # record.user == user  || user.guest || user.contacts.ids.include?(record.id) ? true : false
+    record.user == user  || user.guest || user.contacts.ids.include?(record.id) ? true : false
   end
 
   def update?

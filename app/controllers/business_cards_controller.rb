@@ -10,13 +10,15 @@ before_action :set_business_card, only: [ :edit, :update, :destroy, :create_tags
       authorize @business_card
       @tags = @business_card.tags_to_display(@business_card.id, current_user.id)
       @connection = Connection.where(user_id: current_user.id, contact_id: @business_card.id).first
-    else
-      @current_user = guest_user
-      current_user = guest_user
+    elsif params[:live_guest_user]
+       @current_user = User.find(params[:live_guest_user])
+      # current_user = guest_user
       authorize @business_card
+    else
       # @current_user = User.new
       # @current_user.business_card = BusinessCard.new
       # @tags = @business_card.tags
+      redirect_to new_user_registration_path
     end
   end
 

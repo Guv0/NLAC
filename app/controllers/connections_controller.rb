@@ -58,9 +58,9 @@ helper_method :sort_column, :sort_direction
       redirect_to business_card_path(@business_card)
     else
 
+      @live_guest_user = guest_user
 
-
-      redirect_to business_card_path(@business_card)
+      redirect_to business_card_path(@business_card, live_guest_user: @live_guest_user)
     end
   end
 
