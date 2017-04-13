@@ -6,8 +6,7 @@ class BusinessCardPolicy < ApplicationPolicy
   end
 
   def index?
-    true
-    # record.user == user || user.contacts.ids.include?(record.id) ? true : false
+    record.user == user || user.contacts.ids.include?(record.id) ? true : false
   end
 
   def show?
