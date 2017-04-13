@@ -9,9 +9,9 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
   </head>
   <body>
-    <% if user_signed_in? %>
-      <%= render 'shared/navbar' %>
-    <% end %>
+
+      <% #render 'shared/navbar' %>
+
     <%= render 'shared/flashes' %>
     <%= yield %>
     <%= render 'shared/footer' %>

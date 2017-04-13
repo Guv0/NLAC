@@ -31,9 +31,11 @@
       <%= link_to business_card_path(current_user) do %>
         <% if current_user.business_card.photo == "" %>
           <%= image_tag current_user.business_card.photo.url(:navbar), class: "navbar-avatar" %>
-        <% else %>
+        <% elsif current_user.business_card.linkedin_picture_url %>
           <% avatar_url = current_user.business_card.linkedin_picture_url %>
           <%= image_tag avatar_url, class: "navbar-avatar" %>
+        <% else %>
+          Please add a photo
         <% end %>
       <% end %>
 

@@ -1,4 +1,7 @@
 <div class="flex-center flex-column">
+  <%= link_to destroy_user_session_path, method: :delete do %>
+                  <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+                <% end %>
     <div class="business-card">
       <% if policy(@business_card).edit? %>
         <%= link_to edit_business_card_path(@business_card), class: 'edit-link' do %>
