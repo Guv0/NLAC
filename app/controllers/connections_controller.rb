@@ -1,8 +1,8 @@
 class ConnectionsController < ApplicationController
-skip_before_action :authenticate_user!, only: [ :create ]
+skip_before_action :authenticate_user!, only: [ :create, :guest_connection ]
 before_action :set_business_card, only: [ :index, :create ]
 skip_after_action :verify_policy_scoped, only: [ :index ]
-skip_after_action :verify_authorized, only: [ :root ]
+skip_after_action :verify_authorized, only: [ :root, :guest_connection ]
 helper_method :sort_column, :sort_direction
 
   def index
@@ -58,15 +58,14 @@ helper_method :sort_column, :sort_direction
       redirect_to business_card_path(@business_card)
     else
 
-      current_user = guest_user
+
 
       redirect_to business_card_path(@business_card)
     end
   end
 
   def guest_connection
-    Connection.create!(user_id: session[:guest_user_id], contact_id: params[:business_card_id])
-    binding.pry
+    Connection.create(user_id: session[:guest_user_id], contact_id: params[:business_card_id])
     current_user = guest_user
     redirect_to new_user_registration_path
   end

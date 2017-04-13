@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
-  after_filter :store_location
+  # after_filter :store_location
 
   include Pundit
 
@@ -48,18 +48,18 @@ class ApplicationController < ActionController::Base
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end
 
-  def store_location
-    # store last url as long as it isn't a /users path
-    session[:previous_url] = request.fullpath unless request.fullpath =~ /\/users/
-  end
+  # def store_location
+  #   # store last url as long as it isn't a /users path
+  #   session[:previous_url] = request.fullpath unless request.fullpath =~ /\/users/
+  # end
 
-  def after_sign_in_path_for(resource)
-    if session[:previous_url] =~ /\/business_cards/
-      session[:previous_url] || root_path
-    else
-      instructions_path
-    end
-  end
+  # def after_sign_in_path_for(resource)
+  #   if session[:previous_url] =~ /\/business_cards/
+  #     session[:previous_url] || root_path
+  #   else
+  #     instructions_path
+  #   end
+  # end
 
    # called (once) when the user logs in, insert any code your application needs
   # to hand off from guest_user to current_user.

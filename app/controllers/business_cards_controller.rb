@@ -11,6 +11,7 @@ before_action :set_business_card, only: [ :edit, :update, :destroy, :create_tags
       @tags = @business_card.tags_to_display(@business_card.id, current_user.id)
       @connection = Connection.where(user_id: current_user.id, contact_id: @business_card.id).first
     else
+      @current_user = guest_user
       current_user = guest_user
       authorize @business_card
       # @current_user = User.new
