@@ -5,12 +5,13 @@
     <%= image_tag "NLAC.png" %>
   <% end %>
 
+
   <!-- Right section -->
   <div class="navbar-right flex-between">
     <% if user_signed_in? %>
 
       <!-- Contacts -->
-      <%= link_to 'My Contacts', business_card_connections_path(current_user), class: "navbar-link" %>
+        <%= link_to 'My Contacts', business_card_connections_path(current_user), class: "navbar-link" %>
 
       <!-- Cog -->
       <div class="navbar-cog">
@@ -38,6 +39,5 @@
 
     <% end %>
   </div>
-
 </div>
 

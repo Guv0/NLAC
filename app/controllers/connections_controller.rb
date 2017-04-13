@@ -50,14 +50,22 @@ helper_method :sort_column, :sort_direction
   end
 
   def create
+    current_or_guest_user
     if current_user
       @connection = Connection.new(user_id: current_user.id, contact_id: params[:business_card_id])
       @connection.save
       flash[:notice] = "#{BusinessCard.find(params[:business_card_id]).first_name} is now in your contacts"
       redirect_to business_card_path(@business_card)
     else
+      current_user = guest_user
       redirect_to business_card_path(@business_card)
     end
+  end
+
+  def guest_connection
+    Connection.create!(user_id: guest_user.id, contact_id: params[:business_card_id])
+    current_user = guest_user
+    redirect_to new_user_registration_path
   end
 
   def root

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   delete 'business_cards/:id/deletetag', to: 'business_cards#delete_tag'
 
   get 'business_cards/:business_card_id/emailconnection', to: 'connections#create'
+  post 'business_cards/:business_card_id/guestconnection', to: 'connestions#guest_connection'
 
   # pages
   get 'about', to: 'pages#about'
