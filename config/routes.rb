@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   # users
   devise_for :users,
-    controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+    controllers: { omniauth_callbacks: 'users/omniauth_callbacks', sessions: "sessions", registrations: "registrations" }
 
   # business_cards
   resources :business_cards, only: [ :show, :edit, :update, :destroy ] do
@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   delete 'business_cards/:id/deletetag', to: 'business_cards#delete_tag'
 
   get 'business_cards/:business_card_id/emailconnection', to: 'connections#create'
+  post 'business_cards/:business_card_id/connections/guestconnection', to: 'connections#guest_connection', as: :guest_connection
 
   # pages
   get 'about', to: 'pages#about'

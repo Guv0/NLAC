@@ -1,17 +1,24 @@
 class BusinessCardsController < ApplicationController
 skip_before_action :authenticate_user!, only: [ :show ]
 before_action :set_user, only: [ :destroy ]
-before_action :set_business_card, :set_user, only: [ :show, :edit, :update, :destroy, :create_tags, :delete_tag ]
+before_action :set_business_card, only: [ :edit, :update, :destroy, :create_tags, :delete_tag ]
 
   def show
+    @business_card = BusinessCard.find(params[:id])
     if current_user
       @current_user = current_user
+      authorize @business_card
       @tags = @business_card.tags_to_display(@business_card.id, current_user.id)
       @connection = Connection.where(user_id: current_user.id, contact_id: @business_card.id).first
+    elsif params[:live_guest_user]
+       @current_user = User.find(params[:live_guest_user])
+      # current_user = guest_user
+      authorize @business_card
     else
-      @current_user = User.new
-      @current_user.business_card = BusinessCard.new
-      @tags = @business_card.tags
+      # @current_user = User.new
+      # @current_user.business_card = BusinessCard.new
+      # @tags = @business_card.tags
+      redirect_to new_user_registration_path
     end
   end
 

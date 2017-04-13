@@ -1,4 +1,7 @@
 <div class="flex-center flex-column">
+  <%= link_to destroy_user_session_path, method: :delete do %>
+                  <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+                <% end %>
     <div class="business-card">
       <% if policy(@business_card).edit? %>
         <%= link_to edit_business_card_path(@business_card), class: 'edit-link' do %>
@@ -49,12 +52,11 @@
       </div>
     </div>
     <div class="flex-between">
-    <% if @connection == nil && current_user.id && current_user.id != @business_card.id %>
-      <%= link_to "Add #{@business_card.first_name} to your contacts", business_card_connections_path(@business_card), method: :post, class: 'btn contacts-contacts' %>
+    <% if current_user.guest %>
+      <%= link_to "Add #{@business_card.first_name} to your contacts", guest_connection_path(@business_card.id), method: :post, class: 'btn contacts-contacts' %>
     <% end %>
-    <% unless current_user.id %>
-      <%= link_to "Add #{@business_card.first_name} to your contacts", new_user_session_path, class: 'btn contacts-contacts' %>
-    <% end %>
+
+
     <% if current_user.id != @business_card.id %>
     <%= link_to "See #{@business_card.first_name}'s Contacts", business_card_connections_path(@business_card), class: 'btn contacts-contacts' %>
     <% end %>

@@ -48,9 +48,8 @@ class User < ApplicationRecord
     else
       user = User.new(user_params)
       user.password = Devise.friendly_token[0,20]  # Fake password for validation
-      user.business_card = BusinessCard.new(bc_params)
+      user.business_card = BusinessCard.create(bc_params)
       user.save
-      user.business_card.save
     end
 
     return user
@@ -66,7 +65,7 @@ class User < ApplicationRecord
 
   def manual_business_card
     if self.provider == nil
-      self.business_card = BusinessCard.create(id: self.id, email: self.email)
+      self.business_card = BusinessCard.create(email: self.email)
     end
   end
 

@@ -1,8 +1,8 @@
 class ConnectionsController < ApplicationController
-skip_before_action :authenticate_user!, only: [ :create ]
+skip_before_action :authenticate_user!, only: [ :create, :guest_connection ]
 before_action :set_business_card, only: [ :index, :create ]
 skip_after_action :verify_policy_scoped, only: [ :index ]
-skip_after_action :verify_authorized, only: [ :root ]
+skip_after_action :verify_authorized, only: [ :root, :guest_connection ]
 helper_method :sort_column, :sort_direction
 
   def index
@@ -50,17 +50,28 @@ helper_method :sort_column, :sort_direction
   end
 
   def create
+    current_or_guest_user
     if current_user
       @connection = Connection.new(user_id: current_user.id, contact_id: params[:business_card_id])
       @connection.save
       flash[:notice] = "#{BusinessCard.find(params[:business_card_id]).first_name} is now in your contacts"
       redirect_to business_card_path(@business_card)
     else
-      redirect_to business_card_path(@business_card)
+
+      @live_guest_user = guest_user
+
+      redirect_to business_card_path(@business_card, live_guest_user: @live_guest_user)
     end
   end
 
+  def guest_connection
+    Connection.create(user_id: session[:guest_user_id], contact_id: params[:business_card_id])
+    current_user = guest_user
+    redirect_to new_user_registration_path
+  end
+
   def root
+
     redirect_to business_card_connections_path(current_user)
   end
 

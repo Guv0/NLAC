@@ -5,12 +5,13 @@
     <%= image_tag "NLAC.png" %>
   <% end %>
 
+
   <!-- Right section -->
   <div class="navbar-right flex-between">
     <% if user_signed_in? %>
 
       <!-- Contacts -->
-      <%= link_to 'My Contacts', business_card_connections_path(current_user), class: "navbar-link" %>
+        <%= link_to 'My Contacts', business_card_connections_path(current_user), class: "navbar-link" %>
 
       <!-- Cog -->
       <div class="navbar-cog">
@@ -30,14 +31,15 @@
       <%= link_to business_card_path(current_user) do %>
         <% if current_user.business_card.photo == "" %>
           <%= image_tag current_user.business_card.photo.url(:navbar), class: "navbar-avatar" %>
-        <% else %>
+        <% elsif current_user.business_card.linkedin_picture_url %>
           <% avatar_url = current_user.business_card.linkedin_picture_url %>
           <%= image_tag avatar_url, class: "navbar-avatar" %>
+        <% else %>
+          Please add a photo
         <% end %>
       <% end %>
 
     <% end %>
   </div>
-
 </div>
 
