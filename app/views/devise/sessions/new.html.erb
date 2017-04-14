@@ -1,15 +1,83 @@
-<h2>Log in</h2>
+<!-- <h2>Log in</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%# simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-inputs">
-    <%= f.input :email, required: false, autofocus: true %>
-    <%= f.input :password, required: false %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    <%# f.input :email, required: false, autofocus: true %>
+    <%# f.input :password, required: false %>
+    <%# f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
+    <%# f.button :submit, "Log in" %>
   </div>
-<% end %>
+<%# end %>
 
-<%= render "devise/shared/links" %>
+<%# render "devise/shared/links" %>
+-->
+
+
+<div class="back-green">
+  <div class="flex-center">
+    <%= image_tag 'NLAC.png' %>
+    <h1>Never Lose A Contact</h1>
+  </div>
+</div>
+
+<div class="flex-center">
+  <div class="sign-up-card">
+    <div class="flex-center">
+      <div class="flex-column flex-center">
+
+        <% if devise_mapping.omniauthable? %>
+          <% resource_class.omniauth_providers.each do |provider| %>
+            <%= link_to omniauth_authorize_path(resource_name, provider) do %>
+              <div class="linkedin-btn">
+                <div class="in flex-center">
+                  <h2>in</h2>
+                </div>
+                <div class="sign-linkedin flex-center">
+                  <h2>Sign in with LinkedIn</h2>
+                </div>
+              </div>
+            <% end %>
+          <% end -%>
+        <% end -%>
+      </div>
+    </div>
+    <div class="flex-center">
+      <div class="line"></div>
+      <h5>OR</h5>
+      <div class="line"></div>
+    </div>
+    <div class="flex-center">
+      <h5>Manual Sign In</h5>
+    </div>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= f.error_notification %>
+      <div class="flex-center sign-email">
+        <%= f.input :email, label_html: { class: 'label' } %>
+      </div>
+      <div class="sign-password" style="margin-left: 250px;">
+        <%= f.input :password, input_html: { style: 'flex: 0 0 50%; width: 340px;', class: 'input-inline input-width' }, label_html: { class: 'label' } %>
+
+      </div>
+      <div class="flex-column sign-up">
+        <div class="flex-start">
+          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        </div>
+        <div class="flex-center">
+          <%= f.button :submit, "Log In", class: 'sign-btn' %>
+        </div>
+        <div class="flex-end">
+          <div class="flex">
+            <p>Don't have an account?</p>
+              <%= link_to "Sign up", new_user_registration_path(resource_name), style: 'color: #0D7377; font-size: 12px;'%>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="back-grey"></div>
+
