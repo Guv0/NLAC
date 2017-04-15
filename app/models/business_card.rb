@@ -24,4 +24,11 @@ mount_uploader :photo, AvatarUploader
     return tags.uniq
   end
 
+  def tags_for_guest(owner_id)
+    tags = []
+    self.tag_relations.where(creator_id: owner_id).each do |relation|
+      tags << [Tag.find(relation.tag_id), relation.creator_id]
+    end
+    return tags
+  end
 end

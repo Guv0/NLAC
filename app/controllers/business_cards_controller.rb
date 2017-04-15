@@ -8,10 +8,11 @@ before_action :set_business_card, only: [ :edit, :update, :destroy, :create_tags
     if current_user
       @current_user = current_user
       authorize @business_card
-      @tags = @business_card.tags_to_display(@business_card.id, current_user.id)
+      @tags = @business_card.tags_to_display(@business_card.user_id, current_user.id)
       @connection = Connection.where(user_id: current_user.id, contact_id: @business_card.id).first
     elsif params[:live_guest_user]
-       @current_user = User.find(params[:live_guest_user])
+      @current_user = User.find(params[:live_guest_user])
+      @tags = @business_card.tags_for_guest(@business_card.user_id)
       # current_user = guest_user
       authorize @business_card
     else
