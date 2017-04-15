@@ -2,7 +2,8 @@ var TagsCard = React.createClass({
   getInitialState: function(){
     return {
       tags: this.props.tags,
-      display_form: false
+      display_form: false,
+      error: ""
     }
   },
 
@@ -49,6 +50,10 @@ var TagsCard = React.createClass({
     })
 
     this.setState({display_form: false});
+
+    if (this.props.current_user.guest) {
+      this.setState({error: "Please add to contacts before creating new tags"});
+    } else {
       $.ajax({
         type: 'POST',
         url: '/business_cards/' + this.props.business_card.id,
@@ -57,6 +62,7 @@ var TagsCard = React.createClass({
           console.log(data);
           this.setState({ tags: data});
         }.bind(this));
+    }
   },
 
   render: function() {
@@ -73,6 +79,8 @@ var TagsCard = React.createClass({
         <div className="flex">
           {tags}
         </div>
+        <div className="add-tags-error">
+        {this.state.error}
         <div className="add-tags flex-center">
         {!display_form && <button className="add-tags-btn btn" onClick={this.handleClick}>Add Tags</button>}
         </div>
