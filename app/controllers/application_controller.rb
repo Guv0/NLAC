@@ -67,12 +67,6 @@ class ApplicationController < ActionController::Base
     connection = guest_user.connections.first
     connection.user_id = current_user.id
     connection.save
-    # For example:
-    # guest_comments = guest_user.comments.all
-    # guest_comments.each do |comment|
-      # comment.user_id = current_user.id
-      # comment.save!
-    # end
   end
 
   def create_guest_user

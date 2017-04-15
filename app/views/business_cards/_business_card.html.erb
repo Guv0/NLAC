@@ -54,7 +54,7 @@
     <% end %>
 
 
-    <% if current_user.id != @business_card.id %>
+    <% if current_user.id != @business_card.id && @connection %>
     <%= link_to "See #{@business_card.first_name}'s Contacts", business_card_connections_path(@business_card), class: 'btn contacts-contacts' %>
     <% end %>
     </div>
