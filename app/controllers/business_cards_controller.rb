@@ -2,6 +2,7 @@ class BusinessCardsController < ApplicationController
 skip_before_action :authenticate_user!, only: [ :show ]
 before_action :set_user, only: [ :destroy ]
 before_action :set_business_card, only: [ :edit, :update, :destroy, :create_tags, :delete_tag ]
+# skip_before_action :verify_authenticity_token, only: [ :create_tags, :delete_tag ]
 
   def show
     @business_card = BusinessCard.find(params[:id])
@@ -40,15 +41,16 @@ before_action :set_business_card, only: [ :edit, :update, :destroy, :create_tags
   end
 
   def create_tags
-    params["tags"].each do |tag|
-      normalized_tag = tag.split.join.downcase
-      @tag_relation = TagRelation.new
-      @tag_relation.add_tag(normalized_tag, @business_card.id, current_user.id)
-    end
-    @tags = @business_card.tags_to_display(@business_card.id, current_user.id)
-    respond_to do |format|
-        format.json { render json: @tags, status: :created }
-    end
+      params["tags"].each do |tag|
+        normalized_tag = tag.split.join.downcase
+        @tag_relation = TagRelation.new
+        @tag_relation.add_tag(normalized_tag, @business_card.id, current_user.id)
+      end
+      @tags = @business_card.tags_to_display(@business_card.id, current_user.id)
+      respond_to do |format|
+          format.json { render json: @tags, status: :created }
+      end
+    else
   end
 
   def delete_tag
