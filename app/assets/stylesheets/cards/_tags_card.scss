@@ -41,6 +41,14 @@
   width: 250px;
   height: 35px;
 }
+
+.add-tags-error {
+  display: flex;
+  justify-content: center;
+  color: $red;
+}
+
+
 // Media queries
   // Large/Medium phones
   @media (max-width: 425px) and (min-width: 321px) {
