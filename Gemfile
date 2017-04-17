@@ -30,6 +30,9 @@ end
 gem 'omniauth-linkedin'
 gem 'linkedin'
 
+#Omnicontacts
+gem 'omnicontacts'
+
 #Images
 gem 'cloudinary', '1.1.0'
 gem 'carrierwave'

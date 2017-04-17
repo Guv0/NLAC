@@ -119,6 +119,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
+    json (2.0.4)
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -158,6 +159,9 @@ GEM
     omniauth-oauth (1.1.0)
       oauth
       omniauth (~> 1.0)
+    omnicontacts (0.3.7)
+      json
+      rack
     orm_adapter (0.5.0)
     pg (0.20.0)
     pg_search (1.0.6)
@@ -296,6 +300,7 @@ DEPENDENCIES
   linkedin
   listen (~> 3.0.5)
   omniauth-linkedin
+  omnicontacts
   pg
   pg_search
   pry-byebug
