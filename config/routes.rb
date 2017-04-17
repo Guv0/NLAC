@@ -27,6 +27,6 @@ Rails.application.routes.draw do
   get 'instructions', to: 'pages#instructions'
   get 'nlac-logo.png', to: 'pages#image'
 
-  match "/contacts/:importer/callback" => "connections#index"
+  get "/contacts/:importer/contact_callback" => "connections#contact_callback"
 
 end

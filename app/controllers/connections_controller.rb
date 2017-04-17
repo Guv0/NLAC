@@ -46,7 +46,10 @@ helper_method :sort_column, :sort_direction
     else
       @contacts = BusinessCard.where(user_id: contacts_ids).sort_by { |e| e.first_name }
     end
-
+    @gmail_contacts = request.env['omnicontacts.contacts']
+      respond_to do |format|
+        format.html
+      end
   end
 
   def create
@@ -72,6 +75,14 @@ helper_method :sort_column, :sort_direction
 
   def root
     redirect_to business_card_connections_path(current_user)
+  end
+
+  def contact_callback
+    @contacts = request.env[‘omnicontacts.contacts’]
+    @user = request.env[‘omnicontacts.user’]
+    puts “List of contacts of #{user[:name]} obtained from #params[:importer]}:”
+    @contacts.each do|contact|puts “Contact found: name => #{contact[:name]}, email => #{contact[:email]}”
+    end
   end
 
 private
