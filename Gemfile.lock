@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/Diego81/omnicontacts.git
+  revision: 64a50f77ad677e19fb96c45aa19bd5bfb28b6f81
+  specs:
+    omnicontacts (0.3.9)
+      json
+      rack
+
+GIT
   remote: git://github.com/mshibuya/remotipart.git
   revision: cd653ddc43bb09767b8f2802d6e27b3e00ef992f
   specs:
@@ -119,6 +127,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
+    json (2.1.0)
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -296,6 +305,7 @@ DEPENDENCIES
   linkedin
   listen (~> 3.0.5)
   omniauth-linkedin
+  omnicontacts!
   pg
   pg_search
   pry-byebug

@@ -1,0 +1,12 @@
+<table style="margin: 40px;">
+  <thead>
+    <th>Name</th>
+    <th>Email</th>
+  </thead>
+  <tbody>
+    <% @contacts.each do |contact| %>
+    <tr><td><p><strong><%= contact[:name] %></strong></p></td>
+      <td><%= contact[:email] %></p></td></tr>
+    <% end %>
+  </tbody>
+</table>

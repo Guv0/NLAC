@@ -1,4 +1,5 @@
 <div class="container-fluid">
+<%= link_to "Import your Gmail contacts", '/contacts/gmail', class: 'btn contacts-contacts' %>
   <div class="flex-center" id="contacts-list-title">
     <h2><strong>
       <% if current_user.id == @business_card.user.id %>
@@ -49,4 +50,7 @@
       </table>
     </div>
   </div>
+  <% if @gmail_contacts %>
+    <%= @gmail_contacts %>
+  <% end %>
 </div>
