@@ -31,7 +31,7 @@ gem 'omniauth-linkedin'
 gem 'linkedin'
 
 #Omnicontacts
-gem 'omnicontacts'
+gem 'omnicontacts', github: 'Diego81/omnicontacts'
 
 #Images
 gem 'cloudinary', '1.1.0'

@@ -2,7 +2,7 @@ class ConnectionsController < ApplicationController
 skip_before_action :authenticate_user!, only: [ :create, :guest_connection ]
 before_action :set_business_card, only: [ :index, :create ]
 skip_after_action :verify_policy_scoped, only: [ :index ]
-skip_after_action :verify_authorized, only: [ :root, :guest_connection ]
+skip_after_action :verify_authorized, only: [ :root, :guest_connection, :omnicontacts_index ]
 helper_method :sort_column, :sort_direction
 
   def index
@@ -77,13 +77,19 @@ helper_method :sort_column, :sort_direction
     redirect_to business_card_connections_path(current_user)
   end
 
-  def contact_callback
-    @contacts = request.env[‘omnicontacts.contacts’]
-    @user = request.env[‘omnicontacts.user’]
-    puts “List of contacts of #{user[:name]} obtained from #params[:importer]}:”
-    @contacts.each do|contact|puts “Contact found: name => #{contact[:name]}, email => #{contact[:email]}”
-    end
+  # def contact_callback
+  #   @contacts = request.env[‘omnicontacts.contacts’]
+  #   @user = request.env[‘omnicontacts.user’]
+  #   puts “List of contacts of {user[:name]} obtained from params[:importer]}:”
+  #   @contacts.each do|contact|
+  #   puts “Contact found: name => {contact[:name]}, email => {contact[:email]}”
+  #   end
+  # end
+
+  def omnicontacts_index
+    @contacts = request.env['omnicontacts.contacts']
   end
+
 
 private
 
