@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170426152312) do
+ActiveRecord::Schema.define(version: 20170426164433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,12 +38,18 @@ ActiveRecord::Schema.define(version: 20170426152312) do
     t.string   "name"
     t.text     "description"
     t.string   "photo"
-    t.integer  "owner_id"
-    t.integer  "contacts_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["contacts_id"], name: "index_communities_on_contacts_id", using: :btree
-    t.index ["owner_id"], name: "index_communities_on_owner_id", using: :btree
+  end
+
+  create_table "community_memberships", force: :cascade do |t|
+    t.integer  "member_id"
+    t.integer  "community_id"
+    t.boolean  "owner",        default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["community_id"], name: "index_community_memberships_on_community_id", using: :btree
+    t.index ["member_id"], name: "index_community_memberships_on_member_id", using: :btree
   end
 
   create_table "connection_requests", force: :cascade do |t|
@@ -126,8 +132,8 @@ ActiveRecord::Schema.define(version: 20170426152312) do
   end
 
   add_foreign_key "business_cards", "users"
-  add_foreign_key "communities", "users", column: "contacts_id"
-  add_foreign_key "communities", "users", column: "owner_id"
+  add_foreign_key "community_memberships", "communities"
+  add_foreign_key "community_memberships", "users", column: "member_id"
   add_foreign_key "connection_requests", "users"
   add_foreign_key "connection_requests", "users", column: "contact_id"
   add_foreign_key "connections", "users"
