@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170413124741) do
+ActiveRecord::Schema.define(version: 20170426152312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,13 +24,36 @@ ActiveRecord::Schema.define(version: 20170413124741) do
     t.string   "linkedin_profile_url"
     t.string   "linkedin_picture_url"
     t.text     "description"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "user_id"
     t.string   "company_name"
     t.string   "email"
     t.string   "photo"
+    t.jsonb    "updates",              default: [],              array: true
     t.index ["user_id"], name: "index_business_cards_on_user_id", using: :btree
+  end
+
+  create_table "communities", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "photo"
+    t.integer  "owner_id"
+    t.integer  "contacts_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["contacts_id"], name: "index_communities_on_contacts_id", using: :btree
+    t.index ["owner_id"], name: "index_communities_on_owner_id", using: :btree
+  end
+
+  create_table "connection_requests", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "contact_id"
+    t.string   "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_connection_requests_on_contact_id", using: :btree
+    t.index ["user_id"], name: "index_connection_requests_on_user_id", using: :btree
   end
 
   create_table "connections", force: :cascade do |t|
@@ -40,6 +63,26 @@ ActiveRecord::Schema.define(version: 20170413124741) do
     t.datetime "updated_at", null: false
     t.index ["contact_id"], name: "index_connections_on_contact_id", using: :btree
     t.index ["user_id"], name: "index_connections_on_user_id", using: :btree
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.string   "subject"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.boolean  "trash",        default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["recipient_id"], name: "index_conversations_on_recipient_id", using: :btree
+    t.index ["sender_id"], name: "index_conversations_on_sender_id", using: :btree
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text    "body"
+    t.integer "conversation_id"
+    t.integer "user_id"
+    t.boolean "read",            default: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
   create_table "tag_relations", force: :cascade do |t|
@@ -83,8 +126,16 @@ ActiveRecord::Schema.define(version: 20170413124741) do
   end
 
   add_foreign_key "business_cards", "users"
+  add_foreign_key "communities", "users", column: "contacts_id"
+  add_foreign_key "communities", "users", column: "owner_id"
+  add_foreign_key "connection_requests", "users"
+  add_foreign_key "connection_requests", "users", column: "contact_id"
   add_foreign_key "connections", "users"
   add_foreign_key "connections", "users", column: "contact_id"
+  add_foreign_key "conversations", "users", column: "recipient_id"
+  add_foreign_key "conversations", "users", column: "sender_id"
+  add_foreign_key "messages", "conversations"
+  add_foreign_key "messages", "users"
   add_foreign_key "tag_relations", "business_cards"
   add_foreign_key "tag_relations", "tags"
 end
