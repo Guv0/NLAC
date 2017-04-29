@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   #communities
   resources :communities do
-    resources :friend_requests, only: [ :create ]
+    resources :connection_requests, only: [ :create ]
   end
 
   #conversations

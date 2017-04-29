@@ -21,7 +21,7 @@ class ConnectionRequest < ApplicationRecord
   end
 
   def not_pending
-    errors.add(:contact_id, "already requested connection") if contact.pending_friends.include?(user)
+    errors.add(:contact_id, "already requested connection") if contact.pending_connections.include?(user)
   end
 
   # def not_contacts

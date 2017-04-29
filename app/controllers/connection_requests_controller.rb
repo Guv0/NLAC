@@ -1,5 +1,7 @@
 class ConnectionRequestsController < ApplicationController
   before_action :set_connection_request, except: [ :index, :create ]
+  skip_after_action :verify_policy_scoped
+  skip_after_action :verify_authorized
 
   def index
     @incoming = ConnectionRequest.where(contact: current_user)
@@ -7,8 +9,8 @@ class ConnectionRequestsController < ApplicationController
   end
 
   def create
-    contact = User.find(params[:user_id])
-    @connection_request = current_user.pending_connections_requests.new(contact: contact)
+    contact = User.find(params[:contact])
+    @connection_request = current_user.pending_connections_requests.new(contact: contact, status: 'pending')
     @connection_request.save
     redirect_to :back
   end

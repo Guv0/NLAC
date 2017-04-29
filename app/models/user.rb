@@ -11,6 +11,15 @@ class User < ApplicationRecord
   has_one :business_card, dependent: :destroy
   has_many :connections, dependent: :destroy
   has_many :contacts, through: :connections, :foreign_key => 'contact_id'
+  has_many :community_memberships, :foreign_key => 'member_id'
+  has_many :communities, through: :community_memberships
+
+  #Contact side
+  # pending connection request the user sent
+  has_many :connection_requests, foreign_key: :contact_id, dependent: :destroy
+  has_many :pending_connections_requests, class_name: 'ConnectionRequest', dependent: :destroy, foreign_key: :user_id
+  has_many :pending_connections, through: :pending_connections_requests, source: :contact
+
 
   def self.current
     Thread.current[:user]
