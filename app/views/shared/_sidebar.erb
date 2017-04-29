@@ -1,0 +1,54 @@
+<div class="sidebar-container">
+
+  <div class="sidebar-top">
+      <% if current_user.business_card.photo == "" %>
+        <% avatar = current_user.business_card.photo.url %>
+      <% elsif current_user.business_card.linkedin_picture_url %>
+        <% avatar = current_user.business_card.linkedin_picture_url %>
+      <% else %>
+        <% avatar = image_path('avatar.png') %>
+      <% end %>
+      <!-- Avatar -->
+      <%= link_to business_card_path(current_user) do %>
+        <%= image_tag avatar, class: "sidebar-avatar" %>
+      <% end %>
+      <!-- Name -->
+      <div id="sidebar-name">
+        <h5><%= current_user.business_card.first_name %></h5>
+        <h5><%= current_user.business_card.last_name %></h5>
+      </div>
+  </div>
+
+  <div class="sidebar-middle">
+    <!-- Profile -->
+    <div class="sidebar-link">
+      <i class="material-icons">person</i>
+      <%= link_to "Profile", business_card_path(current_user) %>
+    </div>
+    <!-- Contacts -->
+    <div class="sidebar-link">
+      <i class="material-icons">contacts</i>
+      <%= link_to "My contacts", business_card_connections_path(current_user) %>
+    </div>
+    <!-- Communities -->
+    <div class="sidebar-link">
+      <i class="material-icons">group</i>
+      <%= link_to "My communities" %>
+    </div>
+    <!-- Messages -->
+    <div class="sidebar-link">
+      <i class="material-icons">email</i>
+      <%= link_to "My messages" %>
+    </div>
+    <!-- Requests -->
+    <div class="sidebar-link">
+      <i class="material-icons">person_add</i>
+      <%= link_to "Requests" %>
+    </div>
+  </div>
+
+  <div class="sidebar-bottom">
+
+  </div>
+
+</div>

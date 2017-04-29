@@ -17,8 +17,12 @@
 @import "pages/index";
 
 // Main styling
+.application-content {
+  display: flex;
+}
+
 body {
-  background-color: $grey;
+  background-color: $background-color;
   color: $black;
 }
 
