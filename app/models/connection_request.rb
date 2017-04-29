@@ -10,7 +10,7 @@ class ConnectionRequest < ApplicationRecord
   # validate :not_contacts
 
   def accept
-    contactship.create(user: self.user, contact: self.contact)
+    Connection.create(user: self.user, contact: self.contact)
     destroy
   end
 
