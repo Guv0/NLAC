@@ -14,6 +14,11 @@ Rails.application.routes.draw do
     resources :connections, only: [ :index, :create ]
   end
 
+  #communities
+  resources :communities do
+    resources :friend_requests, only: [ :create ]
+  end
+
   #conversations
   resources :conversations, only: [:index, :create] do
     resources :messages, only: [:index, :new, :create]
