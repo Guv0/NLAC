@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+  get 'messages/index'
+
+  get 'messages/new'
+
+  get 'messages/create'
+
+  get 'index/new'
+
+  get 'index/create'
+
+  get 'conversations/index'
+
+  get 'conversations/create'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # root
   root to: 'connections#root'
