@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   end
 
   #conversations
-  resources :conversations do
-    resources :messages
+  resources :conversations, only: [:index, :create] do
+    resources :messages, only: [:index, :new, :create]
   end
 
   # tags
