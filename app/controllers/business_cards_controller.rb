@@ -29,6 +29,7 @@ before_action :set_business_card, only: [ :edit, :update, :destroy, :create_tags
 
   def update
     if @business_card.update(business_card_params)
+      @business_card.record_updates
       redirect_to business_card_path(@business_card)
     else
       render :edit
