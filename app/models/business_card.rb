@@ -37,4 +37,12 @@ mount_uploader :photo, AvatarUploader
     self.updates << updates
     self.save
   end
+
+  def record_tag_updates(normalized_tag)
+    added_tag = {}
+    added_tag["added_tag"] = ["", "#{normalized_tag}"]
+    added_tag["updated_at"] = [Time.now]
+    self.updates << added_tag
+    self.save
+  end
 end

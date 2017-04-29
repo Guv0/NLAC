@@ -13,5 +13,4 @@ belongs_to :tag
       TagRelation.create(tag_id: Tag.where(label: normalized_tag).first.id, business_card_id: business_card_id, creator_id: current_user_id)
     end
   end
-
 end
