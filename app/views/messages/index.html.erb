@@ -1,0 +1,30 @@
+<% if @over_ten %>
+ <%= link_to 'Show Previous', '?m=all' %>
+<% end %>
+<div>
+ <% @messages.each do |message| %>
+  <% if message.body %>
+   <% user = User.find(message.user_id) %>
+   <div>
+    <div>
+     <div><strong><%= user.business_card.first_name %></strong></div>
+      <div>
+       <div>
+        <i class='right triangle icon'></i>
+         <%= message.body %>
+      </div>
+    </div>
+   </div>
+ </div>
+ <% end %>
+<% end %>
+</div>
+<%= form_for [@conversation, @message] do |f| %>
+ <div>
+   <%= f.text_area :body, class: 'form-control' %>
+ </div>
+ <%= f.text_field :user_id, value: current_user.id, type: 'hidden' %>
+ <div>
+   <%= f.submit 'Reply' %>
+ </div>
+<% end %>

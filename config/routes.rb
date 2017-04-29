@@ -14,6 +14,11 @@ Rails.application.routes.draw do
     resources :connections, only: [ :index, :create ]
   end
 
+  #conversations
+  resources :conversations, only: [:index, :create] do
+    resources :messages, only: [:index, :new, :create]
+  end
+
   # tags
   post 'business_cards/:id', to: 'business_cards#create_tags'
   delete 'business_cards/:id/deletetag', to: 'business_cards#delete_tag'
