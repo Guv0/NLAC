@@ -1,19 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'messages/index'
-
-  get 'messages/new'
-
-  get 'messages/create'
-
-  get 'index/new'
-
-  get 'index/create'
-
-  get 'conversations/index'
-
-  get 'conversations/create'
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # root
   root to: 'connections#root'
@@ -26,6 +12,11 @@ Rails.application.routes.draw do
   resources :business_cards, only: [ :show, :edit, :update, :destroy ] do
     # connections
     resources :connections, only: [ :index, :create ]
+  end
+
+  #conversations
+  resources :conversations do
+    resources :messages
   end
 
   # tags
