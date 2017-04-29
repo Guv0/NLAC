@@ -14,10 +14,18 @@ Rails.application.routes.draw do
     resources :connections, only: [ :index, :create ]
   end
 
+  #communities
+  resources :communities do
+    resources :connection_requests, only: [ :create ]
+  end
+
   #conversations
   resources :conversations, only: [:index, :create] do
     resources :messages, only: [:index, :new, :create]
   end
+
+  resources :connection_requests, only: [:update]
+  resources :connections, only: [ :destroy ]
 
   # tags
   post 'business_cards/:id', to: 'business_cards#create_tags'

@@ -1,0 +1,9 @@
+<h1>Communities#show</h1>
+
+<h3><%= @community.name %></h3>
+<% @members.each do |member| %>
+  <p><%= member.business_card.full_name %></p>
+  <% unless current_user.contacts.ids.include?(member.id) %>
+    <%= link_to "Request to connect",  community_connection_requests_path(@community, :contact => member.id), method: :post %>
+  <% end %>
+<% end %>
