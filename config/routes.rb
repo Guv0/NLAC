@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'connections_requests/index'
+
+  get 'connections_requests/create'
+
+  get 'connections_requests/update'
+
+  get 'connections_requests/destroy'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # root
   root to: 'connections#root'
