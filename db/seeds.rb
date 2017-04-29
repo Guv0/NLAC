@@ -78,3 +78,12 @@ puts 'own tags seeded'
 end
 
 puts 'connections with personal tag seeded'
+
+Community.create(name:'Illuminati', description: 'Blah blah blah blah blah blah', photo:'')
+
+CommunityMembership.create(user_id: 1, community_id: 1, owner: true)
+(2..6).to_a.each do |x|
+  CommunityMembership.create(user_id: x, community_id: 1)
+end
+
+puts 'community seeded with barack as owner and users 2-6 as members'
