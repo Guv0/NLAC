@@ -1,7 +1,18 @@
 var Conversation = React.createClass({
+  getInitialState: function() {
+    return {
+      reply: ""
+    }
+  },
+
+  handleChange: function(e) {
+    e.preventDefault;
+    this.setState({ reply: e.target.value});
+  },
+
   handleSubmit: function(e) {
     e.preventDefault;
-    this.props.handleSubmit;
+    this.props.handleSubmit(this.state.reply);
   },
 
   render: function() {
@@ -17,8 +28,8 @@ var Conversation = React.createClass({
       <div>
         {messages}
         <form onSubmit={this.handleSubmit}>
-          <input type="textarea" />
-          <input type='submit' name="body" value='Reply' className="btn" />
+          <input type="textarea" onChange={this.handleChange} />
+          <input type='submit' className="btn" />
         </form>
       </div>
     )
