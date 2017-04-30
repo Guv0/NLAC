@@ -39,6 +39,7 @@ class MessagesController < ApplicationController
   end
 
   def message_params
+    binding.pry
     params.require(:message).permit(:body, :user_id)
   end
 end
