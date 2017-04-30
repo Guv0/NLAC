@@ -1,5 +1,9 @@
 var Conversation = React.createClass({
-  handleSubtmit: function()
+  handleSubmit: function(e) {
+    e.preventDefault;
+    this.props.handleSubmit;
+  },
+
   render: function() {
     console.log(this.props.conversation[3]);
     console.log(this.props.conversation[3][0]);
@@ -12,9 +16,9 @@ var Conversation = React.createClass({
     return (
       <div>
         {messages}
-        <form onSubmit={this.props.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <input type="textarea" />
-          <input type='submit' value='Reply' className="btn" />
+          <input type='submit' name="body" value='Reply' className="btn" />
         </form>
       </div>
     )
