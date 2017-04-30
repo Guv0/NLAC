@@ -13,6 +13,8 @@ TagRelation.destroy_all
 Connection.destroy_all
 Community.destroy_all
 CommunityMembership.destroy_all
+Conversation.destroy_all
+Message.destroy_all
 
 User.create(email: 'barack.obama@gmail.com', password: '123456', provider: 'linkedin')
 BusinessCard.create(user_id: 1, first_name: 'Barack', last_name: 'Obama', email: 'barack.obama@gmail.com', location:'Washington, DC, US', phone: '+1 202 555 0147', industry: 'Politics', company_name: 'USA', description: 'I was better than Trump...', linkedin_picture_url: 'https://consequenceofsound.files.wordpress.com/2016/11/barack.png?w=1614')
