@@ -46,22 +46,22 @@ BusinessCard.create(user_id: 10, first_name: 'Sandrine', last_name: 'Ayral', ema
 
 puts 'fake users created'
 
-Tag.create(label: 'javascript')
-Tag.create(label: 'ruby')
-Tag.create(label: 'react')
-Tag.create(label: 'entrepreneur')
-Tag.create(label: 'design')
-Tag.create(label: 'freelancer')
-Tag.create(label: 'growthhacking')
-Tag.create(label: 'charity')
-Tag.create(label: 'teaching')
-Tag.create(label: 'AI')
-Tag.create(label: 'personal')
+Tag.create!(label: 'javascript')
+Tag.create!(label: 'ruby')
+Tag.create!(label: 'react')
+Tag.create!(label: 'entrepreneur')
+Tag.create!(label: 'design')
+Tag.create!(label: 'freelancer')
+Tag.create!(label: 'growthhacking')
+Tag.create!(label: 'charity')
+Tag.create!(label: 'teaching')
+Tag.create!(label: 'AI')
+Tag.create!(label: 'personal')
 
 (1..10).to_a.each do |x|
   id_array = (1..10).to_a.sample(4)
   id_array.each do |tag_id|
-    TagRelation.create(tag_id: tag_id, business_card_id: x, creator_id: x)
+    TagRelation.create!(tag_id: tag_id, business_card_id: x, creator_id: x)
   end
 end
 
@@ -71,19 +71,47 @@ puts 'own tags seeded'
   contact_array = (1..10).to_a.sample(5)
   contact_array.each do |y|
     if x != y
-    Connection.create(user_id: x, contact_id: y)
-    TagRelation.create(tag_id: 11, business_card_id: y, creator_id: x)
+    Connection.create!(user_id: x, contact_id: y)
+    TagRelation.create!(tag_id: 11, business_card_id: y, creator_id: x)
     end
   end
 end
 
 puts 'connections with personal tag seeded'
 
-Community.create(name:'Illuminati', description: 'Blah blah blah blah blah blah', photo:'')
+Community.create!(name:'Illuminati', description: 'Blah blah blah blah blah blah', photo:'')
 
-CommunityMembership.create(member_id: 1, community_id: 1, owner: true)
+CommunityMembership.create!(member_id: 1, community_id: 1, owner: true)
 (2..6).to_a.each do |x|
-  CommunityMembership.create(member_id: x, community_id: 1)
+  CommunityMembership.create!(member_id: x, community_id: 1)
 end
 
 puts 'community seeded with barack as owner and users 2-6 as members'
+
+Conversation.create!(sender_id: 1, recipient_id: 2, subject: "Whagwan Bruv!")
+Conversation.create!(sender_id: 1, recipient_id: 3, subject: "Whagwan Bruv!")
+Conversation.create!(sender_id: 1, recipient_id: 4, subject: "Whagwan Bruv!")
+Conversation.create!(sender_id: 1, recipient_id: 5, subject: "Whagwan Bruv!")
+Conversation.create!(sender_id: 1, recipient_id: 6, subject: "Whagwan Bruv!")
+Conversation.create!(sender_id: 2,recipient_id: 4)
+Conversation.create!(sender_id: 2,recipient_id: 5)
+
+
+5.times do
+  Message.create!(conversation_id: 1, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 1)
+  Message.create!(conversation_id: 1, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 2)
+  Message.create!(conversation_id: 2, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 1)
+  Message.create!(conversation_id: 2, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 3)
+  Message.create!(conversation_id: 3, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 1)
+  Message.create!(conversation_id: 3, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 4)
+  Message.create!(conversation_id: 4, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 1)
+  Message.create!(conversation_id: 4, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 5)
+  Message.create!(conversation_id: 5, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 1)
+  Message.create!(conversation_id: 5, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 6)
+  Message.create!(conversation_id: 6, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 2)
+  Message.create!(conversation_id: 6, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 4)
+  Message.create!(conversation_id: 7, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 2)
+  Message.create!(conversation_id: 7, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 5)
+end
+
+
