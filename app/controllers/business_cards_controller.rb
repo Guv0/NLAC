@@ -3,12 +3,14 @@ skip_before_action :authenticate_user!, only: [ :show ]
 before_action :set_user, only: [ :destroy ]
 before_action :set_business_card, only: [ :edit, :update, :destroy, :create_tags, :delete_tag ]
 # skip_before_action :verify_authenticity_token, only: [ :create_tags, :delete_tag ]
+skip_after_action :verify_policy_scoped
+skip_after_action :verify_authorized
 
   def show
     @business_card = BusinessCard.find(params[:id])
     if current_user
       @current_user = current_user
-      authorize @business_card
+      # authorize @business_card
       @tags = @business_card.tags_to_display(@business_card.user_id, current_user.id)
       @connection = Connection.where(user_id: current_user.id, contact_id: @business_card.user_id).first
     elsif params[:live_guest_user]
@@ -75,7 +77,7 @@ private
 
   def set_business_card
     @business_card = BusinessCard.find(params[:id])
-    authorize @business_card
+    # authorize @business_card
   end
 
   def set_user

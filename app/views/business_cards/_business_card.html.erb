@@ -1,10 +1,10 @@
 <div class="flex-center flex-column">
     <div class="business-card">
-      <% if policy(@business_card).edit? %>
+      <% #if policy(@business_card).edit? %>
         <%= link_to edit_business_card_path(@business_card), class: 'edit-link' do %>
           <p>Edit</p>
           <i class="fa fa-pencil" aria-hidden="true"></i>
-        <% end %>
+        <% #end %>
       <% end %>
       <div class="card-left flex-around flex-column">
         <div class="card-avatar">
