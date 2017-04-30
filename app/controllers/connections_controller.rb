@@ -1,10 +1,11 @@
 class ConnectionsController < ApplicationController
 skip_before_action :authenticate_user!, only: [ :create, :guest_connection ]
 before_action :set_business_card, only: [ :index, :create ]
-skip_after_action :verify_policy_scoped, only: [ :index ]
-skip_after_action :verify_authorized, only: [ :root, :guest_connection, :omnicontacts_index ]
+# skip_after_action :verify_policy_scoped, only: [ :index ]
+# skip_after_action :verify_authorized, only: [ :root, :guest_connection, :omnicontacts_index ]
 helper_method :sort_column, :sort_direction
-
+  skip_after_action :verify_policy_scoped
+  skip_after_action :verify_authorized
   def index
     contacts_ids =  @business_card.user.contacts do |contact|
                       contact.id
@@ -103,7 +104,7 @@ private
 
   def set_business_card
     @business_card = BusinessCard.find(params[:business_card_id])
-    authorize @business_card
+    # authorize @business_card
   end
 
 end

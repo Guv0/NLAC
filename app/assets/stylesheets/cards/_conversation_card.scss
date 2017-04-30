@@ -1,0 +1,14 @@
+.conversation-card {
+  height: 100px;
+  width: 300px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  border-bottom: solid 1px lightgrey;
+}
+
+.conversation-card-left {
+  display: flex;
+  flex-direction: column;
+}
+
