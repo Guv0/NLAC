@@ -61,22 +61,6 @@
   letter-spacing: 5px;
 }
 
-.search-btn {
-  width: 200px !important;
-  margin-bottom: 3px;
-}
-
-@media (max-width: 425px) and (min-width: 321px) {
-  .search-btn {
-    width: 350px !important;
-  }
-}
-@media (max-width: 320px){
-  .search-btn {
-    width: 300px !important;
-  }
-}
-
 .edit-link {
   color: $brand-color;
   position: absolute;

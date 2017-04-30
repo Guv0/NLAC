@@ -16,10 +16,11 @@
     <% end %>
     <%= render 'shared/flashes' %>
     <div class="application-content">
-      <%= render 'shared/sidebar' %>
+      <% if user_signed_in? %>
+        <%= render 'shared/sidebar' %>
+      <% end %>
       <%= yield %>
     </div>
-    <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
     <%= yield(:after_js) %>
   </body>
