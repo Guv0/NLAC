@@ -1,3 +1,8 @@
+<!-- TITLE -->
+<% content_for(:title_tag) do %>
+  NLAC | <%= @business_card.user == current_user ? "My business card" : @business_card.full_name + "'s business card" %>
+<% end %>
+
 <div class="container-fluid">
   <%= render 'business_card' %>
 </div>
