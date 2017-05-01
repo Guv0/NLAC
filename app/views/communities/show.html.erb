@@ -1,9 +1,157 @@
-<h1>Communities#show</h1>
+<div class="container">
 
-<h3><%= @community.name %></h3>
-<% @members.each do |member| %>
-  <p><%= member.business_card.full_name %></p>
-  <% unless current_user.contacts.ids.include?(member.id) %>
-    <%= link_to "Request to connect",  community_connection_requests_path(@community, :contact => member.id), method: :post %>
-  <% end %>
-<% end %>
+  <!-- LEFT -->
+  <div class="content-left">
+    <!-- NAME -->
+    <h1><strong><%= @community.name.capitalize %> (<%= @community.members.count %>)</strong></h1>
+
+    <!-- SEARCH -->
+    <div class="main-search">
+      <%= form_tag community_path(@community), method: :get do %>
+        <%= text_field_tag :info, params[:info], placeholder: 'Search name, location, industry, company', class: "search-input" %>
+        <%= text_field_tag :tag, params[:tag], placeholder: 'Search tags', class: "search-input" %>
+        <%= button_tag(type: "submit", class: "search-btn") do %>
+          <i class="material-icons">search</i>
+        <% end %>
+      <% end %>
+    </div>
+
+    <!-- CONTACTS -->
+    <div class="index">
+      <% @members.each do |member| %>
+        <div class="contact-card">
+          <% if !member.photo.url.nil? %>
+            <% avatar = member.photo.url %>
+          <% elsif member.linkedin_picture_url != "" %>
+            <% avatar = member.linkedin_picture_url %>
+          <% else %>
+            <% avatar = "avatar.png" %>
+          <% end %>
+          <!-- AVATAR -->
+          <% if current_user.contacts.include?(member.user) || current_user.business_card == member %>
+            <%= link_to business_card_path(member) do %>
+              <%= image_tag avatar, class: "contact-card-avatar" %>
+            <% end %>
+          <% else %>
+            <%= image_tag avatar, class: "contact-card-avatar" %>
+          <% end %>
+          <!-- INFO -->
+          <div class="contact-card-info">
+            <% if current_user.contacts.include?(member.user) || current_user.business_card == member %>
+              <%= link_to business_card_path(member) do %>
+                <h2 class="link-decoration"><%= member.full_name %></h2>
+              <% end %>
+            <% else %>
+              <h2><%= member.full_name %></h2>
+            <% end %>
+            <div class="flex-start">
+              <i class="material-icons">location_on</i>
+              <h6><%= member.location %></h6>
+            </div>
+            <div class="flex-start">
+              <i class="material-icons">location_city</i>
+              <h6><%= member.industry %></h6>
+            </div>
+            <div class="flex-start">
+              <i class="material-icons">business_center</i>
+              <h6><%= member.company_name %></h6>
+            </div>
+          </div>
+          <div class="contact-card-right">
+            <div class="contact-card-message">
+              <!-- REQUEST -->
+              <% if !current_user.contacts.include?(member.user) && member.user != current_user %>
+                <%= link_to do %>
+                  <i class="material-icons">person_add</i>
+                <% end %>
+              <% end %>
+              <!-- MESSAGE -->
+              <% if current_user.contacts.include?(member.user) %>
+                <%= link_to do %>
+                  <i class="material-icons">email</i>
+                <% end %>
+              <% end %>
+            </div>
+            <!-- TAGS -->
+            <div class="contact-card-tags">
+              <h3>TAGS</h3>
+              <div class="contact-card-tags-display">
+                <% member.tags.valid_tags(member.id, current_user.id).uniq.each do |tag| %>
+                  <div class="tag-card-small">
+                    <p><%= tag.label %></p>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="content-right">
+    <!-- DESCRIPTION -->
+    <div class="content-right-container">
+      <h3><strong>Description</strong></h3>
+      <div class="content-right-card">
+
+      </div>
+    </div>
+
+    <!-- HOT TAGS -->
+    <div class="content-right-container">
+      <h3>
+        <strong>
+          Popular tags in <%= @community.name.capitalize %>'s members
+        </strong>
+      </h3>
+      <div class="content-right-card">
+        <% @hot_tags.each_with_index do |array, index| %>
+          <div class="hot-tag">
+            <% if index + 1 == 1 %>
+              <%= image_tag "first.png" %>
+              <h5 style="margin-right: auto; color: #2AAF74;"><%= array[0] %></h5>
+              <p>(<%= array[1] %>)</p>
+            <% elsif index + 1 == 2 %>
+              <%= image_tag "second.png" %>
+              <h5 style="margin-right: auto; color: #2AAF74;"><%= array[0] %></h5>
+              <p>(<%= array[1] %>)</p>
+            <% elsif index + 1 == 3 %>
+              <%= image_tag "third.png" %>
+              <h5 style="margin-right: auto; color: #2AAF74;"><%= array[0] %></h5>
+              <p>(<%= array[1] %>)</p>
+            <% else %>
+              <h5>#<%= index %></h5>
+              <h5 style="margin-right: auto;"><%= array[0] %></h5>
+              <p>(<%= array[1] %>)</p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <h1>Communities#show</h1>
+
+<h3><%# @community.name %></h3>
+<%# @members.each do |member| %>
+  <p><%# member.business_card.full_name %></p>
+  <%# unless current_user.contacts.ids.include?(member.id) %>
+    <%# link_to "Request to connect",  community_connection_requests_path(@community, :contact => member.id), method: :post %>
+  <%# end %>
+<%# end %>
+ -->
