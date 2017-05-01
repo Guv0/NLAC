@@ -1,75 +1,152 @@
-.tags-card {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  height: 100%;
-  width: 675px;
-  background-color: white;
+// Small
+.tag-card-small {
+  height: 23px;
+  color: $brand-color;
+  background-color: $background-color;
   border: 1px solid $border;
   border-radius: 2px;
-  box-shadow: 1px 1px 4px 1px $shadow;
-  display: flex;
-  align-items: center;
-  padding: 15px 20px 20px 20px;
-  span {
-    color: $brand-color;
-    font-weight: 500;
-  }
-  h4 {
-    font-weight: 500;
-    margin-bottom: 5px;
-  }
-}
-
-//Contains all react components for tags
-.react-tags-card {
-  width: 675px;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  .flex {
-    flex-wrap: wrap;
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-}
-
-.add-tags {
-  margin-top: 10px;
-}
-
-.add-tags-input {
-  width: 250px;
-  height: 35px;
-}
-
-.add-tags-error {
-  display: flex;
+  padding: 2px 4px;
+  margin-right: 5px;
+  margin-bottom: 7px;
+  display:flex;
   justify-content: center;
-  color: $red;
+  p {
+    font-size: 12px;
+  }
 }
 
 
-// Media queries
-  // Large/Medium phones
-  @media (max-width: 425px) and (min-width: 321px) {
-    .tags-card {
-      margin-top: 20px;
-      height: 100%;
-      width: 345px;
+// Content right card
+.content-right-card {
+  height: 100%;
+  background-color: white;
+  border-radius: 2px;
+  box-shadow: 1px 2px 4px $shadow;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+// Popular tags
+  .hot-tag {
+    border: 1px solid white;
+    border-radius: 2px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+      height: 30px;
+      width: 30px;
+      margin-right: 17px;
     }
-    .react-tags-card {
-    width: 345px;
+    h5 {
+      color: $blue-light;
+      font-weight: bold;
+      font-size: 15px;
+      &:first-child {
+        margin-right: 30px;
+      }
+    }
+    p {
+      color: $grey-light;
+      font-size: 13px;
+      margin-right: 15px;
+    }
+    &:hover {
+      background-color: $background-color;
+      border: 1px solid $border;
     }
   }
 
-// Small phones
-  @media (max-width: 320px) {
-    .tags-card {
-      margin-top: 30px;
-      height: 100%;
-      width: 290px;
-    }
-    .react-tags-card {
-    width: 290px;
-    }
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          // Old code
+          .tags-card {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            height: 100%;
+            width: 675px;
+            background-color: white;
+            border: 1px solid $border;
+            border-radius: 2px;
+            box-shadow: 1px 1px 4px 1px $shadow;
+            display: flex;
+            align-items: center;
+            padding: 15px 20px 20px 20px;
+            span {
+              color: $brand-color;
+              font-weight: 500;
+            }
+            h4 {
+              font-weight: 500;
+              margin-bottom: 5px;
+            }
+          }
+
+          //Contains all react components for tags
+          .react-tags-card {
+            width: 675px;
+            // display: flex;
+            // flex-direction: column;
+            // justify-content: center;
+            .flex {
+              flex-wrap: wrap;
+              margin-left: 20px;
+              margin-right: 20px;
+            }
+          }
+
+          .add-tags {
+            margin-top: 10px;
+          }
+
+          .add-tags-input {
+            width: 250px;
+            height: 35px;
+          }
+
+          .add-tags-error {
+            display: flex;
+            justify-content: center;
+            color: $red;
+          }
+
+
+          // Media queries
+            // Large/Medium phones
+            @media (max-width: 425px) and (min-width: 321px) {
+              .tags-card {
+                margin-top: 20px;
+                height: 100%;
+                width: 345px;
+              }
+              .react-tags-card {
+              width: 345px;
+              }
+            }
+
+          // Small phones
+            @media (max-width: 320px) {
+              .tags-card {
+                margin-top: 30px;
+                height: 100%;
+                width: 290px;
+              }
+              .react-tags-card {
+              width: 290px;
+              }
+            }

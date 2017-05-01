@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NLAC</title>
+    <title><%= yield(:title_tag).blank? ? "NeverLoseAContact" : yield(:title_tag) %></title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all' %>
   </head>
   <body>
@@ -13,8 +15,12 @@
       <%= render 'shared/navbar' %>
     <% end %>
     <%= render 'shared/flashes' %>
-    <%= yield %>
-    <%= render 'shared/footer' %>
+    <div class="application-content">
+      <% if user_signed_in? %>
+        <%= render 'shared/sidebar' %>
+      <% end %>
+      <%= yield %>
+    </div>
     <%= javascript_include_tag 'application' %>
     <%= yield(:after_js) %>
   </body>

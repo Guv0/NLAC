@@ -10,10 +10,10 @@ helper_method :sort_column, :sort_direction
     contacts_ids =  @business_card.user.contacts do |contact|
                       contact.id
                     end
-
-    if params[:query].present? && params[:search].present?
-      business_cards_query = BusinessCard.where(user_id: contacts_ids).search_for(params[:query])
-      search = params[:search].split(' ')
+    # Search
+    if params[:info].present? && params[:tag].present?
+      business_cards_query = BusinessCard.where(user_id: contacts_ids).search_for(params[:info])
+      search = params[:tag].split(' ')
       valid_tags_search = []
       search.each do |keyword|
         business_cards_query.each do |business_card|
@@ -27,10 +27,10 @@ helper_method :sort_column, :sort_direction
       end
       end
       @contacts = business_cards_query & business_cards_search.sort_by { |e| e.first_name }
-    elsif params[:query].present?
-      @contacts = BusinessCard.where(user_id: contacts_ids).search_for(params[:query]).sort_by { |e| e.first_name }
-    elsif params[:search].present?
-      search = params[:search].split(' ')
+    elsif params[:info].present?
+      @contacts = BusinessCard.where(user_id: contacts_ids).search_for(params[:info]).sort_by { |e| e.first_name }
+    elsif params[:tag].present?
+      search = params[:tag].split(' ')
       valid_tags_search = []
       search.each do |keyword|
         @business_card.user.contacts.each do |contact|
@@ -47,6 +47,31 @@ helper_method :sort_column, :sort_direction
     else
       @contacts = BusinessCard.where(user_id: contacts_ids).sort_by { |e| e.first_name }
     end
+
+
+
+    # Most popular tags
+    tags_list = []
+    @business_card.user.contacts.each do |contact|
+      contact.business_card.tag_relations.each do |tag_relation|
+        if tag_relation.valid_tag_relation?(contact.id, current_user.id)
+          tags_list << tag_relation.tag.label
+        end
+      end
+    end
+
+    tags_count = Hash.new(0)
+    tags_list.each do |tag|
+      tags_count[tag] += 1
+    end
+
+    tags_sorted = tags_count.sort_by { |tag, frequency| -frequency }
+
+    @hot_tags = tags_sorted.first(8)
+
+
+
+    # Gmail
     @gmail_contacts = request.env['omnicontacts.contacts']
       respond_to do |format|
         format.html

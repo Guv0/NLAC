@@ -1,0 +1,70 @@
+.contact-card {
+  height: 130px;
+  width: 90%;
+  background-color: white;
+  margin: 10px 0;
+  border-radius: 2px;
+  box-shadow: 1px 2px 4px $shadow;
+  display: flex;
+  &:hover {
+    box-shadow: 2px 4px 4px $shadow-hover;
+  }
+}
+
+.contact-card-info {
+  flex: 0 0 37%;
+  padding: 20px 10px 10px 10px;
+  h2 {
+    font-size: 18px;
+    font-weight: bold;
+    color: $blue-dark;
+    margin-bottom: 10px;
+  }
+  h6 {
+    color: $grey-dark;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 5px;
+    padding: 5px 0;
+  }
+  i {
+    color: $grey-light;
+    font-size: 15px;
+    padding: 5px 0;
+  }
+}
+
+.contact-card-right {
+  width: 100%;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: column;
+  .contact-card-message {
+    height: 20px;
+    i {
+      font-size: 15px;
+      color: white;
+      background-color: $brand-color;
+      padding: 2px 3px;
+      margin-top: 5px;
+      border-radius: 2px;
+      float: right;
+    }
+  }
+  .contact-card-tags {
+    height: 100%;
+    h3 {
+      font-size: 15px;
+      font-weight: bold;
+      color: $grey-dark;
+      margin-bottom: 10px;
+    }
+    .contact-card-tags-display {
+      overflow: scroll;
+      height: 65%;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start;
+    }
+  }
+}

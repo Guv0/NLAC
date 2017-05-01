@@ -76,7 +76,7 @@ private
 
   def set_business_card
     @business_card = BusinessCard.find(params[:id])
-    authorize @business_card
+    # authorize @business_card
   end
 
   def set_user
