@@ -26,11 +26,13 @@ class MessagesController < ApplicationController
   end
 
   def create
-    # @message = @conversation.messages.new(message_params)
-    # if @message.save
-    #   redirect_to conversation_messages_path(@conversation)
-    # end
     Message.create(conversation_id: params[:conversation_id], user_id: current_user.id, body: params["message"])
+    @conversation.sender_id == current_user.id ? recipient = User.find(@conversation.recipient_id) : recipient = User.find(@conversation.sender_id)
+    conversation_props = [ @conversation, recipient, recipient.business_card, @conversation.messages ]
+    respond_to do |format|
+      format.json { render json: conversation_props, status: :created }
+    end
+
   end
 
   private

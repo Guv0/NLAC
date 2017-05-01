@@ -7,21 +7,11 @@ var Mailbox = React.createClass({
   },
 
   handleDisplayConversation: function(data) {
-     console.log(data);
     this.setState({display_conversation: true, conversation: data});
   },
 
-  handleReply: function(reply) {
-    console.log(reply);
-
-    $.ajax({
-        type: 'POST',
-        url: '/conversations/' + this.state.conversation[0].id + '/messages',
-  //       dataType: 'json',
-        data: {message: reply}
-      }).done(function(data) {
-          this.setState({conversation: data});
-        }.bind(this));
+  setNewMessage: function(data) {
+    this.setState({ conversation: data })
   },
 
   render: function() {
@@ -42,7 +32,7 @@ var Mailbox = React.createClass({
         </div>
         <div className="conversation">
           {display_conversation && <Conversation conversation={this.state.conversation}
-            key={this.state.conversation.id} handleSubmit={this.handleReply()} /> }
+            key={this.state.conversation.id} setMessages={this.setNewMessage} /> }
         </div>
       </div>
     )
