@@ -11,7 +11,7 @@ var Mailbox = React.createClass({
   },
 
   setNewMessage: function(data) {
-    this.setState({ conversation: data })
+    this.setState({ conversation: data });
   },
 
   render: function() {

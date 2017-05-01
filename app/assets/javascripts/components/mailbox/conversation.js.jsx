@@ -15,13 +15,13 @@ var Conversation = React.createClass({
     var reply = this.state.reply;
 
     $.ajax({
-        type: 'POST',
-        url: '/conversations/' + this.props.conversation[0].id + '/messages',
-        dataType: 'json',
-        data: {message: reply}
-      }).done(function(data) {
-          this.props.setMessages(data);
-        }.bind(this));
+      type: 'POST',
+      url: '/conversations/' + this.props.conversation[0].id + '/sendmessage',
+      dataType: 'json',
+      data: {message: reply}
+    }).done(function(data) {
+        this.props.setMessages(data);
+      }.bind(this));
   },
 
   render: function() {
