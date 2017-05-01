@@ -21,8 +21,10 @@ Rails.application.routes.draw do
 
   #conversations
   resources :conversations, only: [:index, :create] do
-    resources :messages, only: [:index, :new, :create]
+    resources :messages, only: [:index, :new ]
   end
+
+  post 'conversations/:conversation_id/sendmessage', to: 'conversations#send_message'
 
   resources :connection_requests, only: [:update]
   resources :connections, only: [ :destroy ]
