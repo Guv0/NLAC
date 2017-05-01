@@ -6,12 +6,12 @@ var Conversation = React.createClass({
   },
 
   handleChange: function(e) {
-    e.preventDefault;
+    e.preventDefault();
     this.setState({ reply: e.target.value});
   },
 
   handleSubmit: function(e) {
-    e.preventDefault;
+    e.preventDefault();
     var reply = this.state.reply;
 
     $.ajax({
