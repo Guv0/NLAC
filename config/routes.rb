@@ -12,12 +12,12 @@ Rails.application.routes.draw do
   resources :business_cards, only: [ :show, :edit, :update, :destroy ] do
     # connections
     resources :connections, only: [ :index, :create ]
+    # connection_requests
+    resources :connection_requests, only: [ :create ]
   end
 
   #communities
-  resources :communities do
-    resources :connection_requests, only: [ :create ]
-  end
+  resources :communities
 
   #conversations
   resources :conversations, only: [:index, :create] do
