@@ -126,6 +126,7 @@
     </div>
 
     <!-- RECENT UPDATES -->
+    <% if @business_card.user == current_user %>
     <div class="content-right-container">
       <h3>
         <strong>
@@ -133,9 +134,43 @@
         </strong>
       </h3>
       <div class="content-right-card">
-
+        <div style="overflow: scroll;">
+          <% @updates.each do |update| %>
+            <%= link_to business_card_path(update[0]) do %>
+              <div class="update">
+                <% attr = update[1] %>
+                <% case attr %>
+                <% when "first_name", "last_name", "photo" %>
+                  <i class="material-icons">person</i>
+                <% when "location" %>
+                  <i class="material-icons">location_on</i>
+                <% when "phone" %>
+                  <i class="material-icons">call</i>
+                <% when "industry" %>
+                  <i class="material-icons">location_city</i>
+                <% when "company_name"  %>
+                  <i class="material-icons">business_center</i>
+                <% when "email"  %>
+                  <i class="material-icons">email</i>
+                <% when "tag" %>
+                  <i class="material-icons">fiber_new</i>
+                <% end %>
+                <div style="display: flex; flex-wrap: wrap;">
+                  <h6><strong><%= update[0].full_name %></strong> updated <strong><%= update[1] %></strong> to: <%= update[2] %></h6>
+                </div>
+                <p><%= time_ago_in_words(update[3]).gsub("about", "") %> ago</p>
+              </div>
+            <% end %>
+            <% if update != @updates.last %>
+              <div style="border-bottom: 1px solid #2AAF74; margin: 5px 10px;"></div>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
+    <% else %>
+      <div class="content-right-container"></div>
+    <% end %>
   </div>
 
 </div>
