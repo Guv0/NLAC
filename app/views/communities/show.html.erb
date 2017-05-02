@@ -63,17 +63,29 @@
             </div>
           </div>
           <div class="contact-card-right">
-            <div class="contact-card-message">
-              <!-- REQUEST -->
-              <% if !current_user.contacts.include?(member.user) && member.user != current_user %>
-                <%= link_to business_card_connection_requests_path(member.user.id), method: :post do %>
-                  <i class="material-icons">person_add</i>
+            <div class="contact-card-top-right">
+              <!-- REQUEST / MESSAGE -->
+              <% if member.user != current_user %>
+                <% if !current_user.contacts.include?(member.user) && !current_user.pending_connections.include?(member.user) && !member.user.pending_connections.include?(current_user) %>
+                  <%= link_to do %>
+                    <i class="material-icons">email</i>
+                  <% end %>
+                  <%= link_to business_card_connection_requests_path(member.user.id), method: :post do %>
+                    <i class="material-icons">person_add</i>
+                  <% end %>
+                <% elsif current_user.pending_connections.include?(member.user) || member.user.pending_connections.include?(current_user) %>
+                  <%= link_to do %>
+                    <i class="material-icons">email</i>
+                  <% end %>
+                  <i class="material-icons pending">person_add</i>
+                <% else %>
+                  <%= link_to do %>
+                    <i class="material-icons">email</i>
+                  <% end %>
                 <% end %>
-              <% end %>
-              <!-- MESSAGE -->
-              <% if current_user.contacts.include?(member.user) %>
+              <% else %>
                 <%= link_to do %>
-                  <i class="material-icons">email</i>
+                  <i class="material-icons destroy">clear</i>
                 <% end %>
               <% end %>
             </div>
