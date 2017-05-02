@@ -26,6 +26,9 @@ Rails.application.routes.draw do
 
   post 'conversations/:conversation_id/sendmessage', to: 'conversations#send_message'
 
+  post 'conversations/:conversation_id/readmessages', to: 'conversations#read_messages'
+
+
   resources :connection_requests, only: [:update]
   resources :connections, only: [ :destroy ]
 

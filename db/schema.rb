@@ -83,10 +83,12 @@ ActiveRecord::Schema.define(version: 20170426164433) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.text    "body"
-    t.integer "conversation_id"
-    t.integer "user_id"
-    t.boolean "read",            default: false
+    t.text     "body"
+    t.integer  "conversation_id"
+    t.integer  "user_id"
+    t.boolean  "read",            default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end

@@ -14,12 +14,17 @@ var Mailbox = React.createClass({
     this.setState({ conversation: data });
   },
 
+  ReadMessages: function(data) {
+    this.setState({ conversation: data });
+  },
+
   render: function() {
     var conversations = [];
 
     this.props.conversations.map(function(conversation, i){
       conversations.push(<ConversationCard conversation={conversation} key={i}
-        handleConvClick={this.handleDisplayConversation}/>);
+        current_user={this.props.current_user} handleConvClick=
+          {this.handleDisplayConversation} setReadMessages={this.ReadMessages}/>);
     }.bind(this))
 
     var display_conversation = this.state.display_conversation;

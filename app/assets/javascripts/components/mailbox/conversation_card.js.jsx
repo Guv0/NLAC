@@ -15,19 +15,21 @@ var ConversationCard = React.createClass({
     this.props.handleConvClick(this.props.conversation);
 
     //mark messages as read
-    var message = [];
+    var messages = [];
 
     this.props.conversation[3].forEach(function(message){
-      arr.push(message.id);
-    })
+      if (message.user_id != this.props.current_user.id) {
+        messages.push(message.id);
+      }
+    }.bind(this))
 
     $.ajax({
       type: 'POST',
       url: '/conversations/' + this.props.conversation[0].id + '/readmessages',
       dataType: 'json',
-      data: {message: reply}
+      data: {messages: messages}
     }).done(function(data) {
-        this.props.setMessages(data);
+        this.props.setReadMessages(data);
       }.bind(this));
   },
 
