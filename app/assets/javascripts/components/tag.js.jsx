@@ -12,6 +12,7 @@ var Tag = React.createClass({
   render: function() {
     var cancel;
     var destroy;
+    var className = "";
 
     if (!this.props.tag[0].id) {
       cancel = <CancelTag handleClick={this.cancelTag} />;
@@ -19,8 +20,12 @@ var Tag = React.createClass({
       cancel = <DeleteTag handleClick={this.deleteTag} />;
     }
 
+    if (this.props.tag[1] != this.props.business_card.id) {
+      className = "non-owner-tag";
+    }
+
     return (
-      <div className="tag flex-around">
+      <div className={"tag flex-around " + className}>
         <p>#</p>{this.props.tag[0].label}{cancel}
       </div>
     )
