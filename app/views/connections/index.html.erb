@@ -133,7 +133,9 @@
         </strong>
       </h3>
       <div class="content-right-card">
-
+        <% @updates.each do |update| %>
+          <%= "#{update[0]} updated #{update[1]} to #{update[2]} (#{time_ago_in_words(update[3])} ago)" %>
+        <% end %>
       </div>
     </div>
   </div>
