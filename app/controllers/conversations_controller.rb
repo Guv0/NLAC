@@ -35,6 +35,20 @@ class ConversationsController < ApplicationController
     end
   end
 
+  def read_messages
+    @messages = params[:messages]
+    @messages.each do |message|
+      Message.find(message).update(read: true)
+    end
+    @conversation = Conversation.find(params[:conversation_id])
+    @conversation.sender_id == current_user.id ? recipient = User.find(@conversation.recipient_id) : recipient = User.find(@conversation.sender_id)
+    conversation_props = [ @conversation, recipient, recipient.business_card, @conversation.messages ]
+
+    respond_to do |format|
+      format.json { render json: conversation_props, status: :created }
+    end
+  end
+
   private
 
   def conversation_params
