@@ -9,8 +9,12 @@ var Message = React.createClass({
     }
 
     return (
-      <div className="message" id={id} >
-        {this.props.message.body}
+      <div>
+        <div className="message" id={id} >
+          {this.props.message.body}<br/>
+          {this.props.message.sent_at}
+        </div>
+
       </div>
     )
   }
