@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20170426164433) do
 
   create_table "messages", force: :cascade do |t|
     t.text     "body"
+    t.string   "sent_at"
     t.integer  "conversation_id"
     t.integer  "user_id"
     t.boolean  "read",            default: false

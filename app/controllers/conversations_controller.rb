@@ -25,13 +25,13 @@ class ConversationsController < ApplicationController
 
   def send_message
     @conversation = Conversation.find(params[:conversation_id])
-    @message = Message.new(conversation_id: params[:conversation_id], user_id: current_user.id, body: params["message"])
+    @message = Message.create(conversation_id: params[:conversation_id], user_id: current_user.id, body: params["message"])
+    @message.sent_at = @message.message_time
+    @message.save
     @conversation.sender_id == current_user.id ? recipient = User.find(@conversation.recipient_id) : recipient = User.find(@conversation.sender_id)
     conversation_props = [ @conversation, recipient, recipient.business_card, @conversation.messages ]
-    if @message.save
-      respond_to do |format|
-        format.json { render json: conversation_props, status: :created }
-      end
+    respond_to do |format|
+      format.json { render json: conversation_props, status: :created }
     end
   end
 
