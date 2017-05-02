@@ -26,6 +26,7 @@ class ConversationsController < ApplicationController
   def send_message
     @conversation = Conversation.find(params[:conversation_id])
     @message = Message.new(conversation_id: params[:conversation_id], user_id: current_user.id, body: params["message"])
+    @message.sent_at = @message.message_time
     @conversation.sender_id == current_user.id ? recipient = User.find(@conversation.recipient_id) : recipient = User.find(@conversation.sender_id)
     conversation_props = [ @conversation, recipient, recipient.business_card, @conversation.messages ]
     if @message.save
