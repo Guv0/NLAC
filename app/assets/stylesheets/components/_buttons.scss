@@ -1,81 +1,105 @@
-.linkedin-btn {
-  height: 70px;
-  width: 400px;
-  margin: 15px 0 10px 0;
-  background-color: $linkedin-default;
-  border-radius: 2px;
-  color: white;
-  font-weight: bold;
-  display: flex;
-  .in {
-    flex: 0 0 15%;
-    margin: 10px 0;
-    border-right: 2px solid white;
-    h2 {
-      font-weight: bold;
-      font-size: 35px;
-    }
-  }
-  .sign-linkedin {
-    flex: 0 0 85%;
-    h2 {
-      font-size: 30px;
-    }
-  }
-  &:hover {
-    background-color: $linkedin-hover;
-  }
-}
-
-.btn {
+// Community creation
+.community-create-btn {
   background-color: $brand-color;
-  color: white;
   border-radius: 2px;
   border: none;
-  box-shadow: 1px 1px 4px 1px $shadow;
-  &:hover {
-    background-color: $brand-color-hover;
-    color: white;
-    box-shadow: 2px 2px 4px 1px $shadow;
-  }
-}
-
-.contacts-contacts {
-  margin-top: 15px;
-}
-
-.add-tags-btn {
-  height: 30px;
-  width: 100px;
-  padding-bottom: 30px;
-}
-.confirm-add-tags-btn {
-  margin-top: 10px;
-}
-
-.update-btn {
-  height: 50px;
-  width: 200px;
+  color: white;
   font-weight: bold;
-  font-size: 22px;
-  letter-spacing: 5px;
-}
-
-.edit-link {
-  color: $brand-color;
-  position: absolute;
-  top: 10px;
-  right: 15px;
+  padding: 5px 10px;
   font-size: 14px;
-  p {
-    float: left;
-  }
-  i {
-    margin-left: 5px;
-  }
 }
 
-.sign-btn {
-  height: 35px;
-  width: 120px;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+                          // .linkedin-btn {
+                          //   height: 70px;
+                          //   width: 400px;
+                          //   margin: 15px 0 10px 0;
+                          //   background-color: $linkedin-default;
+                          //   border-radius: 2px;
+                          //   color: white;
+                          //   font-weight: bold;
+                          //   display: flex;
+                          //   .in {
+                          //     flex: 0 0 15%;
+                          //     margin: 10px 0;
+                          //     border-right: 2px solid white;
+                          //     h2 {
+                          //       font-weight: bold;
+                          //       font-size: 35px;
+                          //     }
+                          //   }
+                          //   .sign-linkedin {
+                          //     flex: 0 0 85%;
+                          //     h2 {
+                          //       font-size: 30px;
+                          //     }
+                          //   }
+                          //   &:hover {
+                          //     background-color: $linkedin-hover;
+                          //   }
+                          // }
+
+                          // .btn {
+                          //   background-color: $brand-color;
+                          //   color: white;
+                          //   border-radius: 2px;
+                          //   border: none;
+                          //   box-shadow: 1px 1px 4px 1px $shadow;
+                          //   &:hover {
+                          //     background-color: $brand-color-hover;
+                          //     color: white;
+                          //     box-shadow: 2px 2px 4px 1px $shadow;
+                          //   }
+                          // }
+
+                          // .contacts-contacts {
+                          //   margin-top: 15px;
+                          // }
+
+                          // .add-tags-btn {
+                          //   height: 30px;
+                          //   width: 100px;
+                          //   padding-bottom: 30px;
+                          // }
+                          // .confirm-add-tags-btn {
+                          //   margin-top: 10px;
+                          // }
+
+                          // .update-btn {
+                          //   height: 50px;
+                          //   width: 200px;
+                          //   font-weight: bold;
+                          //   font-size: 22px;
+                          //   letter-spacing: 5px;
+                          // }
+
+                          // .edit-link {
+                          //   color: $brand-color;
+                          //   position: absolute;
+                          //   top: 10px;
+                          //   right: 15px;
+                          //   font-size: 14px;
+                          //   p {
+                          //     float: left;
+                          //   }
+                          //   i {
+                          //     margin-left: 5px;
+                          //   }
+                          // }
+
+                          // .sign-btn {
+                          //   height: 35px;
+                          //   width: 120px;
+                          // }

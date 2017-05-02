@@ -1,10 +1,18 @@
 class CommunitiesController < ApplicationController
-  before_action :set_community, only: [:show, :update, :destroy]
+  before_action :set_community, only: [ :show, :update, :destroy ]
   skip_after_action :verify_policy_scoped
   skip_after_action :verify_authorized
 
   def index
-    @communities = Communities.all
+    # Search
+    if params[:info].present?
+      @communities = Community.search_for(params[:info])
+    else
+      @communities = Community.all
+    end
+
+    # Creation
+    @community = Community.new
   end
 
   def show
@@ -71,10 +79,13 @@ class CommunitiesController < ApplicationController
     @hot_tags = tags_sorted.first(8)
   end
 
-  def new
-  end
-
   def create
+    @community = Community.new(community_params)
+    if @community.save
+      redirect_to community_path(@community)
+    else
+      redirect_to :back
+    end
   end
 
   def edit
@@ -90,6 +101,10 @@ class CommunitiesController < ApplicationController
 
   def set_community
     @community = Community.find(params[:id])
+  end
+
+  def community_params
+    params.require(:community).permit(:name, :description, :photo)
   end
 end
 

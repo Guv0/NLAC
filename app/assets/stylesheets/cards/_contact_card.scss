@@ -32,6 +32,18 @@
     font-size: 15px;
     padding: 5px 0;
   }
+  .contact-card-description {
+    h5 {
+      color: $grey-light;
+      margin-top: 12px;
+      margin-bottom: 5px;
+    }
+    p {
+      color: $blue-light;
+      font-size: 14px;
+      font-weight: lighter;
+    }
+  }
 }
 
 .contact-card-right {
