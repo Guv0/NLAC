@@ -36,7 +36,7 @@ var Conversation = React.createClass({
         {messages}
         <form onSubmit={this.handleSubmit}>
           <input type="textarea" onChange={this.handleChange} />
-          <input type='submit' className="btn" />
+          <input type='submit' className="btn" value="Send" />
         </form>
       </div>
     )
