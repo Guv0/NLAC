@@ -5,7 +5,7 @@
   border: 1px solid $border;
   box-shadow: 1px 1px 2px $shadow;
   margin: 8px;
-  background-color: $grey;
+  background-color: rgba(42, 175, 116, 0.4);
   font-size: 16px;
   font-weight: 550;
   p {
@@ -19,4 +19,8 @@
       cursor: pointer;
     }
   }
+}
+
+.non-owner-tag {
+  background-color: $grey-light;
 }

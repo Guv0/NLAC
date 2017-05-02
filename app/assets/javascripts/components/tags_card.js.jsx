@@ -71,7 +71,8 @@ var TagsCard = React.createClass({
 
     this.state.tags.map(function(tag, i) {
       tags.push(<Tag tag={tag} key={i} index={i} current_user={this.props.current_user}
-        handleCancelTag={this.killTag} handleDeleteTag={this.deleteTag} />)
+        business_card={this.props.business_card} handleCancelTag={this.killTag}
+          handleDeleteTag={this.deleteTag} />)
     }.bind(this))
 
     return (
