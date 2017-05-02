@@ -35,9 +35,11 @@ var Conversation = React.createClass({
     }.bind(this));
 
     return (
-      <div className="conversation">
-        {messages}
-        <form onSubmit={this.handleSubmit}>
+      <div>
+        <div className="conversation">
+          {messages}
+        </div>
+        <form className="reply-form" onSubmit={this.handleSubmit}>
           <input type="textarea" id="reply" className="reply-input" onChange={this.handleChange} />
           <input type='submit' className="btn" value="Send" />
         </form>

@@ -11,6 +11,7 @@ var ConversationCard = React.createClass({
     // this.setState({display_conversation: true})
     this.setState({read_messages: true})
     this.props.handleConvClick(this.props.conversation);
+
   },
 
 
