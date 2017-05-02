@@ -32,7 +32,7 @@ var Conversation = React.createClass({
     }.bind(this));
 
     return (
-      <div>
+      <div className="conversation">
         {messages}
         <form onSubmit={this.handleSubmit}>
           <input type="textarea" onChange={this.handleChange} />

@@ -30,7 +30,7 @@ var Mailbox = React.createClass({
         <div className="conversations">
           {conversations}
         </div>
-        <div className="conversation">
+        <div>
           {display_conversation && <Conversation conversation={this.state.conversation}
             key={this.state.conversation.id} setMessages={this.setNewMessage} /> }
         </div>
