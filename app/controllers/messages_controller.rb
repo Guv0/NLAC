@@ -39,6 +39,9 @@ class MessagesController < ApplicationController
 
   # end
 
+  def update
+  end
+
   private
 
   def set_conversation
