@@ -39,7 +39,7 @@
   padding-right: 10px;
   display: flex;
   flex-direction: column;
-  .contact-card-message {
+  .contact-card-top-right {
     height: 20px;
     i {
       font-size: 15px;
@@ -47,8 +47,19 @@
       background-color: $brand-color;
       padding: 2px 3px;
       margin-top: 5px;
+      margin-left: 5px;
       border-radius: 2px;
       float: right;
+      }
+    .destroy {
+      background-color: white;
+      color: $grey;
+      &:hover {
+        color: $red;
+      }
+    }
+    .pending {
+      background-color: $grey-light;
     }
   }
   .contact-card-tags {
