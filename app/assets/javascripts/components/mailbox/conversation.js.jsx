@@ -14,6 +14,8 @@ var Conversation = React.createClass({
     e.preventDefault();
     var reply = this.state.reply;
 
+    $('#reply').val('');
+
     $.ajax({
       type: 'POST',
       url: '/conversations/' + this.props.conversation[0].id + '/sendmessage',
@@ -28,14 +30,15 @@ var Conversation = React.createClass({
     var messages = [];
 
     this.props.conversation[3].map(function(message, i) {
-      messages.push(<Message message={message} key={i} />);
+      messages.push(<Message message={message} current_user={this.props.current_user}
+        key={i} />);
     }.bind(this));
 
     return (
       <div className="conversation">
         {messages}
         <form onSubmit={this.handleSubmit}>
-          <input type="textarea" onChange={this.handleChange} />
+          <input type="textarea" id="reply" className="reply-input" onChange={this.handleChange} />
           <input type='submit' className="btn" value="Send" />
         </form>
       </div>
