@@ -1,8 +1,8 @@
 var Mailbox = React.createClass({
   getInitialState: function() {
     return {
-      display_conversation: false,
-      conversation: [{}]
+      display_conversation: true,
+      conversation: this.props.conversations[0]
     }
   },
 
@@ -25,6 +25,7 @@ var Mailbox = React.createClass({
 
     var display_conversation = this.state.display_conversation;
 
+    console.log(this.props.conversations[0]);
 
     return (
       <div className="mailbox-container">
