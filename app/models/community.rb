@@ -23,9 +23,14 @@ mount_uploader :photo, AvatarUploader
   end
 
   def new_members
+    array = []
     self.members do |member|
-      return member if member.created_at < 7.days.ago
+      membership = member.community_memberships.where(community_id: self.id).first
+      if 1.hour.ago < membership.created_at
+        array << member
+      end
     end
+    array
   end
 
 end
