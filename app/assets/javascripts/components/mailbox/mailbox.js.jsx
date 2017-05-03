@@ -18,14 +18,14 @@ var Mailbox = React.createClass({
     var conversations = [];
 
     this.props.conversations.map(function(conversation, i){
-      conversations.push(<ConversationCard conversation={conversation} key={i}
-        current_user={this.props.current_user} handleConvClick=
+      conversations.push(<ConversationCard conversation={conversation} key={conversation[0].id}
+        current_user={this.props.current_user} active_id={this.props.active_id} handleConvClick=
           {this.handleDisplayConversation} setReadMessages={this.setNewMessage}/>);
     }.bind(this))
 
     var display_conversation = this.state.display_conversation;
 
-    console.log(this.props.conversations[0]);
+    console.log(this.props.conversations[0][0].id);
 
     return (
       <div className="mailbox-container">

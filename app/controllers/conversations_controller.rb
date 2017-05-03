@@ -7,10 +7,10 @@ class ConversationsController < ApplicationController
     # @users = User.all
     # @conversations = Conversation.all
 
-    @conversations = Conversation.where(sender_id: current_user.id).or(Conversation.where(recipient_id: current_user.id))
-    # @conversation_to_display = Conversation.where(sender_id: current_user.id, recipient_id: 6).or(Conversation.where(sender_id: 6, recipient_id: current_user.id))
-    @conversation = Conversation.between(1, 6)
-    @mailbox_props = [@conversation]
+    conversations = Conversation.where(sender_id: current_user.id).or(Conversation.where(recipient_id: current_user.id))
+    @conversations_sorted = conversations.order({last_message: :desc})
+    @active_conversation = Conversation.between(1, 6).first.id
+    @mailbox_props = []
     @conversations.each do |conversation|
       conversation.sender_id == current_user.id ? recipient = User.find(conversation.recipient_id) : recipient = User.find(conversation.sender_id)
       @mailbox_props << [conversation, recipient, recipient.business_card, conversation.messages]
@@ -31,6 +31,7 @@ class ConversationsController < ApplicationController
     @message = Message.create(conversation_id: params[:conversation_id], user_id: current_user.id, body: params["message"])
     @message.sent_at = @message.message_time
     @message.save
+    @conversation.update(last_message: DateTime.now)
     @conversation.sender_id == current_user.id ? recipient = User.find(@conversation.recipient_id) : recipient = User.find(@conversation.sender_id)
     conversation_props = [ @conversation, recipient, recipient.business_card, @conversation.messages ]
     respond_to do |format|

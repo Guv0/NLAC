@@ -45,6 +45,10 @@
   }
 }
 
+.active {
+  background-color: $white !important;
+}
+
 #unread {
   background-color: $brand-color;
   color: white;

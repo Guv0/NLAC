@@ -38,7 +38,8 @@ var ConversationCard = React.createClass({
     var display_conversation = this.state.display_conversation;
     var messages = this.props.conversation[3];
     var status = messages[messages.length - 1].read;
-    var id;
+    var id
+    var active;
 
     if (this.state.read_messages == true)
       id = "";
@@ -46,8 +47,14 @@ var ConversationCard = React.createClass({
       id = "unread";
     }
 
+    if (this.props.active_id == this.props.conversation[0].id) {
+      active = "active";
+    } else {
+      active = "";
+    }
+
     return (
-      <div className="conversation-card" id={id} onClick={this.handleClick}>
+      <div className={"conversation-card " + active} id={id} onClick={this.handleClick}>
         <div className="conversation-card-left">
           <img src={this.props.conversation[2].linkedin_picture_url} className="conversation-card-avatar" />
         </div>
