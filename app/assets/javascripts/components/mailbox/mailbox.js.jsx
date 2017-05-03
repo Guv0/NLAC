@@ -6,6 +6,18 @@ var Mailbox = React.createClass({
     }
   },
 
+  // activeConversation: function() {
+
+
+  //   if (this.props.active_conversation != nil) {
+  //     return this.props.active_conversation;
+  //   } else {
+  //     return this.props.conversations[0];
+  //   }
+
+
+  // },
+
   handleDisplayConversation: function(data) {
     this.setState({display_conversation: true, conversation: data});
   },

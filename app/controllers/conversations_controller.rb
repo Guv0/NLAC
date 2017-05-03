@@ -4,12 +4,18 @@ class ConversationsController < ApplicationController
   skip_after_action :verify_authorized
 
   def index
-    @active_conversation = Conversation.find(params[:active_conversation].to_i)
-    @active_conversation.sender_id == current_user.id ? active_recipient = User.find(@active_conversation.recipient_id) : active_recipient = User.find(@active_conversation.sender_id)
-    @active_conversation_props = [@active_conversation, active_recipient, active_recipient.business_card, @active_conversation.messages]
-
     conversations = Conversation.where(sender_id: current_user.id).or(Conversation.where(recipient_id: current_user.id))
     @conversations_sorted = conversations.order({last_message: :desc})
+    if params[:active_conversation].present?
+      @active_conversation = Conversation.find(params[:active_conversation].to_i)
+    else
+      @active_conversation = @conversations_sorted.first
+    end
+
+    @active_conversation.sender_id == current_user.id ? active_recipient = User.find(@active_conversation.recipient_id) : active_recipient = User.find(@active_conversation.sender_id)
+      @active_conversation_props = [@active_conversation, active_recipient, active_recipient.business_card, @active_conversation.messages]
+
+
     @mailbox_props = []
     @conversations_sorted.each do |conversation|
       conversation.sender_id == current_user.id ? recipient = User.find(conversation.recipient_id) : recipient = User.find(conversation.sender_id)
