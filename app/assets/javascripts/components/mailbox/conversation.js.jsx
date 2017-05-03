@@ -37,9 +37,13 @@ var Conversation = React.createClass({
     return (
       <div>
         <div className="conversation-banner">
-          <img src={this.props.conversation[2].linkedin_picture_url} className="conversation-card-avatar" />
-          {this.props.conversation[2].first_name}
-          {this.props.conversation[2].last_name}
+          <img src={this.props.conversation[2].linkedin_picture_url} className="conversation-banner-avatar" />
+          <div className="conversation-banner-center">
+            <h4>Conversation with <span>{this.props.conversation[2].first_name} {this.props.conversation[2].last_name}</span></h4>
+          </div>
+          <div className="conversation-banner-right">
+            <p><span>Started on:</span> {this.props.conversation[0].created_at}</p>
+            </div>
         </div>
         <div className="conversation">
           {messages}
