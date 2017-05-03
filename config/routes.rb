@@ -9,12 +9,15 @@ Rails.application.routes.draw do
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks', sessions: "sessions", registrations: "registrations" }
 
   # business_cards
-  resources :business_cards, only: [ :show, :edit, :update, :destroy ] do
+  resources :business_cards, only: [ :show, :edit, :update ] do
     # connections
     resources :connections, only: [ :index, :create ]
     # connection_requests
     resources :connection_requests, only: [ :create ]
   end
+
+  #connections
+  delete 'business_cards/:business_card_id/destroyconnection', to: 'connections#destroy'
 
   #communities
   resources :communities
@@ -30,7 +33,6 @@ Rails.application.routes.draw do
 
 
   resources :connection_requests, only: [:update]
-  resources :connections, only: [ :destroy ]
 
   # tags
   post 'business_cards/:id', to: 'business_cards#create_tags'
