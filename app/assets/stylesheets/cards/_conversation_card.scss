@@ -88,6 +88,24 @@
   }
 }
 
+.message {
+  margin-bottom: 25px;
+  padding: 5px;
+}
+
+#current-user {
+  border-radius: 7px 7px 0 7px;
+  margin-left: 100px;
+  background-color: $brand-color;
+  color: white;
+}
+
+#other-user {
+  border-radius: 7px 7px 7px 0;
+  margin-right: 100px;
+  background-color: $grey-light;
+
+}
 
 
 
@@ -148,22 +166,3 @@
                             //   width: 750px;
                             //   overflow: scroll;
                             // }
-
-                            .message {
-                              margin-bottom: 25px;
-                              padding: 5px;
-                            }
-
-                            #current-user {
-                              border-radius: 7px 7px 0 7px;
-                              margin-left: 100px;
-                              background-color: $brand-color;
-                              color: white;
-                            }
-
-                            #other-user {
-                              border-radius: 7px 7px 7px 0;
-                              margin-right: 100px;
-                              background-color: $grey-light;
-
-                            }
