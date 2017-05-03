@@ -112,7 +112,35 @@
     <div class="content-right-container">
       <h3><strong>Description</strong></h3>
       <div class="content-right-card">
-
+        <% if !@community.photo.url.nil? %>
+          <% community_avatar = @community.photo %>
+        <% else %>
+          <% community_avatar = "avatar.png" %>
+        <% end %>
+        <div style="flex: 0 0 25%;">
+          <%= image_tag community_avatar, class: "avatar-margin-small" %>
+        </div>
+        <div class="flex-center">
+          <h4><%= @community.name %></h4>
+        </div>
+        <div class="community-description">
+          <div class="flex-start">
+            <h5>Manager: </h5>
+            <p><%= @community.owner.business_card.full_name %></p>
+          </div>
+          <div class="flex-start">
+            <h5>Description: </h5>
+            <p><%= @community.description %></p>
+          </div>
+          <div class="flex-start" style="overflow: scroll; height: 60px;">
+            <h5>New members: </h5>
+            <p>
+              <% @community.new_members.each do |member| %>
+                <%= member.business_card.full_name %><%= ", " unless @community.new_members.last == member %>
+              <% end %>
+              </p>
+          </div>
+        </div>
       </div>
     </div>
 

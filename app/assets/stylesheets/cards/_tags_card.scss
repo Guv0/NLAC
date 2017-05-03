@@ -32,6 +32,19 @@
     font-weight: bold;
     margin-bottom: 4px;
   }
+  h4 {
+    color: $brand-color;
+    font-size: 22px;
+  }
+  h5 {
+    color: $grey-light;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  p {
+    font-size: 14px;
+  }
   input[type="file"] {
 
   }
