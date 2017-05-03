@@ -10,9 +10,14 @@ var Message = React.createClass({
 
     return (
       <div>
-        <div className="message" id={id} >
-          {this.props.message.body}<br/>
-          {this.props.message.sent_at}
+        <div className="message-container">
+          <div className="message-info" id={id + "-info"}>
+            <h6>Firstname Lastname</h6>
+            <p>{this.props.message.sent_at}</p>
+          </div>
+          <div className="message" id={id}>
+            <p>{this.props.message.body}</p>
+          </div>
         </div>
 
       </div>
