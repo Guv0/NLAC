@@ -6,8 +6,11 @@ class ConversationsController < ApplicationController
   def index
     # @users = User.all
     # @conversations = Conversation.all
+
     @conversations = Conversation.where(sender_id: current_user.id).or(Conversation.where(recipient_id: current_user.id))
-    @mailbox_props = []
+    # @conversation_to_display = Conversation.where(sender_id: current_user.id, recipient_id: 6).or(Conversation.where(sender_id: 6, recipient_id: current_user.id))
+    @conversation = Conversation.between(1, 6)
+    @mailbox_props = [@conversation]
     @conversations.each do |conversation|
       conversation.sender_id == current_user.id ? recipient = User.find(conversation.recipient_id) : recipient = User.find(conversation.sender_id)
       @mailbox_props << [conversation, recipient, recipient.business_card, conversation.messages]
