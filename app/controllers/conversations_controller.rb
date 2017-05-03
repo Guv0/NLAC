@@ -11,10 +11,8 @@ class ConversationsController < ApplicationController
     else
       @active_conversation = @conversations_sorted.first
     end
-
     @active_conversation.sender_id == current_user.id ? active_recipient = User.find(@active_conversation.recipient_id) : active_recipient = User.find(@active_conversation.sender_id)
-      @active_conversation_props = [@active_conversation, active_recipient, active_recipient.business_card, @active_conversation.messages]
-
+    @active_conversation_props = [@active_conversation, active_recipient, active_recipient.business_card, @active_conversation.messages]
 
     @mailbox_props = []
     @conversations_sorted.each do |conversation|
