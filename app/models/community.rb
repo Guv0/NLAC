@@ -15,4 +15,17 @@ mount_uploader :photo, AvatarUploader
     User.find(CommunityMembership.where(community_id: self.id).ids)
   end
 
+  def owner
+    self.members.each do |member|
+      membership = member.community_memberships.where(community_id: self.id).first
+      return member if membership.owner
+    end
+  end
+
+  def new_members
+    self.members do |member|
+      return member if member.created_at < 7.days.ago
+    end
+  end
+
 end
