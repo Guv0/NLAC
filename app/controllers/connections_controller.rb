@@ -1,6 +1,6 @@
 class ConnectionsController < ApplicationController
 skip_before_action :authenticate_user!, only: [ :create, :guest_connection ]
-before_action :set_business_card, only: [ :index, :create ]
+before_action :set_business_card, only: [ :index, :create, :destroy ]
 # skip_after_action :verify_policy_scoped, only: [ :index ]
 # skip_after_action :verify_authorized, only: [ :root, :guest_connection, :omnicontacts_index ]
 helper_method :sort_column, :sort_direction
@@ -107,6 +107,14 @@ skip_after_action :verify_authorized
 
       redirect_to business_card_path(@business_card, live_guest_user: @live_guest_user)
     end
+  end
+
+  def destroy
+    Connection.where(user: current_user, contact: @business_card).first.destroy
+    if Connection.where(user: @business_card, contact: current_user).first
+      Connection.where(user: @business_card, contact: current_user).first.destroy
+    end
+    redirect_to business_card_connections_path(current_user)
   end
 
   def guest_connection
