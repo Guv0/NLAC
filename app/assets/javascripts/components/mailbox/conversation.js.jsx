@@ -26,6 +26,11 @@ var Conversation = React.createClass({
       }.bind(this));
   },
 
+  onDisplay: function() {
+    var objDiv = this.refs.converse;
+      objDiv.scrollTop = objDiv.scrollHeight;
+  },
+
   render: function() {
     var messages = [];
 
@@ -36,8 +41,12 @@ var Conversation = React.createClass({
 
     return (
       <div>
-        <div className="conversation-banner"></div>
-        <div className="conversation">
+        <div className="conversation-banner">
+          {this.props.conversation[2].first_name}
+          {this.props.conversation[2].last_name}
+          {this.props.conversation[2].linkedin_picture_url}
+        </div>
+        <div className="conversation" ref="converse" onLoad={this.onDisplay}>
           {messages}
         </div>
         <form className="reply-form" onSubmit={this.handleSubmit}>
