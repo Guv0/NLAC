@@ -45,9 +45,14 @@
   }
 }
 
+.active {
+  background-color: white;
+}
+
 #unread {
   background-color: $brand-color;
   color: white;
+  font-weight: 600px;
 }
 
 .conversation {

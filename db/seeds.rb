@@ -103,45 +103,87 @@ Conversation.create!(sender_id: 2,recipient_id: 5)
   message = Message.create!(conversation_id: 1, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 1)
   message.sent_at = message.message_time
   message.save
+  conversation = Conversation.find(1)
+  conversation.last_message = DateTime.now
+  conversation.save
   message = Message.create!(conversation_id: 1, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 2)
   message.sent_at = message.message_time
   message.save
+  conversation = Conversation.find(1)
+  conversation.last_message = DateTime.now
+  conversation.save
   message = Message.create!(conversation_id: 2, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 1)
   message.sent_at = message.message_time
   message.save
+  conversation = Conversation.find(2)
+  conversation.last_message = DateTime.now
+  conversation.save
   message = Message.create!(conversation_id: 2, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 3)
   message.sent_at = message.message_time
   message.save
+  conversation = Conversation.find(2)
+  conversation.last_message = DateTime.now
+  conversation.save
   message = Message.create!(conversation_id: 3, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 1)
   message.sent_at = message.message_time
   message.save
+  conversation = Conversation.find(3)
+  conversation.last_message = DateTime.now
+  conversation.save
   message = Message.create!(conversation_id: 3, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 4)
   message.sent_at = message.message_time
   message.save
+  conversation = Conversation.find(3)
+  conversation.last_message = DateTime.now
+  conversation.save
   message = Message.create!(conversation_id: 4, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 1)
   message.sent_at = message.message_time
   message.save
+  conversation = Conversation.find(4)
+  conversation.last_message = DateTime.now
+  conversation.save
   message = Message.create!(conversation_id: 4, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 5)
   message.sent_at = message.message_time
   message.save
+  conversation = Conversation.find(4)
+  conversation.last_message = DateTime.now
+  conversation.save
   message = Message.create!(conversation_id: 5, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 1)
   message.sent_at = message.message_time
   message.save
+  conversation = Conversation.find(5)
+  conversation.last_message = DateTime.now
+  conversation.save
   message = Message.create!(conversation_id: 5, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 6)
   message.sent_at = message.message_time
   message.save
+  conversation = Conversation.find(5)
+  conversation.last_message = DateTime.now
+  conversation.save
   message = Message.create!(conversation_id: 6, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 2)
   message.sent_at = message.message_time
   message.save
+  conversation = Conversation.find(6)
+  conversation.last_message = DateTime.now
+  conversation.save
   message = Message.create!(conversation_id: 6, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 4)
   message.sent_at = message.message_time
   message.save
+  conversation = Conversation.find(6)
+  conversation.last_message = DateTime.now
+  conversation.save
   message = Message.create!(conversation_id: 7, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 2)
   message.sent_at = message.message_time
   message.save
+  conversation = Conversation.find(7)
+  conversation.last_message = DateTime.now
+  conversation.save
   message = Message.create!(conversation_id: 7, body: "Please be my friend! I'm so lonely and really want someone to talk to and share my feelings. Please accept my request, if you don't, I don't know how I am going to go on. Safe Blood. Peace.", user_id: 5)
   message.sent_at = message.message_time
   message.save
+  conversation = Conversation.find(7)
+  conversation.last_message = DateTime.now
+  conversation.save
 end
 
 
