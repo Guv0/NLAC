@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20170426164433) do
 
   create_table "conversations", force: :cascade do |t|
     t.string   "subject"
+    t.datetime "last_message"
     t.integer  "sender_id"
     t.integer  "recipient_id"
     t.boolean  "trash",        default: false

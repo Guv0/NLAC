@@ -2,7 +2,7 @@ var Mailbox = React.createClass({
   getInitialState: function() {
     return {
       display_conversation: true,
-      conversation: this.props.conversations[0]
+      conversation: this.props.active_conversation
     }
   },
 
@@ -19,7 +19,7 @@ var Mailbox = React.createClass({
 
     this.props.conversations.map(function(conversation, i){
       conversations.push(<ConversationCard conversation={conversation} key={conversation[0].id}
-        current_user={this.props.current_user} active_id={this.props.active_id} handleConvClick=
+        current_user={this.props.current_user} active_id={this.props.active_conversation[0].id} handleConvClick=
           {this.handleDisplayConversation} setReadMessages={this.setNewMessage}/>);
     }.bind(this))
 

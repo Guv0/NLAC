@@ -4,14 +4,14 @@ class ConversationsController < ApplicationController
   skip_after_action :verify_authorized
 
   def index
-    # @users = User.all
-    # @conversations = Conversation.all
+    @active_conversation = Conversation.find(params[:active_conversation].to_i)
+    @active_conversation.sender_id == current_user.id ? active_recipient = User.find(@active_conversation.recipient_id) : active_recipient = User.find(@active_conversation.sender_id)
+    @active_conversation_props = [@active_conversation, active_recipient, active_recipient.business_card, @active_conversation.messages]
 
     conversations = Conversation.where(sender_id: current_user.id).or(Conversation.where(recipient_id: current_user.id))
     @conversations_sorted = conversations.order({last_message: :desc})
-    @active_conversation = Conversation.between(1, 6).first.id
     @mailbox_props = []
-    @conversations.each do |conversation|
+    @conversations_sorted.each do |conversation|
       conversation.sender_id == current_user.id ? recipient = User.find(conversation.recipient_id) : recipient = User.find(conversation.sender_id)
       @mailbox_props << [conversation, recipient, recipient.business_card, conversation.messages]
     end
@@ -19,11 +19,12 @@ class ConversationsController < ApplicationController
 
   def create
     if Conversation.between(params[:sender_id],params[:recipient_id]).present?
-      @conversation = Conversation.between(params[:sender_id],params[:recipient_id]).first
+      @active_conversation = Conversation.between(params[:sender_id],params[:recipient_id]).first
+      @active_conversation.update(last_message: DateTime.now)
     else
-      @conversation = Conversation.create!(conversation_params)
+      @active_conversation = Conversation.create!(sender_id: params[:sender_id], recipient_id: params[:recipient_id], last_message: DateTime.now)
     end
-    redirect_to conversation_messages_path(@conversation)
+    redirect_to conversations_path(active_conversation: @active_conversation)
   end
 
   def send_message

@@ -69,7 +69,7 @@
             <!-- MESSAGE -->
             <div class="contact-card-top-right">
               <% if current_user.contacts.include?(contact.user) %>
-                <%= link_to do %>
+                <%= link_to conversations_path(sender_id: current_user.id, recipient_id: contact.id), method: :post do %>
                   <i class="material-icons">email</i>
                 <% end %>
               <% end %>

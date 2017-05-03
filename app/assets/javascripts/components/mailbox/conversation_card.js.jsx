@@ -37,15 +37,15 @@ var ConversationCard = React.createClass({
   render: function(){
     var display_conversation = this.state.display_conversation;
     var messages = this.props.conversation[3];
-    var status = messages[messages.length - 1].read;
+    // var status = messages[messages.length - 1].read;
     var id
     var active;
 
-    if (this.state.read_messages == true)
-      id = "";
-    else if (status == false) {
-      id = "unread";
-    }
+    // if (this.state.read_messages == true)
+    //   id = "";
+    // else if (status == false) {
+    //   id = "unread";
+    // }
 
     if (this.props.active_id == this.props.conversation[0].id) {
       active = "active";
