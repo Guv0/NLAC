@@ -36,12 +36,15 @@ var Conversation = React.createClass({
 
     return (
       <div>
+        <div className="conversation-banner"></div>
         <div className="conversation">
           {messages}
         </div>
         <form className="reply-form" onSubmit={this.handleSubmit}>
-          <input type="textarea" id="reply" className="reply-input" onChange={this.handleChange} />
-          <input type='submit' className="btn" value="Send" />
+          <textarea id="reply" className="reply-input" onChange={this.handleChange} />
+          <div className="flex-center" style={{flex: '0 0 15%'}}>
+            <input type='submit' className="conversation-send-btn" value="SEND" />
+          </div>
         </form>
       </div>
     )
