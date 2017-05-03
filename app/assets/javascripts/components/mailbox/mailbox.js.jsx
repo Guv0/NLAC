@@ -27,11 +27,11 @@ var Mailbox = React.createClass({
 
 
     return (
-      <div className="flex">
-        <div className="conversations">
+      <div className="mailbox-container">
+        <div className="mailbox-left">
           {conversations}
         </div>
-        <div className="conversation-container">
+        <div className="mailbox-right">
           {display_conversation && <Conversation conversation={this.state.conversation}
             key={this.state.conversation.id} current_user={this.props.current_user}
               setMessages={this.setNewMessage} /> }

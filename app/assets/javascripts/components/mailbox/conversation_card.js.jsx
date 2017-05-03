@@ -47,15 +47,15 @@ var ConversationCard = React.createClass({
     }
 
     return (
-      <div className="conversation-card" id={id} onClick={this.handleClick} >
+      <div className="conversation-card" id={id} onClick={this.handleClick}>
         <div className="conversation-card-left">
-          <img src={this.props.conversation[2].linkedin_picture_url} className="avatar-large" />
-          {this.props.conversation[2].first_name}
+          <img src={this.props.conversation[2].linkedin_picture_url} className="conversation-card-avatar" />
         </div>
-        <div>
-        Subject: {this.props.conversation[0].subject}
+        <div className="conversation-card-right">
+          <h3>{this.props.conversation[2].first_name} {this.props.conversation[2].last_name}</h3>
+          <h5>Subject:</h5>
+          <p>{this.props.conversation[0].subject}</p>
         </div>
-        <div><span>></span></div>
       </div>
     )
   }
