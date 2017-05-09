@@ -70,7 +70,7 @@
             <div class="contact-card-top-right">
               <% if current_user.contacts.include?(contact.user) %>
                 <%= link_to conversations_path(sender_id: current_user.id, recipient_id: contact.id), method: :post do %>
-                  <i tooltip="Send a message" tooltip-position="right" class="material-icons">email</i>
+                  <i class="material-icons" data-toggle="tooltip" title="Send message">email</i>
                 <% end %>
               <% end %>
             </div>
