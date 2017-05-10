@@ -64,6 +64,7 @@ var ConversationCard = React.createClass({
         </div>
         <div className="conversation-card-right">
           <h3>{this.props.conversation[2].first_name} {this.props.conversation[2].last_name}</h3>
+          <p>{messages[messages.length - 1].body.slice(0, 60)}...</p>
         </div>
       </div>
     )
