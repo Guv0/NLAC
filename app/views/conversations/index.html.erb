@@ -1,4 +1,9 @@
 <div class="container" style="padding: 0;">
-  <%= react_component "Mailbox", { conversations: @mailbox_props, current_user: current_user, active_conversation: @active_conversation_props }, {style: "width: 100%"} %>
+  <% if @notification %>
+    <p><%= @notification %></p>
+  <% else %>
+    <%= react_component "Mailbox", { conversations: @mailbox_props, current_user: current_user, active_conversation: @active_conversation_props }, {style: "width: 100%"} %>
+  <% end %>
 </div>
+
 

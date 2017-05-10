@@ -11,13 +11,17 @@ class ConversationsController < ApplicationController
     else
       @active_conversation = @conversations_sorted.first
     end
-    @active_conversation.sender_id == current_user.id ? active_recipient = User.find(@active_conversation.recipient_id) : active_recipient = User.find(@active_conversation.sender_id)
-    @active_conversation_props = [@active_conversation, active_recipient, active_recipient.business_card, @active_conversation.messages.sort]
+    if @active_conversation == nil
+      @notification = "You don't currently have any conversations. If you want to message someone, please find them in your contacts or communities."
+    else
+      @active_conversation.sender_id == current_user.id ? active_recipient = User.find(@active_conversation.recipient_id) : active_recipient = User.find(@active_conversation.sender_id)
+      @active_conversation_props = [@active_conversation, active_recipient, active_recipient.business_card, @active_conversation.messages.sort]
 
-    @mailbox_props = []
-    @conversations_sorted.each do |conversation|
-      conversation.sender_id == current_user.id ? recipient = User.find(conversation.recipient_id) : recipient = User.find(conversation.sender_id)
-      @mailbox_props << [conversation, recipient, recipient.business_card, conversation.messages.sort]
+      @mailbox_props = []
+      @conversations_sorted.each do |conversation|
+        conversation.sender_id == current_user.id ? recipient = User.find(conversation.recipient_id) : recipient = User.find(conversation.sender_id)
+        @mailbox_props << [conversation, recipient, recipient.business_card, conversation.messages.sort]
+      end
     end
   end
 
