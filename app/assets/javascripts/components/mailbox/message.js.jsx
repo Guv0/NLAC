@@ -12,7 +12,7 @@ var Message = React.createClass({
       <div>
         <div className="message-container">
           <div className="message-info" id={id + "-info"}>
-            <h6>Firstname Lastname</h6>
+            <h6>{this.props.message.sender}</h6>
             <p>{this.props.message.sent_at}</p>
           </div>
           <div className="message" id={id}>

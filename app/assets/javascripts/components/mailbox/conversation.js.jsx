@@ -42,7 +42,7 @@ var Conversation = React.createClass({
             <h4>Conversation with <span>{this.props.conversation[2].first_name} {this.props.conversation[2].last_name}</span></h4>
           </div>
           <div className="conversation-banner-right">
-            <p><span>Started on:</span> {this.props.conversation[0].created_at}</p>
+            <p><span>Started on:</span> {this.props.conversation[0].started_on}</p>
             </div>
         </div>
         <div className="conversation">
