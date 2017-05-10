@@ -8,4 +8,8 @@ class Message < ApplicationRecord
   def message_time
     self.created_at.strftime("%-d %b '%y at %l:%M %p")
   end
+
+  def sender
+    User.find(self.user_id).business_card.full_name
+  end
 end
