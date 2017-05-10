@@ -67,25 +67,25 @@
               <!-- REQUEST / MESSAGE -->
               <% if member.user != current_user %>
                 <% if !current_user.contacts.include?(member.user) && !current_user.pending_connections.include?(member.user) && !member.user.pending_connections.include?(current_user) %>
-                  <%= link_to do %>
-                    <i class="material-icons">email</i>
-                  <% end %>
+                  <%= link_to conversations_path(sender_id: current_user.id, recipient_id: member.id), method: :post, title: 'Send Message'  do %>
+                  <i class="material-icons">email</i>
+                <% end %>
                   <%= link_to business_card_connection_requests_path(member.user.id), method: :post do %>
-                    <i class="material-icons">person_add</i>
+                    <i class="material-icons" title="Request to Connect">person_add</i>
                   <% end %>
                 <% elsif current_user.pending_connections.include?(member.user) || member.user.pending_connections.include?(current_user) %>
-                  <%= link_to do %>
-                    <i class="material-icons">email</i>
-                  <% end %>
-                  <i class="material-icons pending">person_add</i>
+                  <%= link_to conversations_path(sender_id: current_user.id, recipient_id: member.id), method: :post, title: 'Send Message'  do %>
+                  <i class="material-icons">email</i>
+                <% end %>
+                  <i class="material-icons pending" title="Request Pending">person_add</i>
                 <% else %>
-                  <%= link_to do %>
-                    <i class="material-icons">email</i>
-                  <% end %>
+                  <%= link_to conversations_path(sender_id: current_user.id, recipient_id: member.id), method: :post, title: 'Send Message'  do %>
+                  <i class="material-icons">email</i>
+                <% end %>
                 <% end %>
               <% else %>
                 <%= link_to do %>
-                  <i class="material-icons destroy">clear</i>
+                  <i class="material-icons destroy" title="Leave this Community">clear</i>
                 <% end %>
               <% end %>
             </div>
