@@ -18,7 +18,7 @@
 
 .conversation-card {
   background-color: white;
-  height: 100px;
+  height: 110px;
   padding: 10px;
   border-bottom: 1px solid $grey-light;
   display: flex;
@@ -27,6 +27,7 @@
     flex-direction: column;
     h3 {
       font-size: 22px;
+      margin-top: 5px;
     }
     h5 {
       font-size: 16px;
@@ -35,10 +36,20 @@
     p {
       font-size: 14px;
       font-weight: lighter;
+      margin-top: 10px;
     }
   }
   .conversation-card-left {
-    flex: 0 0 25%;
+    flex: 0 0 27%;
+    img {
+      margin-left: 5px;
+    }
+    p {
+      font-size: 12px;
+      width: 65px;
+      padding: 8px 5px;
+      color: $grey;
+    }
   }
 }
 
@@ -50,6 +61,9 @@
   background-color: $brand-color;
   color: white;
   font-weight: 600px;
+  p {
+    color: white;
+  }
 }
 
 .conversation {

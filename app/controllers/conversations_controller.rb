@@ -27,6 +27,8 @@ class ConversationsController < ApplicationController
       @active_conversation.update(last_message: DateTime.now)
     else
       @active_conversation = Conversation.create!(sender_id: params[:sender_id], recipient_id: params[:recipient_id], last_message: DateTime.now)
+      @active_conversation.started_on = @active_conversation.started_on
+      @active_conversation.save
     end
     redirect_to conversations_path(active_conversation: @active_conversation)
   end
@@ -35,10 +37,11 @@ class ConversationsController < ApplicationController
     @conversation = Conversation.find(params[:conversation_id])
     @message = Message.create(conversation_id: params[:conversation_id], user_id: current_user.id, body: params["message"])
     @message.sent_at = @message.message_time
+    @message.sender = @message.sender_name
     @message.save
     @conversation.update(last_message: DateTime.now)
     @conversation.sender_id == current_user.id ? recipient = User.find(@conversation.recipient_id) : recipient = User.find(@conversation.sender_id)
-    conversation_props = [ @conversation, recipient, recipient.business_card, @conversation.messages ]
+    conversation_props = [ @conversation, recipient, recipient.business_card, @conversation.messages.sort ]
     respond_to do |format|
       format.json { render json: conversation_props, status: :created }
     end
