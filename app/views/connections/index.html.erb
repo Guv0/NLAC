@@ -30,7 +30,7 @@
         <div class="contact-card">
           <% if !contact.photo.url.nil? %>
             <% avatar = contact.photo.url %>
-          <% elsif contact.linkedin_picture_url != "" %>
+          <% elsif contact.linkedin_picture_url != "" && !contact.linkedin_picture_url.nil? %>
             <% avatar = contact.linkedin_picture_url %>
           <% else %>
             <% avatar = "avatar.png" %>
