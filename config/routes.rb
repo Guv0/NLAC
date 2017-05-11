@@ -38,8 +38,13 @@ Rails.application.routes.draw do
   post 'business_cards/:id', to: 'business_cards#create_tags'
   delete 'business_cards/:id/deletetag', to: 'business_cards#delete_tag'
 
+  #email signature
   get 'business_cards/:business_card_id/emailconnection', to: 'connections#create'
   post 'business_cards/:business_card_id/connections/guestconnection', to: 'connections#guest_connection', as: :guest_connection
+
+  #join community link
+  get 'community/:id/invitetojoin', to: 'communities#join_community'
+  post 'community/:id/guestjoin', to: 'communities#guest_membership', as: :guest_membership
 
   # pages
   get 'about', to: 'pages#about'

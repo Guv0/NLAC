@@ -1,4 +1,5 @@
 <!-- TITLE -->
+<%= link_to "Join Now", guest_membership_path(@community.id), method: :post, class: 'btn' %>
 <% content_for(:title_tag) do %>
   NLAC | <%= @community.name.capitalize %>
 <% end %>

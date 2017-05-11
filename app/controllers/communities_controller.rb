@@ -108,7 +108,7 @@ class CommunitiesController < ApplicationController
 
       @live_guest_user = guest_user
 
-      redirect_to community_path(@community, live_guest_user: @live_guest_user)
+      redirect_to community_path(@community, current_user: @live_guest_user)
     end
   end
 
