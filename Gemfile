@@ -47,9 +47,6 @@ gem 'pundit'
 gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
 
-#URL
-gem 'url_safe_base64'
-
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
