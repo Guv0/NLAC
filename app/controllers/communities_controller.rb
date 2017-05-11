@@ -97,7 +97,7 @@ class CommunitiesController < ApplicationController
 
   def join_community
     CommunityMembership.create(member_id: current_user.id, community_id: @community.id)
-    flash[:notice] = "You are now a member of "
+    flash[:notice] = "You are now a member of #{@community.name}!"
     redirect_to community_path(@community)
   end
 

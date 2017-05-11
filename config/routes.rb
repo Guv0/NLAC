@@ -43,8 +43,7 @@ Rails.application.routes.draw do
   post 'business_cards/:business_card_id/connections/guestconnection', to: 'connections#guest_connection', as: :guest_connection
 
   #join community link
-  get 'communities/:id/invitetojoin', to: 'communities#join_community'
-  post 'communities/:id/guestjoin', to: 'communities#guest_membership', as: :guest_membership
+  get 'communities/:id/joincommunity', to: 'communities#join_community'
 
   # pages
   get 'about', to: 'pages#about'

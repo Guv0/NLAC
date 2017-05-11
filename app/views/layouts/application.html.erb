@@ -18,6 +18,7 @@
       <% if user_signed_in? %>
         <%= render 'shared/sidebar' %>
       <% end %>
+      <%= render 'shared/flashes' %>
       <%= yield %>
     </div>
     <%= javascript_include_tag 'application' %>
