@@ -65,8 +65,13 @@ class ApplicationController < ActionController::Base
   # to hand off from guest_user to current_user.
   def logging_in
     connection = guest_user.connections.first
-    connection.user_id = current_user.id
-    connection.save
+    if connection
+      connection.user_id = current_user.id
+      connection.save
+    else
+      guest_user.community_memberships.first.member_id = current_user.id
+      guest_user.community_memberships.first.save
+    end
   end
 
   def create_guest_user

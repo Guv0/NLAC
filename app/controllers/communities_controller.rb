@@ -1,5 +1,6 @@
 class CommunitiesController < ApplicationController
-  before_action :set_community, only: [ :show, :update, :destroy ]
+  skip_before_action :authenticate_user!, only: [ :join_community, :guest_membership ]
+  before_action :set_community, only: [ :show, :update, :destroy, :join_community ]
   skip_after_action :verify_policy_scoped
   skip_after_action :verify_authorized
 
@@ -95,6 +96,26 @@ class CommunitiesController < ApplicationController
   end
 
   def destroy
+  end
+
+  def join_community
+    current_or_guest_user
+    if current_user
+      CommunityMembership.create(member_id: current_user.id, community_id: @community.id)
+      flash[:notice] = "#{BusinessCard.find(params[:business_card_id]).first_name} is now in your contacts"
+      redirect_to community_path(@community)
+    else
+
+      @live_guest_user = guest_user
+
+      redirect_to community_path(@community, live_guest_user: @live_guest_user)
+    end
+  end
+
+  def guest_membership
+    CommunityMembership.create(member_id: session[:guest_user_id], community_id: params[:community_id])
+    current_user = guest_user
+    redirect_to new_user_registration_path
   end
 
   private
