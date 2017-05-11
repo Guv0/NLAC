@@ -77,6 +77,7 @@ skip_after_action :verify_authorized
     @updates = []
     @business_card.user.contacts.each do |contact|
       contact.business_card.updates.each do |update|
+        update.class == String ? update = JSON.parse(update) : update = update
         update.each do | key, value |
           if key != "updated_at"
             @updates << [contact.business_card, key, update[key][1], update["updated_at"][1]]
