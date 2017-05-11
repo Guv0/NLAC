@@ -1,5 +1,5 @@
 class CommunitiesController < ApplicationController
-  before_action :set_community, only: [ :show, :update, :destroy ]
+  before_action :set_community, only: [ :show, :update, :destroy, :join_community ]
   skip_after_action :verify_policy_scoped
   skip_after_action :verify_authorized
 
@@ -57,8 +57,6 @@ class CommunitiesController < ApplicationController
       @members = BusinessCard.where(user_id: community_ids).sort_by { |e| e.first_name }
     end
 
-
-
     # Most popular tags
     tags_list = []
     @community.members.each do |member|
@@ -95,6 +93,12 @@ class CommunitiesController < ApplicationController
   end
 
   def destroy
+  end
+
+  def join_community
+    CommunityMembership.create(member_id: current_user.id, community_id: @community.id)
+    flash[:notice] = "You are now a member of #{@community.name}!"
+    redirect_to community_path(@community)
   end
 
   private
