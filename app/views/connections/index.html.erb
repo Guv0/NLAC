@@ -156,7 +156,7 @@
                   <i class="material-icons">fiber_new</i>
                 <% end %>
                 <div style="display: flex; flex-wrap: wrap;">
-                  <h6><strong><%= update[0].full_name %></strong> updated <strong><%= update[1] %></strong> to: <%= update[2] %></h6>
+                  <h6><strong><%= update[0].full_name %></strong> updated <strong><%= update[1] %></strong> to <%= update[2] %></h6>
                 </div>
                 <p><%= time_ago_in_words(update[3]).gsub("about", "") %> ago</p>
               </div>
