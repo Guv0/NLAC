@@ -1,7 +1,5 @@
 class CommunitiesController < ApplicationController
   before_action :set_community, only: [ :show, :update, :destroy, :join_community ]
-  skip_after_action :verify_policy_scoped
-  skip_after_action :verify_authorized
 
   def index
     # Search
