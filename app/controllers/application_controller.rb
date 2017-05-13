@@ -32,10 +32,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def skip_pundit?
-    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
-  end
-
   # def store_location
   #   # store last url as long as it isn't a /users path
   #   session[:previous_url] = request.fullpath unless request.fullpath =~ /\/users/
