@@ -40,9 +40,6 @@ gem 'carrierwave'
 #Mailer testing
 gem "letter_opener", group: :development
 
-#Pundit
-gem 'pundit'
-
 #Rails-Admin
 gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
