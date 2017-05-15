@@ -13,6 +13,27 @@ class CommunitiesController < ApplicationController
     @community = Community.new
   end
 
+  def my_communities
+
+    my_community_memberships = CommunityMembership.where(member_id: current_user.id)
+    my_community_ids = []
+    my_community_memberships.each do |membership|
+      my_community_ids << membership.community_id
+    end
+    my_communities = Community.find(my_community_ids)
+
+    # Search
+    if params[:info].present?
+      @communities = my_communities.search_for(params[:info])
+    else
+      @communities = my_communities
+    end
+
+    # Creation
+    @community = Community.new
+
+  end
+
 
   def show
     community_ids =  @community.members.each do |member|
