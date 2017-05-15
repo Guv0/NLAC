@@ -18,7 +18,47 @@
   padding: 5px 10px;
 }
 
+// Linkedin
+.linkedin-btn {
+  height: 55px;
+  width: 300px;
+  background-color: #0077B5;
+  color: white;
+  border-radius: 2px;
+  margin: 10px 0;
+  .linkedin-btn-left {
+    flex: 0 0 20%;
+    border-right: 2px solid white;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+  }
+  .linkedin-btn-right {
+    flex: 0 0 80%;
+    margin-left: 15px;
+  }
+  &:hover {
+    background-color: #006399;
+    box-shadow: 1px 2px 4px $shadow;
+  }
+}
 
+// Sign up
+.sign-up-btn {
+  background-color: $brand-color;
+  color: white;
+  border-radius: 2px;
+  border: none;
+  height: 45px;
+  width: 150px;
+  padding: 5px;
+  font-size: 20px;
+  &:hover {
+    background-color: $brand-color-hover;
+    box-shadow: 1px 2px 4px $shadow;
+    color: white;
+  }
+}
 
 
 

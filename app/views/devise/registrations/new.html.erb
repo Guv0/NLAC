@@ -17,9 +17,9 @@
 <%# render "devise/shared/links" %>
  -->
 
-<div class="back-green">
+<!-- <div class="back-green">
   <div class="flex-center">
-    <%= image_tag 'NLAC.png' %>
+    <%# image_tag 'NLAC.png' %>
     <h1>Never Lose A Contact</h1>
   </div>
 </div>
@@ -29,9 +29,9 @@
     <div class="flex-center">
       <div class="flex-column flex-center">
         <h5>Instant registration</h5>
-        <% if devise_mapping.omniauthable? %>
-          <% resource_class.omniauth_providers.each do |provider| %>
-            <%= link_to omniauth_authorize_path(resource_name, provider) do %>
+        <%# if devise_mapping.omniauthable? %>
+          <%# resource_class.omniauth_providers.each do |provider| %>
+            <%# link_to omniauth_authorize_path(resource_name, provider) do %>
               <div class="linkedin-btn">
                 <div class="in flex-center">
                   <h2>in</h2>
@@ -40,9 +40,9 @@
                   <h2>Sign up with LinkedIn</h2>
                 </div>
               </div>
-            <% end %>
-          <% end -%>
-        <% end -%>
+            <%# end %>
+          <%# end -%>
+        <%# end -%>
       </div>
     </div>
     <div class="flex-center">
@@ -53,34 +53,154 @@
     <div class="flex-center">
       <h5>Manual registration</h5>
     </div>
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= f.error_notification %>
+    <%# simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%# f.error_notification %>
       <div class="flex-center sign-email">
-        <%= f.input :email, label_html: { class: 'label' } %>
+        <%# f.input :email, label_html: { class: 'label' } %>
       </div>
       <div class="sign-password">
-        <%= f.input :password, input_html: { style: 'flex: 0 0 50%;', class: 'input-inline input-width' }, label_html: { class: 'label' } %>
+        <%# f.input :password, input_html: { style: 'flex: 0 0 50%;', class: 'input-inline input-width' }, label_html: { class: 'label' } %>
         <div class="flex-end">
-          <%= f.input :password_confirmation, input_html: { style: 'flex: 0 0 50%;', class: 'input-inline input-width' }, label_html: { class: 'label float-left' } %>
+          <%# f.input :password_confirmation, input_html: { style: 'flex: 0 0 50%;', class: 'input-inline input-width' }, label_html: { class: 'label float-left' } %>
         </div>
       </div>
       <div class="flex-column sign-up">
         <div class="flex-start">
-          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+          <%# f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
         </div>
         <div class="flex-center">
-          <%= f.button :submit, "Sign up", class: 'sign-btn' %>
+          <%# f.button :submit, "Sign up", class: 'sign-btn' %>
         </div>
         <div class="flex-end">
           <div class="flex">
             <p>Already have an account?</p>
-              <%= link_to "Log in", new_session_path(resource_name), style: 'color: #0D7377; font-size: 12px;'%>
+              <%# link_to "Log in", new_session_path(resource_name), style: 'color: #0D7377; font-size: 12px;'%>
           </div>
         </div>
       </div>
-    <% end %>
+    <%# end %>
   </div>
 </div>
 
-<div class="back-grey"></div>
+<div class="back-grey"></div> -->
+
+<!-- Left section -->
+<div class="sign-up-left">
+  <div class="sign-up-card flex-column">
+    <!-- NLAC -->
+    <div class="flex-column flex-center" style="flex: 0 0 20%;">
+      <h1>Never Lose A Contact</h1>
+      <%= image_tag 'nlac-logo.png' %>
+    </div>
+    <!-- Linkedin -->
+    <div class="sign-up-form">
+      <p style="text-align: center;">Instant Registration</p>
+      <% if devise_mapping.omniauthable? %>
+        <% resource_class.omniauth_providers.each do |provider| %>
+          <%= link_to omniauth_authorize_path(resource_name, provider) do %>
+            <div class="flex-center">
+              <div class="linkedin-btn flex">
+                <div class="linkedin-btn-left">in</div>
+                <div class="linkedin-btn-right">Sign up with Linkedin</div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+      <!-- Manual -->
+      <div class="flex-center" style="margin: 20px 0;">
+        <div class="line"></div>
+        <p style="margin: 0 20px;">OR</p>
+        <div class="line"></div>
+      </div>
+      <p style="text-align: center;">Manual Registration</p>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+        <div class="flex-center" style="margin-top: 10px;">
+          <%= f.input :email, label_html: { class: 'label' } %>
+        </div>
+        <div class="flex-center" style="margin-top: 10px;">
+          <%= f.input :password, label_html: { class: 'label' } %>
+        </div>
+        <div class="flex-center" style="margin-top: 10px;">
+          <%= f.input :password_confirmation, label_html: { class: 'label' } %>
+        </div>
+        <div class="flex-center" style="color: #939494; font-size: 10px; height: 30px;">
+          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        </div>
+        <div class="flex-center">
+          <%= f.button :submit, "Sign up", class: 'sign-up-btn' %>
+        </div>
+        <div class="flex-end" style="margin-top: 10px;">
+          <p>Already have an account? <%= link_to "Log in", new_session_path(resource_name), style: 'color: #2AAF74; font-size: 12px;'%></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- Right sections -->
+
+  <div id="nlac-features" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#nlac-features" data-slide-to="0" class="active"></li>
+      <li data-target="#nlac-features" data-slide-to="1"></li>
+      <li data-target="#nlac-features" data-slide-to="2"></li>
+      <li data-target="#nlac-features" data-slide-to="3"></li>
+    </ol>
+    <div class="carousel-inner sign-up-right" role="listbox">
+      <!-- General features -->
+      <div class="carousel-item active">
+        <div class="feature-top flex-center">
+          <%= image_tag 'feature-contacts.png', class: 'feature-image' %>
+        </div>
+        <div class="feature-bottom flex-center">
+
+        </div>
+      </div>
+      <!-- Feature 1 -->
+      <div class="carousel-item">
+        <div class="feature-top flex-center">
+          <%= image_tag 'feature-business-card.png', class: 'feature-image' %>
+        </div>
+        <div class="feature-bottom flex-center">
+
+        </div>
+      </div>
+      <!-- Feature 2 -->
+      <div class="carousel-item">
+        <div class="feature-top flex-center">
+          <%= image_tag 'feature-community.png', class: 'feature-image' %>
+        </div>
+        <div class="feature-bottom flex-center">
+
+        </div>
+      </div>
+      <!-- Feature 3 -->
+      <div class="carousel-item">
+        <div class="feature-top flex-center">
+          <%= image_tag 'feature-chat.png', class: 'feature-image' %>
+        </div>
+        <div class="feature-bottom flex-center">
+
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#nlac-features" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#nlac-features" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+
+
+
+
+
+
+
 
