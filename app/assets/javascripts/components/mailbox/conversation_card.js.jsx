@@ -52,7 +52,7 @@ var ConversationCard = React.createClass({
     }.bind(this))
 
     if (this.props.active_id == this.props.conversation[0].id) {
-      active = "active";
+      active = "active-conversation";
     } else {
       active = "";
     }
