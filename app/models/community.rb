@@ -1,7 +1,7 @@
 class Community < ApplicationRecord
 
 has_many :members, through: :community_memberships, source: :user
-# belongs_to :owner, -> { where(owner: true) }, class_name: "CommunityMembership"
+# belongs_to :manager, -> { where(manager: true) }, class_name: "CommunityMembership"
 has_many :community_memberships
 
 validates :description, length: { maximum: 200 }
@@ -24,7 +24,7 @@ mount_uploader :photo, AvatarUploader
     managers = []
     self.members.each do |member|
       membership = member.community_memberships.where(community_id: self.id).first
-      managers << member if membership.owner
+      managers << member if membership.manager
     end
     managers
   end

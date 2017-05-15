@@ -83,7 +83,7 @@
                   <i class="material-icons">email</i>
                 <% end %>
                 <% end %>
-              <% elsif @community.owner != current_user %>
+              <% elsif !@community.managers.include?(current_user) %>
                 <%= link_to leave_community_path(@community.id) do %>
                   <i class="material-icons destroy" title="Leave this Community">clear</i>
                 <% end %>
@@ -125,8 +125,9 @@
         </div>
         <div class="community-description">
           <div class="flex-start">
-            <h5>Manager: </h5>
-            <p><%= @community.owner.business_card.full_name %></p>
+            <h5>Manager(s): </h5>
+            <% @community.managers.each do |manager| %>
+              <p><%= manager.business_card.full_name %></p><br>
           </div>
           <div class="flex-start">
             <h5>Description: </h5>

@@ -83,12 +83,12 @@ puts 'connections with personal tag seeded'
 
 Community.create!(name:'Illuminati', description: 'Blah blah blah blah blah blah', photo:'')
 
-CommunityMembership.create!(member_id: 1, community_id: 1, owner: true)
+CommunityMembership.create!(member_id: 1, community_id: 1, manager: true)
 (2..6).to_a.each do |x|
   CommunityMembership.create!(member_id: x, community_id: 1)
 end
 
-puts 'community seeded with barack as owner and users 2-6 as members'
+puts 'community seeded with barack as manager and users 2-6 as members'
 
 Conversation.create!(sender_id: 1, recipient_id: 2, subject: "Whagwan Bruv!")
 Conversation.create!(sender_id: 1, recipient_id: 3, subject: "Whagwan Bruv!")
