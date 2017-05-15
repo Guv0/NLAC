@@ -12,7 +12,7 @@
 
     <!-- SEARCH -->
     <div class="main-search">
-      <%= form_tag communities_path, method: :get do %>
+      <%= form_tag my_communities_path, method: :get do %>
         <%= text_field_tag :info, params[:info], placeholder: 'Search name, description', class: "search-input" %>
         <%= button_tag(type: "submit", class: "search-btn") do %>
           <i class="material-icons">search</i>
@@ -41,10 +41,10 @@
           <div class="contact-card-info">
             <% if community.members.include?(current_user) %>
               <%= link_to community_path(community) do %>
-                <h2 class="link-decoration"><%= "#{community.name} "%><span><%= "(#{community.members.count} members)" %></span></h2>
+                <h2 class="link-decoration"><%= "#{community.name} (#{community.members.count})" %></h2>
               <% end %>
             <% else %>
-              <h2><%= "#{community.name} "%><span><%= "(#{community.members.count} members)" %></span></h2>
+              <h2><%= "#{community.name} (#{community.members.count})" %></h2>
             <% end %>
             <div class="contact-card-description">
               <h5>Description</h5>

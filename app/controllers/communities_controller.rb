@@ -1,5 +1,5 @@
 class CommunitiesController < ApplicationController
-  before_action :set_community, only: [ :show, :update, :destroy, :join_community ]
+  before_action :set_community, except: [ :index, :my_communities, :create ]
 
   def index
     # Search
@@ -12,6 +12,28 @@ class CommunitiesController < ApplicationController
     # Creation
     @community = Community.new
   end
+
+  def my_communities
+
+    my_community_memberships = CommunityMembership.where(member_id: current_user.id)
+    my_community_ids = []
+    my_community_memberships.each do |membership|
+      my_community_ids << membership.community_id
+    end
+    my_communities = Community.where(id: my_community_ids)
+
+    # Search
+    if params[:info].present?
+      @communities = my_communities.search_for(params[:info])
+    else
+      @communities = my_communities
+    end
+
+    # Creation
+    @community = Community.new
+
+  end
+
 
   def show
     community_ids =  @community.members.each do |member|
@@ -78,7 +100,7 @@ class CommunitiesController < ApplicationController
   def create
     @community = Community.new(community_params)
     if @community.save
-      CommunityMembership.create(member_id: current_user.id, community_id: @community.id, owner: true)
+      CommunityMembership.create(member_id: current_user.id, community_id: @community.id, manager: true)
       redirect_to community_path(@community)
     else
       redirect_to :back
@@ -100,6 +122,16 @@ class CommunitiesController < ApplicationController
     redirect_to community_path(@community)
   end
 
+  def leave_community
+    if @community.managers.include?(current_user)
+      CommunityMembership.where(kick_out_params).first.destroy
+      redirect_to community_path(@community)
+    else
+      CommunityMembership.where(community_id: @community.id, member_id: current_user.id).first.destroy
+      redirect_to my_communities_path
+    end
+  end
+
   private
 
   def set_community
@@ -108,6 +140,10 @@ class CommunitiesController < ApplicationController
 
   def community_params
     params.require(:community).permit(:name, :description, :photo)
+  end
+
+  def kick_out_params
+    params.require(:kick_out).permit(:community_id, :member_id)
   end
 end
 
