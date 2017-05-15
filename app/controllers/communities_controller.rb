@@ -20,7 +20,7 @@ class CommunitiesController < ApplicationController
     my_community_memberships.each do |membership|
       my_community_ids << membership.community_id
     end
-    my_communities = Community.find(my_community_ids)
+    my_communities = Community.where(id: my_community_ids)
 
     # Search
     if params[:info].present?

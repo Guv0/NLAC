@@ -12,7 +12,7 @@
 
     <!-- SEARCH -->
     <div class="main-search">
-      <%= form_tag communities_path, method: :get do %>
+      <%= form_tag my_communities_path, method: :get do %>
         <%= text_field_tag :info, params[:info], placeholder: 'Search name, description', class: "search-input" %>
         <%= button_tag(type: "submit", class: "search-btn") do %>
           <i class="material-icons">search</i>
