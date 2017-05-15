@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510113009) do
+ActiveRecord::Schema.define(version: 20170515122220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20170510113009) do
     t.string   "email"
     t.string   "photo"
     t.jsonb    "updates",              default: [],              array: true
+    t.string   "position"
     t.index ["user_id"], name: "index_business_cards_on_user_id", using: :btree
   end
 
