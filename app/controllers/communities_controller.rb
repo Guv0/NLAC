@@ -13,6 +13,7 @@ class CommunitiesController < ApplicationController
     @community = Community.new
   end
 
+
   def show
     community_ids =  @community.members.each do |member|
                       member.id
@@ -102,6 +103,7 @@ class CommunitiesController < ApplicationController
 
   def leave_community
     CommunityMembership.where(community_id: @community.id, member_id: current_user.id).first.destroy
+    redirect_to communities_path
   end
 
   private

@@ -21,7 +21,7 @@
       <% end %>
     </div>
 
-    <!-- MEMBERS -->
+    <!-- MEMBERS(Business Cards) -->
     <div class="index">
       <% @members.each do |member| %>
         <div class="contact-card">
@@ -84,7 +84,7 @@
                 <% end %>
                 <% end %>
               <% else %>
-                <%= link_to do %>
+                <%= link_to leave_community_path(@community.id) do %>
                   <i class="material-icons destroy" title="Leave this Community">clear</i>
                 <% end %>
               <% end %>

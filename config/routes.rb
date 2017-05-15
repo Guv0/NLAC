@@ -25,10 +25,10 @@ Rails.application.routes.draw do
   resources :communities
 
   #join community link
-  get 'communities/:id/joincommunity', to: 'communities#join_community'
+  get 'communities/:id/joincommunity', to: 'communities#join_community', as: 'join_community'
 
   #leave community
-  get 'communities/:id/leavecommunity', to: 'communities#leave_community'
+  get 'communities/:id/leavecommunity', to: 'communities#leave_community', as: 'leave_community'
 
 
   #conversations
