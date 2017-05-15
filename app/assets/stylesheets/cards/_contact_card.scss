@@ -19,6 +19,10 @@
     font-weight: bold;
     color: $blue-dark;
     margin-bottom: 10px;
+    span {
+      font-size: 15px;
+      color: $grey;
+    }
   }
   h6 {
     color: $grey-dark;

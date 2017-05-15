@@ -64,13 +64,13 @@
           </div>
           <div class="contact-card-right">
             <div class="contact-card-top-right">
-              <!-- REQUEST / MESSAGE /LEAVE COMMUNITY -->
+              <!-- REQUEST / MESSAGE / LEAVE COMMUNITY -->
               <% if member.user == current_user && !@community.managers.include?(member.user) %>
                 <%= link_to leave_community_path(@community.id) do %>
                   <i class="material-icons destroy" title="Leave this Community">clear</i>
                 <% end %>
               <% elsif @community.managers.include?(current_user) && !@community.managers.include?(member.user) %>
-                <%= link_to leave_community_path(@community.id) do %>
+                <%= link_to leave_community_path(:kick_out => {community_id: @community.id, member_id: member.user.id}) do %>
                   <i class="material-icons destroy" title="Leave this Community">clear</i>
                 <% end %>
               <% end %>

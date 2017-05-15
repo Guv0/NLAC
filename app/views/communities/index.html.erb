@@ -41,10 +41,10 @@
           <div class="contact-card-info">
             <% if community.members.include?(current_user) %>
               <%= link_to community_path(community) do %>
-                <h2 class="link-decoration"><%= "#{community.name} (#{community.members.count})" %></h2>
+                <h2 class="link-decoration"><%= "#{community.name} "%><span><%= "(#{community.members.count} members)" %></span></h2>
               <% end %>
             <% else %>
-              <h2><%= "#{community.name} (#{community.members.count})" %></h2>
+              <h2><%= "#{community.name} "%><span><%= "(#{community.members.count} members)" %></span></h2>
             <% end %>
             <div class="contact-card-description">
               <h5>Description</h5>

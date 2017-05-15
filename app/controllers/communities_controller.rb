@@ -124,7 +124,7 @@ class CommunitiesController < ApplicationController
 
   def leave_community
     if @community.managers.include?(current_user)
-      CommunityMembership.where(community_id: @community.id, member_id: params[:member_id]).first.destroy
+      CommunityMembership.where(kick_out_params).first.destroy
       redirect_to community_path(@community)
     else
       CommunityMembership.where(community_id: @community.id, member_id: current_user.id).first.destroy
@@ -140,6 +140,10 @@ class CommunitiesController < ApplicationController
 
   def community_params
     params.require(:community).permit(:name, :description, :photo)
+  end
+
+  def kick_out_params
+    params.require(:kick_out).permit(:community_id, :member_id)
   end
 end
 
