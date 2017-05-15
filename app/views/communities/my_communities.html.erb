@@ -1,0 +1,97 @@
+<!-- TITLE -->
+<% content_for(:title_tag) do %>
+  NLAC | All communities
+<% end %>
+
+<div class="container">
+
+  <!-- LEFT -->
+  <div class="content-left">
+    <!-- NAME -->
+    <h1><strong>All communities (<%= @communities.count %>)</strong></h1>
+
+    <!-- SEARCH -->
+    <div class="main-search">
+      <%= form_tag communities_path, method: :get do %>
+        <%= text_field_tag :info, params[:info], placeholder: 'Search name, description', class: "search-input" %>
+        <%= button_tag(type: "submit", class: "search-btn") do %>
+          <i class="material-icons">search</i>
+        <% end %>
+      <% end %>
+    </div>
+
+    <!-- CONTACTS -->
+    <div class="index">
+      <% @communities.each do |community| %>
+        <div class="contact-card">
+          <% if !community.photo.nil? %>
+            <% avatar = community.photo %>
+          <% else %>
+            <% avatar = "avatar.png" %>
+          <% end %>
+          <!-- AVATAR -->
+          <% if community.members.include?(current_user) %>
+            <%= link_to community_path(community) do %>
+              <%= image_tag avatar, class: "contact-card-avatar" %>
+            <% end %>
+          <% else %>
+            <%= image_tag avatar, class: "contact-card-avatar" %>
+          <% end %>
+          <!-- INFO -->
+          <div class="contact-card-info">
+            <% if community.members.include?(current_user) %>
+              <%= link_to community_path(community) do %>
+                <h2 class="link-decoration"><%= "#{community.name} (#{community.members.count})" %></h2>
+              <% end %>
+            <% else %>
+              <h2><%= "#{community.name} (#{community.members.count})" %></h2>
+            <% end %>
+            <div class="contact-card-description">
+              <h5>Description</h5>
+              <div style="height: 50px;overflow: auto;">
+                <p><%= community.description %></p>
+              </div>
+            </div>
+          </div>
+          <div class="contact-card-right">
+            <div class="contact-card-top-right"></div>
+            <div class="contact-card-tags">
+<!--               <h3>TAGS</h3>
+              <div class="contact-card-tags-display">
+                <%# member.tags.valid_tags(member.id, current_user.id).uniq.each do |tag| %>
+                  <div class="tag-card-small">
+                    <p><%# tag.label %></p>
+                  </div>
+                <%# end %>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="content-right">
+    <!-- CREATE A COMMUNITY -->
+    <div class="content-right-container">
+      <h3><strong>Create your community</strong></h3>
+      <div class="content-right-card">
+        <%= simple_form_for @community do |f| %>
+          <h6>Name</h6>
+          <%= f.input :name, label: false, input_html: {class: "community-input"} %>
+          <h6>Description</h6>
+          <%= f.input :description, label: false, input_html: {class: "community-input"} %>
+          <h6>Photo</h6>
+          <%= f.input :photo, label: false %>
+          <div class="flex-center">
+            <%= f.submit "CREATE", class: "community-create-btn" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="content-right-container"></div>
+  </div>
+
+</div>

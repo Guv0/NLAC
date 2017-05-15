@@ -1,5 +1,5 @@
 class CommunitiesController < ApplicationController
-  before_action :set_community, except: [ :index, :create ]
+  before_action :set_community, except: [ :index, :my_communities, :create ]
 
   def index
     # Search
