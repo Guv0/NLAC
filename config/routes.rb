@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   #communities
   resources :communities
 
+  #my communities
+  get 'mycommunities', to: 'communities#my_communities', as: 'my_communities'
+
   #join community link
   get 'communities/:id/joincommunity', to: 'communities#join_community', as: 'join_community'
 
