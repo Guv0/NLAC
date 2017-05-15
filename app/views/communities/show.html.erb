@@ -64,7 +64,16 @@
           </div>
           <div class="contact-card-right">
             <div class="contact-card-top-right">
-              <!-- REQUEST / MESSAGE -->
+              <!-- REQUEST / MESSAGE /LEAVE COMMUNITY -->
+              <% if member.user == current_user && !@community.managers.include?(member.user) %>
+                <%= link_to leave_community_path(@community.id) do %>
+                  <i class="material-icons destroy" title="Leave this Community">clear</i>
+                <% end %>
+              <% elsif @community.managers.include?(current_user) && !@community.managers.include?(member.user) %>
+                <%= link_to leave_community_path(@community.id) do %>
+                  <i class="material-icons destroy" title="Leave this Community">clear</i>
+                <% end %>
+              <% end %>
               <% if member.user != current_user %>
                 <% if !current_user.contacts.include?(member.user) && !current_user.pending_connections.include?(member.user) && !member.user.pending_connections.include?(current_user) %>
                   <%= link_to conversations_path(sender_id: current_user.id, recipient_id: member.id), method: :post, title: 'Send Message'  do %>
@@ -82,12 +91,8 @@
                   <%= link_to conversations_path(sender_id: current_user.id, recipient_id: member.id), method: :post, title: 'Send Message'  do %>
                   <i class="material-icons">email</i>
                 <% end %>
-                <% end %>
-              <% elsif !@community.managers.include?(current_user) %>
-                <%= link_to leave_community_path(@community.id) do %>
-                  <i class="material-icons destroy" title="Leave this Community">clear</i>
-                <% end %>
               <% end %>
+            <% end %>
             </div>
             <!-- TAGS -->
             <div class="contact-card-tags">
@@ -128,6 +133,7 @@
             <h5>Manager(s): </h5>
             <% @community.managers.each do |manager| %>
               <p><%= manager.business_card.full_name %></p><br>
+            <% end %>
           </div>
           <div class="flex-start">
             <h5>Description: </h5>

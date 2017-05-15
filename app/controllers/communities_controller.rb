@@ -123,8 +123,13 @@ class CommunitiesController < ApplicationController
   end
 
   def leave_community
-    CommunityMembership.where(community_id: @community.id, member_id: current_user.id).first.destroy if !@community.managers.include?(current_user)
-    redirect_to my_communities_path
+    if @community.managers.include?(current_user)
+      CommunityMembership.where(community_id: @community.id, member_id: params[:member_id]).first.destroy
+      redirect_to community_path(@community)
+    else
+      CommunityMembership.where(community_id: @community.id, member_id: current_user.id).first.destroy
+      redirect_to my_communities_path
+    end
   end
 
   private
