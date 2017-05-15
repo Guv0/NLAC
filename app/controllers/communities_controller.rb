@@ -78,6 +78,7 @@ class CommunitiesController < ApplicationController
   def create
     @community = Community.new(community_params)
     if @community.save
+      CommunityMembership.create(member_id: current_user.id, community_id: @community.id, owner: true)
       redirect_to community_path(@community)
     else
       redirect_to :back

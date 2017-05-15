@@ -12,7 +12,12 @@ pg_search_scope :search_for, against: [:name, :description]
 mount_uploader :photo, AvatarUploader
 
   def members
-    User.find(CommunityMembership.where(community_id: self.id).ids)
+    community_memberships = CommunityMembership.where(community_id: self.id)
+    members = []
+    community_memberships.each do |membership|
+      members << membership.member_id
+    end
+    User.find(members)
   end
 
   def owner
