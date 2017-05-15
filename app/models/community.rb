@@ -20,11 +20,13 @@ mount_uploader :photo, AvatarUploader
     User.find(members)
   end
 
-  def owner
+  def managers
+    managers = []
     self.members.each do |member|
       membership = member.community_memberships.where(community_id: self.id).first
-      return member if membership.owner
+      managers << member if membership.owner
     end
+    managers
   end
 
   def new_members

@@ -83,7 +83,7 @@
                   <i class="material-icons">email</i>
                 <% end %>
                 <% end %>
-              <% else %>
+              <% elsif @community.owner != current_user %>
                 <%= link_to leave_community_path(@community.id) do %>
                   <i class="material-icons destroy" title="Leave this Community">clear</i>
                 <% end %>

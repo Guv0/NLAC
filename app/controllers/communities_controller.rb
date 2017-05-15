@@ -100,7 +100,7 @@ class CommunitiesController < ApplicationController
   def create
     @community = Community.new(community_params)
     if @community.save
-      CommunityMembership.create(member_id: current_user.id, community_id: @community.id, owner: true)
+      CommunityMembership.create(member_id: current_user.id, community_id: @community.id, manager: true)
       redirect_to community_path(@community)
     else
       redirect_to :back
@@ -123,8 +123,8 @@ class CommunitiesController < ApplicationController
   end
 
   def leave_community
-    CommunityMembership.where(community_id: @community.id, member_id: current_user.id).first.destroy
-    redirect_to communities_path
+    CommunityMembership.where(community_id: @community.id, member_id: current_user.id).first.destroy if @community.owner != current_user
+    redirect_to my_communities_path
   end
 
   private
