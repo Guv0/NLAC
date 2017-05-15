@@ -16,11 +16,20 @@ Rails.application.routes.draw do
     resources :connection_requests, only: [ :create ]
   end
 
-  #connections
-  delete 'business_cards/:business_card_id/destroyconnection', to: 'connections#destroy'
+  # tags
+  post 'business_cards/:id', to: 'business_cards#create_tags'
+  delete 'business_cards/:id/deletetag', to: 'business_cards#delete_tag'
+
 
   #communities
   resources :communities
+
+  #join community link
+  get 'communities/:id/joincommunity', to: 'communities#join_community'
+
+  #leave community
+  get 'communities/:id/leavecommunity', to: 'communities#leave_community'
+
 
   #conversations
   resources :conversations, only: [:index, :create] do
@@ -34,16 +43,14 @@ Rails.application.routes.draw do
 
   resources :connection_requests, only: [:update]
 
-  # tags
-  post 'business_cards/:id', to: 'business_cards#create_tags'
-  delete 'business_cards/:id/deletetag', to: 'business_cards#delete_tag'
+  #destroy connection
+  delete 'business_cards/:business_card_id/destroyconnection', to: 'connections#destroy'
+
 
   #email signature
   get 'business_cards/:business_card_id/emailconnection', to: 'connections#create'
   post 'business_cards/:business_card_id/connections/guestconnection', to: 'connections#guest_connection', as: :guest_connection
 
-  #join community link
-  get 'communities/:id/joincommunity', to: 'communities#join_community'
 
   # pages
   get 'about', to: 'pages#about'

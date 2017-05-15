@@ -1,5 +1,5 @@
 class CommunitiesController < ApplicationController
-  before_action :set_community, only: [ :show, :update, :destroy, :join_community ]
+  before_action :set_community, except: [ :index, :create ]
 
   def index
     # Search
@@ -98,6 +98,10 @@ class CommunitiesController < ApplicationController
     CommunityMembership.create(member_id: current_user.id, community_id: @community.id)
     flash[:notice] = "You are now a member of #{@community.name}!"
     redirect_to community_path(@community)
+  end
+
+  def leave_community
+    CommunityMembership.where(community_id: @community.id, member_id: current_user.id).first.destroy
   end
 
   private
