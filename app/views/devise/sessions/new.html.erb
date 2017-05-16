@@ -28,7 +28,7 @@
         <div class="line"></div>
       </div>
       <p style="text-align: center;">Manual Log in</p>
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <%= f.error_notification %>
         <div class="flex-center" style="margin-top: 10px;">
           <%= f.input :email, label_html: { class: 'label' } %>
