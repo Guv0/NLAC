@@ -131,9 +131,11 @@
         <div class="community-description">
           <div class="flex-start">
             <h5>Manager(s): </h5>
+            <ul>
             <% @community.managers.each do |manager| %>
-              <p><%= manager.business_card.full_name %></p><br>
+              <p><%= manager.business_card.full_name %></p>
             <% end %>
+            </ul>
           </div>
           <div class="flex-start">
             <h5>Description: </h5>

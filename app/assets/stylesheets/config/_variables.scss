@@ -2,12 +2,12 @@
  * Fonts
  * ------------------------------------- */
 // Google fonts
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
-$base-font: "Open Sans", "Helvetica", "sans-serif";
-$header-font: "Open Sans", "Helvetica", "sans-serif";
-// @import url('https://fonts.googleapis.com/css?family=Slabo+27px');
-// $base-font: 'Slabo 27px', "serif";
-// $header-font: 'Slabo 27px', "serif";
+// @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
+// $base-font: "Open Sans", "Helvetica", "sans-serif";
+// $header-font: "Open Sans", "Helvetica", "sans-serif";
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+$base-font: 'Slabo 27px', "serif";
+$header-font: 'Slabo 27px', "serif";
 // Local fonts (uncomment following lines)
 // @font-face {
 //   font-family: "Font Name";
