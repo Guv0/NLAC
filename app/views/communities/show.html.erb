@@ -7,8 +7,18 @@
 
   <!-- LEFT -->
   <div class="content-left">
-    <!-- NAME -->
-    <h1><strong><%= @community.name.capitalize %> (<%= @community.members.count %>)</strong></h1>
+    <!-- NAME & LINK -->
+    <% if @community.managers.include?(current_user) %>
+      <div class="flex">
+        <h1><strong><%= @community.name.capitalize %> (<%= @community.members.count %>)</strong></h1>
+        <div class="flex">
+          <p id="join-link"><%= "http://www.nlac.com/communities/#{@community.id}/joincommunity" %></p>
+          <i class="material-icons clipboard-btn" onclick="copyToClipboard('join-link')">content_copy</i>
+        </div>
+      </div>
+    <% else %>
+      <h1><strong><%= @community.name.capitalize %> (<%= @community.members.count %>)</strong></h1>
+    <% end %>
 
     <!-- SEARCH -->
     <div class="main-search">
@@ -187,3 +197,21 @@
   </div>
 
 </div>
+
+
+
+<% content_for(:after_js) do %>
+  <script>
+
+    // Copy to clipboard
+    function copyToClipboard(elementId) {
+      var aux = document.createElement("input");
+      aux.setAttribute("value", document.getElementById(elementId).innerHTML);
+      document.body.appendChild(aux);
+      aux.select();
+      document.execCommand("copy");
+      document.body.removeChild(aux);
+    }
+
+  </script>
+<% end %>
