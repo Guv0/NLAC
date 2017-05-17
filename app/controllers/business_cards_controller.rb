@@ -13,7 +13,6 @@ class BusinessCardsController < ApplicationController
       @current_user = User.find(params[:live_guest_user])
       @tags = @business_card.tags_for_guest(@business_card.user_id)
       # current_user = guest_user
-      authorize @business_card
     else
       # @current_user = User.new
       # @current_user.business_card = BusinessCard.new
