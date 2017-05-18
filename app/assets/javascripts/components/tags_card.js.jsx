@@ -76,15 +76,15 @@ var TagsCard = React.createClass({
     }.bind(this))
 
     return (
-      <div className="react-tags-card">
-        <div className="flex">
+      <div className="profile-tags-content flex-column">
+        <div className=" profile-tags-display">
           {tags}
         </div>
         <div className="add-tags-error">
           {this.state.error}
         </div>
         <div className="add-tags flex-center">
-        {!display_form && <button className="add-tags-btn btn" onClick={this.handleClick}>Add Tags</button>}
+        {!display_form && <button className="profile-add-tags-btn" onClick={this.handleClick}>Add Tags</button>}
         </div>
         <div>
           {display_form && <TagsForm current_user={this.props.current_user}

@@ -25,8 +25,8 @@ var Tag = React.createClass({
     }
 
     return (
-      <div className={"tag flex-around " + className}>
-        <p>#</p>{this.props.tag[0].label}{cancel}
+      <div className={"profile-tag flex-center " + className}>
+        <h3>{this.props.tag[0].label}</h3><span>{cancel}</span>
       </div>
     )
   }
