@@ -3,6 +3,167 @@
   NLAC | <%= @business_card.user == current_user ? "My business card" : @business_card.full_name + "'s business card" %>
 <% end %>
 
-<div class="container-fluid">
-  <%= render 'business_card' %>
+<div class="container">
+
+  <!-- LEFT -->
+  <div class="content-left">
+    <!-- BUSINESS CARD -->
+    <h1>
+      <strong>
+        <%= @business_card.user.id == current_user.id ? "MY BUSINESS CARD" : @business_card.first_name.upcase + "'S BUSINESS CARD"  %>
+      </strong>
+    </h1>
+    <div class="business-card flex-column">
+      <!-- TOP -->
+      <div class="business-card-top flex">
+        <!-- AVATAR -->
+        <% if !@business_card.photo.url.nil? %>
+          <% avatar = @business_card.photo.url %>
+        <% elsif @business_card.linkedin_picture_url != "" && !@business_card.linkedin_picture_url.nil? %>
+          <% avatar = @business_card.linkedin_picture_url %>
+        <% else %>
+          <% avatar = "avatar.png" %>
+        <% end %>
+        <%= image_tag avatar, class:'business-card-avatar' %>
+        <!-- BASICS -->
+        <div class="business-card-basics flex-column">
+          <h2><%= @business_card.full_name %></h2>
+          <div class="flex">
+            <i class="material-icons" id="bc-loc">location_on</i>
+            <h4><%= @business_card.location %></h4>
+          </div>
+          <div class="flex">
+            <i class="material-icons" id="bc-con">contacts</i>
+            <%= link_to business_card_connections_path(@business_card.user) do %>
+              <p><%= "#{@business_card.user.contacts.count} contacts" %></p>
+            <% end %>
+          </div>
+        </div>
+        <!-- LINKS -->
+        <div class="business-card-links">
+          <% if current_user.business_card == @business_card %>
+            <%= link_to edit_business_card_path(@business_card) do %>
+              <i class="material-icons">mode_edit</i>
+            <% end %>
+          <% end %>
+          <% if current_user.contacts.include?(@business_card.user) %>
+            <%= link_to conversations_path(sender_id: current_user.id, recipient_id: @business_card.id), method: :post, title: 'Send Message'  do %>
+              <i class="material-icons">email</i>
+            <% end %>
+          <% end %>
+          <% if current_user != @business_card.user %>
+            <a href=<%= "/business_cards/#{@business_card.id}/destroyconnection" %> data-method="DELETE"><i class="material-icons" id="bc-destroy">close</i></a>
+          <% end %>
+        </div>
+      </div>
+      <!-- BOTTOM -->
+      <div class="business-card-bottom">
+        <!-- LEFT -->
+        <div class="business-card-info-left flex-column">
+          <div class="flex">
+            <i class="material-icons">location_city</i>
+            <h5><%= @business_card.industry %></h5>
+          </div>
+          <div class="flex">
+            <i class="material-icons">person</i>
+            <h5><%= @business_card.position %></h5>
+          </div>
+          <div class="flex">
+            <i class="material-icons">business_center</i>
+            <h5><%= @business_card.company_name %></h5>
+          </div>
+          <div class="flex">
+            <i class="material-icons">email</i>
+            <h5><a href=<%= "mailto:#{@business_card.email}" %>><%= @business_card.email %></a></h5>
+          </div>
+          <div class="flex">
+            <i class="material-icons">phone</i>
+            <h5><%= @business_card.phone %></h5>
+          </div>
+        </div>
+        <!-- RIGHT -->
+        <div class="business-card-info-right">
+          <h6>Description</h6>
+          <div class="business-card-description-container flex-wrap">
+            <p><%= @business_card.description %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAGS -->
+    <h1 style="margin: 40px 0 0 0;">
+      <strong>
+        <%= @business_card.user.id == current_user.id ? "MY TAGS" : @business_card.first_name.upcase + "'S TAGS"  %>
+      </strong>
+    </h1>
+    <div class="profile-tags-card">
+    <%= react_component "TagsCard", {tags: @tags, business_card: @business_card, current_user: @current_user} %>
+    </div>
+
+  </div>
+
+  <!-- RIGHT -->
+  <div class="content-right">
+
+    <!-- COMMUNITIES -->
+    <div class="content-right-container">
+        <h3>
+          <strong>
+            <%= @business_card.user.id == current_user.id ? "MY COMMUNITIES" : @business_card.first_name.upcase + "'S COMMUNITIES"  %>
+          </strong>
+        </h3>
+      <div class="content-right-card" style="overflow: scroll;">
+        <% @business_card.user.communities.each do |community| %>
+          <% if community.members.include?(current_user) %>
+            <%= link_to community_path(community) do %>
+            <div class="profile-community flex-between">
+              <!-- AVATAR -->
+              <% if !community.photo %>
+                <%= image_tag community.photo, class:'profile-community-avatar' %>
+              <% else %>
+                <i class="material-icons">group</i>
+              <% end %>
+              <!-- NAME -->
+              <p style="font-size: 16px; margin-top: 2px;"><%= community.name %></p>
+              <!-- MEMBERS -->
+              <span><%= "(#{community.members.count})" %></span>
+            </div>
+            <% end %>
+          <% else %>
+            <div class="profile-community flex-between">
+              <!-- AVATAR -->
+              <% if !community.photo %>
+                <%= image_tag community.photo, class:'profile-community-avatar' %>
+              <% else %>
+                <i class="material-icons">group</i>
+              <% end %>
+              <!-- NAME -->
+              <p style="font-size: 16px; margin-top: 2px;"><%= community.name %></p>
+              <!-- MEMBERS -->
+              <span><%= "(#{community.members.count})" %></span>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
