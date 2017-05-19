@@ -2,14 +2,14 @@ var ConversationCard = React.createClass({
   getInitialState: function(){
     return {
       // display_conversation: false
-      read_messages: false
+      conv_card_id: "fuck",
     }
   },
 
   handleClick: function(e) {
-    e.preventDefault;
+    e.preventDefault();
     //change conv card style
-    this.setState({read_messages: true})
+    this.setState({conv_card_id: ""})
 
     //display conversation
     this.props.handleConvClick(this.props.conversation);
@@ -46,8 +46,8 @@ var ConversationCard = React.createClass({
         if (message.read == false){
           id = "unread";
         }
-      } else if (this.state.read_messages == true) {
-          id = "";
+      } else if (this.state.conv_card_id === "") {
+          id = this.state.conv_card_id;
         }
     }.bind(this))
 
