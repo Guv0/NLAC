@@ -58,11 +58,22 @@
 }
 
 #unread {
-  background-color: $brand-color;
-  color: white;
-  font-weight: 600px;
-  p {
-    color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  span {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: $brand-color;
+    display: flex;
+    justify-content: center;
+    p {
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 }
 
