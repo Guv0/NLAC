@@ -38,13 +38,13 @@ var ConversationCard = React.createClass({
     var display_conversation = this.state.display_conversation;
     var messages = this.props.conversation[3];
     // var status = messages[messages.length - 1].read;
-    var id
-    var active;
+    var id, active, count = 0, unread_count;
 
     this.props.conversation[3].forEach(function(message){
       if (message.user_id != this.props.current_user.id) {
         if (message.read == false){
           id = "unread";
+          count += 1;
         }
       } else if (this.state.conv_card_id === "") {
           id = this.state.conv_card_id;
@@ -57,8 +57,12 @@ var ConversationCard = React.createClass({
       active = "";
     }
 
+    if (count !== 0) {
+      unread_count = count;
+    }
+
     return (
-      <div className={"conversation-card " + active} id={id} onClick={this.handleClick}>
+      <div className={"conversation-card " + active} onClick={this.handleClick}>
         <div className="conversation-card-left">
           <img src={this.props.conversation[2].linkedin_picture_url} className="conversation-card-avatar" />
           <p>{messages[messages.length - 1].sent_at}</p>
@@ -67,6 +71,7 @@ var ConversationCard = React.createClass({
           <h3>{this.props.conversation[2].first_name} {this.props.conversation[2].last_name}</h3>
           <p>{messages[messages.length - 1].body.slice(0, 60)}...</p>
         </div>
+        <div id={id}><span>{unread_count}</span></div>
       </div>
     )
   }
