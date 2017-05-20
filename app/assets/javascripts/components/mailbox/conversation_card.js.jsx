@@ -11,6 +11,9 @@ var ConversationCard = React.createClass({
     //change conv card style
     this.setState({conv_card_id: ""})
 
+    //Hide unread number
+    $('.conversation-card span').addClass('hidden');
+
     //display conversation
     this.props.handleConvClick(this.props.conversation);
 
