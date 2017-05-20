@@ -71,7 +71,7 @@ var ConversationCard = React.createClass({
           <h3>{this.props.conversation[2].first_name} {this.props.conversation[2].last_name}</h3>
           <p>{messages[messages.length - 1].body.slice(0, 60)}...</p>
         </div>
-        <div id={id}><span>{unread_count}</span></div>
+        <div id={id}><span><p>{unread_count}</p></span></div>
       </div>
     )
   }
