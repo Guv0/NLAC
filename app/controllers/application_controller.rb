@@ -59,4 +59,13 @@ class ApplicationController < ActionController::Base
     session[:guest_user_id] = u.id
     u
   end
+
+  def unread_messages
+    conversations = Conversation.where('sender_id = ? OR recipient_id = ?', current_user.id, current_user.id)
+    received_messages = []
+    conversations.each do |conversation|
+      received_messages << conversation.messages.where.not(user_id: current_user.id)
+    end
+    @unread_messages = recieved_messages.where(read: false).count
+  end
 end
