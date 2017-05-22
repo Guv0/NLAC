@@ -35,12 +35,13 @@
   // Middle section
   .sidebar-middle {
     flex: 0 0 57%;
-    padding: 35px 20px;
+    padding: 35px 15px;
     .sidebar-link {
       color: $grey;
       margin-bottom: 30px;
       font-weight: lighter;
       display: flex;
+      flex: 0 0 95%;
       align-items: center;
       a {
         color: $grey;
@@ -56,6 +57,21 @@
       .material-icons {
         font-size: 22px;
       }
+    }
+  }
+
+  .sidebar-notification {
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background-color: $red;
+    color: white;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    p {
+      padding-left: 5px;
     }
   }
 

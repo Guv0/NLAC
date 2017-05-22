@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
+  before_action :unread_messages
   # after_filter :store_location
 
 
@@ -58,5 +59,21 @@ class ApplicationController < ActionController::Base
     u.save!(:validate => false)
     session[:guest_user_id] = u.id
     u
+  end
+
+  def unread_messages
+    conversations = Conversation.where('sender_id = ? OR recipient_id = ?', current_user.id, current_user.id)
+    received_messages = []
+    conversations.each do |conversation|
+      received_messages << conversation.messages.where.not(user_id: current_user.id)
+    end
+    unread_messages_count = 0
+    received_messages.flatten.each do |message|
+      unread_messages_count += 1 if message.read == false
+    end
+    @unread_messages_count = unread_messages_count
+  end
+
+  def requests
   end
 end

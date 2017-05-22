@@ -36,9 +36,14 @@
       <%= link_to "My communities", my_communities_path %>
     </div>
     <!-- Messages -->
-    <div class="sidebar-link">
+    <div class="sidebar-link" data-target="#message-notification">
       <i class="material-icons">email</i>
       <%= link_to "My messages", conversations_path %>
+      <% if @unread_messages_count > 0 %>
+        <div class="sidebar-notification" id="message-notification">
+          <p><%= @unread_messages_count %></p>
+        </div>
+      <% end %>
     </div>
     <!-- Requests -->
     <div class="sidebar-link">
@@ -52,3 +57,4 @@
   </div>
 
 </div>
+
