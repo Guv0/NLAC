@@ -39,7 +39,11 @@
     <div class="sidebar-link">
       <i class="material-icons">email</i>
       <%= link_to "My messages", conversations_path %>
-      <%= react_component "SidebarNotification", count: @unread_messages_count %>
+      <% if @unread_messages_count != 0 %>
+        <div class="sidebar-notification">
+          <p><%= @unread_messages_count %></p>
+        </div>
+      <% end %>
     </div>
     <!-- Requests -->
     <div class="sidebar-link">
