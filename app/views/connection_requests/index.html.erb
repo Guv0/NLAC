@@ -1,2 +1,228 @@
-<h1>ConnectionsRequests#index</h1>
-<p>Find me in app/views/connections_requests/index.html.erb</p>
+<!-- TITLE -->
+<% content_for(:title_tag) do %>
+  NLAC | Requests
+<% end %>
+
+<div class="requests-container">
+
+  <!-- PERSONAL REQUESTS -->
+  <div class="requests-content">
+
+    <!-- TOP -->
+    <div class="flex">
+      <h1>
+        <strong>CONTACTS REQUESTS</strong>
+      </h1>
+      <button id="contacts-received-btn" class="requests-btn requests-btn-active">Received</button>
+      <button id="contacts-sent-btn" class="requests-btn">Sent</button>
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="requests-display">
+
+      <!-- RECEIVED -->
+      <div id="contacts-received-container" class="flex-start flex-wrap">
+        <% if @contacts_incoming.length != 0 %>
+          <% @contacts_incoming.each do |request| %>
+            <div class="request-card">
+              <!-- AVATAR -->
+              <% if !request.user.business_card.photo.url.nil? %>
+                <% avatar = request.user.business_card.photo.url %>
+              <% elsif request.user.business_card.linkedin_picture_url != "" && !request.user.business_card.linkedin_picture_url.nil? %>
+                <% avatar = request.user.business_card.linkedin_picture_url %>
+              <% else %>
+                <% avatar = "avatar.png" %>
+              <% end %>
+              <%= image_tag avatar, class:'request-avatar' %>
+              <!-- NAME -->
+              <div class="flex-center">
+                <h3><%= request.user.business_card.full_name %></h3>
+              </div>
+              <!-- LOCATION -->
+              <div class="flex-center" style="margin: 5px 0;">
+                <div class="flex">
+                  <i class="material-icons">location_on</i>
+                  <h5><%= request.user.business_card.location %></h5>
+                </div>
+              </div>
+
+              <!-- COMMON COMMUNITIES -->
+              <div class="common-communities-tooltip flex-center flex-column" style="margin: 10px 0;">
+                <% common_communities = current_user.communities & request.user.communities %>
+                <h6><%= pluralize(common_communities.count, "community") %> in common</h6>
+                <div>
+                  <ul>
+                    <% common_communities.each do |common_community| %>
+                      <li class="flex-start">
+                        <i class="material-icons">group</i>
+                        <p><%= (common_community.name).truncate(22) %></p>
+                      </li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- BUTTONS -->
+              <div class="flex-around" id="request-answer" style="margin-top: 18px;">
+                <!-- ACCEPT -->
+                <%= link_to business_card_connection_request_path(business_card_id: current_user.business_card.id, id: request.id), method: :put do %>
+                  <button class="request-accept-btn">Accept</button>
+                <% end %>
+                <!-- DECLINE -->
+                <%= link_to business_card_connection_request_path(business_card_id: current_user.business_card.id, id: request.id), method: :delete do %>
+                  <button class="request-decline-btn">Decline</button>
+                <% end %>
+              </div>
+
+            </div>
+          <% end %>
+        <% else %>
+        <p>Keep Networking and <%= link_to "joining more communities", communities_path, class: "green-link" %> to receive more contacts requests!</p>
+        <% end %>
+      </div>
+
+      <!-- SENT -->
+      <div id="contacts-sent-container" class="hidden flex-start flex-wrap">
+        <% if @contacts_outgoing.length != 0 %>
+          <% @contacts_outgoing.each do |request| %>
+            <div class="request-card">
+              <!-- AVATAR -->
+              <% if !request.contact.business_card.photo.url.nil? %>
+                <% avatar = request.contact.business_card.photo.url %>
+              <% elsif request.contact.business_card.linkedin_picture_url != "" && !request.contact.business_card.linkedin_picture_url.nil? %>
+                <% avatar = request.contact.business_card.linkedin_picture_url %>
+              <% else %>
+                <% avatar = "avatar.png" %>
+              <% end %>
+              <%= image_tag avatar, class:'request-avatar' %>
+              <!-- NAME -->
+              <div class="flex-center">
+                <h3><%= request.contact.business_card.full_name %></h3>
+              </div>
+              <!-- LOCATION -->
+              <div class="flex-center" style="margin: 5px 0;">
+                <div class="flex">
+                  <i class="material-icons">location_on</i>
+                  <h5><%= request.contact.business_card.location %></h5>
+                </div>
+              </div>
+
+              <!-- COMMON COMMUNITIES -->
+              <div class="common-communities-tooltip flex-center flex-column" style="margin: 10px 0;">
+                <% common_communities = current_user.communities & request.contact.communities %>
+                <h6><%= pluralize(common_communities.count, "community") %> in common</h6>
+                <div>
+                  <ul>
+                    <% common_communities.each do |common_community| %>
+                      <li class="flex-start">
+                        <i class="material-icons">group</i>
+                        <p><%= (common_community.name).truncate(22) %></p>
+                      </li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- BUTTONS -->
+              <div class="flex-around" id="request-answer" style="margin-top: 18px;">
+                <!-- CANCEL -->
+                <%= link_to business_card_connection_request_path(business_card_id: current_user.business_card.id, id: request.id), method: :delete do %>
+                  <button class="request-cancel-btn">Cancel</button>
+                <% end %>
+              </div>
+
+            </div>
+          <% end %>
+        <% else %>
+        <p>Keep Networking, <%= link_to "joining more communities", communities_path, class: "green-link" %> and add more business cards to your contact list!</p>
+        <% end %>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- COMMUNITY REQUESTS -->
+  <div class="requests-content">
+
+    <!-- TOP -->
+    <div class="flex">
+      <h1>
+        <strong>COMMUNITIES REQUESTS</strong>
+      </h1>
+      <button id="communities-received-btn" class="requests-btn requests-btn-active">Received</button>
+      <button id="communities-sent-btn" class="requests-btn">Sent</button>
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="requests-display">
+
+
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+<!-- JQUERY -->
+<%= content_for(:after_js) do %>
+
+  <script>
+
+  $(document).ready(function() {
+
+    // MAKE #CONTACTS-RECEIVED ACTIVE ON CLICK
+    $('#contacts-received-btn').click(function() {
+      // BUTTONS
+      $(this).toggleClass('requests-btn-active');
+      $('#contacts-sent-btn').toggleClass('requests-btn-active');
+      // CARDS
+      $('#contacts-received-container').toggleClass('hidden');
+      $('#contacts-sent-container').toggleClass('hidden');
+    });
+
+    // MAKE #CONTACTS-SENT ACTIVE ON CLICK
+    $('#contacts-sent-btn').click(function() {
+      // BUTTONS
+      $(this).toggleClass('requests-btn-active');
+      $('#contacts-received-btn').toggleClass('requests-btn-active');
+      // CARDS
+      $('#contacts-sent-container').toggleClass('hidden');
+      $('#contacts-received-container').toggleClass('hidden');
+    });
+
+    // MAKE #COMMUNITIES-RECEIVED ACTIVE ON CLICK
+    $('#communities-received-btn').click(function() {
+      // BUTTONS
+      $(this).toggleClass('requests-btn-active');
+      $('#communities-sent-btn').toggleClass('requests-btn-active');
+      // CARDS
+      $('#communities-received-container').toggleClass('hidden');
+      $('#communities-sent-container').toggleClass('hidden');
+    });
+
+    // MAKE #COMMUNITIES-SENT ACTIVE ON CLICK
+    $('#communities-sent-btn').click(function() {
+      // BUTTONS
+      $(this).toggleClass('requests-btn-active');
+      $('#communities-received-btn').toggleClass('requests-btn-active');
+      // CARDS
+      $('#communities-sent-container').toggleClass('hidden');
+      $('#communities-received-container').toggleClass('hidden');
+    });
+
+    // TOOLTIPS
+    $('.common-communities-tooltip').hover(function() {
+      $(this).children('div').toggle('slow');
+      $(this).children('#request-answer').toggle();
+    });
+
+  });
+
+  </script>
+
+<% end %>
