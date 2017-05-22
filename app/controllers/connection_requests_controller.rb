@@ -2,8 +2,8 @@ class ConnectionRequestsController < ApplicationController
   before_action :set_connection_request, except: [ :index, :create ]
 
   def index
-    @incoming = ConnectionRequest.where(contact: current_user)
-    @outgoing = current_user.connection_requests
+    @contacts_incoming = current_user.connection_requests
+    @contacts_outgoing = current_user.pending_connections_requests
   end
 
   def create
@@ -15,12 +15,12 @@ class ConnectionRequestsController < ApplicationController
 
   def update
     @connection_request.accept
-
-    redirect_to user_path(@connection_request.connection)
+    redirect_to :back
   end
 
   def destroy
     @connection_request.destroy
+    redirect_to :back
   end
 
   private

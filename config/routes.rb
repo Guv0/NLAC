@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     # connections
     resources :connections, only: [ :index, :create ]
     # connection_requests
-    resources :connection_requests, only: [ :create ]
+    resources :connection_requests, only: [ :index, :create, :update, :destroy ]
   end
 
   # tags
@@ -43,9 +43,6 @@ Rails.application.routes.draw do
   post 'conversations/:conversation_id/sendmessage', to: 'conversations#send_message'
 
   post 'conversations/:conversation_id/readmessages', to: 'conversations#read_messages'
-
-
-  resources :connection_requests, only: [:update]
 
   #destroy connection
   delete 'business_cards/:business_card_id/destroyconnection', to: 'connections#destroy'

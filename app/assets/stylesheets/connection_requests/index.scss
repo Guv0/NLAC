@@ -1,0 +1,147 @@
+// MAIN
+.requests-container {
+  margin: 0;
+  padding: 35px 45px 0 50px;
+  width: 100%;
+}
+
+.requests-content {
+  width: 100%;
+  margin-bottom: 30px;
+  h1 {
+    font-size: 18px;
+    color: $grey-dark;
+  }
+}
+
+.requests-display {
+  max-height: 300px;
+  padding-top: 40px;
+  overflow: scroll;
+}
+
+// CARDS
+.request-card {
+  height: 250px;
+  width: 200px;
+  background-color: white;
+  border-radius: 2px;
+  box-shadow: 1px 2px 4px $shadow;
+  margin-right: 50px;
+  margin-bottom: 5px;
+  h3 {
+    color: $brand-color;
+    font-size: 24px;
+  }
+  h5 {
+    color: $grey-dark;
+    font-size: 15px;
+  }
+  h6 {
+    font-size: 14px;
+    text-decoration: underline;
+    &:hover {
+      cursor: default;
+    }
+  }
+  i {
+    color: $grey-light;
+    font-size: 15px;
+  }
+}
+
+// BUTTONS
+.requests-btn {
+  background-color: $background-color;
+  border: 1px solid $border;
+  border-radius: 2px;
+  box-shadow: 1px 2px 4px $shadow;
+  font-size: 14px;
+  margin-left: 20px;
+  padding: 2px 8px;
+  &:focus {
+    outline: none;
+  }
+}
+
+.requests-btn-active {
+  background-color: white;
+}
+
+.request-accept-btn {
+  background-color: $brand-color;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  padding: 2px 10px;
+  &:hover {
+    background-color: $brand-color-hover;
+    box-shadow: 1px 2px 4px $shadow;
+  }
+}
+
+.request-decline-btn {
+  background-color: $red;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  padding: 2px 10px;
+  &:hover {
+    background-color: $red-hover;
+    box-shadow: 1px 2px 4px $shadow;
+  }
+}
+
+.request-cancel-btn {
+  background-color: $background-color;
+  color: $blue-dark;
+  border: 1px solid $border;
+  border-radius: 2px;
+  padding: 2px 10px;
+  &:hover {
+    background-color: $grey-light;
+    box-shadow: 1px 2px 4px $shadow;
+  }
+}
+
+// AVATAR
+.request-avatar {
+  height: 125px;
+  width: 125px;
+  background-color: $background-color;
+  border-radius: 50%;
+  position: relative;
+  bottom: 25px;
+  left: 38px;
+  padding: 5px;
+}
+
+// MISC
+.green-link {
+  color: $brand-color;
+  text-shadow: 1px 2px 4px $shadow;
+  &:hover {
+    color: $brand-color-hover;
+  }
+}
+
+.common-communities-tooltip {
+  div {
+    height: 50px;
+    width: 135px;
+    display: none;
+    overflow:scroll;
+    ul {
+      list-style-type: none;
+      margin: 5px 0 0 0;
+      padding: 0;
+      i {
+        margin-right: 5px;
+      }
+      p {
+        font-size: 14px;
+        font-weight: bold;
+      }
+    }
+  }
+}
