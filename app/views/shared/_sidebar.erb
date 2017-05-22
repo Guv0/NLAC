@@ -39,11 +39,11 @@
     <div class="sidebar-link" data-target="#message-notification">
       <i class="material-icons">email</i>
       <%= link_to "My messages", conversations_path %>
-      <% if @unread_messages_count != 0 %>
+
         <div class="sidebar-notification" id="message-notification">
-          <p><%= @unread_messages_count %></p>
+          <%= react_component "SidebarNotification", count: @unread_messages_count %>
         </div>
-      <% end %>
+
     </div>
     <!-- Requests -->
     <div class="sidebar-link">
@@ -58,10 +58,11 @@
 
 </div>
 
-<script>
-  $(document).ready(function{
+<!-- <script>
+  $(document).ready(function() {
     $(".sidebar-link").click(function(e){
+      e.preventDefault();
       $($(this).data('target')).addClass('hidden');
     });
   });
-</script>
+</script> -->

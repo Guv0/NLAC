@@ -68,7 +68,7 @@ class ApplicationController < ActionController::Base
       received_messages << conversation.messages.where.not(user_id: current_user.id)
     end
     unread_messages_count = 0
-    received_messages.first.each do |message|
+    received_messages.flatten.each do |message|
       unread_messages_count += 1 if message.read == false
     end
     @unread_messages_count = unread_messages_count
