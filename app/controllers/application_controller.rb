@@ -73,4 +73,7 @@ class ApplicationController < ActionController::Base
     end
     @unread_messages_count = unread_messages_count
   end
+
+  def requests
+  end
 end
