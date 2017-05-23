@@ -271,6 +271,8 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.7)
+    typedjs-rails (1.0.4)
+      railties (>= 3.1)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
     uglifier (3.1.10)
@@ -319,6 +321,7 @@ DEPENDENCIES
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
+  typedjs-rails
   uglifier
 
 RUBY VERSION

@@ -19,6 +19,7 @@ gem 'autoprefixer-rails'
 
 # search
 gem 'pg_search'
+gem 'typedjs-rails'
 
 #React
 gem 'react-rails', '~> 1.8'
