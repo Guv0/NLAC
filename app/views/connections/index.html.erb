@@ -16,8 +16,8 @@
     <!-- SEARCH -->
     <div class="main-search">
       <%= form_tag business_card_connections_path(@business_card), method: :get do %>
-        <%= text_field_tag :info, params[:info], placeholder: 'Search name, location, industry, company', class: "search-input" %>
-        <%= text_field_tag :tag, params[:tag], placeholder: 'Search tags', class: "search-input" %>
+        <%= text_field_tag :info, params[:info], class: "search-input", id: "search-info" %>
+        <%= text_field_tag :tag, params[:tag], class: "search-input", id: "search-tag" %>
         <%= button_tag(type: "submit", class: "search-btn") do %>
           <i class="material-icons">search</i>
         <% end %>
@@ -178,4 +178,35 @@
 
 <!-- TO ADD -->
 <%# link_to "Import contacts from Gmail", '/contacts/gmail' %>
+
+
+<!-- JQUERY -->
+<%= content_for(:after_js) do %>
+
+  <script>
+
+    // TYPEDJS INFO
+    $(function(){
+      $("#search-info").typed({
+        strings: ['Search name, location, industry, company', 'Bill Gates', 'London', 'Tech', 'Facebook'],
+        typeSpeed: 50,
+        loop: true,
+        attr: 'placeholder'
+      });
+    });
+
+    // TYPEDJS TAGS
+    $(function(){
+      $("#search-tag").typed({
+        strings: ['Search tags', 'ruby on rails', 'marketing', 'designer', 'photoshop'],
+        typeSpeed: 50,
+        loop: true,
+        attr: 'placeholder'
+      });
+    });
+
+
+  </script>
+
+<% end %>
 
