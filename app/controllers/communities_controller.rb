@@ -95,6 +95,10 @@ class CommunitiesController < ApplicationController
     tags_sorted = tags_count.sort_by { |tag, frequency| -frequency }
 
     @hot_tags = tags_sorted.first(8)
+
+    @community_message = CommunityMessage.new
+
+    @community_messages = CommunityMessage.where(community_id: @community.id)
   end
 
   def create
@@ -132,10 +136,24 @@ class CommunitiesController < ApplicationController
     end
   end
 
+  def post_message
+    if @community.managers.include?(current_user)
+      @community_message = CommunityMessage.new(community_message_params)
+      @community_message.community = @community
+      @community_message.author = current_user
+      @community_message.save
+    end
+    redirect_to community_path(@community)
+  end
+
   private
 
   def set_community
     @community = Community.find(params[:id])
+  end
+
+  def community_message_params
+    params.require(:community_message).permit(:title, :body)
   end
 
   def community_params
