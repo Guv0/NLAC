@@ -204,8 +204,13 @@
       <%= f.input :body, as: :text, label: 'Message' %>
       <%= f.button :submit, 'Submit', class: 'nlac-btn' %>
     <% end %>
-  </div>
 <% end %>
+  <h3>MESSAGES FROM YOUR COMMUNITY MANAGER(S)</h3>
+  <% @community_messages.each do |message| %>
+    <h4><%= message.title %></h4>
+    <p><%= message.body %></p>
+  <% end %>
+</div>
 
 <% content_for(:after_js) do %>
   <script>
