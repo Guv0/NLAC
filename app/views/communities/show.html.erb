@@ -196,15 +196,16 @@
     </div>
   </div>
 </div>
-
-<div class="message-form">
-  <h3>POST A MESSAGE TO THE COMMUNITY</h3>
-  <%= simple_form_for [@community, @community_message] do |f| %>
-    <%= f.input :title, label: 'Title' %>
-    <%= f.input :body, as: :text, label: 'Message' %>
-    <%= f.button :submit, 'Submit', class: 'nlac-btn' %>
-  <% end %>
-</div>
+<% if @community.managers.include?(current_user) %>
+  <div class="message-form">
+    <h3>POST A MESSAGE TO THE COMMUNITY</h3>
+    <%= simple_form_for [@community, @community_message] do |f| %>
+      <%= f.input :title, label: 'Title' %>
+      <%= f.input :body, as: :text, label: 'Message' %>
+      <%= f.button :submit, 'Submit', class: 'nlac-btn' %>
+    <% end %>
+  </div>
+<% end %>
 
 <% content_for(:after_js) do %>
   <script>
