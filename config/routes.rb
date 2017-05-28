@@ -34,6 +34,9 @@ Rails.application.routes.draw do
   #leave community
   get 'communities/:id/leavecommunity', to: 'communities#leave_community', as: 'leave_community'
 
+  #post message
+  post 'communities/:id/postmessage', to: 'communities#post_message', as: 'post_message'
+
 
   #conversations
   resources :conversations, only: [:index, :create] do

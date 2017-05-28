@@ -132,6 +132,9 @@ class CommunitiesController < ApplicationController
     end
   end
 
+  def post_message
+  end
+
   private
 
   def set_community
