@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170515151808) do
+ActiveRecord::Schema.define(version: 20170528160448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,17 @@ ActiveRecord::Schema.define(version: 20170515151808) do
     t.index ["member_id"], name: "index_community_memberships_on_member_id", using: :btree
   end
 
+  create_table "community_messages", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "author_id"
+    t.integer  "community_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["author_id"], name: "index_community_messages_on_author_id", using: :btree
+    t.index ["community_id"], name: "index_community_messages_on_community_id", using: :btree
+  end
+
   create_table "connection_requests", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "contact_id"
@@ -76,12 +87,12 @@ ActiveRecord::Schema.define(version: 20170515151808) do
     t.string   "subject"
     t.datetime "last_message"
     t.integer  "sender_id"
-    t.integer  "recipient_id"
-    t.boolean  "trash",        default: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.integer  "recipients_id"
+    t.boolean  "trash",         default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "started_on"
-    t.index ["recipient_id"], name: "index_conversations_on_recipient_id", using: :btree
+    t.index ["recipients_id"], name: "index_conversations_on_recipients_id", using: :btree
     t.index ["sender_id"], name: "index_conversations_on_sender_id", using: :btree
   end
 
@@ -141,11 +152,13 @@ ActiveRecord::Schema.define(version: 20170515151808) do
   add_foreign_key "business_cards", "users"
   add_foreign_key "community_memberships", "communities"
   add_foreign_key "community_memberships", "users", column: "member_id"
+  add_foreign_key "community_messages", "communities"
+  add_foreign_key "community_messages", "users", column: "author_id"
   add_foreign_key "connection_requests", "users"
   add_foreign_key "connection_requests", "users", column: "contact_id"
   add_foreign_key "connections", "users"
   add_foreign_key "connections", "users", column: "contact_id"
-  add_foreign_key "conversations", "users", column: "recipient_id"
+  add_foreign_key "conversations", "users", column: "recipients_id"
   add_foreign_key "conversations", "users", column: "sender_id"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
