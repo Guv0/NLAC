@@ -87,12 +87,12 @@ ActiveRecord::Schema.define(version: 20170528160448) do
     t.string   "subject"
     t.datetime "last_message"
     t.integer  "sender_id"
-    t.integer  "recipients_id"
-    t.boolean  "trash",         default: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.integer  "recipient_id"
+    t.boolean  "trash",        default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.string   "started_on"
-    t.index ["recipients_id"], name: "index_conversations_on_recipients_id", using: :btree
+    t.index ["recipient_id"], name: "index_conversations_on_recipient_id", using: :btree
     t.index ["sender_id"], name: "index_conversations_on_sender_id", using: :btree
   end
 
@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(version: 20170528160448) do
   add_foreign_key "connection_requests", "users", column: "contact_id"
   add_foreign_key "connections", "users"
   add_foreign_key "connections", "users", column: "contact_id"
-  add_foreign_key "conversations", "users", column: "recipients_id"
+  add_foreign_key "conversations", "users", column: "recipient_id"
   add_foreign_key "conversations", "users", column: "sender_id"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"

@@ -95,6 +95,8 @@ class CommunitiesController < ApplicationController
     tags_sorted = tags_count.sort_by { |tag, frequency| -frequency }
 
     @hot_tags = tags_sorted.first(8)
+
+    @community_message = CommunityMessage.new
   end
 
   def create
@@ -133,6 +135,9 @@ class CommunitiesController < ApplicationController
   end
 
   def post_message
+    if @community.managers.include?(current_user)
+      CommunityMessage.create()
+    end
   end
 
   private
