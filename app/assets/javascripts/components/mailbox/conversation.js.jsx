@@ -45,7 +45,7 @@ var Conversation = React.createClass({
             <p><span>Started on:</span> {this.props.conversation[0].started_on}</p>
             </div>
         </div>
-        <div className="conversation">
+        <div className="conversation" id="conversation">
           {messages}
         </div>
         <form className="reply-form" onSubmit={this.handleSubmit}>
