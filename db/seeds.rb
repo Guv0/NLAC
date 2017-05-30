@@ -324,10 +324,10 @@ puts 'Fake conversations created.'
 puts 'Creating 3 connection requests received and 1 sent for each user...'
 (1..100).to_a.each do |user_id|
   (1..100).to_a.shuffle.take(3).each do |contact_id|
-    ConnectionRequest.create!(user_id: contact_id, contact_id: user_id) unless User.find(user_id).connections.pluck(:contact_id).include?(contact_id) && contact_id == user_id
+    ConnectionRequest.create!(user_id: contact_id, contact_id: user_id) unless User.find(user_id).connections.pluck(:contact_id).include?(contact_id) || contact_id == user_id
   end
   (1..100).to_a.shuffle.take(1).each do |contact_id|
-    ConnectionRequest.create!(user_id: user_id, contact_id: contact_id) unless User.find(user_id).connections.pluck(:contact_id).include?(contact_id) && contact_id == user_id && ConnectionRequest.where(contact_id: contact_id, user_id: user_id)
+    ConnectionRequest.create!(user_id: user_id, contact_id: contact_id) unless User.find(user_id).connections.pluck(:contact_id).include?(contact_id) || contact_id == user_id || ConnectionRequest.where(contact_id: contact_id, user_id: user_id)
   end
 end
 puts 'connection requests created.'
