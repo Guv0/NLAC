@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'community_requests/index'
+
+  get 'community_requests/create'
+
+  get 'community_requests/update'
+
+  get 'community_requests/destroy'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   # root
@@ -23,7 +31,10 @@ Rails.application.routes.draw do
 
 
   #communities
-  resources :communities
+  resources :communities do
+    # community_requests
+    resources :community_requests, only: [ :create, :update, :destroy ]
+  end
 
   #my communities
   get 'mycommunities', to: 'communities#my_communities', as: 'my_communities'

@@ -1,0 +1,2 @@
+module CommunityRequestsHelper
+end

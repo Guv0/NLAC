@@ -5,6 +5,8 @@ has_many :members, through: :community_memberships, source: :user
 has_many :community_memberships
 has_many :community_messages
 
+has_many :community_requests
+
 validates :description, length: { maximum: 200 }
 
 include PgSearch

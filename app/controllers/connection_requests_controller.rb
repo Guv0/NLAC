@@ -4,6 +4,8 @@ class ConnectionRequestsController < ApplicationController
   def index
     @contacts_incoming = current_user.connection_requests
     @contacts_outgoing = current_user.pending_connections_requests
+    @community_requests = current_user.community_requests
+    @community_requests_as_manager = current_user.community_requests_as_manager
   end
 
   def create
