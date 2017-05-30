@@ -159,7 +159,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1004" y="609" name="communities">
+<table x="882" y="497" name="communities">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -220,7 +220,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="624" y="612" name="community_memberships">
+<table x="578" y="496" name="community_memberships">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -239,19 +239,11 @@
 <part>id</part>
 </key>
 </table>
-<<<<<<< Updated upstream
-<table x="641" y="418" name="community_requests">
-<row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="user_id" null="1" autoincrement="0">
-=======
 <table x="1067" y="349" name="community_messages">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="author_id" null="1" autoincrement="0">
->>>>>>> Stashed changes
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="users" row="id" />
 </row>
@@ -259,14 +251,10 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="communities" row="id" />
 </row>
-<<<<<<< Updated upstream
-<row name="status" null="1" autoincrement="0">
-=======
 <row name="title" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="body" null="1" autoincrement="0">
->>>>>>> Stashed changes
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
