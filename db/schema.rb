@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20170524165256) do
 
   # These are extensions that must be enabled in order to support this database
@@ -53,6 +54,7 @@ ActiveRecord::Schema.define(version: 20170524165256) do
     t.index ["member_id"], name: "index_community_memberships_on_member_id", using: :btree
   end
 
+
   create_table "community_requests", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "community_id"
@@ -61,6 +63,16 @@ ActiveRecord::Schema.define(version: 20170524165256) do
     t.datetime "updated_at",   null: false
     t.index ["community_id"], name: "index_community_requests_on_community_id", using: :btree
     t.index ["user_id"], name: "index_community_requests_on_user_id", using: :btree
+
+  create_table "community_messages", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "author_id"
+    t.integer  "community_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["author_id"], name: "index_community_messages_on_author_id", using: :btree
+    t.index ["community_id"], name: "index_community_messages_on_community_id", using: :btree
   end
 
   create_table "connection_requests", force: :cascade do |t|
@@ -153,6 +165,8 @@ ActiveRecord::Schema.define(version: 20170524165256) do
   add_foreign_key "community_memberships", "users", column: "member_id"
   add_foreign_key "community_requests", "communities"
   add_foreign_key "community_requests", "users"
+  add_foreign_key "community_messages", "communities"
+  add_foreign_key "community_messages", "users", column: "author_id"
   add_foreign_key "connection_requests", "users"
   add_foreign_key "connection_requests", "users", column: "contact_id"
   add_foreign_key "connections", "users"
