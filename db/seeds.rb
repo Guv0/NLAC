@@ -200,16 +200,16 @@ require 'faker'
 
 # cleaning database
 puts 'Destroying all models...'
-BusinessCard.destroy_all
-Community.destroy_all
 CommunityMembership.destroy_all
 CommunityRequest.destroy_all
-Connection.destroy_all
+Community.destroy_all
 ConnectionRequest.destroy_all
-Conversation.destroy_all
+Connection.destroy_all
 Message.destroy_all
-Tag.destroy_all
+Conversation.destroy_all
 TagRelation.destroy_all
+Tag.destroy_all
+BusinessCard.destroy_all
 User.destroy_all
 puts 'Models are destroyed, database is clean.'
 
