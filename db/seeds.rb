@@ -200,16 +200,16 @@ require 'faker'
 
 # cleaning database
 puts 'Destroying all models...'
-BusinessCard.destroy_all
-Community.destroy_all
 CommunityMembership.destroy_all
 CommunityRequest.destroy_all
-Connection.destroy_all
+Community.destroy_all
 ConnectionRequest.destroy_all
-Conversation.destroy_all
+Connection.destroy_all
 Message.destroy_all
-Tag.destroy_all
+Conversation.destroy_all
 TagRelation.destroy_all
+Tag.destroy_all
+BusinessCard.destroy_all
 User.destroy_all
 puts 'Models are destroyed, database is clean.'
 
@@ -270,16 +270,16 @@ end
 puts 'Connections with "personal" tag created.'
 
 # creating communities
-puts 'Creating 30 fake communities with 30 members each...'
-30.times do
-  community =   Community.create!(
-                  name: Faker::RockBand.name,
-                  description: Faker::Lorem.sentences(1)
-                  # need to add a photo
-                )
+puts 'Creating 10 fake communities with 20 members each...'
+10.times do
+  community =  Community.create!(
+                name: Faker::RockBand.name,
+                description: Faker::Lorem.sentences(1)
+                # need to add a photo
+              )
   manager_id = (1..100).to_a.sample(1)
   CommunityMembership.create!(member_id: manager_id[0], community_id: community.id, manager: true)
-  member_ids = (1..100).to_a.shuffle.take(30)
+  member_ids = (1..100).to_a.shuffle.take(20)
   member_ids.each do |member_id|
     CommunityMembership.create!(member_id: member_id, community_id: community.id) if member_id != manager_id
   end
@@ -325,9 +325,13 @@ puts 'Creating 3 connection requests received and 1 sent for each user...'
 (1..100).to_a.each do |user_id|
   (1..100).to_a.shuffle.take(3).each do |contact_id|
     ConnectionRequest.create!(user_id: contact_id, contact_id: user_id)
+    unless User.find(user_id).connections.pluck(:contact_id).include?(contact_id)
+     || contact_id == user_id
   end
   (1..100).to_a.shuffle.take(1).each do |contact_id|
     ConnectionRequest.create!(user_id: user_id, contact_id: contact_id)
+    unless User.find(user_id).connections.pluck(:contact_id).include?(contact_id)
+     || contact_id == user_id || ConnectionRequest.where(contact_id: contact_id, user_id: user_id)
   end
 end
 puts 'connection requests created.'
@@ -337,6 +341,7 @@ puts 'Creating 1 request to join community per user...'
 (1..100).to_a.each do |user_id|
   (1..30).to_a.shuffle.take(1).each do |community_id|
     CommunityRequest.create!(user_id: user_id, community_id: community_id)
+    unless CommunityMembership.where(member_id: user_id, community_id: community_id)
   end
 end
 puts 'community requests created.'
