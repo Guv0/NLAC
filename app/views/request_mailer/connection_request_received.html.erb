@@ -1,0 +1,2 @@
+<p>Hi <%= User.find(@request.contact_id).business_card.first_name %>,
+<%= User.find(@request.user_id).business_card.first_name %> has sent you a request to connect!</p>

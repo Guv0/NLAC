@@ -14,6 +14,8 @@ pg_search_scope :search_for, against: [:name, :description]
 
 mount_uploader :photo, AvatarUploader
 
+after_create :send_creation_email
+
   def members
     community_memberships = CommunityMembership.where(community_id: self.id)
     members = []
@@ -41,6 +43,12 @@ mount_uploader :photo, AvatarUploader
       end
     end
     array
+  end
+
+  private
+
+  def send_creation_email
+    CommunityMailer.creation(self).deliver_now
   end
 
 end

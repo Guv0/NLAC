@@ -1,12 +1,7 @@
-<!-- <h1>Never Lose A Contact!</h1>
+<h1>User#welcome</h1>
 
-<%# if @user.provider %>
-  <p>Hi <%# @user.business_card.first_name %>,</p>
-<%# else %>
-  <p>Hi <%# @user.email %></p>
-<%# end %>
+<p>
+  Hi <%= @user.business_card.first_name %>,
 
-
- -->
-
-<p>Hello <%= @user.business_card.first_name %></p>
+  Welcome to NLAC! Blah blah blah.
+</p>

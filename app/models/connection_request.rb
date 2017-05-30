@@ -9,6 +9,9 @@ class ConnectionRequest < ApplicationRecord
   validate :not_pending
   # validate :not_contacts
 
+  #after create send email to receiver
+  after_create :send_request_email
+
   def accept
     Connection.create(user: self.user, contact: self.contact)
     Connection.create(user: self.contact, contact: self.user)
@@ -28,4 +31,11 @@ class ConnectionRequest < ApplicationRecord
   # def not_contacts
   #   errors.add(:friend, "is already added") if user.friends.include?(friend)
   # end
+
+  private
+
+  def send_request_email
+    RequestMailer.connection_request_received(self).deliver_now
+  end
+
 end
