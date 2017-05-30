@@ -1,0 +1,2 @@
+class CommunityMailer < ApplicationMailer
+end

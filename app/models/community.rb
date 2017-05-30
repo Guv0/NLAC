@@ -43,4 +43,10 @@ mount_uploader :photo, AvatarUploader
     array
   end
 
+  private
+
+  def send_creation_email
+
+  end
+
 end
