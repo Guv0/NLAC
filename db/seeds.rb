@@ -238,7 +238,7 @@ end
 puts 'Fake users and business cards created.'
 
 # creating tags
-puts 'Creating 51 fake tags...'
+puts 'Creating 12 fake tags...'
 12.times do
   Tag.create!(label: Faker::Job.unique.key_skill)
 end
@@ -246,9 +246,9 @@ Tag.create!(label: 'personal')
 puts 'Fake tags created.'
 
 # assigning own tags
-puts 'Assigning 10 own tags to 100 business card...'
+puts 'Assigning 8 own tags to 100 business card...'
 (1..100).to_a.each do |tagger_id|
-  tag_ids = (1..10).to_a.sample(10)
+  tag_ids = (1..12).to_a.sample(8)
   tag_ids.each do |tag_id|
     TagRelation.create!(tag_id: tag_id, business_card_id: tagger_id, creator_id: tagger_id)
   end
