@@ -20,6 +20,16 @@ class User < ApplicationRecord
   has_many :pending_connections_requests, class_name: 'ConnectionRequest', dependent: :destroy, foreign_key: :user_id
   has_many :pending_connections, through: :pending_connections_requests, source: :contact
 
+  # Communities
+  has_many :community_requests, dependent: :destroy
+
+  def community_requests_as_manager
+    requests = []
+    self.community_memberships.where(manager: true).each do |community_membership|
+      requests << community_membership.community.community_requests
+    end
+    requests
+  end
 
   def self.current
     Thread.current[:user]

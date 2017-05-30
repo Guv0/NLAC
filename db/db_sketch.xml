@@ -159,7 +159,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="882" y="497" name="communities">
+<table x="1004" y="609" name="communities">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -220,7 +220,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="578" y="496" name="community_memberships">
+<table x="624" y="612" name="community_memberships">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -233,6 +233,25 @@
 <default>NULL</default><relation table="communities" row="id" />
 </row>
 <row name="owner?" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="641" y="418" name="community_requests">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
+<row name="community_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="communities" row="id" />
+</row>
+<row name="status" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">

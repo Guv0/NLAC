@@ -4,6 +4,8 @@ has_many :members, through: :community_memberships, source: :user
 # belongs_to :manager, -> { where(manager: true) }, class_name: "CommunityMembership"
 has_many :community_memberships
 
+has_many :community_requests
+
 validates :description, length: { maximum: 200 }
 
 include PgSearch
