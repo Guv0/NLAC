@@ -78,11 +78,14 @@
             <div class="contact-card-tags">
               <h3>TAGS</h3>
               <div class="contact-card-tags-display">
+                <div class="tag-card-small">
                 <% contact.tags.valid_tags(contact.id, current_user.id).uniq.each do |tag| %>
-                  <div class="tag-card-small">
-                    <p><%= tag.label %></p>
-                  </div>
+                    <%= tag.label if params[:tag].split(' ').include?(tag.label) %>
                 <% end %>
+                <% contact.tags.valid_tags(contact.id, current_user.id).uniq.take(5).each do |tag| %>
+                    <p><%= tag.label unless params[:tag].split(' ').include?(tag.label) %></p>
+                <% end %>
+                </div>
               </div>
             </div>
           </div>
