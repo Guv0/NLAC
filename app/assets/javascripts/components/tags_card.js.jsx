@@ -41,9 +41,11 @@ var TagsCard = React.createClass({
         }.bind(this));
   },
 
-  handleKeyPress: function(e) {
-    e.preventDefault;
+  handleChange: function(e) {
     this.setState({newTag: e.target.value});
+  },
+
+  handleKeyPress: function(e) {
     if (e.key === 'Enter') {
       this.handleFormSubmit();
       e.target.value = '';
@@ -94,7 +96,7 @@ var TagsCard = React.createClass({
 
         <div className="profile-add-tags-form flex-center">
           <div className="flex-column">
-            <input name='label' onKeyPress={this.handleKeyPress}></input>
+            <input name='label' onChange={this.handleChange} onKeyPress={this.handleKeyPress}></input>
             <p>Type in a tag & hit 'Enter'</p>
           </div>
         </div>
