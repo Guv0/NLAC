@@ -38,14 +38,6 @@ class ApplicationController < ActionController::Base
   #   session[:previous_url] = request.fullpath unless request.fullpath =~ /\/users/
   # end
 
-  # def after_sign_in_path_for(resource)
-  #   if session[:previous_url] =~ /\/business_cards/
-  #     session[:previous_url] || root_path
-  #   else
-  #     instructions_path
-  #   end
-  # end
-
    # called (once) when the user logs in, insert any code your application needs
   # to hand off from guest_user to current_user.
   def logging_in
