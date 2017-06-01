@@ -93,11 +93,10 @@ var TagsCard = React.createClass({
         <div className="add-tags-error">
           {this.state.error}
         </div>
-
         <div className="profile-add-tags-form flex-center">
           <div className="flex-column">
             <input name='label' onChange={this.handleChange} onKeyPress={this.handleKeyPress}></input>
-            <p>Type in a tag & hit 'Enter'</p>
+            <p>Type your tag & hit 'Enter'</p>
           </div>
         </div>
       </div>
