@@ -34,10 +34,10 @@ var BusinessCard = React.createClass({
   renderNormal: function() {
     return (
       <div>
-        <div>First Name: {this.state.business_card.first_name}</div>
-        <div>Last Name: {this.state.business_card.last_name}</div>
-        <div>Email: {this.state.business_card.email}</div>
-        <div>City: {this.state.business_card.location}</div>
+        First Name: {this.state.business_card.first_name}<br/>
+        Last Name: {this.state.business_card.last_name}<br/>
+        Email: {this.state.business_card.email}<br/>
+        City: {this.state.business_card.location}<br/>
         <button onClick={this.handleEdit}>Edit</button>
       </div>
     )
@@ -46,7 +46,7 @@ var BusinessCard = React.createClass({
   renderForm: function() {
     return (
       <div>
-        <div>First Name: <input name="first_name" placeholder={this.state.business_card.first_name} onChange={this.handleChange} ></input></div>
+        <input name="first_name" placeholder={this.state.business_card.first_name} onChange={this.handleChange} ></input>
         <input name="last_name" placeholder={this.state.business_card.last_name} onChange={this.handleChange} ></input>
         <input name="location" placeholder={this.state.business_card.location} onChange={this.handleChange} ></input>
         <input name="email" placeholder={this.state.business_card.email} onChange={this.handleChange} ></input>
