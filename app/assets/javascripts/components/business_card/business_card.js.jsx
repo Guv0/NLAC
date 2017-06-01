@@ -20,7 +20,15 @@ var BusinessCard = React.createClass({
 
   handleSave: function(e) {
     console.log(this.state.business_card);
-    this.setState({editable: false});
+
+    $.ajax({
+        type: 'PATCH',
+        url: '/business_cards/' + this.props.business_card.id,
+        data: {business_card: this.state.business_card}
+      }).done(function(data) {
+          console.log(data);
+          this.setState({editable: false});
+        }.bind(this));
   },
 
   renderNormal: function() {
