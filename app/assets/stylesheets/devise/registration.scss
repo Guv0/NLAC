@@ -1,0 +1,91 @@
+// LEFT SIDE
+.registration-left {
+  height: 100vh;
+  width: 60vw;
+  background-color: $brand-color;
+}
+
+// RIGHT SIDE
+.registration-rigth {
+  height: 100vh;
+  width: 40vw;
+  background-color: #3B3E52;
+  padding: 75px 35px;
+  color: white;
+  h1 {
+    font-size: 38px;
+    font-weight: 300;
+    &:last-child {
+      opacity: 0.9;
+      margin-left: 20px;
+      padding: 10px 0;
+      border-bottom: 2px solid $brand-color;
+    }
+  }
+  h4 {
+    font-size: 14px;
+    font-weight: 300;
+    opacity: 0.9;
+  }
+  p {
+    font-size: 16px;
+    font-weight: 100;
+    opacity: 0.3;
+  }
+  a {
+    color: white;
+    opacity: 0.3;
+    margin-right: 20px;
+    &:hover {
+      color: $brand-color;
+      opacity: 1;
+    }
+  }
+  span {
+    font-size: 14px;
+    font-weight: 100;
+    opacity: 0.3;
+    margin-left: 10px;
+  }
+  .sign-link {
+    font-size: 12px;
+    font-weight: 100;
+    margin-left: 10px;
+  }
+  .form-group {
+    font-weight: 100;
+  }
+  .form-control {
+    height: 30px;
+    font-size: 12px;
+    color: white;
+    opacity: 0.9;
+    background: transparent;
+    border: none;
+    padding: 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: none;
+  }
+  .checkbox {
+    float: left;
+    margin: 0;
+    label {
+      padding: 0;
+    }
+  }
+  .cool-checkbox {
+    display: none;
+  }
+  .cool-checkbox + label:after {
+    height: 12px;
+    width: 12px;
+    background-color: white;
+    border-radius: 3px;
+    display: inline-block;
+    content: '';
+  }
+  .cool-checkbox:checked + label:after {
+    background-color: $brand-color;
+  }
+}
