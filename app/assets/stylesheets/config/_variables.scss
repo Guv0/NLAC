@@ -5,9 +5,12 @@
 // @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
 // $base-font: "Open Sans", "Helvetica", "sans-serif";
 // $header-font: "Open Sans", "Helvetica", "sans-serif";
-@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
-$base-font: 'Slabo 27px', "serif";
-$header-font: 'Slabo 27px', "serif";
+// @import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+// $base-font: 'Slabo 27px', "serif";
+// $header-font: 'Slabo 27px', "serif";
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i");
+$base-font: 'Roboto', "sans-serif";
+$header-font: 'Roboto', "sans-serif";
 // Local fonts (uncomment following lines)
 // @font-face {
 //   font-family: "Font Name";
@@ -26,8 +29,8 @@ $base-height: 1.4;
  * Colors
  * ------------------------------------- */
 // Scheme
-$brand-color: #2AAF74;
-$brand-color-hover: #28a46c;
+$brand-color: #63D5C3;
+$brand-color-hover: #36c9b3;
 $background-color: #F5F5F7;
 $grey-dark: #646465;
 $grey: #939494;
@@ -42,6 +45,7 @@ $border: #D6D6D6;
 
 
 
+// old brand color: #2AAF74
 
 
 
