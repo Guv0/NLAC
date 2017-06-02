@@ -1,245 +1,36 @@
 // BUSINESS CARD
 .business-card {
-  height: 355px;
-  width: 625px;
+  height: 620px;
+  width: 380px;
   background-color: white;
-  border-radius: 2px;
-  box-shadow: 1px 2px 4px $shadow;
-  // TOP
-  .business-card-top {
-    flex: 0 0 40%;
-    .business-card-avatar {
-      height: 185px;
-      width: 185px;
-      border-radius: 50%;
-      background-color: $background-color;
-      padding: 10px;
-      position: relative;
-      top: -10px;
-      right: 30px;
-    }
-    .business-card-basics {
-      flex: 0 0 50%;
-      height: 100%;
-      padding: 20px 0;
-      border-bottom: 1px solid $grey-light;
-      h2 {
-        color: $brand-color;
-        font-size: 35px;
-        font-weight: bold;
-        margin-left: 4px;
-      }
-      h4 {
-        font-size: 18px;
-        color: $grey-dark;
-        margin: 10px 0;
-        padding-left: 5px;
-      }
-      p {
-        color: $grey-dark;
-        margin-left: 10px;
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-      #bc-loc {
-        font-size: 20px;
-        color: $grey-light;
-        margin: 10px 0;
-      }
-      #bc-con {
-        font-size: 15px;
-        color: $grey-light;
-        margin-left: 2px;
-      }
-    }
-    .business-card-links {
-      flex: 0 0 20%;
-      height: 100%;
-      display: flex;
-      justify-content: flex-end;
-      padding: 10px 5px;
-      border-bottom: 1px solid $grey-light;
-      i {
-        color: $brand-color;
-        font-size: 18px;
-        margin-right: 5px;
-        &:hover {
-          color: $brand-color-hover;
-        }
-      }
-      #bc-destroy {
-        color: $grey;
-        &:hover {
-          color: $red;
-        }
-      }
+  border-radius: 3px;
+  box-shadow: 2px 3px 4px $shadow;
+  padding: 10px 20px;
+  h1 {
+    font-size: 24px;
+    font-weight: 400;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 300;
+    color: $grey-two;
+  }
+  a p {
+    color: $grey-one;
+    padding-bottom: 2px;
+    &:hover {
+      border-bottom: 2px solid $brand-color;
     }
   }
-  // BOTTOM
-  .business-card-bottom {
-    flex: 0 0 60%;
-    padding: 20px;
-    display: flex;
-    i {
-      font-size: 20px;
-      color: $grey-light;
-    }
-    h5 {
-      margin-left: 20px;
-      margin-top: 5px;
-    }
-    .business-card-info-left {
-      flex: 0 0 60%;
-      height: 100%;
-      padding-top: 20px;
-      padding-left: 20px;
-      justify-content: space-between;
-    }
-    .business-card-info-right {
-      flex: 0 0 40%;
-      height: 100%;
-      padding-top: 25px;
-      h6 {
-        color: $grey-dark;
-        font-weight: bold;
-        font-size: 16px;
-      }
-      .business-card-description-container {
-        width: 100%;
-        height: 75%;
-        background-color: $background-color;
-        border-radius: 2px;
-        margin-top: 10px;
-        padding: 5px 10px;
-        border: 1px solid $border;
-        p {
-          font-size: 15px;
-          font-weight: lighter;
-        }
-      }
-    }
-  }
-}
-
-// TAGS CARD
-.profile-tags-card {
-  height: 185px;
-  width: 625px;
-  margin-top: 20px;
-  padding: 20px;
-  background-color: white;
-  box-shadow: 1px 2px 4px $shadow;
-  border-radius: 2px;
-  .profile-tags-content {
-    height: 150px;
-    width: 100%;
-    .profile-tags-display {
-      overflow: scroll;
-      flex: 0 1 60%;
-      display: flex;
-      flex-wrap: wrap;
-      align-content: flex-between;
-      padding: 0 30px;
-      .profile-tag {
-        height: 35px;
-        color: $brand-color;
-        background-color: $background-color;
-        border: 1px solid $border;
-        border-radius: 2px;
-        padding: 3px 5px;
-        margin-right: 10px;
-        margin-bottom: 8px;
-        h3 {
-          font-size: 15px;
-        }
-        span {
-          color: $grey-light;
-          margin-left: 5px;
-          font-weight: lighter;
-          &:hover {
-            color: $red;
-            cursor: pointer;
-          }
-        }
-      }
-    }
-    .profile-add-tags-btn {
-      color: white;
-      background-color: $brand-color;
-      border-radius: 2px;
-      height: 40px;
-      width: 85px;
-      border: none;
-      &:hover  {
-        background-color: $brand-color-hover;
-        box-shadow: 1px 2px 4px $shadow;
-      }
-    }
-    .profile-confirm-tags-btn {
-      color: white;
-      background-color: $brand-color;
-      border-radius: 2px;
-      height: 35px;
-      width: 120px;
-      border: none;
-      margin-left: 10px;
-      margin-bottom: 20px;
-    }
-    .profile-add-tags-form {
-      input {
-        height: 35px;
-        width: 250px;
-      }
-      input:focus {
-        background-color: white;
-        border: none;
-        border-radius: 0;
-        border-bottom: 1px solid $blue-dark;
-        box-shadow: none;
-        padding: 5px 2px;
-        outline: none;
-        color: $blue-dark;
-        font-size: 14px;
-        font-weight: lighter;
-      }
-      p {
-        font-size: 12px;
-        color: $grey;
-        margin-top: 5px;
-      }
-    }
-  }
-}
-
-
-// COMMUNITIES CARD
-.profile-community {
-  height: 50px;
-  width: 100%;
-  margin: 10px 0;
-  padding: 5px;
-  border: 1px solid white;
-  border-radius: 2px;
   i {
-    color: $grey;
+    font-size: 18px;
+    color: $grey-four;
   }
-  p {
-    flex: 0 0 70%;
-    color: $blue-dark;
+  .destroy:hover {
+    color: $red;
   }
-  span {
-    color: $grey-light;
-    font-size: 12px;
-    margin-top: 5px;
-  }
-  &:hover {
-    background-color: $background-color;
-    border: 1px solid $border;
-  }
-  .profile-community-avatar {
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
+  .edit:hover {
+    color: $brand-color-hover;
+    cursor: pointer;
   }
 }

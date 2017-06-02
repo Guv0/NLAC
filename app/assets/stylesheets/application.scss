@@ -10,6 +10,7 @@
 @import "vendor/index";
 
 // Your CSS
+@import "business_cards/index";
 @import "cards/index";
 @import "components/index";
 @import "devise/index";
@@ -21,7 +22,7 @@
   // Overrides
   body {
     background-color: $background-color;
-    color: $blue-dark;
+    color: $grey-one;
   }
 
   h1, h2, h3, h4, h5, h6, p {
@@ -34,7 +35,7 @@
 
   .container {
     margin: 0;
-    padding: 35px 45px 0 50px;
+    padding: 35px 45px 35px 50px;
     width: 100%;
     display: flex;
   }

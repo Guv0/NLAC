@@ -1,6 +1,6 @@
 class ConnectionsController < ApplicationController
 skip_before_action :authenticate_user!, only: [ :create, :guest_connection ]
-before_action :set_business_card, only: [ :index, :create, :destroy ]
+before_action :set_business_card, only: [ :index, :create ]
 helper_method :sort_column, :sort_direction
 
   def index
@@ -107,9 +107,10 @@ helper_method :sort_column, :sort_direction
   end
 
   def destroy
-    Connection.where(user: current_user, contact: @business_card).first.destroy
-    if Connection.where(user: @business_card, contact: current_user).first
-      Connection.where(user: @business_card, contact: current_user).first.destroy
+    @business_card = BusinessCard.find(params[:id])
+    Connection.where(user: current_user, contact: @business_card.user).first.destroy
+    if Connection.where(user: @business_card.user, contact: current_user).first
+      Connection.where(user: @business_card.user, contact: current_user).first.destroy
     end
     redirect_to business_card_connections_path(current_user)
   end
