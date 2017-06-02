@@ -1,83 +1,31 @@
-// Container
-.sidebar-container {
-  flex: 0 0 15%;
-  background-color: #233142;
-  display: flex;
-  flex-direction: column;
+// SIDE CONTAINER
+.side-container {
+  min-height: 40px;
+  background-color: #3B3E52;
+  padding-left: 70px;
+  padding-right: 60px;
+  p {
+    display: none;
+  }
+
+  // ICONS
+  a i {
+    font-size: 15px;
+    color: $grey-four;
+    &:active {
+      color: white;
+    }
+  }
 }
 
-  // Top section
-  .sidebar-top {
-    flex: 0 0 33%;
-    margin: 0 20px;
-    padding-top: 35px;
-    padding-bottom: 50px;
-    border-bottom: 1px solid $grey;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    #sidebar-name {
-      flex: 0 0 30%;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      margin-top: 10px;
-      align-items: center;
-      h5 {
-        font-weight: lighter;
-        color: white;
-      }
-    }
-  }
+// NOTIFICATIONS
+.side-notifications {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background-color: $red;
+  position: absolute;
+  top: 50px;
+  right: 55px;
+}
 
-  // Middle section
-  .sidebar-middle {
-    flex: 0 0 57%;
-    padding: 35px 15px;
-    .sidebar-link {
-      color: $grey;
-      margin-bottom: 30px;
-      font-weight: lighter;
-      display: flex;
-      flex: 0 0 95%;
-      align-items: center;
-      a {
-        color: $grey;
-        margin-left: 20px;
-        margin-top: 2px;
-      }
-      &:hover {
-        color: white;
-        a {
-          color: white;
-        }
-      }
-      .material-icons {
-        font-size: 22px;
-      }
-    }
-  }
-
-  .sidebar-notification {
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    background-color: $red;
-    color: white;
-    margin-left: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    p {
-      font-family: sans-serif;
-      font-size: 9px;
-      padding-left: 5px;
-    }
-  }
-
-  // Bottom section
-  .sidebar-bottom {
-    flex: 0 0 10%;
-  }

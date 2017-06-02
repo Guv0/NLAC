@@ -22,9 +22,14 @@
   }
 }
 
+// MIDDLE SIDE
+.nav-middle {
+  flex: 0 0 39%;
+}
+
 // RIGHT SIDE
 .nav-right {
-  flex: 0 0 82%;
+  flex: 0 0 43%;
   a {
     display: flex;
     i {
@@ -39,6 +44,10 @@
 
 // MEDIA QUERIES
 @media (min-width: 376px){
+  // GENERAL
+  img {
+    display: none;
+  }
   // LEFT SIDE
   .nav-left {
     background-color: $brand-color;
@@ -46,9 +55,6 @@
       display: block;
       font-size: 16px;
       color: white;
-    }
-    img {
-      display: none;
     }
   }
 }

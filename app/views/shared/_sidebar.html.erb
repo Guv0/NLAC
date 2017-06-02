@@ -1,60 +1,32 @@
-<div class="sidebar-container">
+<!-- CONTAINER -->
+<div class="side-container flex-between">
 
-  <div class="sidebar-top">
-      <% if current_user.business_card.photo == "" %>
-        <% avatar = current_user.business_card.photo.url %>
-      <% elsif current_user.business_card.linkedin_picture_url %>
-        <% avatar = current_user.business_card.linkedin_picture_url %>
-      <% else %>
-        <% avatar = image_path('avatar.png') %>
-      <% end %>
-      <!-- Avatar -->
-      <%= link_to business_card_path(current_user) do %>
-        <%= image_tag avatar, class: "sidebar-avatar" %>
-      <% end %>
-      <!-- Name -->
-      <div id="sidebar-name">
-        <h5><%= current_user.business_card.first_name %></h5>
-        <h5><%= current_user.business_card.last_name %></h5>
-      </div>
-  </div>
-
-  <div class="sidebar-middle">
-    <!-- Profile -->
-    <div class="sidebar-link">
-      <i class="material-icons">person</i>
-      <%= link_to "Profile", business_card_path(current_user) %>
-    </div>
-    <!-- Contacts -->
-    <div class="sidebar-link">
-      <i class="material-icons">contacts</i>
-      <%= link_to "My contacts", business_card_connections_path(current_user) %>
-    </div>
-    <!-- Communities -->
-    <div class="sidebar-link">
-      <i class="material-icons">group</i>
-      <%= link_to "My communities", my_communities_path %>
-    </div>
-    <!-- Messages -->
-    <div class="sidebar-link" data-target="#message-notification">
-      <i class="material-icons">email</i>
-      <%= link_to "My messages", conversations_path %>
+  <!-- PROFILE -->
+  <%= link_to business_card_path(current_user) do %>
+    <i class="fa fa-user" aria-hidden="true"></i>
+  <% end %>
+  <!-- CONTACTS -->
+  <%= link_to business_card_connections_path(current_user) do %>
+    <i class="fa fa-address-card" aria-hidden="true"></i>
+  <% end %>
+  <!-- COMMUNITIES -->
+  <%= link_to communities_path do %>
+    <i class="fa fa-users" aria-hidden="true"></i>
+  <% end %>
+  <!-- REQUESTS -->
+  <%= link_to business_card_connection_requests_path(current_user) do %>
+    <i class="fa fa-user-plus" aria-hidden="true"></i>
+  <% end %>
+  <!-- MESSAGES -->
+  <div data-target="#message-notification">
+    <%= link_to conversations_path do %>
+      <i class="fa fa-comments" aria-hidden="true"></i>
       <% if @unread_messages_count > 0 %>
-        <div class="sidebar-notification" id="message-notification">
+        <div class="side-notifications" id="message-notification">
           <p><%= @unread_messages_count %></p>
         </div>
       <% end %>
-    </div>
-    <!-- Requests -->
-    <div class="sidebar-link">
-      <i class="material-icons">person_add</i>
-      <%= link_to "Requests", business_card_connection_requests_path(current_user) %>
-    </div>
-  </div>
-
-  <div class="sidebar-bottom">
-
+    <% end %>
   </div>
 
 </div>
-
