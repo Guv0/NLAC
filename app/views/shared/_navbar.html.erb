@@ -1,18 +1,17 @@
-<div class="navbar-container">
+<!-- CONTAINER -->
+<div class="navbar-container flex">
 
-  <div class="navbar-left">
-    <!-- Brand -->
+  <!-- LEFT SIDE -->
+  <div class="navbar-left flex-center">
+    <!-- LOGO -->
     <%= link_to root_path do %>
-      <h3><em>NeverLoseAContact</em></h3>
+      <%= image_tag 'logo' %>
     <% end %>
   </div>
 
-  <div class="navbar-right">
-    <!-- Communities -->
-    <%= link_to communities_path do %>
-      <h4>Communities</h4>
-    <% end %>
-    <!-- Log out -->
+  <!-- RIGHT SIDE -->
+  <div class="navbar-right flex-end">
+    <!-- LOG OUT -->
     <%= link_to destroy_user_session_path, method: :delete do %>
       <i class="material-icons">power_settings_new</i>
     <% end %>

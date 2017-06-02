@@ -1,57 +1,28 @@
-// Container
+// CONTAINER
 .navbar-container {
   height: 50px;
   width: 100%;
   background-color: white;
-  display: flex;
-  align-items: center;
 }
 
-  // Left side
-  .navbar-left {
-    flex: 0 0 15%;
-    height: 100%;
-    background-color: $brand-color;
+// LEFT SIDE
+.navbar-left {
+  flex: 0 0 15%;
+  height: 100%;
+  a {
     display: flex;
     justify-content: center;
-    align-items: center;
-    a {
-      color: white;
-      h3 {
-        font-size: 15px;
-      }
-    }
   }
-
-  // Right side
-  .navbar-right {
-    flex: 0 0 85%;
-    height: 100%;
-    padding: 0 20px 0 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    a {
-      color: #939494;
-      h4 {
-        font-size: 15px;
-        &:hover {
-          color: #737373;
-        }
-      }
-      i {
-        font-size: 16px;
-        opacity: 0.3;
-        margin-top: 4px;
-        &:hover {
-          color: $red;
-          opacity: 1;
-        }
-      }
-    }
+  img {
+    height: 80%;
+    width: 80%;
   }
+}
 
-
+// RIGHT SIDE
+.navbar-right {
+  flex: 0 0 85%;
+}
 
 
 
