@@ -1,21 +1,25 @@
 <!-- CONTAINER -->
-<div class="navbar-container flex">
+<div class="nav-container flex">
 
   <!-- LEFT SIDE -->
-  <div class="navbar-left flex-center">
-    <!-- LOGO -->
+  <div class="nav-left flex-center">
+    <!-- LOGO (phones) -->
     <%= link_to root_path do %>
       <%= image_tag 'logo' %>
+    <% end %>
+    <!-- BRAND NAME (laptops) -->
+    <%= link_to root_path do %>
+      <h1><em>NeverLoseAContact</em></h1>
     <% end %>
   </div>
 
   <!-- RIGHT SIDE -->
-  <div class="navbar-right flex-end">
-    <!-- LOG OUT -->
-    <%= link_to destroy_user_session_path, method: :delete do %>
-      <i class="material-icons">power_settings_new</i>
-    <% end %>
-  </div>
+    <div class="nav-right flex-end">
+      <!-- LOG OUT -->
+      <%= link_to destroy_user_session_path, method: :delete do %>
+        <i class="material-icons">power_settings_new</i>
+      <% end %>
+    </div>
 
 </div>
 
