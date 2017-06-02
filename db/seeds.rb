@@ -341,8 +341,7 @@ puts 'connection requests created.'
 puts 'Creating 1 request to join community per user...'
 (1..100).to_a.each do |user_id|
   (1..30).to_a.shuffle.take(1).each do |community_id|
-    CommunityRequest.create!(user_id: user_id, community_id: community_id)
-    unless CommunityMembership.where(member_id: user_id, community_id: community_id)
+    CommunityRequest.create!(user_id: user_id, community_id: community_id) unless CommunityMembership.where(member_id: user_id, community_id: community_id)
   end
 end
 puts 'community requests created.'

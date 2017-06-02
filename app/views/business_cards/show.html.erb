@@ -17,6 +17,11 @@
       <% end %>
     </div>
 
+
+<%= react_component "BusinessCard", business_card: @business_card %>
+  <!-- LEFT -->
+  <div class="content-left">
+
     <!-- BUSINESS CARD -->
     <div class="business-card flex-colomn">
       <% if @business_card != current_user.business_card %>

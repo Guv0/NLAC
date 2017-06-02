@@ -10,7 +10,7 @@ class ConnectionRequest < ApplicationRecord
   # validate :not_contacts
 
   #after create send email to receiver
-  after_create :send_request_email
+  # after_create :send_request_email
 
   def accept
     Connection.create(user: self.user, contact: self.contact)
