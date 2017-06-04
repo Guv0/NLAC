@@ -18,46 +18,65 @@
   padding: 5px 10px;
 }
 
-// Linkedin
-.linkedin-btn {
-  height: 55px;
-  width: 300px;
-  background-color: #0077B5;
-  color: white;
-  border-radius: 2px;
-  margin: 10px 0;
-  .linkedin-btn-left {
-    flex: 0 0 20%;
-    border-right: 2px solid white;
-    text-align: center;
-    font-size: 25px;
-    font-weight: bold;
-  }
-  .linkedin-btn-right {
-    flex: 0 0 80%;
-    margin-left: 15px;
+// MAIN
+.btn {
+  background-color: $brand-color;
+  border-radius: 3px;
+  padding: 5px 10px;
+  a {
+    color: white;
   }
   &:hover {
-    background-color: #006399;
+    background-color: $brand-color-hover;
     box-shadow: 1px 2px 4px $shadow;
   }
 }
 
-// Sign up
-.sign-up-btn {
+// SIGN UP/IN
+.sign-btn {
   background-color: $brand-color;
   color: white;
-  border-radius: 2px;
+  border-radius: 25px;
   border: none;
-  height: 45px;
+  height: 40px;
   width: 150px;
   padding: 5px;
   font-size: 20px;
+  letter-spacing: 1px;
   &:hover {
     background-color: $brand-color-hover;
-    box-shadow: 1px 2px 4px $shadow;
     color: white;
   }
+}
+
+// LINKEDIN
+.linkedin-btn {
+  height: 60px;
+  width: 275px;
+  background-color: #0077B5;
+  color: white;
+  border-radius: 3px;
+  .linkedin-btn-left {
+    flex: 0 0 20%;
+    border-right: 2px solid white;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  .linkedin-btn-right {
+    flex: 0 0 80%;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-left: 23px;
+  }
+  &:hover {
+    background-color: #006399;
+  }
+}
+
+// BUSINESS CARD
+.business-card-btn {
+  font-size: 12px;
 }
 
 // Clipboard

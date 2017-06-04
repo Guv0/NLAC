@@ -2,7 +2,8 @@ var TagsCard = React.createClass({
   getInitialState: function(){
     return {
       tags: this.props.tags,
-      display_form: false,
+      newTag: "",
+      // display_form: false,
       error: ""
     }
   },
@@ -40,16 +41,25 @@ var TagsCard = React.createClass({
         }.bind(this));
   },
 
+  handleChange: function(e) {
+    this.setState({newTag: e.target.value});
+  },
+
+  handleKeyPress: function(e) {
+    if (e.key === 'Enter') {
+      this.handleFormSubmit();
+      e.target.value = '';
+    }
+  },
+
   handleFormSubmit: function() {
-    var newTags = [];
+    var newTag = this.state.newTag
 
-    this.state.tags.map(function(tag){
-      if (!tag[0].id) {
-        newTags.push(tag[0].label)
-      }
-    })
-
-    this.setState({display_form: false});
+    // this.state.tags.map(function(tag){
+    //   if (!tag[0].id) {
+    //     newTags.push(tag[0].label)
+    //   }
+    // })
 
     if (this.props.current_user.guest) {
       this.setState({error: "Please add to contacts before creating new tags"});
@@ -57,10 +67,10 @@ var TagsCard = React.createClass({
       $.ajax({
         type: 'POST',
         url: '/business_cards/' + this.props.business_card.id,
-        data: {tags: newTags}
+        data: {tag: newTag}
       }).done(function(data) {
           console.log(data);
-          this.setState({ tags: data});
+          this.setState({ tags: data, newTag: ""});
         }.bind(this));
     }
   },
@@ -83,13 +93,11 @@ var TagsCard = React.createClass({
         <div className="add-tags-error">
           {this.state.error}
         </div>
-        <div className="add-tags flex-center">
-        {!display_form && <button className="profile-add-tags-btn" onClick={this.handleClick}>Add Tags</button>}
-        </div>
-        <div>
-          {display_form && <TagsForm current_user={this.props.current_user}
-          onFormSubmit={this.handleFormSubmit}
-            onUserInput={this.handleUserInput} onEnter={this.handleEnter}/>}
+        <div className="profile-add-tags-form flex-center">
+          <div className="flex-column">
+            <input name='label' onChange={this.handleChange} onKeyPress={this.handleKeyPress}></input>
+            <p>Type your tag & hit 'Enter'</p>
+          </div>
         </div>
       </div>
     )

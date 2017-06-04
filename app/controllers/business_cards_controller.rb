@@ -25,11 +25,10 @@ class BusinessCardsController < ApplicationController
   end
 
   def update
-    if @business_card.update(business_card_params)
-      @business_card.record_updates
-      redirect_to business_card_path(@business_card)
-    else
-      render :edit
+    @business_card.update(business_card_params)
+    # @business_card.record_updates
+    respond_to do |format|
+        format.json { render json: @business_card, status: :created }
     end
   end
 
@@ -39,12 +38,12 @@ class BusinessCardsController < ApplicationController
   end
 
   def create_tags
-    params["tags"].each do |tag|
-      normalized_tag = tag.split.join.downcase
-      @tag_relation = TagRelation.new
-      @tag_relation.add_tag(normalized_tag, @business_card.id, current_user.id)
-      @business_card.record_tag_updates(normalized_tag) if @business_card.id == current_user.id
-    end
+    # binding.pry
+      # normalized_tag = tag.split.join.downcase
+    @tag_relation = TagRelation.new
+    @tag_relation.add_tag(params["tag"], @business_card.id, current_user.id)
+    # @business_card.record_tag_updates( params["tag"]) if @business_card.id == current_user.id
+
     @tags = @business_card.tags_to_display(@business_card.id, current_user.id)
     respond_to do |format|
         format.json { render json: @tags, status: :created }

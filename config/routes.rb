@@ -59,7 +59,7 @@ Rails.application.routes.draw do
   post 'conversations/:conversation_id/readmessages', to: 'conversations#read_messages'
 
   #destroy connection
-  delete 'business_cards/:business_card_id/destroyconnection', to: 'connections#destroy'
+  resources :connections, only: [ :destroy ]
 
 
   #email signature
