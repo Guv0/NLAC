@@ -2,17 +2,22 @@ var ConversationCard = React.createClass({
   getInitialState: function(){
     return {
       // display_conversation: false
-      conv_card_id: "fuck",
+      conv_card_id: "unread",
+    }
+  },
+
+  setId: function(count) {
+    var id;
+
+    if (count === 0) {
+      this.setState({conv_card_id: "read"});
     }
   },
 
   handleClick: function(e) {
     e.preventDefault();
     //change conv card style
-    this.setState({conv_card_id: "read"})
-
-    //Hide unread number
-    $('.active-conversation span').addClass('hidden');
+    // this.setState({conv_card_id: "read"})
 
     //display conversation
     this.props.handleConvClick(this.props.conversation);
@@ -46,12 +51,10 @@ var ConversationCard = React.createClass({
     this.props.conversation[3].forEach(function(message){
       if (message.user_id != this.props.current_user.id) {
         if (message.read == false){
-          id = "unread";
           count += 1;
+          id = "unread";
         }
-      } else if (this.state.conv_card_id === "read") {
-          id = "read";
-        }
+      }
     }.bind(this))
 
     if (this.props.active_id == this.props.conversation[0].id) {
@@ -64,6 +67,9 @@ var ConversationCard = React.createClass({
       unread_count = count;
     }
 
+    if (count === 0) {
+      id = "read";
+    }
 
     return (
       <div className={"conversation-card " + active} onClick={this.handleClick}>
