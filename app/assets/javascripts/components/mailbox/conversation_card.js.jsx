@@ -64,6 +64,7 @@ var ConversationCard = React.createClass({
       unread_count = count;
     }
 
+
     return (
       <div className={"conversation-card " + active} onClick={this.handleClick}>
         <div className="conversation-card-left">
