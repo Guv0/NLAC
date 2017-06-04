@@ -1,12 +1,6 @@
 var Message = React.createClass({
   render: function() {
-    var id;
-
-    if (this.props.message.user_id == this.props.current_user.id) {
-      id = "current-user"
-    } else {
-      id = "other-user"
-    }
+    var id = this.props.message.user_id == this.props.current_user.id ? "current-user" : "other-user";
 
     return (
       <div>

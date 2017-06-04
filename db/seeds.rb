@@ -255,7 +255,6 @@ puts 'Assigning 8 own tags to 100 business card...'
 end
 puts 'Own tags assigned.'
 
-
 # creating connections with 1 'personal' tag
 puts 'Creating 50 connections for each user with 1 "personal" tag...'
 (1..100).to_a.each do |first_id|
@@ -345,3 +344,4 @@ puts 'Creating 1 request to join community per user...'
   end
 end
 puts 'community requests created.'
+>>>>>>> master
