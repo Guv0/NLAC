@@ -1,23 +1,8 @@
 var ConversationCard = React.createClass({
-  getInitialState: function(){
-    return {
-      // display_conversation: false
-      conv_card_id: "unread",
-    }
-  },
-
-  setId: function(count) {
-    var id;
-
-    if (count === 0) {
-      this.setState({conv_card_id: "read"});
-    }
-  },
 
   handleClick: function(e) {
-    e.preventDefault();
-    //change conv card style
-    // this.setState({conv_card_id: "read"})
+    //hide notification
+    $(".unread-messages" + this.props.conversation[0].id).addClass('hidden');
 
     //display conversation
     this.props.handleConvClick(this.props.conversation);
@@ -43,7 +28,7 @@ var ConversationCard = React.createClass({
 
 
   render: function(){
-    var display_conversation = this.state.display_conversation;
+    // var display_conversation = this.state.display_conversation;
     var messages = this.props.conversation[3];
     // var status = messages[messages.length - 1].read;
     var id, active, count = 0, unread_count;
@@ -57,19 +42,21 @@ var ConversationCard = React.createClass({
       }
     }.bind(this))
 
+    count === 0 ? id = "read" : unread_count = count;
+
     if (this.props.active_id == this.props.conversation[0].id) {
       active = "active-conversation";
     } else {
       active = "";
     }
 
-    if (count !== 0) {
-      unread_count = count;
-    }
+    // if (count === 0) {
+    //   id = "read";
+    // } else {
+    //   unread_count = count;
+    // }
 
-    if (count === 0) {
-      id = "read";
-    }
+
 
     return (
       <div className={"conversation-card " + active} onClick={this.handleClick}>
@@ -81,7 +68,7 @@ var ConversationCard = React.createClass({
           <h3>{this.props.conversation[2].first_name} {this.props.conversation[2].last_name}</h3>
           <p>{messages[messages.length - 1].body.slice(0, 60)}...</p>
         </div>
-        <div id={id}><span><p>{unread_count}</p></span></div>
+        <div className={"unread-messages" + this.props.conversation[0].id} id={id}><span><p>{unread_count}</p></span></div>
       </div>
     )
   }
