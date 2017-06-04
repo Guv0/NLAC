@@ -26,7 +26,6 @@ var ConversationCard = React.createClass({
       }.bind(this));
   },
 
-
   render: function(){
     // var display_conversation = this.state.display_conversation;
     var messages = this.props.conversation[3];
@@ -44,19 +43,7 @@ var ConversationCard = React.createClass({
 
     count === 0 ? id = "read" : unread_count = count;
 
-    if (this.props.active_id == this.props.conversation[0].id) {
-      active = "active-conversation";
-    } else {
-      active = "";
-    }
-
-    // if (count === 0) {
-    //   id = "read";
-    // } else {
-    //   unread_count = count;
-    // }
-
-
+    active = (this.props.active_id == this.props.conversation[0].id) ? "active-conversation" : "";
 
     return (
       <div className={"conversation-card " + active} onClick={this.handleClick}>
