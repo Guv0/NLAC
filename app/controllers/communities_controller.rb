@@ -143,6 +143,9 @@ class CommunitiesController < ApplicationController
       @community_message.author = current_user
       @community_message.save
     end
+    @community.members. each do |member|
+      CommunityMailer.message_post(member, @community, @community_message).deliver_now
+    end
     redirect_to community_path(@community)
   end
 
