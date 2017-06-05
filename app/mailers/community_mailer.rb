@@ -9,14 +9,13 @@ class CommunityMailer < ApplicationMailer
     )
   end
 
-  def message_post(community)
+  def message_post(community, message)
     @community = community
+    @message_title = message.title
 
-    @community.members.each do |member|
-      mail(
-        to: member.email,
-        subject: "#{@community.name}'s manager posted a message"
-      )
-    end
+    mail(
+      bcc: @community.members.map(&:email).uniq,
+      subject: "#{@community.name}'s manager posted a message"
+    )
   end
 end
