@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
-  before_action :unread_messages
+  before_action :unread_messages, :requests
   # after_filter :store_location
 
 
@@ -69,5 +69,11 @@ class ApplicationController < ActionController::Base
   end
 
   def requests
+    if current_user
+      connection_requests = ConnectionRequest.where(contact_id: current_user.id)
+      community_requests = CommunityRequest.where(user_id: current_user.id)
+
+      @requests_count = connection_requests.count + community_requests.count
+    end
   end
 end
