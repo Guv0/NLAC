@@ -1,5 +1,5 @@
 class CommunityRequestsController < ApplicationController
-  before_action :set_community_requests, only: [ :update, :destroy ]
+  before_action :set_community_request, only: [ :update, :destroy ]
 
   def create
     community = Community.find(params[:community_id])
@@ -14,13 +14,13 @@ class CommunityRequestsController < ApplicationController
   end
 
   def destroy
-    @community_requests.destroy
+    @community_request.destroy
     redirect_to :back
   end
 
   private
 
-  def set_community_requests
-    @community_requests = CommunityRequest.find(params[:id])
+  def set_community_request
+    @community_request = CommunityRequest.find(params[:id])
   end
 end

@@ -69,5 +69,9 @@ class ApplicationController < ActionController::Base
   end
 
   def requests
+    connection_requests = ConnectionRequest.where(contact_id: current_user.id)
+    community_requests = CommunityRequest.where(user_id: current_user.id)
+
+    @request_count = connection_requests.count + community_requests.count
   end
 end
