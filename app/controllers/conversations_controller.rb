@@ -41,7 +41,7 @@ class ConversationsController < ApplicationController
     @message.sent_at = @message.message_time
     @message.sender = @message.sender_name
     @message.save
-    MessageMailer.new_message(@message, @conversation).send_now
+    MessageMailer.new_message(@message, @conversation).deliver_now
     @conversation.update(last_message: DateTime.now)
     @conversation.sender_id == current_user.id ? recipient = User.find(@conversation.recipient_id) : recipient = User.find(@conversation.sender_id)
     conversation_props = [ @conversation, recipient, recipient.business_card, @conversation.messages.sort ]
