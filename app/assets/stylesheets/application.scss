@@ -87,3 +87,25 @@
   .link-decoration:hover {
     text-decoration: underline;
   }
+
+
+
+
+
+// MEDIA QUERIES
+
+  @media (min-width: 376px){
+    // GENERAL STRUCTURE
+    .application-content {
+      flex-direction: row;
+    }
+  }
+
+
+
+
+
+
+
+
+

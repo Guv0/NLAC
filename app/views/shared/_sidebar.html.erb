@@ -1,28 +1,63 @@
 <!-- CONTAINER -->
-<div class="side-container flex-between">
+<div class="side-container">
+
+  <!-- TOP -->
+  <div class="side-top">
+    <!-- AVATAR -->
+    <% if !current_user.business_card.photo.url.nil? %>
+      <% avatar = current_user.business_card.photo.url %>
+    <% elsif current_user.business_card.linkedin_picture_url != "" && !current_user.business_card.linkedin_picture_url.nil? %>
+      <% avatar = current_user.business_card.linkedin_picture_url %>
+    <% else %>
+      <% avatar = 'avatar.png' %>
+    <% end %>
+    <%= link_to business_card_path(current_user), class: 'flex-center' do %>
+      <%= image_tag avatar, class: 'side-avatar' %>
+    <% end %>
+    <!-- NAME -->
+    <div class="flex-column flex-around" style="flex: 0 0 30%;">
+      <h1><%= current_user.business_card.first_name %></h1>
+      <h1><%= current_user.business_card.last_name %></h1>
+    </div>
+  </div>
 
   <!-- PROFILE -->
   <%= link_to business_card_path(current_user) do %>
-    <i class="fa fa-user" aria-hidden="true"></i>
+    <div class="flex">
+      <i class="fa fa-user" aria-hidden="true"></i>
+      <h6>PROFILE</h6>
+    </div>
   <% end %>
   <!-- CONTACTS -->
   <%= link_to business_card_connections_path(current_user) do %>
-    <i class="fa fa-address-card" aria-hidden="true"></i>
+    <div class="flex">
+      <i class="fa fa-address-card" aria-hidden="true"></i>
+      <h6>CONTACTS</h6>
+    </div>
   <% end %>
   <!-- COMMUNITIES -->
   <%= link_to communities_path do %>
-    <i class="fa fa-users" aria-hidden="true"></i>
+    <div class="flex">
+      <i class="fa fa-users" aria-hidden="true"></i>
+      <h6>COMMUNITIES</h6>
+    </div>
   <% end %>
   <!-- REQUESTS -->
   <%= link_to business_card_connection_requests_path(current_user) do %>
-    <i class="fa fa-user-plus" aria-hidden="true"></i>
+    <div class="flex">
+      <i class="fa fa-user-plus" aria-hidden="true"></i>
+      <h6>REQUESTS</h6>
+    </div>
   <% end %>
   <!-- MESSAGES -->
-  <div data-target="#message-notification">
+  <div data-target="#message-notifications" id="side-messages">
     <%= link_to conversations_path do %>
-      <i class="fa fa-comments" aria-hidden="true"></i>
+      <div class="flex">
+        <i class="fa fa-comments" aria-hidden="true"></i>
+        <h6>MESSAGES</h6>
+      </div>
       <% if @unread_messages_count > 0 %>
-        <div class="side-notifications" id="message-notification">
+        <div class="side-notifications" id="message-notifications">
           <p><%= @unread_messages_count %></p>
         </div>
       <% end %>

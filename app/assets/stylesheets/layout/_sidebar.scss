@@ -1,10 +1,18 @@
 // SIDE CONTAINER
 .side-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   min-height: 40px;
   background-color: #3B3E52;
   padding-left: 70px;
   padding-right: 60px;
-  p {
+  h6 {
+    display: none;
+  }
+
+  // TOP
+  .side-top {
     display: none;
   }
 
@@ -25,7 +33,80 @@
   border-radius: 50%;
   background-color: $red;
   position: absolute;
-  top: 50px;
-  right: 55px;
+  top: 52px;
+  right: 57px;
+  p {
+    display: none;
+  }
 }
 
+
+
+
+
+// MEDIA QUERIES
+  @media (min-width: 376px){
+    // SIDE CONTAINER
+    .side-container {
+      flex: 0 0 15%;
+      padding: 0 0 150px 0;
+      flex-direction: column;
+      h6 {
+        display: block;
+        font-size: 12px;
+        font-weight: 300;
+      }
+      a {
+        width: 100%;
+        color: $grey-four;
+        &:hover {
+          color: white;
+          i {
+            color: white;
+          }
+        }
+        i {
+          flex: 0 0 15%;
+          margin-left: 25px;
+        }
+      }
+
+      // TOP
+      .side-top {
+        flex: 0 0 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 75%;
+        color: white;
+        padding: 10px 0;
+        border-bottom: 1px solid white;
+        h1 {
+          font-size: 18px;
+          font-weight: 300;
+        }
+      }
+    }
+
+    // NOTIFICATIONS
+    #side-messages {
+      width: 100%;
+    }
+    #message-notifications {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .side-notifications {
+      height: 12px;
+      width: 12px;
+      top: 462px;
+      left: 130px;
+      p {
+        display: block;
+        font-size: 6px;
+        font-weight: 300;
+      }
+    }
+  }
