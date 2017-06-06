@@ -48,6 +48,11 @@
       <i class="fa fa-user-plus" aria-hidden="true"></i>
       <h6>REQUESTS</h6>
     </div>
+    <% if @requests_count > 0 %>
+        <div class="side-notifications" id="requests-notification">
+          <p><%= @requests_count %></p>
+        </div>
+      <% end %>
   <% end %>
   <!-- MESSAGES -->
   <div data-target="#message-notifications" id="side-messages">
