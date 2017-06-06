@@ -13,6 +13,21 @@
     <% end %>
   </div>
 
+  <!-- MIDDLE SIDE -->
+  <div class="nav-middle flex-end">
+    <!-- AVATAR -->
+      <% if !current_user.business_card.photo.url.nil? %>
+        <% avatar = current_user.business_card.photo.url %>
+      <% elsif current_user.business_card.linkedin_picture_url != "" && !current_user.business_card.linkedin_picture_url.nil? %>
+        <% avatar = current_user.business_card.linkedin_picture_url %>
+      <% else %>
+        <% avatar = 'avatar.png' %>
+      <% end %>
+      <%= link_to business_card_path(current_user) do %>
+        <%= image_tag avatar, class: 'nav-avatar' %>
+      <% end %>
+  </div>
+
   <!-- RIGHT SIDE -->
     <div class="nav-right flex-end">
       <!-- LOG OUT -->
