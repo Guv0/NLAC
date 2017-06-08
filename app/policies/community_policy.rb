@@ -5,13 +5,28 @@ class CommunityPolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    true
+  end
+
   def show?
     record.members.include?(user)
   end
 
-  def create
+  def create?
     true
   end
 
+  def edit?
+    update?
+  end
+
+  def update?
+    record.managers.include?(user)
+  end
+
+  def destroy?
+    user.admin
+  end
 
 end
