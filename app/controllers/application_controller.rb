@@ -88,4 +88,8 @@ class ApplicationController < ActionController::Base
       @requests_count = connection_requests.count + community_requests.count
     end
   end
+
+  def skip_pundit?
+    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
+  end
 end
