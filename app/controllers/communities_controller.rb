@@ -153,6 +153,7 @@ class CommunitiesController < ApplicationController
 
   def set_community
     @community = Community.find(params[:id])
+    authorize @community
   end
 
   def community_message_params

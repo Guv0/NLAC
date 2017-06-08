@@ -5,6 +5,10 @@ class BusinessCardPolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    record.user == user || user.contacts.include?(record.user) ? true : false
+  end
+
   def show?
     record.user == user || user.contacts.include?(record.user) ? true : false
   end

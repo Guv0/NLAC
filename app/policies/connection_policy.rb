@@ -6,7 +6,7 @@ class ConnectionPolicy < ApplicationPolicy
   end
 
   def index?
-    record.user == user || user.contacts.include?(record.user) ? true : false
+    true
   end
 
   def create?
