@@ -186,6 +186,8 @@ GEM
       pry (>= 0.10.4)
     public_suffix (2.0.5)
     puma (3.8.2)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (2.0.1)
     rack-pjax (1.0.0)
       nokogiri (~> 1.5)
@@ -314,6 +316,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma
+  pundit
   rails (= 5.0.2)
   rails-assets-classnames!
   rails_admin (>= 1.0.0.rc)

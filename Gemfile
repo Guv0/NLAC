@@ -38,6 +38,9 @@ gem 'omnicontacts', github: 'Diego81/omnicontacts'
 gem 'cloudinary', '1.1.0'
 gem 'carrierwave'
 
+#Pundit
+gem "pundit"
+
 #Mailer testing
 gem "letter_opener", group: :development
 
