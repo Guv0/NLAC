@@ -25,6 +25,10 @@ class BusinessCardPolicy < ApplicationPolicy
     record.user == user
   end
 
+  def create?
+    true
+  end
+
   def create_tags
     record.user == user || user.contacts.include?(record.user) ? true : false
   end

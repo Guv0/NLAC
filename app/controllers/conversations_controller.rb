@@ -1,5 +1,7 @@
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
+  skip_after_action :verify_authorized
+  skip_after_action :verify_policy_scoped
 
   def index
     conversations = Conversation.where(sender_id: current_user.id).or(Conversation.where(recipient_id: current_user.id))

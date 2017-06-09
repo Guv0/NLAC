@@ -9,10 +9,6 @@ class ConnectionPolicy < ApplicationPolicy
     true
   end
 
-  def create?
-
-  end
-
   def destroy?
     record.user == user
   end

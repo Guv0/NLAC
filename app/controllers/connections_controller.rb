@@ -2,8 +2,8 @@ class ConnectionsController < ApplicationController
 skip_before_action :authenticate_user!, only: [ :create, :guest_connection ]
 before_action :set_business_card, only: [ :index, :create, :destroy ]
 helper_method :sort_column, :sort_direction
-skip_after_action :verify_policy_scoped
-skip_after_action :verify_authorized
+skip_after_action :verify_policy_scoped, only: [:create]
+skip_after_action :verify_authorized, only: [:create]
 
   def index
 
