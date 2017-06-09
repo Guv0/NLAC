@@ -1,10 +1,9 @@
 class BusinessCardsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :show ]
   before_action :set_user, only: [ :destroy ]
-  before_action :set_business_card, only: [ :edit, :update, :destroy, :create_tags, :delete_tag ]
+  before_action :set_business_card, only: [ :show, :edit, :update, :destroy, :create_tags, :delete_tag ]
 
   def show
-    @business_card = BusinessCard.find(params[:id])
     if current_user
       @current_user = current_user
       @tags = @business_card.tags_to_display(@business_card.user_id, current_user.id)
@@ -19,6 +18,7 @@ class BusinessCardsController < ApplicationController
       # @tags = @business_card.tags
       redirect_to new_user_registration_path
     end
+
   end
 
   def edit
@@ -70,6 +70,7 @@ private
 
   def set_business_card
     @business_card = BusinessCard.find(params[:id])
+    authorize @business_card
   end
 
   def set_user

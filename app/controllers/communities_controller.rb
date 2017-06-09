@@ -1,5 +1,7 @@
 class CommunitiesController < ApplicationController
   before_action :set_community, except: [ :index, :my_communities, :create ]
+  skip_after_action :verify_policy_scoped, only: [:index]
+  skip_after_action :verify_authorized, only: [:my_communities]
 
   def index
     # Search
@@ -8,7 +10,7 @@ class CommunitiesController < ApplicationController
     else
       @communities = Community.all
     end
-
+    authorize @communities
     # Creation
     @community = Community.new
   end
@@ -153,6 +155,7 @@ class CommunitiesController < ApplicationController
 
   def set_community
     @community = Community.find(params[:id])
+    authorize @community
   end
 
   def community_message_params

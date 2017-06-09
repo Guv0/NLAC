@@ -1,5 +1,7 @@
 class ConnectionRequestsController < ApplicationController
   before_action :set_connection_request, except: [ :index, :create ]
+  skip_after_action :verify_authorized
+  skip_after_action :verify_policy_scoped
 
   def index
     @contacts_incoming = current_user.connection_requests
