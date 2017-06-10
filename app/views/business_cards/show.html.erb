@@ -6,71 +6,67 @@
 <!-- CONTENT -->
 <div class="container">
 
-  <!-- LEFT SIDE -->
-  <div class="business-card-left">
-    <!-- TOP -->
-    <div class="flex-start" style="height: 28px; margin-bottom: 10px;">
-      <% if @business_card != current_user.business_card %>
-        <div class="btn business-card-btn">
-          <%= link_to 'Send Message', conversations_path(sender_id: current_user.id, recipient_id: @business_card.id), method: :post %>
-        </div>
-      <% end %>
+  <!-- MESSAGE -->
+  <% if @business_card != current_user.business_card %>
+    <div class="flex-start" style="margin-bottom: 5px;">
+      <%= link_to 'Send Message', conversations_path(sender_id: current_user.id, recipient_id: @business_card.id), class: 'btn business-card-btn', method: :post %>
     </div>
+  <% end %>
 
-
-<%= react_component "BusinessCard", business_card: @business_card %>
-  <!-- LEFT -->
-  <div class="content-left">
-
-    <!-- BUSINESS CARD -->
-    <div class="business-card flex-colomn">
-      <% if @business_card != current_user.business_card %>
-        <!-- UNFRIEND -->
-        <div class="flex-end">
-          <%= link_to connection_path(user: current_user, contact: @business_card.user), method: :delete do %>
-            <i class="material-icons destroy" title="Remove from contacts">clear</i>
-          <% end %>
-        </div>
-        <% else %>
-        <!-- EDIT -->
-        <div class="flex-end">
-          <i class="material-icons edit" title="Edit your information">mode_edit</i>
-        </div>
-      <% end %>
-      <!-- AVATAR -->
-      <div class="flex-center">
-        <% if !@business_card.photo.url.nil? %>
-          <% avatar = @business_card.photo.url %>
-        <% elsif @business_card.linkedin_picture_url != "" && !@business_card.linkedin_picture_url.nil? %>
-          <% avatar = @business_card.linkedin_picture_url %>
-        <% else %>
-          <% avatar = "avatar.png" %>
-        <% end %>
-        <%= image_tag avatar, class: 'business-card-avatar' %>
-      </div>
-      <!-- NAME -->
-      <div class="flex-center" style="margin-top: 30px;">
-        <h1><%= @business_card.full_name %></h1>
-      </div>
-      <!-- POSITION -->
-      <div class="flex-center" style="margin-top: 20px;">
-        <h2><%= @business_card.position %></h2>
-      </div>
-      <!-- COMPANY -->
-      <div class="flex-center" style="margin-top: 10px;">
-        <h2>@ <%= @business_card.company_name %></h2>
-      </div>
-      <!-- CONTACTS -->
-      <div class="flex-end" style="margin-top: 30px; border-bottom: 1px solid #E0E0E0;">
-        <%= link_to business_card_connections_path(@business_card) do %>
-          <p><span style="color: #63D5C3;"><%= @business_card.user.contacts.count %></span> contacts</p>
+  <!-- BUSINESS CARD -->
+  <div class="business-card">
+    <!-- UNFRIEND -->
+    <% if current_user.business_card != @business_card %>
+      <div class="flex-end business-card-link" style="height: 20px; margin-bottom: 10px;">
+        <%= link_to connection_path(user: current_user, contact: @business_card.user), method: :delete do %>
+          <i class="material-icons destroy" title="Remove from contacts">clear</i>
         <% end %>
       </div>
+    <% else %>
+      <div style="height: 20px; margin-bottom: 10px;"></div>
+    <% end %>
+    <!-- AVATAR -->
+    <div class="flex-center" style="padding-left: 20px;">
+      <% if !@business_card.photo.url.nil? %>
+        <% avatar = @business_card.photo.url %>
+      <% elsif @business_card.linkedin_picture_url != "" && !@business_card.linkedin_picture_url.nil? %>
+        <% avatar = @business_card.linkedin_picture_url %>
+      <% else %>
+        <% avatar = "avatar.png" %>
+      <% end %>
+      <%= image_tag avatar, class: 'business-card-avatar' %>
+      <!-- UPLOAD PHOTO -->
+      <% if current_user.business_card == @business_card %>
+        <form novalidate="novalidate" class="simple_form edit_business_card" id="edit_business_card_1" enctype="multipart/form-data" action="/business_cards/1" accept-charset="UTF-8" method="post">
+          <input name="utf8" type="hidden" value="✓">
+          <input type="hidden" name="_method" value="patch">
+          <input type="hidden" name="authenticity_token" value="">
+          <input class="file optional file-upload" type="file" name="business_card[photo]" id="photo-upload"></input>
+          <label class="control-label file optional" for="photo-upload">
+            <i class="fa fa-cloud-upload" title="Upload a photo" aria-hidden="true"></i>
+          </label>
+          <span style="position: relative; top: 50px;">
+            <input type="submit" name="commit" value="Update photo" class="btn business-card-btn hidden" data-disable-with="Update photo">
+          </span>
+        </form>
+      <% end %>
     </div>
+    <!-- REACT -->
+    <%= react_component "BusinessCard", business_card: @business_card, current_user: current_user, user: @business_card.user, contacts: @business_card.user.contacts %>
   </div>
+  <!-- TAGS -->
 
-  <!-- RIGHT SIDE -->
-  <div class="business-card-right">
-
-  </div>
 </div>
+
+
+<!-- JAVASCRIPT -->
+<%= content_for(:after_js) do %>
+  <script>
+    $(".file-upload").on("change", function(){
+      $(".fa-cloud-upload").addClass("hidden");
+      $(".business-card-btn").removeClass("hidden");
+      $($(this).closest(".flex-center")).css('padding-left', '95px');
+    });
+  </script>
+<% end %>
+

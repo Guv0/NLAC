@@ -32,6 +32,7 @@
 .nav-avatar {
   height: 25px;
   width: 25px;
+  border-radius: 50%;
 }
 
 // SIDEBAR
@@ -47,4 +48,5 @@
   height: 125px;
   width: 125px;
   border-radius: 50%;
+  box-shadow: 1px 2px 4px $shadow;
 }
