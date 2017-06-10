@@ -1,36 +1,118 @@
 // BUSINESS CARD
 .business-card {
-  height: 620px;
-  width: 380px;
   background-color: white;
+  padding: 15px;
   border-radius: 3px;
   box-shadow: 2px 3px 4px $shadow;
-  padding: 10px 20px;
-  h1 {
-    font-size: 24px;
-    font-weight: 400;
-  }
-  h2 {
-    font-size: 20px;
+  h5 {
+    font-size: 12px;
     font-weight: 300;
-    color: $grey-two;
+    color: $grey-three;
   }
-  a p {
+  p {
+    font-size: 15px;
+    font-weight: 300;
+    margin: 5px 0 15px 0;
+    padding: 0;
+  }
+  input:not(.btn), textarea {
+    font-size: 15px;
+    font-weight: 300;
     color: $grey-one;
-    padding-bottom: 2px;
-    &:hover {
-      border-bottom: 2px solid $brand-color;
+    margin: 5px 0 15px 0;
+    padding-left: 5px;
+    border: none;
+    border-left: 2px solid $brand-color;
+    &:focus {
+      outline: none;
+      border-bottom: 1px solid $grey-four;
+    }
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: $grey-two;
+      font-weight: 300;
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+      color: $grey-two;
+      font-weight: 300;
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+      color: $grey-two;
+      font-weight: 300;
     }
   }
-  i {
-    font-size: 18px;
-    color: $grey-four;
-  }
-  .destroy:hover {
-    color: $red;
-  }
-  .edit:hover {
-    color: $brand-color-hover;
-    cursor: pointer;
+  .business-card-top-input input {
+    font-size: 22px;
+    width: 125px;
   }
 }
+
+  // .business-card-top-input {
+  //   font-size: 22px;
+  //   font-weight: 400;
+  //   color: $grey-one;
+  //   width: 140px;
+  //   &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  //     color: $grey-two;
+  //     font-weight: 400;
+  //   }
+  //   ::-moz-placeholder { /* Firefox 19+ */
+  //     color: $grey-two;
+  //     font-weight: 400;
+  //   }
+  //   :-ms-input-placeholder { /* IE 10+ */
+  //     color: $grey-two;
+  //     font-weight: 400;
+  //   }
+  // }
+
+// LINK
+.business-card-link {
+  i {
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .edit {
+    color: $brand-color;
+    position: relative;
+    bottom: 25px;
+    &:hover {
+      color: $brand-color-hover;
+    }
+  }
+  .destroy {
+    color: $grey-four;
+      &:hover {
+      color: $red;
+    }
+  }
+}
+
+// NAME
+.business-card-name {
+  width: 100%;
+  font-size: 22px;
+  font-weight: 400;
+  margin-top: 20px;
+}
+
+// JOB
+.business-card-job {
+  font-size: 16px;
+  font-weight: 300;
+  color: $grey-three;
+  margin-bottom: 5px;
+}
+
+// CONTACTS
+.business-card-contacts {
+  font-size: 14px;
+  font-weight: 400;
+  margin: 20px 0 15px 0;
+  &:hover {
+    cursor: pointer;
+  }
+  span {
+    margin-left: 3px;
+  }
+}
+

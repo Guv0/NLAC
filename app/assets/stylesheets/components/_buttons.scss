@@ -1,33 +1,12 @@
-// Community creation
-.community-create-btn {
-  background-color: $brand-color;
-  border-radius: 2px;
-  border: none;
-  color: white;
-  font-weight: bold;
-  padding: 5px 10px;
-  font-size: 14px;
-}
-
-// Conversation send
-.conversation-send-btn {
-  background-color: $brand-color;
-  border-radius: 2px;
-  border: none;
-  color: white;
-  padding: 5px 10px;
-}
-
 // MAIN
 .btn {
   background-color: $brand-color;
+  color: white;
   border-radius: 3px;
   padding: 5px 10px;
-  a {
-    color: white;
-  }
   &:hover {
     background-color: $brand-color-hover;
+    color: white;
     box-shadow: 1px 2px 4px $shadow;
   }
 }
@@ -77,7 +56,47 @@
 // BUSINESS CARD
 .business-card-btn {
   font-size: 12px;
+  font-weight: 400;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Community creation
+.community-create-btn {
+  background-color: $brand-color;
+  border-radius: 2px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+// Conversation send
+.conversation-send-btn {
+  background-color: $brand-color;
+  border-radius: 2px;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+}
+
 
 // Clipboard
 .clipboard-btn {
