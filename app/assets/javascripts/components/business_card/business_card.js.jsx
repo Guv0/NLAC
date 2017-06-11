@@ -51,7 +51,7 @@ var BusinessCard = React.createClass({
           </div>
         </div>
         <div className="flex-center">
-          <div style={{'width': '85%', 'border-bottom': '1px solid #E0E0E0'}}></div>
+          <div style={{'width': '85%', 'borderBottom': '1px solid #E0E0E0'}}></div>
         </div>
         <div className="flex-column" style={{'padding': '10px 25px'}}>
           <div className="flex-column">
@@ -88,7 +88,7 @@ var BusinessCard = React.createClass({
       <div>
         <div className="flex-center business-card-top-input" style={{'margin': '20px 0 15px 0'}}>
           <input name="first_name" placeholder={this.state.business_card.first_name} onChange={this.handleChange}/>
-          <input name="last_name" placeholder={this.state.business_card.last_name} style={{'margin-left': '20px'}} onChange={this.handleChange}/>
+          <input name="last_name" placeholder={this.state.business_card.last_name} style={{'marginLeft': '20px'}} onChange={this.handleChange}/>
         </div>
         <div className="flex-end business-card-link">
           <i className="fa fa-check edit" title="Save changes" aria-hidden="true" style={{'position': 'absolute', 'top': '215px'}} onClick={this.handleSave}></i>
@@ -100,7 +100,7 @@ var BusinessCard = React.createClass({
           <input name="company_name" placeholder={this.state.business_card.company_name} onChange={this.handleChange}/>
         </div>
         <div className="flex-center">
-          <div style={{'width': '85%', 'border-bottom': '1px solid #E0E0E0', 'margin-top': '17px'}}></div>
+          <div style={{'width': '85%', 'borderBottom': '1px solid #E0E0E0', 'marginTop': '17px'}}></div>
         </div>
         <div className="flex-column" style={{'padding': '10px 25px'}}>
           <div className="flex-column">
