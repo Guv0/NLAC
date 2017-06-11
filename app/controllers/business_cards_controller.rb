@@ -29,7 +29,7 @@ class BusinessCardsController < ApplicationController
     # @business_card.record_updates
     respond_to do |format|
       format.json  {render json: @business_card, status: :created}
-      # format.html  redirect_to business_card_path(@business_card)
+      format.html  {redirect_to business_card_path(@business_card)}
     end
   end
 
