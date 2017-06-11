@@ -12,4 +12,8 @@ class ConnectionPolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
+
+  def root?
+    true
+  end
 end
