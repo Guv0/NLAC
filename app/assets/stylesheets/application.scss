@@ -10,7 +10,6 @@
 @import "vendor/index";
 
 // Your CSS
-@import "business_cards/index";
 @import "cards/index";
 @import "components/index";
 @import "devise/index";
@@ -52,30 +51,13 @@
   }
 
   .content-left {
-    flex: 0 0 70%;
     h1 {
       font-size: 18px;
-      color: $grey-dark;
-      margin-bottom: 30px;
     }
   }
 
   .content-right {
-    flex: 0 0 30%;
-    padding-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    .content-right-container {
-      flex: 0 0 48%;
-      display: flex;
-      flex-direction: column;
-    }
-    h3 {
-      font-size: 16px;
-      color: $grey-dark;
-      margin-bottom: 15px;
-    }
+
   }
 
   .index {
