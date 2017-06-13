@@ -19,12 +19,6 @@ var TagsCard = React.createClass({
     this.setState({ tags: newTagsArr });
   },
 
-  killTag: function(index) {
-    var tagsArr = this.state.tags;
-    tagsArr.splice(index, 1);
-    this.setState({tags: tagsArr});
-  },
-
   deleteTag: function(tag) {
     var deleteTag = {};
     deleteTag["id"] = tag[0].id;
@@ -52,6 +46,11 @@ var TagsCard = React.createClass({
     }
   },
 
+  handleTagIt: function() {
+    this.handleFormSubmit();
+    document.getElementById('bc-tag-input').value = '';
+  },
+
   handleFormSubmit: function() {
     var newTag = this.state.newTag
 
@@ -77,27 +76,35 @@ var TagsCard = React.createClass({
 
   render: function() {
     var display_form = this.state.display_form
-    var tags = [];
+    var ownerTags = [];
+    var myTags = [];
 
     this.state.tags.map(function(tag, i) {
-      tags.push(<Tag tag={tag} key={i} index={i} current_user={this.props.current_user}
-        business_card={this.props.business_card} handleCancelTag={this.killTag}
-          handleDeleteTag={this.deleteTag} />)
+      if (this.props.current_user.id === tag[1]) {
+        myTags.push(<Tag tag={tag} key={i} index={i} current_user={this.props.current_user} business_card={this.props.business_card} handleDeleteTag={this.deleteTag} />)
+      } else {
+        ownerTags.push(<Tag tag={tag} key={i} index={i} current_user={this.props.current_user} business_card={this.props.business_card} handleDeleteTag={this.deleteTag} />)
+      }
     }.bind(this))
 
     return (
-      <div className="profile-tags-content flex-column">
-        <div className=" profile-tags-display">
-          {tags}
+      <div>
+        {this.props.business_card.user_id !== this.props.current_user.id &&
+          <h3>{this.props.business_card.first_name.toUpperCase() + "'S TAGS"}</h3>
+        }
+        <div className="flex-wrap" style={{'margin-bottom': '25px'}}>
+          {ownerTags}
+        </div>
+        <h3>MY TAGS</h3>
+        <div className="flex-wrap" style={{'margin-bottom': '25px'}}>
+          {myTags}
         </div>
         <div className="add-tags-error">
           {this.state.error}
         </div>
-        <div className="profile-add-tags-form flex-center">
-          <div className="flex-column">
-            <input name='label' onChange={this.handleChange} onKeyPress={this.handleKeyPress}></input>
-            <p>Type your tag & hit 'Enter'</p>
-          </div>
+        <div className="tags-card-form flex">
+          <input name='label' id='bc-tag-input' placeholder='Enter a descriptive tag' onChange={this.handleChange} onKeyPress={this.handleKeyPress}></input>
+          <button className='btn business-card-btn' onClick={this.handleTagIt}>Tag it !</button>
         </div>
       </div>
     )

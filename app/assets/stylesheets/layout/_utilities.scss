@@ -62,6 +62,12 @@
   flex-direction: column;
 }
 
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
 .flex-start {
   display: flex;
   justify-content: flex-start;

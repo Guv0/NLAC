@@ -29,11 +29,11 @@ class BusinessCardPolicy < ApplicationPolicy
     true
   end
 
-  def create_tags
+  def create_tags?
     record.user == user || user.contacts.include?(record.user) ? true : false
   end
 
-  def delete_tag
+  def delete_tag?
     record.user == user || user.contacts.include?(record.user) ? true : false
   end
 end
