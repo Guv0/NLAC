@@ -55,6 +55,9 @@
     <%= react_component "BusinessCard", business_card: @business_card, current_user: current_user, user: @business_card.user, contacts: @business_card.user.contacts %>
   </div>
   <!-- TAGS -->
+  <div class="tags-card">
+   <%= react_component "TagsCard", {tags: @tags, business_card: @business_card, current_user: @current_user} %>
+  </div>
 
 </div>
 
@@ -62,6 +65,7 @@
 <!-- JAVASCRIPT -->
 <%= content_for(:after_js) do %>
   <script>
+    // CHANGE BUTTON ON PHOTO UPLOAD
     $(".file-upload").on("change", function(){
       $(".fa-cloud-upload").addClass("hidden");
       $(".business-card-btn").removeClass("hidden");
