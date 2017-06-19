@@ -9,19 +9,101 @@
   <!-- LEFT -->
   <div class="content-left">
     <h1>
-      <strong>
-        <%= @business_card.user.id == current_user.id ? "MY CONTACTS" : @business_card.first_name.upcase + "'S CONTACTS"  %> (<%= @business_card.user.contacts.count %>)
-      </strong>
+      <%= @business_card.user.id == current_user.id ? "MY CONTACTS" : @business_card.first_name.upcase + "'S CONTACTS"  %> (<%= @business_card.user.contacts.count %>)
     </h1>
 
     <!-- SEARCH -->
-    <div class="search">
-      <%= form_tag business_card_connections_path(@business_card), method: :get do %>
-        <%= text_field_tag :info, params[:info], class: "search-input", id: "search-info" %>
-        <%= text_field_tag :tag, params[:tag], class: "search-input", id: "search-tag" %>
-        <%= button_tag(type: "submit", class: "search-btn") do %>
-          <i class="material-icons">search</i>
-        <% end %>
+    <%= form_tag business_card_connections_path(@business_card), method: :get, class: "search flex-between" do %>
+      <%= text_field_tag :info, params[:info], id: "search-info" %>
+      <%= text_field_tag :tag, params[:tag], id: "search-tag" %>
+      <%= button_tag(type: "submit", class: "btn search-btn") do %>
+        <i class="material-icons">search</i>
+      <% end %>
+    <% end %>
+
+    <!-- CONTACTS -->
+    <div class="contacts-container flex-column">
+      <!-- CARD -->
+      <% @contacts.each do |contact| %>
+        <div class="contact-card">
+          <!-- TOP -->
+          <div class="contact-card-top">
+            <!-- AVATAR -->
+            <% if !contact.photo.url.nil? %>
+              <% avatar = contact.photo.url %>
+            <% elsif contact.linkedin_picture_url != "" && !contact.linkedin_picture_url.nil? %>
+              <% avatar = contact.linkedin_picture_url %>
+            <% else %>
+              <% avatar = "avatar.png" %>
+            <% end %>
+            <% if current_user.contacts.include?(contact.user) || current_user. business_card == contact %>
+              <%= link_to business_card_path(contact) do %>
+                <%= image_tag avatar, class: "contact-card-avatar" %>
+              <% end %>
+            <% else %>
+              <%= image_tag avatar, class: "contact-card-avatar" %>
+            <% end %>
+            <!-- INFO -->
+            <div class="contact-card-info">
+              <% if current_user.contacts.include?(contact.user) || current_user. business_card == contact %>
+                <%= link_to business_card_path(contact) do %>
+                  <h2 class="link-decoration"><%= contact.full_name %></h2>
+                <% end %>
+              <% else %>
+                <h2><%= contact.full_name %></h2>
+              <% end %>
+              <div class="flex">
+                <div class="flex-column" style="flex: 0 0 50%;">
+                  <h4>LOCATION</h4>
+                  <h6><%= contact.location.truncate(20) %></h6>
+                  <h4>INDUSTRY</h4>
+                  <h6><%= contact.industry.truncate(20) %></h6>
+                </div>
+                <div class="flex-column" style="flex: 0 0 50%;">
+                  <h4>POSITION</h4>
+                  <h6><%= contact.position.truncate(20) %></h6>
+                  <h4>COMPANY</h4>
+                  <h6><%= contact.company_name.truncate(20) %></h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- BOTTOM -->
+          <div class="contact-card-bottom">
+            <!-- TAGS -->
+            <h4>TAGS</h4>
+            <div class="flex flex-wrap">
+              <% if params[:tag] %>
+                <% contact.tags.valid_tags(contact.id, current_user.id).distinct.each do |tag| %>
+                  <% if params[:tag].split(' ').include?(tag.label) %>
+                    <div class="contact-card-tag flex-center">
+                      <p><%= tag.label %></p>
+                    </div>
+                  <% end %>
+                <% end %>
+                <% contact.tags.valid_tags(contact.id, current_user.id).distinct.take(3).each do |tag| %>
+                  <% unless params[:tag].split(' ').include?(tag.label) %>
+                    <div class="contact-card-tag flex-center">
+                      <p><%= tag.label %></p>
+                    </div>
+                  <% end %>
+                <% end %>
+                <%= link_to business_card_path(contact) do %>
+                  <p>see more &#62</p>
+                <% end %>
+              <% else %>
+                <% contact.tags.valid_tags(contact.id, current_user.id).distinct.take(4).each do |tag|  %>
+                  <div class="contact-card-tag flex-center">
+                    <p><%= tag.label %></p>
+                  </div>
+                <% end %>
+                <%= link_to business_card_path(contact) do %>
+                  <p>see more &#62</p>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
@@ -32,3 +114,60 @@
   </div>
 
 </div>
+
+
+
+<!-- ////////////////////////////////// -->
+
+<!-- JQUERY -->
+<%= content_for(:after_js) do %>
+
+  <script>
+
+  // PHONE
+  if ($(window).width() < 376) {
+    // TYPEDJS INFO
+    $(function(){
+      $("#search-info").typed({
+        strings: ['Search by name...', 'location...', 'industry...', 'job...', 'company...', 'e.g., Bill Gates', 'e.g., London', 'e.g., Tech', 'e.g., Web Developer', 'e.g., Facebook'],
+        typeSpeed: 100,
+        loop: true,
+        attr: 'placeholder'
+      });
+    });
+
+    // TYPEDJS TAGS
+    $(function(){
+      $("#search-tag").typed({
+        strings: ['Search by tags...', 'e.g., ruby on rails', 'e.g., marketing', 'e.g., designer', 'e.g., photoshop'],
+        typeSpeed: 100,
+        loop: true,
+        attr: 'placeholder'
+      });
+    });
+  // LAPTOP
+  } else {
+    // TYPEDJS INFO
+    $(function(){
+      $("#search-info").typed({
+        strings: ['Search by name, location, industry, job, company...', 'e.g., Bill Gates', 'e.g., London', 'e.g., Tech', 'e.g., Web Developer', 'e.g., Facebook'],
+        typeSpeed: 100,
+        loop: true,
+        attr: 'placeholder'
+      });
+    });
+
+    // TYPEDJS TAGS
+    $(function(){
+      $("#search-tag").typed({
+        strings: ['Search tags...', 'e.g., ruby on rails', 'e.g., marketing', 'e.g., designer', 'e.g., photoshop'],
+        typeSpeed: 100,
+        loop: true,
+        attr: 'placeholder'
+      });
+    });
+  }
+
+  </script>
+
+<% end %>

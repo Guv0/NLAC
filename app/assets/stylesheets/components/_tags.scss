@@ -14,3 +14,16 @@
     margin-left: 6px;
   }
 }
+
+// CONTACT CARD
+.contact-card-tag {
+  background-color: $brand-color;
+  border-radius: 3px;
+  margin-right: 5px;
+  padding: 2px 4px;
+  p {
+    font-size: 10px;
+    font-weight: 300;
+    color: white;
+  }
+}
