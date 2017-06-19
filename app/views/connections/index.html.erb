@@ -3,99 +3,104 @@
   NLAC | <%= @business_card.user == current_user ? "My contacts" : @business_card.full_name + "'s contacts" %>
 <% end %>
 
+<!-- CONTENT -->
 <div class="container">
 
   <!-- LEFT -->
   <div class="content-left">
     <h1>
-      <strong>
-        <%= @business_card.user.id == current_user.id ? "MY CONTACTS" : @business_card.first_name.upcase + "'S CONTACTS"  %> (<%= @business_card.user.contacts.count %>)
-      </strong>
+      <%= @business_card.user.id == current_user.id ? "MY CONTACTS" : @business_card.first_name.upcase + "'S CONTACTS"  %> (<%= @business_card.user.contacts.count %>)
     </h1>
 
     <!-- SEARCH -->
-    <div class="main-search">
-      <%= form_tag business_card_connections_path(@business_card), method: :get do %>
-        <%= text_field_tag :info, params[:info], class: "search-input", id: "search-info" %>
-        <%= text_field_tag :tag, params[:tag], class: "search-input", id: "search-tag" %>
-        <%= button_tag(type: "submit", class: "search-btn") do %>
-          <i class="material-icons">search</i>
-        <% end %>
+    <%= form_tag business_card_connections_path(@business_card), method: :get, class: "search flex-between" do %>
+      <%= text_field_tag :info, params[:info], id: "search-info" %>
+      <%= text_field_tag :tag, params[:tag], id: "search-tag" %>
+      <%= button_tag(type: "submit", class: "btn search-btn") do %>
+        <i class="material-icons">search</i>
       <% end %>
-    </div>
+    <% end %>
 
     <!-- CONTACTS -->
-    <div class="index">
+    <div class="contacts-container flex-column">
+      <!-- CARD -->
       <% @contacts.each do |contact| %>
         <div class="contact-card">
-          <% if !contact.photo.url.nil? %>
-            <% avatar = contact.photo.url %>
-          <% elsif contact.linkedin_picture_url != "" && !contact.linkedin_picture_url.nil? %>
-            <% avatar = contact.linkedin_picture_url %>
-          <% else %>
-            <% avatar = "avatar.png" %>
-          <% end %>
-          <!-- AVATAR -->
-          <% if current_user.contacts.include?(contact.user) || current_user. business_card == contact %>
-            <%= link_to business_card_path(contact) do %>
-              <%= image_tag avatar, class: "contact-card-avatar" %>
+          <!-- TOP -->
+          <div class="contact-card-top">
+            <!-- AVATAR -->
+            <% if !contact.photo.url.nil? %>
+              <% avatar = contact.photo.url %>
+            <% elsif contact.linkedin_picture_url != "" && !contact.linkedin_picture_url.nil? %>
+              <% avatar = contact.linkedin_picture_url %>
+            <% else %>
+              <% avatar = "avatar.png" %>
             <% end %>
-          <% else %>
-            <%= image_tag avatar, class: "contact-card-avatar" %>
-          <% end %>
-          <!-- INFO -->
-          <div class="contact-card-info">
             <% if current_user.contacts.include?(contact.user) || current_user. business_card == contact %>
               <%= link_to business_card_path(contact) do %>
-                <h2 class="link-decoration"><%= contact.full_name %></h2>
+                <%= image_tag avatar, class: "contact-card-avatar" %>
               <% end %>
             <% else %>
-              <h2><%= contact.full_name %></h2>
+              <%= image_tag avatar, class: "contact-card-avatar" %>
             <% end %>
-            <div class="flex-start">
-              <i class="material-icons">location_on</i>
-              <h6><%= contact.location %></h6>
-            </div>
-            <div class="flex-start">
-              <i class="material-icons">location_city</i>
-              <h6><%= contact.industry %></h6>
-            </div>
-            <div class="flex-start">
-              <i class="material-icons">business_center</i>
-              <h6><%= contact.company_name %></h6>
-            </div>
-          </div>
-          <div class="contact-card-right">
-            <!-- MESSAGE -->
-            <div class="contact-card-top-right">
-              <% if current_user.contacts.include?(contact.user) %>
-                <%= link_to conversations_path(sender_id: current_user.id, recipient_id: contact.id), method: :post, title: 'Send Message'  do %>
-                  <i class="material-icons">email</i>
+            <!-- INFO -->
+            <div class="contact-card-info">
+              <% if current_user.contacts.include?(contact.user) || current_user. business_card == contact %>
+                <%= link_to business_card_path(contact) do %>
+                  <h2 class="link-decoration"><%= contact.full_name %></h2>
                 <% end %>
+              <% else %>
+                <h2><%= contact.full_name %></h2>
               <% end %>
-            </div>
-            <!-- TAGS -->
-            <div class="contact-card-tags">
-              <h3>TAGS</h3>
-              <div class="contact-card-tags-display">
-                <% if params[:tag] %>
-                  <% contact.tags.valid_tags(contact.id, current_user.id).uniq.each do |tag| %>
-                  <% if params[:tag].split(' ').include?(tag.label) %>
-                  <div class="tag-card-small">
-                      <%= tag.label %>
-                      </div>
-                      <% end %>
-                  <% end %>
-                  <% contact.tags.valid_tags(contact.id, current_user.id).uniq.take(5).each do |tag| %>
-                  <% unless params[:tag].split(' ').include?(tag.label) %>
-                  <div class="tag-card-small">
-                      <p><%= tag.label %></p>
-                      </div>
-                  <% end %>
-                <% end %>
-                <% end %>
+              <div class="flex">
+                <div class="flex-column" style="flex: 0 0 50%;">
+                  <h4>LOCATION</h4>
+                  <h6><%= contact.location.truncate(20) %></h6>
+                  <h4>INDUSTRY</h4>
+                  <h6><%= contact.industry.truncate(20) %></h6>
+                </div>
+                <div class="flex-column" style="flex: 0 0 50%;">
+                  <h4>POSITION</h4>
+                  <h6><%= contact.position.truncate(20) %></h6>
+                  <h4>COMPANY</h4>
+                  <h6><%= contact.company_name.truncate(20) %></h6>
                 </div>
               </div>
+            </div>
+          </div>
+          <!-- BOTTOM -->
+          <div class="contact-card-bottom">
+            <!-- TAGS -->
+            <h4>TAGS</h4>
+            <div class="flex flex-wrap">
+              <% if params[:tag] %>
+                <% contact.tags.valid_tags(contact.id, current_user.id).distinct.each do |tag| %>
+                  <% if params[:tag].split(' ').include?(tag.label) %>
+                    <div class="contact-card-tag flex-center">
+                      <p><%= tag.label %></p>
+                    </div>
+                  <% end %>
+                <% end %>
+                <% contact.tags.valid_tags(contact.id, current_user.id).distinct.take(3).each do |tag| %>
+                  <% unless params[:tag].split(' ').include?(tag.label) %>
+                    <div class="contact-card-tag flex-center">
+                      <p><%= tag.label %></p>
+                    </div>
+                  <% end %>
+                <% end %>
+                <%= link_to business_card_path(contact) do %>
+                  <p>see more &#62</p>
+                <% end %>
+              <% else %>
+                <% contact.tags.valid_tags(contact.id, current_user.id).distinct.take(4).each do |tag|  %>
+                  <div class="contact-card-tag flex-center">
+                    <p><%= tag.label %></p>
+                  </div>
+                <% end %>
+                <%= link_to business_card_path(contact) do %>
+                  <p>see more &#62</p>
+                <% end %>
+              <% end %>
             </div>
           </div>
         </div>
@@ -105,103 +110,27 @@
 
   <!-- RIGHT -->
   <div class="content-right">
-    <!-- HOT TAGS -->
-    <div class="content-right-container">
-      <h3>
-        <strong>
-          Popular tags in <%= @business_card.user.id == current_user.id ? "my contacts" : @business_card.first_name.capitalize + "'s contacts"  %>
-        </strong>
-      </h3>
-      <div class="content-right-card">
-        <% @hot_tags.each_with_index do |array, index| %>
-          <div class="hot-tag">
-            <% if index + 1 == 1 %>
-              <%= image_tag "first.png" %>
-              <h5 style="margin-right: auto; color: #2AAF74;"><%= array[0] %></h5>
-              <p>(<%= array[1] %>)</p>
-            <% elsif index + 1 == 2 %>
-              <%= image_tag "second.png" %>
-              <h5 style="margin-right: auto; color: #2AAF74;"><%= array[0] %></h5>
-              <p>(<%= array[1] %>)</p>
-            <% elsif index + 1 == 3 %>
-              <%= image_tag "third.png" %>
-              <h5 style="margin-right: auto; color: #2AAF74;"><%= array[0] %></h5>
-              <p>(<%= array[1] %>)</p>
-            <% else %>
-              <h5>#<%= index + 1 %></h5>
-              <h5 style="margin-right: auto;"><%= array[0] %></h5>
-              <p>(<%= array[1] %>)</p>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-    </div>
 
-    <!-- RECENT UPDATES -->
-    <% if @business_card.user == current_user %>
-    <div class="content-right-container">
-      <h3>
-        <strong>
-          Recent updates in <%= @business_card.user.id == current_user.id ? "my contacts" : @business_card.first_name.capitalize + "'s contacts"  %>
-        </strong>
-      </h3>
-      <div class="content-right-card">
-        <div style="overflow: scroll;">
-          <% @updates.each do |update| %>
-            <%= link_to business_card_path(update[0]) do %>
-              <div class="update">
-                <% attr = update[1] %>
-                <% case attr %>
-                <% when "first_name", "last_name", "photo" %>
-                  <i class="material-icons">person</i>
-                <% when "location" %>
-                  <i class="material-icons">location_on</i>
-                <% when "phone" %>
-                  <i class="material-icons">call</i>
-                <% when "industry" %>
-                  <i class="material-icons">location_city</i>
-                <% when "company_name"  %>
-                  <i class="material-icons">business_center</i>
-                <% when "email"  %>
-                  <i class="material-icons">email</i>
-                <% when "tag" %>
-                  <i class="material-icons">fiber_new</i>
-                <% end %>
-                <div style="display: flex; flex-wrap: wrap;">
-                  <h6><strong><%= update[0].full_name %></strong> updated <strong><%= update[1].gsub("_", " ") %></strong> to <%= update[2] %></h6>
-                </div>
-                <p><%= time_ago_in_words(update[3]).gsub("about", "") %> ago</p>
-              </div>
-            <% end %>
-            <% if update != @updates.last %>
-              <div style="border-bottom: 1px solid #2AAF74; margin: 5px 10px;"></div>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <% else %>
-      <div class="content-right-container"></div>
-    <% end %>
   </div>
 
 </div>
 
 
-<!-- TO ADD -->
-<%# link_to "Import contacts from Gmail", '/contacts/gmail' %>
 
+<!-- ////////////////////////////////// -->
 
 <!-- JQUERY -->
 <%= content_for(:after_js) do %>
 
   <script>
 
+  // PHONE
+  if ($(window).width() < 376) {
     // TYPEDJS INFO
     $(function(){
       $("#search-info").typed({
-        strings: ['Search name, location, industry, company', 'Bill Gates', 'London', 'Tech', 'Facebook'],
-        typeSpeed: 50,
+        strings: ['Search by name...', 'location...', 'industry...', 'job...', 'company...', 'e.g., Bill Gates', 'e.g., London', 'e.g., Tech', 'e.g., Web Developer', 'e.g., Facebook'],
+        typeSpeed: 100,
         loop: true,
         attr: 'placeholder'
       });
@@ -210,15 +139,35 @@
     // TYPEDJS TAGS
     $(function(){
       $("#search-tag").typed({
-        strings: ['Search tags', 'ruby on rails', 'marketing', 'designer', 'photoshop'],
-        typeSpeed: 50,
+        strings: ['Search by tags...', 'e.g., ruby on rails', 'e.g., marketing', 'e.g., designer', 'e.g., photoshop'],
+        typeSpeed: 100,
+        loop: true,
+        attr: 'placeholder'
+      });
+    });
+  // LAPTOP
+  } else {
+    // TYPEDJS INFO
+    $(function(){
+      $("#search-info").typed({
+        strings: ['Search by name, location, industry, job, company...', 'e.g., Bill Gates', 'e.g., London', 'e.g., Tech', 'e.g., Web Developer', 'e.g., Facebook'],
+        typeSpeed: 100,
         loop: true,
         attr: 'placeholder'
       });
     });
 
+    // TYPEDJS TAGS
+    $(function(){
+      $("#search-tag").typed({
+        strings: ['Search tags...', 'e.g., ruby on rails', 'e.g., marketing', 'e.g., designer', 'e.g., photoshop'],
+        typeSpeed: 100,
+        loop: true,
+        attr: 'placeholder'
+      });
+    });
+  }
 
   </script>
 
 <% end %>
-

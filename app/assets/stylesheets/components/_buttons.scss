@@ -59,7 +59,19 @@
   font-weight: 400;
 }
 
-
+// SEARCH
+.search-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  i {
+    font-size: 20px;
+  }
+  &:hover {
+    background-color: $brand-color-hover;
+  }
+}
 
 
 

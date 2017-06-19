@@ -1,47 +1,78 @@
-// Container
-.main-search {
-  width: 80%;
-  margin-bottom: 20px;
-  form {
-    display: flex;
-    justify-content: space-between;
+// MAIN
+.search {
+  margin-bottom: 15px;
+  input {
+    font-size: 14px;
+    font-weight: 300;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid $grey-two;
+    &::placeholder {
+      font-weight: 100;
+      color: $grey-three;
+    }
+    &:focus {
+      outline: none;
+    }
   }
 }
 
-// Input
-.search-input {
-  background-color: $background-color;
-  border: none;
-  border-bottom: 1px solid $blue-dark;
-  padding-bottom: 5px;
-  &:nth-child(2) {
-    flex: 0 0 60%;
-  }
-  &:nth-child(3) {
-    flex: 0 0 30%;
-  }
-  &::-webkit-input-placeholder {
-    color: $blue-dark;
-    font-weight: lighter;
-  }
-  &:focus {
-    outline: none;
-    color: $blue-dark;
-    font-weight: lighter;
-  }
-}
 
-// Button
-.search-btn {
-  height: 30px;
-  width: 30px;
-  color: white;
-  background-color: $brand-color;
-  border: none;
-  border-radius: 2px;
-  display: flex;
-  justify-content: center;
-  .material-icons {
-    font-size: 26px;
-  }
-}
+
+
+
+
+
+
+
+
+
+
+
+                      // // Container
+                      // .main-search {
+                      //   width: 80%;
+                      //   margin-bottom: 20px;
+                      //   form {
+                      //     display: flex;
+                      //     justify-content: space-between;
+                      //   }
+                      // }
+
+                      // // Input
+                      // .search-input {
+                      //   background-color: $background-color;
+                      //   border: none;
+                      //   border-bottom: 1px solid $blue-dark;
+                      //   padding-bottom: 5px;
+                      //   &:nth-child(2) {
+                      //     flex: 0 0 60%;
+                      //   }
+                      //   &:nth-child(3) {
+                      //     flex: 0 0 30%;
+                      //   }
+                      //   &::-webkit-input-placeholder {
+                      //     color: $blue-dark;
+                      //     font-weight: lighter;
+                      //   }
+                      //   &:focus {
+                      //     outline: none;
+                      //     color: $blue-dark;
+                      //     font-weight: lighter;
+                      //   }
+                      // }
+
+                      // // Button
+                      // .search-btn {
+                      //   height: 30px;
+                      //   width: 30px;
+                      //   color: white;
+                      //   background-color: $brand-color;
+                      //   border: none;
+                      //   border-radius: 2px;
+                      //   display: flex;
+                      //   justify-content: center;
+                      //   .material-icons {
+                      //     font-size: 26px;
+                      //   }
+                      // }
