@@ -55,15 +55,15 @@
               <div class="flex">
                 <div class="flex-column" style="flex: 0 0 50%;">
                   <h4>LOCATION</h4>
-                  <h6><%= contact.location.truncate(20) %></h6>
+                  <h6><%= contact.location.truncate(20) if contact.location %></h6>
                   <h4>INDUSTRY</h4>
-                  <h6><%= contact.industry.truncate(20) %></h6>
+                  <h6><%= contact.industry.truncate(20) if contact.industry %></h6>
                 </div>
                 <div class="flex-column" style="flex: 0 0 50%;">
                   <h4>POSITION</h4>
-                  <h6><%= contact.position.truncate(20) %></h6>
+                  <h6><%= contact.position.truncate(20) if contact.position %></h6>
                   <h4>COMPANY</h4>
-                  <h6><%= contact.company_name.truncate(20) %></h6>
+                  <h6><%= contact.company_name.truncate(20) if contact.company_name %></h6>
                 </div>
               </div>
             </div>
