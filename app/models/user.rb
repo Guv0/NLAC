@@ -22,6 +22,9 @@ class User < ApplicationRecord
   # Communities
   has_many :community_requests, dependent: :destroy
 
+  geocoded_by :location
+  after_validation :geocode, if: ->(user){ user.location.present? and user.location_changed? }
+
   def community_requests_as_manager
     requests = []
     self.community_memberships.where(manager: true).each do |community_membership|
