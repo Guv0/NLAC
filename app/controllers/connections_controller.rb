@@ -87,7 +87,7 @@ skip_after_action :verify_authorized, only: [:create, :root]
     #Map
     @locations = []
     @business_card.user.contacts.each do |contact|
-      @locations << {lat: contact.business_card.latitude, lng: contact.business_card.longitude}
+      @locations << {lat: contact.business_card.latitude, lng: contact.business_card.longitude}.to_json
     end
 
     # Gmail

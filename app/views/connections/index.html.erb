@@ -110,7 +110,7 @@
 
   <!-- RIGHT -->
   <div class="content-right">
-    <div id="map" style="height: 500px;"></div>
+    <div id="map" style="height: 600px;"></div>
   </div>
 
 </div>
@@ -174,7 +174,7 @@
       function initMap() {
 
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 1,
+          zoom: 2,
           center: {lat: 0, lng: 0}
         });
 
@@ -187,8 +187,8 @@
         // The map() method here has nothing to do with the Google Maps API.
         var markers = locations.map(function(location, i) {
           return new google.maps.Marker({
-            position: location,
-            label: labels[i % labels.length]
+            position: location[0];
+            label: location[1]["name"];
           });
         });
 
@@ -196,7 +196,11 @@
         var markerCluster = new MarkerClusterer(map, markers,
             {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
       }
-      var locations = <%= raw @locations %>
+      var ruby_locations = <%= raw @locations %>
+      var locations = [];
+      ruby_locations.map(function(location) {
+        locations.push(JSON.parse(location));
+      });
 
 
 
