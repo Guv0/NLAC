@@ -4,6 +4,9 @@ belongs_to :user
 has_many :tag_relations, dependent: :destroy
 has_many :tags, through: :tag_relations
 
+geocoded_by :location
+after_validation :geocode, if: ->(self){ self.location.present? and self.location_changed? }
+
 include PgSearch
 pg_search_scope :search_for, against: [:first_name, :last_name, :location, :industry, :position, :company_name]
 
