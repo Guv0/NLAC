@@ -51,6 +51,9 @@ gem 'rails_admin', '>= 1.0.0.rc'
 # seed
 gem 'faker'
 
+#geocode
+gem 'geocoder'
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
