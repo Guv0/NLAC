@@ -28,8 +28,15 @@ var ConversationCard = React.createClass({
 
   render: function(){
     // var display_conversation = this.state.display_conversation;
-    var messages = this.props.conversation[3];
+    var messages;
+    if (this.props.conversation[3].length > 1) {
+      messages = this.props.conversation[3];
+    } else {
+      messages = [{"sent_at": "", "body": ""}];
+    }
+    console.log(this.props.conversation[3]);
     // var status = messages[messages.length - 1].read;
+
     var id, active, count = 0, unread_count;
 
     this.props.conversation[3].forEach(function(message){
