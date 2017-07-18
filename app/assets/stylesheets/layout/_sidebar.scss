@@ -1,112 +1,63 @@
-// SIDE CONTAINER
-.side-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 40px;
-  background-color: #3B3E52;
-  padding-left: 70px;
-  padding-right: 60px;
-  h6 {
-    display: none;
-  }
-
-  // TOP
+// COMPUTER
+.computer-side-container {
+  flex: 0 0 15%;
+  height: 100%;
+  background-color: $blue;
   .side-top {
-    display: none;
-  }
-
-  // ICONS
-  a i {
-    font-size: 15px;
-    color: $grey-four;
-    &:active {
-      color: white;
-    }
-  }
-}
-
-// NOTIFICATIONS
-.side-notifications {
-  height: 10px;
-  width: 10px;
-  border-radius: 50%;
-  background-color: $red;
-  position: absolute;
-  top: 52px;
-  right: 57px;
-  p {
-    display: none;
-  }
-}
-
-
-
-
-
-// MEDIA QUERIES
-  @media (min-width: 376px){
-    // SIDE CONTAINER
-    .side-container {
-      flex: 0 0 15%;
-      padding: 0 0 150px 0;
-      flex-direction: column;
-      h6 {
-        display: block;
-        font-size: 12px;
-        font-weight: 300;
-      }
-      a {
-        width: 100%;
-        color: $grey-four;
-        &:hover {
-          color: white;
-          i {
-            color: white;
-          }
-        }
-        i {
-          flex: 0 0 15%;
-          margin-left: 25px;
-        }
-      }
-
-      // TOP
-      .side-top {
-        flex: 0 0 50%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        width: 75%;
-        color: white;
-        padding: 10px 0;
-        border-bottom: 1px solid white;
-        h1 {
-          font-size: 18px;
-          font-weight: 300;
-        }
-      }
-    }
-
-    // NOTIFICATIONS
-    #side-messages {
-      width: 100%;
-    }
-    #message-notifications {
+    flex: 0 0 38%;
+    padding-bottom: 15px;
+    a {
+      flex: 0 0 80%;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: flex-end;
       align-items: center;
-      top: 425px;
-      left: 140px;
+      .side-avatar {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+      }
     }
-    .side-notifications {
-      height: 12px;
-      width: 12px;
-      p {
-        display: block;
-        font-size: 6px;
+    .side-name {
+      flex: 0 0 20%;
+      h2 {
+        color: white;
+        font-size: 17px;
         font-weight: 300;
+        text-align: center;
+        margin: 0 5px;
       }
     }
   }
+  .side-bottom {
+    flex: 0 0 62%;
+    margin-top: 10px;
+    .side-row {
+      width: 100%;
+      height: 25%;
+      a:hover {
+        background-color: $hover-blue;
+        transition: 0.5s;
+      }
+      .side-option {
+        flex: 0 0 50%;
+        height: 100%;
+        transition: 0.5s;
+        .side-img {
+          width: 25px;
+        }
+        h4 {
+          color: white;
+          font-size: 13px;
+          font-weight: 400;
+          margin-top: 20px;
+          text-decoration: none;
+        }
+      }
+      .side-active {
+        background-color: $hover-blue;
+      }
+    }
+  }
+}
