@@ -1,45 +1,24 @@
-<!-- CONTAINER -->
-<div class="nav-container flex">
+<!-- COMPUTER -->
+  <!-- CONTAINER -->
+  <div class="computer-nav-container flex">
+    <!-- LOGO -->
+    <div class="nav-left flex-center">
 
-  <!-- LEFT SIDE -->
-  <div class="nav-left flex-center">
-    <!-- LOGO (phones) -->
-    <%= link_to root_path do %>
-      <%= image_tag 'logo' %>
-    <% end %>
-    <!-- BRAND NAME (laptops) -->
-    <%= link_to root_path do %>
-      <h1><em>NeverLoseAContact</em></h1>
-    <% end %>
-  </div>
-
-  <!-- MIDDLE SIDE -->
-  <div class="nav-middle flex-end">
-    <!-- AVATAR -->
-      <% if !current_user.business_card.photo.url.nil? %>
-        <% avatar = current_user.business_card.photo.url %>
-      <% elsif current_user.business_card.linkedin_picture_url != "" && !current_user.business_card.linkedin_picture_url.nil? %>
-        <% avatar = current_user.business_card.linkedin_picture_url %>
-      <% else %>
-        <% avatar = 'avatar.png' %>
-      <% end %>
-      <%= link_to business_card_path(current_user) do %>
-        <%= image_tag avatar, class: 'nav-avatar' %>
-      <% end %>
-  </div>
-
-  <!-- RIGHT SIDE -->
-    <div class="nav-right flex-end">
+    </div>
+    <!-- NAVBAR -->
+    <div class="nav-right flex-between">
+      <!-- CREATE COMMUNITY -->
+      <div class="nav-community-btn"><h1>CREATE A COMMUNITY</h1></div>
       <!-- LOG OUT -->
       <%= link_to destroy_user_session_path, method: :delete do %>
         <i class="material-icons">power_settings_new</i>
       <% end %>
     </div>
+  </div>
 
-  <p>hello</p>
 
-</div>
 
+<!-- PHONE -->
 
 
 
