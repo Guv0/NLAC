@@ -42,14 +42,24 @@
         <% end %>
         <!-- REQUESTS -->
         <%= link_to business_card_connection_requests_path(current_user), class: "side-option flex-center flex-column #{'side-active' if active == 'connection_requests#index'}" do %>
-          <%= image_tag("requests-icon.png", class: "side-img") %>
+          <div class="flex-center flex-column">
+            <% if @requests_count > 0 %>
+              <div class="side-notif" id="side-requests-notif"><p><%= @requests_count %></p></div>
+            <% end %>
+            <%= image_tag("requests-icon.png", class: "side-img") %>
+          </div>
           <h4>REQUESTS</h4>
         <% end %>
       </div>
       <div class="side-row flex">
         <!-- MESSAGES -->
         <%= link_to conversations_path, class: "side-option flex-center flex-column #{'side-active' if active == 'conversations#index'}" do %>
-          <%= image_tag("messages-icon.png", class: "side-img") %>
+          <div class="flex-center flex-column">
+            <% if @unread_messages_count > 0 %>
+              <div class="side-notif" id="side-messages-notif"><p><%= @unread_messages_count %></p></div>
+            <% end %>
+            <%= image_tag("messages-icon.png", class: "side-img") %>
+          </div>
           <h4>MESSAGES</h4>
         <% end %>
       </div>
