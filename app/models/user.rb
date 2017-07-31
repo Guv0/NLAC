@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :community_memberships, :foreign_key => 'member_id'
   has_many :communities, through: :community_memberships
   has_many :community_messages
+  has_many :events, through: :event_attendees
   #Contact side
   # pending connection request the user sent
   has_many :connection_requests, foreign_key: :contact_id, dependent: :destroy
