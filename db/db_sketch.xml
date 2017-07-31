@@ -159,7 +159,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="882" y="497" name="communities">
+<table x="881" y="536" name="communities">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -239,7 +239,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1067" y="349" name="community_messages">
+<table x="1112" y="483" name="community_messages">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -255,6 +255,38 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="body" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1111" y="271" name="events">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="community_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="communities" row="id" />
+</row>
+<row name="organiser_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
+<row name="attendee_ids" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
+<row name="title" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="start" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="end" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">

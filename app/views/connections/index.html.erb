@@ -9,7 +9,7 @@
   <!-- LEFT -->
   <div class="content-left">
     <h1>
-      <%= @business_card.user.id == current_user.id ? "MY CONTACTS" : @business_card.first_name.upcase + "'S CONTACTS"  %> (<%= @business_card.user.contacts.count %>)
+      <%= @business_card.user.id == current_user.id ? "MY CONTACTS" : @business_card.first_name.upcase + "'S CONTACTS"  %> (<%= @contacts.count %>)
     </h1>
 
     <!-- SEARCH -->
