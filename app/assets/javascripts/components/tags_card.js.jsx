@@ -88,7 +88,7 @@ var TagsCard = React.createClass({
     }.bind(this))
 
     return (
-      <div className="tags-card-content">
+      <div>
         {this.props.business_card.user_id !== this.props.current_user.id &&
           <h3>{this.props.business_card.first_name.toUpperCase() + "'S TAGS"}</h3>
         }
