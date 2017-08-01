@@ -84,7 +84,11 @@ skip_after_action :verify_authorized, only: [:create, :root]
       end
     end
 
-
+    #Map
+    @locations = []
+    @business_card.user.contacts.each do |contact|
+      @locations << {lat: contact.business_card.latitude, lng: contact.business_card.longitude, name: contact.business_card.full_name}.to_json if contact.business_card.latitude
+    end
 
     # Gmail
     @gmail_contacts = request.env['omnicontacts.contacts']

@@ -112,6 +112,7 @@ GEM
       railties (>= 3.2, < 5.1)
     font-awesome-sass (4.7.0)
       sass (>= 3.2)
+    geocoder (1.4.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -304,6 +305,7 @@ DEPENDENCIES
   faker
   figaro
   font-awesome-sass
+  geocoder
   jbuilder (~> 2.0)
   jquery-rails
   letter_opener
