@@ -11,7 +11,16 @@ var BusinessCard = React.createClass({
   },
 
   handleMessage: function(e) {
-    window.location = '/conversations?active_conversation='
+    $.ajax({
+      type: 'POST',
+      url: '/conversations',
+      data: {
+        sender_id: this.props.current_user.id,
+        recipient_id: this.props.user.id
+      }
+    }).done(function(data){
+      window.location = '/conversations?active_conversation=' + data.id
+    }.bind(this));
   },
 
   handleEdit: function(e) {
