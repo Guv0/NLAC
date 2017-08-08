@@ -10,6 +10,10 @@ var BusinessCard = React.createClass({
     window.location = '/business_cards/' + this.state.business_card.id + '/connections';
   },
 
+  handleMessage: function(e) {
+    window.location = '/conversations?active_conversation='
+  },
+
   handleEdit: function(e) {
     e.preventDefault();
     this.setState({editable: true});
@@ -40,39 +44,51 @@ var BusinessCard = React.createClass({
       var link = <i className="material-icons edit" title="Edit your information" onClick={this.handleEdit}>mode_edit</i>;
     }
     return (
-      <div>
-        <div className="flex-center business-card-name">{this.state.business_card.first_name + ' '} {this.state.business_card.last_name}</div>
-        <div className="flex-end business-card-link" style={{'height': '20px'}}>{link}</div>
-        <div className="flex-center business-card-job">{this.state.business_card.position}</div>
-        <div className="flex-center business-card-job">@ {this.state.business_card.company_name}</div>
-        <div className="flex-end">
+      <div className="business-card-content">
+        <div className="flex-end business-card-link">{link}</div>
+
+        <div className="flex-center">
+          <h1>{this.state.business_card.first_name + ' '} {this.state.business_card.last_name}</h1>
+        </div>
+
+        <div className="flex-center flex-wrap">
+          <h2>{this.state.business_card.position} </h2>
+          <h2> @ {this.state.business_card.company_name}</h2>
+        </div>
+
+        <div className="flex-center">
+          <i className="material-icons location">location_on</i>
+          <h3>{this.state.business_card.location}</h3>
+        </div>
+
+        <div className="flex-center">
           <div className="btn business-card-contacts" onClick={this.handleContacts}>
-            {this.props.contacts.length}<span>contacts</span>
+            <p>Contacts</p>
+          </div>
+          <div className="btn business-card-contacts" onClick={this.handleMessage}>
+            <p>Message</p>
           </div>
         </div>
-        <div className="flex-center">
-          <div style={{'width': '85%', 'borderBottom': '1px solid #E0E0E0'}}></div>
-        </div>
+
         <div className="flex-column" style={{'padding': '10px 25px'}}>
           <div className="flex-column">
             <h5>EMAIL</h5>
             <p>{this.state.business_card.email}</p>
           </div>
+
           <div className="flex-column">
             <h5>PHONE</h5>
             <p>{this.state.business_card.phone}</p>
           </div>
-          <div className="flex-column">
-            <h5>LOCATION</h5>
-            <p>{this.state.business_card.location}</p>
-          </div>
-          <div className="flex-column">
-            <h5>INDUSTRY</h5>
-            <p>{this.state.business_card.industry}</p>
-          </div>
-          <div className="flex-column">
-            <h5>WEBSITE</h5>
-            <p>{this.state.business_card.linkedin_profile_url}</p>
+          <div className="flex">
+            <div className="flex-column">
+              <h5>INDUSTRY</h5>
+              <p>{this.state.business_card.industry}</p>
+            </div>
+            <div className="flex-column">
+              <h5>WEBSITE</h5>
+              <p>{this.state.business_card.linkedin_profile_url}</p>
+            </div>
           </div>
           <div className="flex-column">
             <h5>DESCRIPTION</h5>
@@ -85,7 +101,7 @@ var BusinessCard = React.createClass({
 
   renderForm: function() {
     return (
-      <div>
+      <div className="business-card-content">
         <div className="flex-center business-card-top-input" style={{'margin': '20px 0 15px 0'}}>
           <input name="first_name" placeholder={this.state.business_card.first_name} onChange={this.handleChange}/>
           <input name="last_name" placeholder={this.state.business_card.last_name} style={{'marginLeft': '20px'}} onChange={this.handleChange}/>
