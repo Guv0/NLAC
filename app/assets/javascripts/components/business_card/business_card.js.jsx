@@ -54,56 +54,69 @@ var BusinessCard = React.createClass({
     }
     return (
       <div className="business-card-content">
-        <div className="flex-end business-card-link">{link}</div>
+        {/* Edit profile */}
+        <div className="flex-end" style={{'height': '0'}}>{link}</div>
 
-        <div className="flex-center">
-          <h1>{this.state.business_card.first_name + ' '} {this.state.business_card.last_name}</h1>
-        </div>
-
-        <div className="flex-center flex-wrap">
-          <h2>{this.state.business_card.position} </h2>
-          <h2> @ {this.state.business_card.company_name}</h2>
-        </div>
-
-        <div className="flex-center">
-          <i className="material-icons location">location_on</i>
-          <h3>{this.state.business_card.location}</h3>
-        </div>
-
-        <div className="flex-center">
-          <div className="btn business-card-contacts" onClick={this.handleContacts}>
-            <p>Contacts</p>
-          </div>
-          <div className="btn business-card-contacts" onClick={this.handleMessage}>
-            <p>Message</p>
-          </div>
-        </div>
-
-        <div className="flex-column" style={{'padding': '10px 25px'}}>
-          <div className="flex-column">
-            <h5>EMAIL</h5>
-            <p>{this.state.business_card.email}</p>
-          </div>
-
-          <div className="flex-column">
-            <h5>PHONE</h5>
-            <p>{this.state.business_card.phone}</p>
-          </div>
-          <div className="flex">
-            <div className="flex-column">
-              <h5>INDUSTRY</h5>
-              <p>{this.state.business_card.industry}</p>
+        <div className="flex-column" style={{'height': '100%'}}>
+          {/* Name, Job/Company, Location */}
+          <div className="flex-column flex-around" style={{'flex': '0 0 23%', 'padding': '0 15px'}}>
+            <div className="flex-center flex-wrap" style={{'padding': '0 20px'}}>
+              <h1 style={{'margin-right': '5px'}}>{this.state.business_card.first_name}</h1>
+              <h1>{this.state.business_card.last_name}</h1>
             </div>
-            <div className="flex-column">
-              <h5>WEBSITE</h5>
-              <p>{this.state.business_card.linkedin_profile_url}</p>
+
+            <div className="flex-center flex-wrap">
+              <h2 style={{'margin-right': '5px'}}>{this.state.business_card.position}</h2>
+              <h2>@ {this.state.business_card.company_name}</h2>
+            </div>
+
+            <div className="flex-center">
+              <i className="material-icons location">location_on</i>
+              <h3 style={{'margin-left': '5px'}}>{this.state.business_card.location}</h3>
             </div>
           </div>
-          <div className="flex-column">
-            <h5>DESCRIPTION</h5>
-            <p>{this.state.business_card.description}</p>
+
+          {/* Contacts, Message */}
+          <div className="flex-between" style={{'flex': '0 0 12%', 'padding': '16px 15% 0 15%'}}>
+            <div className="business-card-btn flex-center" id="contacts" onClick={this.handleContacts}>
+              <p>Contacts</p>
+            </div>
+            <div className="business-card-btn flex-center" id="message" onClick={this.handleMessage}>
+              <p>Message</p>
+            </div>
           </div>
+
+        {/* Email, Phone, Industry, Website, Description */}
+          <div className="flex-between flex-column" style={{'flex': '0 0 65%', 'padding': '30px 0 15px 0'}}>
+            <div className="flex-column" style={{'width': '100%', 'padding': '0 20px'}}>
+              <h5>EMAIL</h5>
+              <p>{this.state.business_card.email}</p>
+            </div>
+
+            <div className="flex-column" style={{'width': '100%', 'padding': '0 20px'}}>
+              <h5>PHONE</h5>
+              <p>{this.state.business_card.phone}</p>
+            </div>
+
+            <div className="flex-between business-card-band" style={{'width': '100%', 'height': '85px'}}>
+              <div className="flex-column flex-center" style={{'flex': '0 0 50%', 'height': '100%'}}>
+                <h5>INDUSTRY</h5>
+                <p>{this.state.business_card.industry}</p>
+              </div>
+              <div className="flex-column flex-center" style={{'flex': '0 0 50%', 'height': '100%'}}>
+                <h5>WEBSITE</h5>
+                <a href="www.google.com"><i className="material-icons">home</i></a>
+              </div>
+            </div>
+
+            <div className="flex-column" style={{'width': '100%', 'padding': '0 20px'}}>
+              <h5>ABOUT ME</h5>
+              <p>{this.state.business_card.description}</p>
+            </div>
+          </div>
+
         </div>
+
       </div>
     )
   },
@@ -115,7 +128,7 @@ var BusinessCard = React.createClass({
           <input name="first_name" placeholder={this.state.business_card.first_name} onChange={this.handleChange}/>
           <input name="last_name" placeholder={this.state.business_card.last_name} style={{'marginLeft': '20px'}} onChange={this.handleChange}/>
         </div>
-        <div className="flex-end business-card-link">
+        <div className="flex-end">
           <i className="fa fa-check edit" title="Save changes" aria-hidden="true" style={{'position': 'absolute', 'top': '215px'}} onClick={this.handleSave}></i>
         </div>
         <div className="flex-center">

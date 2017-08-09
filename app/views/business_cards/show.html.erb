@@ -9,17 +9,17 @@
     <!-- LEFT -->
     <div class="content-left-bc">
       <!-- BUSINESS CARD -->
-      <div class="business-card">
+      <div class="business-card flex-column">
         <div class="border-top-card"></div>
         <!-- REMOVE CONTACT -->
         <% if current_user.business_card != @business_card %>
-          <div class="flex-end" style="height: 20px; margin: 15px;">
+          <div class="flex-end" style="height: 20px; margin: 10px 10px 0 0;">
             <%= link_to connection_path(user: current_user, contact: @business_card.user), method: :delete do %>
               <i class="material-icons destroy flex-center" title="Remove from contacts">clear</i>
             <% end %>
           </div>
         <% else %>
-          <div style="height: 20px; margin: 15px;"></div>
+          <div style="height: 20px; margin: 10px 10px 0 0;"></div>
         <% end %>
         <!-- AVATAR -->
         <div class="flex-center">
@@ -34,7 +34,7 @@
         </div>
         <!-- UPLOAD PHOTO -->
         <% if current_user.business_card == @business_card %>
-          <form novalidate="novalidate" class="simple_form edit_business_card flex-end" id="edit_business_card_1" enctype="multipart/form-data" action="/business_cards/1" accept-charset="UTF-8" method="post">
+          <form novalidate="novalidate" class="simple_form edit_business_card flex-end" id="edit_business_card_1" style="height: 0;" enctype="multipart/form-data" action="/business_cards/1" accept-charset="UTF-8" method="post">
             <input name="utf8" type="hidden" value="✓">
             <input type="hidden" name="_method" value="patch">
             <input type="hidden" name="authenticity_token" value="">
@@ -48,15 +48,7 @@
           </form>
         <% end %>
         <!-- REACT COMPONENT -->
-
-        <!-- MESSAGE -->
-        <%# if @business_card != current_user.business_card %>
-          <!-- <div class="flex-start" style="margin-bottom: 5px;"> -->
-            <%# link_to 'Send Message', conversations_path(sender_id: current_user.id, recipient_id: @business_card.id), class: 'btn business-card-btn', method: :post %>
-          <!-- </div> -->
-        <%# end %>
-
-        <%= react_component "BusinessCard", {business_card: @business_card, current_user: current_user, user: @business_card.user, contacts: @business_card.user.contacts}, {style: "height:66%; width:100%; padding:15px 25px"} %>
+        <%= react_component "BusinessCard", {business_card: @business_card, current_user: current_user, user: @business_card.user, contacts: @business_card.user.contacts}, {style: "flex:1; width:100%; padding:20px 0 10px 0"} %>
       </div>
     </div>
     <!-- RIGHT -->
