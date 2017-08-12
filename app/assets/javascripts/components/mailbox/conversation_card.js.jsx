@@ -34,7 +34,6 @@ var ConversationCard = React.createClass({
     } else {
       messages = [{"sent_at": "", "body": ""}];
     }
-    console.log(this.props.conversation[3]);
     // var status = messages[messages.length - 1].read;
 
     var id, active, count = 0, unread_count;

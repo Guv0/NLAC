@@ -34,7 +34,7 @@
         </div>
         <!-- UPLOAD PHOTO -->
         <% if current_user.business_card == @business_card %>
-          <form novalidate="novalidate" class="simple_form edit_business_card flex-end" id="edit_business_card_1" style="height: 0;" enctype="multipart/form-data" action="/business_cards/1" accept-charset="UTF-8" method="post">
+          <form novalidate="novalidate" class="simple_form edit_business_card flex-end" id="edit_business_card_<%= @business_card.id %>" style="height: 0;" enctype="multipart/form-data" action="/business_cards/<%= @business_card.id %>" accept-charset="UTF-8" method="post">
             <input name="utf8" type="hidden" value="✓">
             <input type="hidden" name="_method" value="patch">
             <input type="hidden" name="authenticity_token" value="">
@@ -43,7 +43,7 @@
               <i class="fa fa-cloud-upload" title="Upload a photo" aria-hidden="true"></i>
             </label>
             <span style="position: relative; top: 50px;">
-              <input type="submit" name="commit" value="Update photo" class="hidden" data-disable-with="Update photo">
+              <input type="submit" name="commit" value="Update photo" class="hidden" data-disable-with="Update photo" id="upload-profile-picture">
             </span>
           </form>
         <% end %>
@@ -72,7 +72,7 @@
     // CHANGE BUTTON ON PHOTO UPLOAD
     $(".file-upload").on("change", function(){
       $(".fa-cloud-upload").addClass("hidden");
-      $(".business-card-btn").removeClass("hidden");
+      $("#upload-profile-picture").removeClass("hidden");
       $($(this).closest(".flex-center")).css('padding-left', '95px');
     });
   </script>

@@ -2,7 +2,8 @@ var Mailbox = React.createClass({
   getInitialState: function() {
     return {
       display_conversation: true,
-      conversation: this.props.active_conversation
+      conversation: this.props.active_conversation,
+      conversations: this.props.conversations
     }
   },
 
@@ -14,10 +15,24 @@ var Mailbox = React.createClass({
     this.setState({ conversation: data });
   },
 
+  handleSearch: function(e) {
+    var search = e.target.value.toLowerCase();
+    this.setState({conversations: this.props.conversations}, function(){
+      var searchConv = [];
+      this.state.conversations.map(function(conversation, i) {
+        if (conversation[2].first_name.toLowerCase().startsWith(search) || conversation[2].last_name.toLowerCase().startsWith(search)) {
+          searchConv.push(conversation);
+          console.log(conversation)
+        }
+      }.bind(this));
+      this.setState({conversations: searchConv});
+    });
+  },
+
   render: function() {
     var conversations = [];
 
-    this.props.conversations.map(function(conversation, i){
+    this.state.conversations.map(function(conversation, i){
       conversations.push(<ConversationCard conversation={conversation} key={conversation[0].id}
         current_user={this.props.current_user} active_id={this.state.conversation[0].id} handleConvClick=
           {this.handleDisplayConversation} setReadMessages={this.setNewMessage}/>);
@@ -25,11 +40,12 @@ var Mailbox = React.createClass({
 
     var display_conversation = this.state.display_conversation;
 
-    console.log(this.props.conversations[0][0].id);
+    // console.log(this.state.conversations[0][0].id);
 
     return (
       <div className="mailbox-container">
         <div className="mailbox-left">
+          <input type="text" placeholder="Search a conversation" onChange={this.handleSearch}/>
           {conversations}
         </div>
         <div className="mailbox-right">

@@ -43,8 +43,15 @@
   }
 }
 
-
-
+// MODAL
+.modal-dialog {
+  max-width: 100%;
+  width: 600px;
+  margin: 75px auto;
+  .modal-content {
+    height: 600px;
+  }
+}
 
 
 // PHONE
