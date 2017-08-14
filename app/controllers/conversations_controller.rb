@@ -38,6 +38,7 @@ class ConversationsController < ApplicationController
       format.json { render json: @active_conversation, status: :created }
       format.html { redirect_to conversations_path(active_conversation: @active_conversation) }
     end
+
   end
 
   def send_message

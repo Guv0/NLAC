@@ -7,6 +7,8 @@ has_many :community_messages
 
 has_many :community_requests
 
+has_many :events
+
 validates :description, length: { maximum: 200 }
 
 include PgSearch

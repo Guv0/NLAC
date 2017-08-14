@@ -160,6 +160,7 @@
       </div>
 
       <!-- ACTIVITY or MAP -->
+      <!-- <div id="map" style="height: 350px; width: 500px; pointer-events: none ;"></div> -->
 
     </div>
 
@@ -197,5 +198,106 @@
     });
 
   </script>
+  <script>
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 1,
+          minZoom: 1,
+          maxZoom: 1,
+          center: {lat: 20, lng: 0},
+          gestureHandling: 'none',
+          zoomControl: false,
+          streetViewControl: false,
+          styles: [
+    {
+        "featureType": "landscape.natural",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#e0efef"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "hue": "#1900ff"
+            },
+            {
+                "color": "#c0e8e8"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "lightness": 100
+            },
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "transit.line",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "lightness": 700
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#7dcdcd"
+            }
+        ]
+    }
+]
+        });
+        var markers = locations.map(function(location, i) {
+          return new google.maps.Marker({
+            position: {lat: location["lat"], lng: location["lng"]},
+          });
+        });
+        var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+      }
+      var ruby_locations = <%= raw @locations %>
+      var locations = [];
+      ruby_locations.map(function(location) {
+        locations.push(JSON.parse(location));
+      });
+    </script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTkwGQSwVmlZcbsvmgH6f72c0XYhwtlIw&callback=initMap">
+    </script>
 
 <% end %>
