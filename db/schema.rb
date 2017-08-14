@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20170731101819) do
+ActiveRecord::Schema.define(version: 20170814124726) do
 
 
   # These are extensions that must be enabled in order to support this database
@@ -36,6 +35,7 @@ ActiveRecord::Schema.define(version: 20170731101819) do
     t.string   "position"
     t.float    "latitude"
     t.float    "longitude"
+    t.index ["first_name"], name: "index_business_cards_on_first_name", using: :btree
     t.index ["user_id"], name: "index_business_cards_on_user_id", using: :btree
   end
 
@@ -110,19 +110,28 @@ ActiveRecord::Schema.define(version: 20170731101819) do
     t.index ["sender_id"], name: "index_conversations_on_sender_id", using: :btree
   end
 
+  create_table "event_attendees", force: :cascade do |t|
+    t.integer  "event_id"
+    t.integer  "attendee_id"
+    t.boolean  "attending",   default: false
+    t.boolean  "organiser",   default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["attendee_id"], name: "index_event_attendees_on_attendee_id", using: :btree
+    t.index ["event_id"], name: "index_event_attendees_on_event_id", using: :btree
+  end
+
   create_table "events", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "community_id"
-    t.integer  "organiser_id"
-    t.integer  "attendee_ids"
+    t.string   "address"
+    t.string   "postcode"
     t.datetime "start_time"
     t.datetime "end_time"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["attendee_ids"], name: "index_events_on_attendee_ids", using: :btree
     t.index ["community_id"], name: "index_events_on_community_id", using: :btree
-    t.index ["organiser_id"], name: "index_events_on_organiser_id", using: :btree
   end
 
   create_table "messages", force: :cascade do |t|
@@ -191,9 +200,9 @@ ActiveRecord::Schema.define(version: 20170731101819) do
   add_foreign_key "connections", "users", column: "contact_id"
   add_foreign_key "conversations", "users", column: "recipient_id"
   add_foreign_key "conversations", "users", column: "sender_id"
+  add_foreign_key "event_attendees", "events"
+  add_foreign_key "event_attendees", "users", column: "attendee_id"
   add_foreign_key "events", "communities"
-  add_foreign_key "events", "users", column: "attendee_ids"
-  add_foreign_key "events", "users", column: "organiser_id"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
   add_foreign_key "tag_relations", "business_cards"
