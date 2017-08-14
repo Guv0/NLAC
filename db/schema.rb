@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170814123049) do
+ActiveRecord::Schema.define(version: 20170814124726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,30 @@ ActiveRecord::Schema.define(version: 20170814123049) do
     t.index ["sender_id"], name: "index_conversations_on_sender_id", using: :btree
   end
 
+  create_table "event_attendees", force: :cascade do |t|
+    t.integer  "event_id"
+    t.integer  "attendee_id"
+    t.boolean  "attending",   default: false
+    t.boolean  "organiser",   default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["attendee_id"], name: "index_event_attendees_on_attendee_id", using: :btree
+    t.index ["event_id"], name: "index_event_attendees_on_event_id", using: :btree
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "community_id"
+    t.string   "address"
+    t.string   "postcode"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["community_id"], name: "index_events_on_community_id", using: :btree
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text     "body"
     t.string   "sent_at"
@@ -175,6 +199,9 @@ ActiveRecord::Schema.define(version: 20170814123049) do
   add_foreign_key "connections", "users", column: "contact_id"
   add_foreign_key "conversations", "users", column: "recipient_id"
   add_foreign_key "conversations", "users", column: "sender_id"
+  add_foreign_key "event_attendees", "events"
+  add_foreign_key "event_attendees", "users", column: "attendee_id"
+  add_foreign_key "events", "communities"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
   add_foreign_key "tag_relations", "business_cards"

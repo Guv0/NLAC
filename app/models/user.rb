@@ -13,7 +13,6 @@ class User < ApplicationRecord
   has_many :community_memberships, :foreign_key => 'member_id'
   has_many :communities, through: :community_memberships
   has_many :community_messages
-  has_many :events, :foreign_key => 'organiser_id'
   has_many :event_attendees, :foreign_key => 'attendee_id'
   has_many :events, through: :event_attendees
   #Contact side
