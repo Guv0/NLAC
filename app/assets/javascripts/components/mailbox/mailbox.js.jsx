@@ -45,7 +45,9 @@ var Mailbox = React.createClass({
     return (
       <div className="mailbox-container">
         <div className="mailbox-left">
-          <input type="text" placeholder="Search a conversation" onChange={this.handleSearch}/>
+          <div className="mailbox-search">
+            <input type="text" placeholder="Search a conversation" onChange={this.handleSearch}/>
+          </div>
           {conversations}
         </div>
         <div className="mailbox-right">
