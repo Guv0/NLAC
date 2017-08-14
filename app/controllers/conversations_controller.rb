@@ -34,7 +34,11 @@ class ConversationsController < ApplicationController
       @active_conversation.started_on = @active_conversation.started_on
       @active_conversation.save
     end
-    redirect_to conversations_path(active_conversation: @active_conversation)
+    respond_to do |format|
+      format.json { render json: @active_conversation, status: :created }
+      format.html { redirect_to conversations_path(active_conversation: @active_conversation) }
+    end
+
   end
 
   def send_message
