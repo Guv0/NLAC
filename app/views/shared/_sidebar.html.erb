@@ -1,72 +1,72 @@
-<!-- CONTAINER -->
-<div class="side-container">
-
-  <!-- TOP -->
-  <div class="side-top">
-    <!-- AVATAR -->
-    <% if !current_user.business_card.photo.url.nil? %>
-      <% avatar = current_user.business_card.photo.url %>
-    <% elsif current_user.business_card.linkedin_picture_url != "" && !current_user.business_card.linkedin_picture_url.nil? %>
-      <% avatar = current_user.business_card.linkedin_picture_url %>
-    <% else %>
-      <% avatar = 'avatar.png' %>
-    <% end %>
-    <%= link_to business_card_path(current_user), class: 'flex-center' do %>
-      <%= image_tag avatar, class: 'side-avatar' %>
-    <% end %>
-    <!-- NAME -->
-    <div class="flex-column flex-around" style="flex: 0 0 30%;">
-      <h1><%= current_user.business_card.first_name %></h1>
-      <h1><%= current_user.business_card.last_name %></h1>
-    </div>
-  </div>
-
-  <!-- PROFILE -->
-  <%= link_to business_card_path(current_user) do %>
-    <div class="flex">
-      <i class="fa fa-user" aria-hidden="true"></i>
-      <h6>PROFILE</h6>
-    </div>
-  <% end %>
-  <!-- CONTACTS -->
-  <%= link_to business_card_connections_path(current_user) do %>
-    <div class="flex">
-      <i class="fa fa-address-card" aria-hidden="true"></i>
-      <h6>CONTACTS</h6>
-    </div>
-  <% end %>
-  <!-- COMMUNITIES -->
-  <%= link_to communities_path do %>
-    <div class="flex">
-      <i class="fa fa-users" aria-hidden="true"></i>
-      <h6>COMMUNITIES</h6>
-    </div>
-  <% end %>
-  <!-- REQUESTS -->
-  <%= link_to business_card_connection_requests_path(current_user) do %>
-    <div class="flex">
-      <i class="fa fa-user-plus" aria-hidden="true"></i>
-      <h6>REQUESTS</h6>
-    </div>
-    <% if @requests_count > 0 %>
-        <div class="side-notifications" id="requests-notification">
-          <p><%= @requests_count %></p>
-        </div>
+<!-- COMPUTER -->
+  <!-- CONTAINER -->
+  <div class="computer-side-container flex-column">
+    <!-- TOP -->
+    <div class="side-top flex-column">
+      <!-- AVATAR -->
+      <% if current_user.business_card.photo == "" %>
+        <% avatar = current_user.business_card.photo.url %>
+      <% elsif current_user.business_card.linkedin_picture_url %>
+        <% avatar = current_user.business_card.linkedin_picture_url %>
+      <% else %>
+        <% avatar = image_path('avatar.png') %>
       <% end %>
-  <% end %>
-  <!-- MESSAGES -->
-  <div data-target="#message-notifications" id="side-messages">
-    <%= link_to conversations_path do %>
-      <div class="flex">
-        <i class="fa fa-comments" aria-hidden="true"></i>
-        <h6>MESSAGES</h6>
+      <%= link_to business_card_path(current_user) do %>
+        <%= image_tag avatar, class: "side-avatar" %>
+      <% end %>
+      <!-- NAME -->
+      <div class="side-name flex-center flex-wrap">
+        <h2><%= current_user.business_card.first_name %></h2>
+        <h2><%= current_user.business_card.last_name %></h2>
       </div>
-      <% if @unread_messages_count > 0 %>
-        <div class="side-notifications" id="message-notifications">
-          <p><%= @unread_messages_count %></p>
-        </div>
-      <% end %>
-    <% end %>
+    </div>
+    <!-- BOTTOM -->
+    <div class="side-bottom">
+      <div class="side-row flex">
+        <!-- PROFILE -->
+        <%= link_to business_card_path(current_user), class: "side-option flex-center flex-column #{'side-active' if active == 'business_cards#show'}" do %>
+          <%= image_tag("profile-icon.png", class: "side-img") %>
+          <h4>PROFILE</h4>
+        <% end %>
+        <!-- CONTACTS -->
+        <%= link_to business_card_connections_path(current_user), class: "side-option flex-center flex-column #{'side-active' if active == 'connections#index'}" do %>
+          <%= image_tag("contacts-icon.png", class: "side-img") %>
+          <h4>CONTACTS</h4>
+        <% end %>
+      </div>
+      <div class="side-row flex">
+        <!-- COMMUNITIES -->
+        <%= link_to communities_path, class: "side-option flex-center flex-column #{'side-active' if active == 'communities#index'}" do %>
+          <%= image_tag("communities-icon.png", class: "side-img") %>
+          <h4>COMMUNITIES</h4>
+        <% end %>
+        <!-- REQUESTS -->
+        <%= link_to business_card_connection_requests_path(current_user), class: "side-option flex-center flex-column #{'side-active' if active == 'connection_requests#index'}" do %>
+          <div class="flex-center flex-column">
+            <% if @requests_count > 0 %>
+              <div class="side-notif" id="side-requests-notif"><p><%= @requests_count %></p></div>
+            <% end %>
+            <%= image_tag("requests-icon.png", class: "side-img") %>
+          </div>
+          <h4>REQUESTS</h4>
+        <% end %>
+      </div>
+      <div class="side-row flex">
+        <!-- MESSAGES -->
+        <%= link_to conversations_path, class: "side-option flex-center flex-column #{'side-active' if active == 'conversations#index'}" do %>
+          <div class="flex-center flex-column">
+            <% if @unread_messages_count > 0 %>
+              <div class="side-notif" id="side-messages-notif"><p><%= @unread_messages_count %></p></div>
+            <% end %>
+            <%= image_tag("messages-icon.png", class: "side-img") %>
+          </div>
+          <h4>MESSAGES</h4>
+        <% end %>
+      </div>
+    </div>
   </div>
 
-</div>
+
+
+
+<!-- PHONE -->

@@ -1,0 +1,225 @@
+// BANNER
+.connections-banner {
+  flex: 0 0 10%;
+  padding-top: 10px;
+  h6 {
+    color: $grey-one;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  p {
+    color: $grey-three;
+    font-size: 22px;
+    font-weight: 300;
+  }
+}
+
+// MAIN CONTENT
+.connections-content {
+  flex: 0 0 90%;
+  // LEFT
+  .connections-content-left {
+    height: 100%;
+    flex: 0 0 60%;
+    padding: 15px 75px 0 0;
+    // SEARCH
+    .connections-search {
+      flex: 0 0 10%;
+      padding-right: 5px;
+      form {
+        height: 75%;
+        input {
+          height: 100%;
+          border: 1px solid #EFEFEF;
+          border-radius: 3px;
+          box-shadow: 2px 4px 8px $shadow;
+          padding: 5px 10px;
+          color: $grey-two;
+          font-size: 14px;
+          font-weight: 300;
+          &:focus {
+            outline: none;
+          }
+        }
+        ::-webkit-input-placeholder {
+          color: $grey-four;
+          font-size: 14px;
+          font-weight: 300;
+        }
+        #search-info {flex: 0 0 50%}
+        #search-tag {flex: 0 0 35%}
+        .connections-search-btn {
+          height: 100%;
+          width: 8%;
+          background-color: $green;
+          border: none;
+          border-radius: 3px;
+          i {
+            color: white;
+            font-size: 28px;
+          }
+          &:hover {
+            background-color: $hover-green;
+            box-shadow: 2px 4px 8px $shadow;
+          }
+        }
+      }
+    }
+    // CARDS
+    .connections-cards {
+      flex: 0 0 90%;
+      padding-top: 5px;
+      overflow: scroll;
+      .connections-card {
+        height: 145px;
+        background-color: white;
+        margin: 10px 5px 0 0;
+        border-radius: 3px;
+        &:hover {
+          box-shadow: 2px 4px 8px $shadow;
+        }
+        // TOP
+        .connections-card-top {
+          flex: 0 0 75%;
+          .connections-card-top-left {
+            flex: 0 0 20%;
+            height: 100%;
+            padding: 10px 10px 0 10px;
+            // AVATAR
+            .connections-card-avatar {
+              height: 90%;
+              width: 90%;
+            }
+          }
+          .connections-card-top-right {
+            flex: 0 0 80%;
+            height: 100%;
+            .connections-card-top-right-top {
+              flex: 0 0 40%;
+              // NAME
+              h2 {
+                flex: 0 0 75%;
+                height: 100%;
+                color: $grey-one;
+                font-size: 22px;
+                font-weight: 500;
+                padding-bottom: 5px;
+                display: flex;
+                flex-direction: column-reverse;
+              }
+              .connections-card-actions {
+                flex: 0 0 25%;
+                height: 100%;
+                padding: 10px 10px 0 0;
+                align-items: baseline;
+                // MESSAGE
+                .connections-card-message {
+                  background-color: $grey-four;
+                  border-radius: 2px;
+                  padding: 3px 10px;
+                  p {
+                    color: white;
+                    font-size: 14px;
+                    font-weight: 400;
+                  }
+                  &:hover {
+                    background-color: $hover-green;
+                    box-shadow: 2px 4px 8px $shadow-white;
+                  }
+                }
+              }
+            }
+            // LOCATION
+            .connections-card-top-right-middle {
+              flex: 0 0 20%;
+              color: $grey-three;
+              padding-bottom: 5px;
+              display: flex;
+              flex-direction: column-reverse;
+              i, h4 {
+                font-size: 15px;
+                font-weight: 300;
+              }
+            }
+            .connections-card-top-right-bottom {
+              flex: 0 0 40%;
+              padding: 5px 10px 0 0;
+              .connections-card-info {
+                height: 100%;
+                align-items: flex-start;
+                h4 {
+                  color: $grey-four;
+                  font-size: 12px;
+                  font-weight: 300;
+                }
+                h5 {
+                  color: $grey-one;
+                  font-size: 13px;
+                  font-weight: 300;
+                }
+              }
+            }
+          }
+        }
+        // BOTTOM / TAGS
+        .connections-card-bottom {
+          flex: 0 0 25%;
+          padding: 0 10px 0 5px;
+          .connections-tag {
+            background-color: $green;
+            border-radius: 2px;
+            padding: 4px 10px;
+            margin: 0 5px;
+            p {
+              color: white;
+              font-size: 12px;
+              font-weight: 300;
+            }
+          }
+        }
+      }
+    }
+  }
+  // RIGHT
+  .connections-content-right {
+    height: 100%;
+    flex: 0 0 40%;
+    padding-top: 15px;
+    .hot-tags {
+      flex: 0 0 35%;
+      background-color: $green;
+      border-radius: 3px;
+      box-shadow: 2px 4px 8px $shadow;
+      h5 {
+        flex: 0 0 22%;
+        padding: 0 20px;
+        color: white;
+        font-size: 18px;
+      }
+      span {
+        margin-right: 10px;
+      }
+      .hot-tags-side {
+        flex: 0 0 50%;
+        height: 100%;
+        h6 {
+          color: white;
+          font-size: 14px;
+          font-weight: 300;
+          text-shadow: 1px 1px 2px #9E9E9E;
+        }
+        p {
+          color: $green;
+          font-size: 12px;
+          font-weight: 500;
+          background-color: white;
+          border-radius: 50%;
+          height: 25px;
+          width: 25px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}

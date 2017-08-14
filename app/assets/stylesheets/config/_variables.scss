@@ -29,21 +29,48 @@ $base-height: 1.4;
  * Colors
  * ------------------------------------- */
 // Scheme
+  // Main
+  $green: #56D690;
+  $blue: #1A2131;
+  $light-blue: #CFD6E6;
+  $red: #F92727;
+  // Background
+  $background-color: #F8F8F8;
+  // Shadow
+  $shadow: #D6D6D6;
+  $shadow-white: #E4E4E4;
+  // Hover
+  $hover-blue: #505665;
+  $hover-green: #46d285;
+  // Grey
+  $grey-one: #4F4F4F;
+  $grey-two: #828282;
+  $grey-three: #BDBDBD;
+  $grey-four: #E0E0E0;
+
+
+
+
+
+
+
+
+
+
+
+
+
 $brand-color: #63D5C3;
 $brand-color-hover: #36c9b3;
-$background-color: #F5F5F7;
-$grey-one: #4F4F4F;
-$grey-two: #828282;
-$grey-three: #BDBDBD;
-$grey-four: #E0E0E0;
+
+
 $grey-dark: #646465;
 $grey: #939494;
 $grey-light: #D6D6D6;
 $blue-dark: #233142;
-$blue-light: #455D7A;
 $red: #F92727;
 $red-hover: #E00606;
-$shadow: #CECECE;
+
 $shadow-hover: rgba(198, 198, 210, 0.5);
 $border: #D6D6D6;
 
@@ -65,8 +92,6 @@ $linkedin-hover: #046293;
 // old brand-color: #0D7377
 
 
-$blue: #469AE0;
 $yellow: #FDB631;
 $orange: #E67E22;
-$green: #32B796;
 $gray: #000000;

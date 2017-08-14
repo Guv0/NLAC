@@ -4,149 +4,179 @@
 <% end %>
 
 <!-- CONTENT -->
-<div class="container">
+<div class="container flex-column">
 
-  <!-- LEFT -->
-  <div class="content-left">
-    <h1>
-      <%= @business_card.user.id == current_user.id ? "MY CONTACTS" : @business_card.first_name.upcase + "'S CONTACTS"  %> (<%= @contacts.count %>)
-    </h1>
-
-    <!-- SEARCH -->
-    <%= form_tag business_card_connections_path(@business_card), method: :get, class: "search flex-between" do %>
-      <%= text_field_tag :info, params[:info], id: "search-info" %>
-      <%= text_field_tag :tag, params[:tag], id: "search-tag" %>
-      <%= button_tag(type: "submit", class: "btn search-btn") do %>
-        <i class="material-icons">search</i>
-      <% end %>
-    <% end %>
-
-    <!-- CONTACTS -->
-    <div class="contacts-container flex-column">
-      <!-- CARD -->
-      <% @contacts.each do |contact| %>
-        <div class="contact-card">
-          <!-- TOP -->
-          <div class="contact-card-top">
-            <!-- AVATAR -->
-            <% if !contact.photo.url.nil? %>
-              <% avatar = contact.photo.url %>
-            <% elsif contact.linkedin_picture_url != "" && !contact.linkedin_picture_url.nil? %>
-              <% avatar = contact.linkedin_picture_url %>
-            <% else %>
-              <% avatar = "avatar.png" %>
-            <% end %>
-            <% if current_user.contacts.include?(contact.user) || current_user. business_card == contact %>
-              <%= link_to business_card_path(contact) do %>
-                <%= image_tag avatar, class: "contact-card-avatar" %>
-              <% end %>
-            <% else %>
-              <%= image_tag avatar, class: "contact-card-avatar" %>
-            <% end %>
-            <!-- INFO -->
-            <div class="contact-card-info">
-              <% if current_user.contacts.include?(contact.user) || current_user. business_card == contact %>
-                <%= link_to business_card_path(contact) do %>
-                  <h2 class="link-decoration"><%= contact.full_name %></h2>
-                <% end %>
-              <% else %>
-                <h2><%= contact.full_name %></h2>
-              <% end %>
-              <div class="flex">
-                <div class="flex-column" style="flex: 0 0 50%;">
-                  <h4>LOCATION</h4>
-                  <h6><%= contact.location.truncate(20) if contact.location %></h6>
-                  <h4>INDUSTRY</h4>
-                  <h6><%= contact.industry.truncate(20) if contact.industry %></h6>
-                </div>
-                <div class="flex-column" style="flex: 0 0 50%;">
-                  <h4>POSITION</h4>
-                  <h6><%= contact.position.truncate(20) if contact.position %></h6>
-                  <h4>COMPANY</h4>
-                  <h6><%= contact.company_name.truncate(20) if contact.company_name %></h6>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- BOTTOM -->
-          <div class="contact-card-bottom">
-            <!-- TAGS -->
-            <h4>TAGS</h4>
-            <div class="flex flex-wrap">
-              <% if params[:tag] %>
-                <% contact.tags.valid_tags(contact.id, current_user.id).distinct.each do |tag| %>
-                  <% if params[:tag].split(' ').include?(tag.label) %>
-                    <div class="contact-card-tag flex-center">
-                      <p><%= tag.label %></p>
-                    </div>
-                  <% end %>
-                <% end %>
-                <% contact.tags.valid_tags(contact.id, current_user.id).distinct.take(3).each do |tag| %>
-                  <% unless params[:tag].split(' ').include?(tag.label) %>
-                    <div class="contact-card-tag flex-center">
-                      <p><%= tag.label %></p>
-                    </div>
-                  <% end %>
-                <% end %>
-                <%= link_to business_card_path(contact) do %>
-                  <p>see more &#62</p>
-                <% end %>
-              <% else %>
-                <% contact.tags.valid_tags(contact.id, current_user.id).distinct.take(4).each do |tag|  %>
-                  <div class="contact-card-tag flex-center">
-                    <p><%= tag.label %></p>
-                  </div>
-                <% end %>
-                <%= link_to business_card_path(contact) do %>
-                  <p>see more &#62</p>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      <% end %>
+  <!-- BANNER -->
+  <div class="connections-banner flex">
+    <div class="flex-column flex-center flex-start" style="height: 100%;">
+      <h6><%= @business_card.user == current_user ? "My contacts" : @business_card.full_name + "'s contacts" %></h6>
+      <p><%= @business_card.user.contacts.count %></p>
     </div>
   </div>
 
-  <!-- RIGHT -->
-  <!-- <div class="content-right">
-    <div id="map" style="height: 350px; width: 500px; pointer-events: none ;"></div>
-  </div> -->
+  <!-- MAIN CONTENT -->
+  <div class="connections-content flex">
+
+    <!-- LEFT -->
+    <div class="connections-content-left flex-column">
+
+      <!-- SEARCH -->
+      <div class="connections-search">
+        <%= form_tag business_card_connections_path(@business_card), method: :get, class: "flex-between" do %>
+          <%= text_field_tag :info, params[:info], id: "search-info" %>
+          <%= text_field_tag :tag, params[:tag], id: "search-tag" %>
+          <%= button_tag(type: "submit", class: "connections-search-btn flex-center") do %>
+            <i class="material-icons">search</i>
+          <% end %>
+        <% end %>
+      </div>
+
+      <!-- CONTACTS CARDS -->
+      <div class="connections-cards">
+        <% @contacts.each do |contact| %>
+          <div class="connections-card flex-column">
+            <!-- TOP -->
+            <div class="connections-card-top flex">
+              <div class="connections-card-top-left">
+                <!-- AVATAR -->
+                <% if !contact.photo.url.nil? %>
+                  <% avatar = contact.photo.url %>
+                <% elsif contact.linkedin_picture_url != "" && !contact.linkedin_picture_url.nil? %>
+                  <% avatar = contact.linkedin_picture_url %>
+                <% else %>
+                  <% avatar = "avatar.png" %>
+                <% end %>
+                <% if current_user.contacts.include?(contact.user) || current_user. business_card == contact %>
+                  <%= link_to business_card_path(contact) do %>
+                    <%= image_tag avatar, class: "connections-card-avatar" %>
+                  <% end %>
+                <% else %>
+                  <%= image_tag avatar, class: "connections-card-avatar" %>
+                <% end %>
+              </div>
+              <div class="connections-card-top-right flex-column">
+                <div class="connections-card-top-right-top flex">
+                  <!-- NAME -->
+                  <% if current_user.contacts.include?(contact.user) || current_user. business_card == contact %>
+                    <%= link_to business_card_path(contact), {style: "flex: 0 0 75%; height: 100%"} do %>
+                      <h2><%= contact.full_name %></h2>
+                    <% end %>
+                  <% else %>
+                    <h2><%= contact.full_name %></h2>
+                  <% end %>
+                  <div class="connections-card-actions flex-end">
+                    <!-- MESSAGE -->
+                    <%= link_to conversations_path(sender_id: current_user.id, recipient_id: contact.id), method: :post do %>
+                      <div class="connections-card-message flex-center">
+                        <p>Message</p>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="connections-card-top-right-middle">
+                  <!-- LOCATION -->
+                  <div class="flex">
+                    <i class="material-icons location" style="margin-right: 5px">location_on</i>
+                    <h4><%= contact.location %></h4>
+                  </div>
+                </div>
+                <div class="connections-card-top-right-bottom flex">
+                  <!-- INDUSTRY -->
+                  <div class="connections-card-info flex-column flex-between" style="flex: 0 0 26%">
+                    <h4>INDUSTRY</h4>
+                    <h5><%= contact.industry %></h5>
+                  </div>
+                  <!-- POSITION -->
+                  <div class="connections-card-info flex-column flex-between" style="flex: 0 0 37%">
+                    <h4>POSITION</h4>
+                    <h5><%= contact.position %></h5>
+                  </div>
+                  <!-- COMPANY -->
+                  <div class="connections-card-info flex-column flex-between" style="flex: 0 0 37%">
+                    <h4>COMPANY</h4>
+                    <h5><%= contact.company_name %></h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- BOTTOM / TAGS-->
+            <div class="connections-card-bottom flex">
+              <% if params[:tag] %>
+                <% contact.tags.valid_tags(contact.id, current_user.id).distinct.each do |tag| %>
+                  <% if params[:tag].split(' ').include?(tag.label) %>
+                    <div class="connections-tag flex-center">
+                      <p><%= tag.label %></p>
+                    </div>
+                  <% end %>
+                <% end %>
+                <% contact.tags.valid_tags(contact.id, current_user.id).distinct.take(4).each do |tag| %>
+                  <% unless params[:tag].split(' ').include?(tag.label) %>
+                    <div class="connections-tag flex-center">
+                      <p><%= tag.label %></p>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <% contact.tags.valid_tags(contact.id, current_user.id).distinct.take(5).each do |tag|  %>
+                  <div class="connections-tag flex-center">
+                    <p><%= tag.label %></p>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="connections-content-right flex-column">
+
+      <!-- HOT TAGS -->
+      <div class="hot-tags flex-column">
+          <h5 class="flex">
+            <span>🔥</span>
+            Hot tags in <%= @business_card.user == current_user ? "my contacts" : @business_card.first_name + "'s contacts" %>
+          </h5>
+          <div class="flex" style="flex: 0 0 78%; padding: 0 20px 15px 20px">
+            <div class="hot-tags-side flex-column flex-between">
+              <% @hot_tags.first(5).each_with_index do |tag, index| %>
+                <div class="flex" style="width: 100%">
+                  <p class="flex-center"><%= (index + 1).to_s %></p>
+                  <h6><%= tag[0] %></h6>
+                </div>
+              <% end %>
+            </div>
+            <div class="hot-tags-side flex-column flex-between">
+              <% @hot_tags.last(5).each_with_index do |tag, index| %>
+                <div class="flex" style="width: 100%">
+                  <p class="flex-center"><%= (6 + index).to_s %></p>
+                  <h6><%= tag[0] %></h6>
+                </div>
+              <% end %>
+            </div>
+          </div>
+      </div>
+
+      <!-- ACTIVITY or MAP -->
+      <!-- <div id="map" style="height: 350px; width: 500px; pointer-events: none ;"></div> -->
+
+    </div>
+
+  </div>
 
 </div>
 
 
 
-<!-- ////////////////////////////////// -->
+<!-- ///////////////////////// -->
 
 <!-- JQUERY -->
 <%= content_for(:after_js) do %>
 
   <script>
 
-  // PHONE
-  if ($(window).width() < 376) {
-    // TYPEDJS INFO
-    $(function(){
-      $("#search-info").typed({
-        strings: ['Search by name...', 'location...', 'industry...', 'job...', 'company...', 'e.g., Bill Gates', 'e.g., London', 'e.g., Tech', 'e.g., Web Developer', 'e.g., Facebook'],
-        typeSpeed: 100,
-        loop: true,
-        attr: 'placeholder'
-      });
-    });
-
-    // TYPEDJS TAGS
-    $(function(){
-      $("#search-tag").typed({
-        strings: ['Search by tags...', 'e.g., ruby on rails', 'e.g., marketing', 'e.g., designer', 'e.g., photoshop'],
-        typeSpeed: 100,
-        loop: true,
-        attr: 'placeholder'
-      });
-    });
-  // LAPTOP
-  } else {
     // TYPEDJS INFO
     $(function(){
       $("#search-info").typed({
@@ -166,7 +196,6 @@
         attr: 'placeholder'
       });
     });
-  }
 
   </script>
   <script>

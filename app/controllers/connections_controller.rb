@@ -67,7 +67,7 @@ skip_after_action :verify_authorized, only: [:create, :root]
 
     tags_sorted = tags_count.sort_by { |tag, frequency| -frequency }
 
-    @hot_tags = tags_sorted.first(8)
+    @hot_tags = tags_sorted.first(10)
 
 
 

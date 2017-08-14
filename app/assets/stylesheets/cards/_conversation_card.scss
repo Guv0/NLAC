@@ -1,20 +1,4 @@
-.mailbox-container {
-  height: 100%;
-  width: 100%;
-  display: flex;
-}
 
-.mailbox-left {
-  height: 100%;
-  flex: 0 0 25vw;
-  overflow: scroll;
-  border-top: 1px solid $grey-light;
-}
-
-.mailbox-right {
-  height: 100%;
-  width: 100%;
-}
 
 .conversation-card {
   background-color: white;

@@ -1,7 +1,7 @@
 class CommunitiesController < ApplicationController
   before_action :set_community, except: [ :index, :my_communities, :create ]
   skip_after_action :verify_policy_scoped, only: [:index]
-  skip_after_action :verify_authorized, only: [:my_communities]
+  skip_after_action :verify_authorized, only: [:my_communities, :create]
 
   def index
     # Search

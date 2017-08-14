@@ -1,0 +1,24 @@
+// Main
+.mailbox-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.mailbox-left {
+  height: 100%;
+  flex: 0 0 25vw;
+  overflow: scroll;
+}
+
+.mailbox-right {
+  height: 100%;
+  width: 100%;
+}
+
+// Left
+.mailbox-search {
+
+}
+
+// Right

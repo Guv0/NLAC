@@ -1,118 +1,196 @@
-// BUSINESS CARD
-.business-card {
-  background-color: white;
-  padding: 15px;
-  border-radius: 3px;
-  box-shadow: 2px 3px 4px $shadow;
-  h5 {
-    font-size: 12px;
-    font-weight: 300;
-    color: $grey-three;
-  }
-  p {
-    font-size: 15px;
-    font-weight: 300;
-    margin: 5px 0 15px 0;
-    padding: 0;
-  }
-  input:not(.btn), textarea {
-    font-size: 15px;
-    font-weight: 300;
-    color: $grey-one;
-    margin: 5px 0 15px 0;
-    padding-left: 5px;
-    border: none;
-    border-left: 2px solid $brand-color;
-    &:focus {
-      outline: none;
-      border-bottom: 1px solid $grey-four;
-    }
-    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-      color: $grey-two;
-      font-weight: 300;
-    }
-    ::-moz-placeholder { /* Firefox 19+ */
-      color: $grey-two;
-      font-weight: 300;
-    }
-    :-ms-input-placeholder { /* IE 10+ */
-      color: $grey-two;
-      font-weight: 300;
-    }
-  }
-  .business-card-top-input input {
-    font-size: 22px;
-    width: 125px;
-  }
-}
-
-  // .business-card-top-input {
-  //   font-size: 22px;
-  //   font-weight: 400;
-  //   color: $grey-one;
-  //   width: 140px;
-  //   &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  //     color: $grey-two;
-  //     font-weight: 400;
-  //   }
-  //   ::-moz-placeholder { /* Firefox 19+ */
-  //     color: $grey-two;
-  //     font-weight: 400;
-  //   }
-  //   :-ms-input-placeholder { /* IE 10+ */
-  //     color: $grey-two;
-  //     font-weight: 400;
-  //   }
-  // }
-
-// LINK
-.business-card-link {
-  i {
-    font-size: 20px;
-    cursor: pointer;
-  }
-  .edit {
-    color: $brand-color;
-    position: relative;
-    bottom: 25px;
-    &:hover {
-      color: $brand-color-hover;
-    }
-  }
-  .destroy {
-    color: $grey-four;
+// COMPUTER
+.content-left-bc {
+  flex: 0 0 50%;
+  height: 100%;
+  padding-top: 20px;
+  .business-card {
+    width: 80%;
+    height: 100%;
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 2px 4px 8px $shadow;
+    .destroy {
+      color: $grey-four;
+      font-size: 15px;
       &:hover {
-      color: $red;
+        color: $red;
+        font-weight: bolder;
+        text-shadow: 1px 2px 4px $shadow-white;
+      }
+    }
+    .business-card-avatar {
+      height: 145px;
+      width: 145px;
+      border-radius: 50%;
+      box-shadow: 2px 4px 8px $shadow-white;
+    }
+    .file-upload {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+      & + label {
+        position: relative;
+        right: 30%;
+        bottom: 20px;
+      }
+      & + label i {
+        font-size: 20px;
+        color: $green;
+        cursor: pointer;
+        &:hover {
+          text-shadow: 1px 2px 4px $shadow-white;
+        }
+      }
+    }
+    .business-card-content {
+      width: 100%;
+      height: 100%;
+      .edit {
+        color: $green;
+        font-size: 20px;
+        margin-right: 10px;
+        &:hover {
+          text-shadow: 1px 2px 4px $shadow-white;
+          cursor: pointer;
+        }
+      }
+      .location {
+        color: $grey-four;
+        font-size: 18px;
+        font-weight: 300;
+      }
+      h1 {
+        color: $grey-one;
+        font-size: 24px;
+        font-weight: 400;
+      }
+      h2 {
+        color: $grey-two;
+        font-size: 19px;
+        font-weight: 300;
+        line-height: 25px;
+      }
+      h3 {
+        color: $grey-three;
+        font-size: 17px;
+        font-weight: 200;
+      }
+      .business-card-btn {
+        height: 45px;
+        width: 125px;
+        border-radius: 2px;
+        p {
+          color: white;
+          font-size: 17px;
+          font-weight: 500;
+          letter-spacing: 1px;
+        }
+      }
+      #contacts {
+        background-color: $grey-three;
+      }
+      #message {
+        background-color: $green;
+      }
+      h5 {
+        color: $grey-four;
+        font-size: 13px;
+        font-weight: 300;
+        margin-bottom: 5px;
+      }
+      p {
+        color: $grey-two;
+        font-size: 15px;
+        font-weight: 300;
+      }
+      .business-card-band {
+        background-color: $light-blue;
+        h5 {
+          color: $blue;
+          font-size: 13px;
+          font-weight: 500;
+        }
+        p {
+          color: $blue;
+          font-weight: 14px;
+          font-weight: 200;
+        }
+      }
+    }
+  }
+}
+.content-right-bc {
+  flex: 0 0 50%;
+  height: 100%;
+  padding-top: 20px;
+  .tags-card {
+    width: 100%;
+    height: 45%;
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 2px 4px 8px $shadow;
+    .tags-card-content {
+      width: 100%;
+      height: 100%;
+      h3 {
+        color: $grey-one;
+        font-size: 18px;
+        margin-bottom: 10px;
+        margin-left: 3px;
+      }
+      .tag-bc {
+        background-color: $green;
+        border-radius: 3px;
+        padding: 5px 8px;
+        margin: 5px 3px;
+        font-size: 12px;
+        color: white;
+        box-shadow: 1px 2px 4px $shadow;
+          i {
+            font-size: 14px;
+            color: $red;
+            text-shadow: 1px 2px 4px $grey-three;
+            margin-left: 6px;
+          }
+      }
+      .tags-form input {
+        width: 48%;
+        height: 38px;
+        padding: 5px 10px;
+        border-top: 1px solid $grey-four;
+        border-right: none;
+        border-bottom: 1px solid $grey-four;
+        border-left: 1px solid $grey-four;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+        box-shadow: 2px 4px 8px $shadow;
+      }
+      ::-webkit-input-placeholder {
+        font-size: 13px;
+        font-weight: 300px;
+        color: $grey-four;
+      }
+      .tags-form-btn {
+        height: 38px;
+        background-color: $green;
+        font-size: 14px;
+        font-weight: 400;
+        color: white;
+        border: none;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+        padding: 5px 10px;
+        box-shadow: 2px 4px 8px $shadow;
+      }
     }
   }
 }
 
-// NAME
-.business-card-name {
+.border-top-card {
   width: 100%;
-  font-size: 22px;
-  font-weight: 400;
-  margin-top: 20px;
+  border: 1.5px solid $green;
+  border-radius: 3px;
 }
-
-// JOB
-.business-card-job {
-  font-size: 16px;
-  font-weight: 300;
-  color: $grey-three;
-  margin-bottom: 5px;
-}
-
-// CONTACTS
-.business-card-contacts {
-  font-size: 14px;
-  font-weight: 400;
-  margin: 20px 0 15px 0;
-  &:hover {
-    cursor: pointer;
-  }
-  span {
-    margin-left: 3px;
-  }
-}
-

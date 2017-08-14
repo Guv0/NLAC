@@ -23,7 +23,7 @@
     <% end %>
     <div class="application-content">
       <% if user_signed_in? %>
-        <%= render 'shared/sidebar' %>
+        <%= render 'shared/sidebar', active: "#{params[:controller]}##{params[:action]}"  %>
       <% end %>
       <%= yield %>
     </div>

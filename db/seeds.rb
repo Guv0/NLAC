@@ -319,8 +319,6 @@ puts 'Creating 10 conversation for each user with 10 messages in each of them...
 end
 puts 'Fake conversations created.'
 
-# creating connection requests
-
 # # creating conversations with messages
 # puts 'Creating 10 conversation for each user with 10 messages in each of them...'
 # (1..100).to_a.each do |sender_id|
@@ -381,4 +379,5 @@ puts 'Fake conversations created.'
 # end
 # puts 'community requests created.'
 
+>>>>>>> master
 

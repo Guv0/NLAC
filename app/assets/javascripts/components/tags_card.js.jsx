@@ -88,23 +88,32 @@ var TagsCard = React.createClass({
     }.bind(this))
 
     return (
-      <div>
+      <div className="tags-card-content flex-column flex-between">
         {this.props.business_card.user_id !== this.props.current_user.id &&
-          <h3>{this.props.business_card.first_name.toUpperCase() + "'S TAGS"}</h3>
+          <div style={{'width': '100%'}}>
+            <h3>{this.props.business_card.first_name + "'s tags"}</h3>
+            <div className="flex-wrap">
+              {ownerTags}
+            </div>
+          </div>
         }
-        <div className="flex-wrap" style={{'margin-bottom': '25px'}}>
-          {ownerTags}
+
+        <div style={{'width': '100%'}}>
+          <h3>My tags</h3>
+          <div className="flex-wrap">
+            {myTags}
+          </div>
         </div>
-        <h3>MY TAGS</h3>
-        <div className="flex-wrap" style={{'margin-bottom': '25px'}}>
-          {myTags}
-        </div>
+
         <div className="add-tags-error">
           {this.state.error}
         </div>
-        <div className="tags-card-form flex">
-          <input name='label' id='bc-tag-input' placeholder='Enter a descriptive tag' onChange={this.handleChange} onKeyPress={this.handleKeyPress}></input>
-          <button className='btn business-card-btn' onClick={this.handleTagIt}>Tag it !</button>
+
+        <div style={{'width': '100%'}}>
+          <div className="tags-form flex">
+            <input name='label' id='bc-tag-input' placeholder='Enter a descriptive tag...' onChange={this.handleChange} onKeyPress={this.handleKeyPress}></input>
+            <button className='tags-form-btn' onClick={this.handleTagIt}>Tag it !</button>
+          </div>
         </div>
       </div>
     )

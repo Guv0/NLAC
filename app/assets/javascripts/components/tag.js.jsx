@@ -12,12 +12,8 @@ var Tag = React.createClass({
       destroy = <DeleteTag handleClick={this.deleteTag} />;
     }
 
-    if (this.props.tag[1] != this.props.business_card.id) {
-      className = "my-tag";
-    }
-
     return (
-      <div className={"flex-center business-card-tag " + className}>
+      <div className="flex-center tag-bc">
         <p>{this.props.tag[0].label}</p>{destroy}
       </div>
     )

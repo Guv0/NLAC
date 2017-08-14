@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
   before_action :unread_messages, :requests
+  before_action :new_community
   # after_filter :store_location
 
   include Pundit
@@ -41,6 +42,10 @@ class ApplicationController < ActionController::Base
   rescue ActiveRecord::RecordNotFound # if session[:guest_user_id] invalid
      session[:guest_user_id] = nil
      guest_user if with_retry
+  end
+
+  def new_community
+    @new_community = Community.new
   end
 
   private
