@@ -91,9 +91,17 @@
       }
       #contacts {
         background-color: $grey-three;
+        &:hover {
+          cursor: pointer;
+          background-color: $grey-two;
+        }
       }
       #message {
         background-color: $green;
+        &:hover {
+          cursor: pointer;
+          background-color: $hover-green;
+        }
       }
       h5 {
         color: $grey-four;
