@@ -159,9 +159,13 @@
         box-shadow: 1px 2px 4px $shadow;
           i {
             font-size: 14px;
-            color: $red;
+            color: $grey-two;
             text-shadow: 1px 2px 4px $grey-three;
             margin-left: 6px;
+            &:hover {
+              cursor: pointer;
+              color: $red;
+            }
           }
       }
       .tags-form input {

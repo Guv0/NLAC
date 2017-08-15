@@ -26,6 +26,7 @@
       </div>
       <div class="modal-body">
           <%= simple_form_for @new_community do |f| %>
+          <%= f.error_notification %>
             <h6>Name</h6>
             <%= f.input :name, label: false, input_html: {class: "community-input"} %>
             <h6>Description</h6>
