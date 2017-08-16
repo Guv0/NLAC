@@ -1,3 +1,9 @@
+<!-- Tab title -->
+<% content_for(:title_tag) do %>
+  NLAC | Conversations 📬
+<% end %>
+
+<!-- Mailbox -->
 <% if @notification %>
   <p><%= @notification %></p>
 <% else %>

@@ -7,18 +7,100 @@
 
 .mailbox-left {
   height: 100%;
-  flex: 0 0 25vw;
+  flex: 0 0 25%;
   overflow: scroll;
 }
 
 .mailbox-right {
   height: 100%;
-  width: 100%;
+  border-left: 1px solid #E5E5E5;
 }
 
 // Left
-.mailbox-search {
+  // Search
+  .mailbox-search {
+    height: 90px;
+    background-color: white;
+    border-bottom: 1px solid #E5E5E5;
+    input {
+      background-color: #F1F1F1;
+      color: #5A5A5A;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      flex: 0 0 75%;
+      border: none;
+      border-radius: 3px;
+      padding: 12px 15px;
+    }
+    input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: #B2B2B2;
+      font-size: 16px;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+  }
 
-}
+  // Conversation card
+  .conversation-card {
+    height: 110px;
+    background-color: white;
+    border-bottom: 1px solid #E5E5E5;
+    &:hover {
+      background-color: $background-color;
+      cursor: pointer;
+    }
+    .conversation-card-left {
+      flex: 0 0 30%;
+      height: 100%;
+      .conversation-card-avatar {
+        height: 65%;
+        width: 65%;
+        border-radius: 50%;
+      }
+    }
+    .conversation-card-right {
+      flex: 0 0 70%;
+      height: 100%;
+      padding: 10px;
+      .conversation-card-timestamp {
+        height: 18%;
+        width: 100%;
+        p {
+          font-size: 10px;
+          font-weight: 300;
+          color: #B2B2B2;
+        }
+      }
+      .conversation-card-info {
+        height: 82%;
+        width: 100%;
+        h3 {
+          font-size: 22px;
+          font-weight: 400;
+          color: #545454;
+        }
+        p {
+          font-size: 15px;
+          font-weight: 300;
+          color: #B2B2B2;
+        }
+        #unread {
+          height: 20px;
+          width: 20px;
+          background-color: $green;
+          border-radius: 50%;
+          p {
+            font-size: 12px;
+            font-weight: 300;
+            color: white;
+          }
+        }
+        #read {display: none;}
+      }
+    }
+  }
+
+  .active-conversation {background-color: $background-color;}
 
 // Right

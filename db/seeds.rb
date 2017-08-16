@@ -284,41 +284,6 @@ puts 'Creating 10 fake communities with 20 members each...'
 end
 puts 'Fake communities created.'
 
-
-# creating conversations with messages
-puts 'Creating 10 conversation for each user with 10 messages in each of them...'
-(1..100).to_a.each do |sender_id|
-  (1..100).to_a.shuffle.take(10).each do |recipient_id|
-    if sender_id != recipient_id
-      conversation =  Conversation.create!(
-                        sender_id: sender_id,
-                        recipient_id: recipient_id
-                      )
-      conversation.update(started_on: conversation.started_on)
-      conversation.save
-      10.times do
-        message_a =   Message.create!(
-                        conversation_id: conversation.id,
-                        body: Faker::Lorem.paragraph(2, false, 4),
-                        user_id: sender_id
-                      )
-        message_a.sent_at = message_a.message_time
-        message_a.sender = message_a.sender_name
-        message_a.save
-        message_b =   Message.create!(
-                        conversation_id: conversation.id,
-                        body: Faker::Lorem.paragraph(2, false, 4),
-                        user_id: recipient_id
-                      )
-        message_b.sent_at = message_b.message_time
-        message_b.sender = message_b.sender_name
-        message_b.save
-      end
-    end
-  end
-end
-puts 'Fake conversations created.'
-
 # # creating conversations with messages
 # puts 'Creating 10 conversation for each user with 10 messages in each of them...'
 # (1..100).to_a.each do |sender_id|
@@ -378,6 +343,3 @@ puts 'Fake conversations created.'
 #   end
 # end
 # puts 'community requests created.'
-
->>>>>>> master
-

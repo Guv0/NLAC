@@ -32,6 +32,10 @@
     padding: 0;
   }
 
+  *:focus {
+    outline: none;
+  }
+
   // GENERAL STRUCTURE
   body {
     background-color: $background-color;
