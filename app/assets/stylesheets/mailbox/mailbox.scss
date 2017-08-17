@@ -13,6 +13,7 @@
 
 .mailbox-right {
   height: 100%;
+  flex: 0 0 75%;
   border-left: 1px solid #E5E5E5;
 }
 
@@ -104,3 +105,23 @@
   .active-conversation {background-color: $background-color;}
 
 // Right
+.conversation-banner {
+  height: 90px;
+  background-color: white;
+  border-bottom: 2px solid $green;
+  .conversation-banner-avatar {
+    height: 65%;
+    width: 65%;
+    border-radius: 50%;
+  }
+}
+
+.conversation-content {
+  height: calc(100vh - 255px);
+  overflow: scroll;
+}
+
+.conversation-form {
+  height: 110px;
+  background-color: white;
+}
