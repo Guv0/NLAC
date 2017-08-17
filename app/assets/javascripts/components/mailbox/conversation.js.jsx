@@ -52,7 +52,7 @@ var Conversation = React.createClass({
             <img src={avatar} className="conversation-banner-avatar" />
           </div>
           <div className="flex-column" style={{flex: '0 0 90%'}}>
-            <h4>Conversation with <span>{this.props.conversation[2].first_name} {this.props.conversation[2].last_name}</span></h4>
+            <h4>{this.props.conversation[2].first_name} {this.props.conversation[2].last_name}</h4>
             <p><span>Started on:</span> {this.props.conversation[0].started_on}</p>
           </div>
         </div>
