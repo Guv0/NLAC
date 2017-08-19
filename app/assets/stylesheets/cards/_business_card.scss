@@ -91,9 +91,17 @@
       }
       #contacts {
         background-color: $grey-three;
+        &:hover {
+          cursor: pointer;
+          background-color: $grey-four;
+        }
       }
       #message {
         background-color: $green;
+        &:hover {
+          cursor: pointer;
+          background-color: $hover-green;
+        }
       }
       h5 {
         color: $grey-four;
@@ -144,16 +152,20 @@
       .tag-bc {
         background-color: $green;
         border-radius: 3px;
-        padding: 5px 8px;
+        padding: 6px 9px;
         margin: 5px 3px;
         font-size: 12px;
         color: white;
         box-shadow: 1px 2px 4px $shadow;
           i {
             font-size: 14px;
-            color: $red;
+            color: $grey-two;
             text-shadow: 1px 2px 4px $grey-three;
             margin-left: 6px;
+            &:hover {
+              cursor: pointer;
+              color: $red;
+            }
           }
       }
       .tags-form input {

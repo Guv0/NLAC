@@ -109,7 +109,7 @@ class CommunitiesController < ApplicationController
       CommunityMembership.create(member_id: current_user.id, community_id: @community.id, manager: true)
       redirect_to community_path(@community)
     else
-      redirect_to :back
+      render 'new'
     end
   end
 
