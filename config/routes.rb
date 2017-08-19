@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   #communities
   resources :communities do
     # community_requests
+    resources :events, only: [ :show, :new, :create, :edit, :update, :destroy ]
     resources :community_requests, only: [ :create, :update, :destroy ]
   end
 
