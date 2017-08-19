@@ -211,6 +211,16 @@
     <p><%= message.body %></p>
   <% end %>
 </div>
+<div class="events">
+  <% @events.each do |event| %>
+    <%= link_to event_path(event) do %>
+      <h3><%= event.title %></h3>
+      <p><%= event.description %></p>
+      <p><%= event.address %></p>
+      <p><%= event.start_time %></p>
+    <% end %>
+  <% end %>
+</div>
 
 <% content_for(:after_js) do %>
   <script>

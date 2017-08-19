@@ -101,6 +101,8 @@ class CommunitiesController < ApplicationController
     @community_message = CommunityMessage.new
 
     @community_messages = CommunityMessage.where(community_id: @community.id)
+
+    @events = Event.where(community_id: @community.id)
   end
 
   def create
