@@ -21,6 +21,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
+    redirect_to community_path(@event.community)
   end
 
   private
