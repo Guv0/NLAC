@@ -29,4 +29,8 @@ class CommunityPolicy < ApplicationPolicy
     user.admin
   end
 
+  def join_community?
+    true
+  end
+
 end
