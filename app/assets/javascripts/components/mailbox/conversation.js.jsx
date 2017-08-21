@@ -27,11 +27,20 @@ var Conversation = React.createClass({
   },
 
   render: function() {
+    // Messages
     var messages = [];
-
+    var newDay = '';
     this.props.conversation[3].map(function(message, i) {
+      if (messages[i - 1] !== undefined) {
+        if ((message.sent_at).substring(0,10) !== (messages[i - 1].props.message.sent_at).substring(0,10)) {
+          newDay = (message.sent_at).substring(0,10);
+        }
+      } else {
+        newDay = (message.sent_at).substring(0,10);
+      }
       messages.push(<Message message={message} current_user={this.props.current_user}
-        key={i} />);
+        key={i} newDay={newDay} />);
+      newDay = '';
     }.bind(this));
 
     // Avatar
@@ -51,9 +60,9 @@ var Conversation = React.createClass({
           <div className="flex-center" style={{flex: '0 0 10%'}}>
             <img src={avatar} className="conversation-banner-avatar" />
           </div>
-          <div className="flex-column" style={{flex: '0 0 90%'}}>
-            <h4>{this.props.conversation[2].first_name} {this.props.conversation[2].last_name}</h4>
-            <p><span>Started on:</span> {this.props.conversation[0].started_on}</p>
+          <div className="flex-column flex-center" style={{height: '100%', alignItems: 'baseline'}}>
+            <h4 className="flex-center">{this.props.conversation[2].first_name + ' ' + this.props.conversation[2].last_name}</h4>
+            <p>Started on {this.props.conversation[0].started_on}</p>
           </div>
         </div>
         {/* Conversation */}
@@ -61,11 +70,9 @@ var Conversation = React.createClass({
           {messages}
         </div>
         {/* Form */}
-        <form className="conversation-form" onSubmit={this.handleSubmit}>
-          <textarea id="reply" className="reply-input" onChange={this.handleChange} />
-          <div className="flex-center" style={{flex: '0 0 15%'}}>
-            <input type='submit' className="conversation-send-btn" value="SEND" />
-          </div>
+        <form className="conversation-form flex" onSubmit={this.handleSubmit}>
+          <textarea id="reply" className="reply-input" placeholder="Type something..." onChange={this.handleChange} />
+          <button><i className="fa fa-paper-plane"></i></button>
         </form>
       </div>
     )

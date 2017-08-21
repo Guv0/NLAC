@@ -21,7 +21,7 @@ User.create(email: 'queen.elizabeth@gmail.com', password: '123456', provider: 'l
 BusinessCard.create(user_id: 4, first_name: 'Queen', last_name: 'Elizabeth', email: 'queen.elizabeth@gmail.com', location: 'London, United Kingdom, GB', phone: '+44 7632 879367', industry: 'Politics', company_name: 'UK', description: 'Sit and do fuck all :p', linkedin_picture_url: '', updates: [])
 
 User.create(email: 'bill.gates@gmail.com', password: '123456', provider: 'linkedin')
-BusinessCard.create(user_id: 5, first_name: 'Bill', last_name: 'Gates', email: 'bill.gates@gmail.com', location: 'Medina, WA, US', phone: '+1 202 555 0131', industry: 'Tech', company_name: 'Microsoft', description: 'Apple sucks!', linkedin_picture_url: 'https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg', updates: [])
+BusinessCard.create(user_id: 5, first_name: 'Bill', last_name: 'Gates', email: 'bill.gates@gmail.com', location: 'Medina, WA, US', phone: '+1 202 555 0131', industry: 'Tech', company_name: 'Microsoft', description: 'Apple sucks!', linkedin_picture_url: '', updates: [])
 
 User.create(email: 'mark.zuckerberg@gmail.com', password: '123456', provider: 'linkedin')
 BusinessCard.create(user_id: 6, first_name: 'Mark', last_name: 'Zuckerberg', email: 'mark.zuckerberg@gmail.com', location: 'Palo Alto, CA, US', phone: '+1 202 555 0130', industry: 'Tech', company_name: 'Facebook', description: 'Twitter sucks!', linkedin_picture_url: '', updates: [])
