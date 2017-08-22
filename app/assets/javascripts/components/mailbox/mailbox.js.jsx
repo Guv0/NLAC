@@ -44,12 +44,16 @@ var Mailbox = React.createClass({
 
     return (
       <div className="mailbox-container">
+        {/* Left */}
         <div className="mailbox-left">
-          <div className="mailbox-search">
-            <input type="text" placeholder="Search a conversation" onChange={this.handleSearch}/>
+          {/* Search */}
+          <div className="mailbox-search flex-center">
+            <input type="text" placeholder="Find a conversation" onChange={this.handleSearch}/>
           </div>
+          {/* Conversations cards */}
           {conversations}
         </div>
+        {/* Right */}
         <div className="mailbox-right">
           {display_conversation && <Conversation conversation={this.state.conversation}
             key={this.state.conversation.id} current_user={this.props.current_user}

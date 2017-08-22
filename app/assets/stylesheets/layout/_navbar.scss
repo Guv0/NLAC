@@ -12,6 +12,8 @@
     flex: 0 0 85%;
     height: 100%;
     padding: 5px 40px 5px 40px;
+    z-index: 1;
+    box-shadow: 0 2px 4px #DADADA;
     .nav-community-btn {
       border: 2px solid $green;
       border-radius: 3px;

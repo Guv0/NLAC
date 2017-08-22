@@ -14,6 +14,6 @@ class Conversation < ApplicationRecord
   end
 
   def started_on
-    self.created_at.strftime("%-d %b '%y")
+    self.created_at.strftime("%Y/%m/%d")
   end
 end

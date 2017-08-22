@@ -27,32 +27,52 @@ var Conversation = React.createClass({
   },
 
   render: function() {
+    // Messages
     var messages = [];
-
+    var newDay = '';
     this.props.conversation[3].map(function(message, i) {
+      if (messages[i - 1] !== undefined) {
+        if ((message.sent_at).substring(0,10) !== (messages[i - 1].props.message.sent_at).substring(0,10)) {
+          newDay = (message.sent_at).substring(0,10);
+        }
+      } else {
+        newDay = (message.sent_at).substring(0,10);
+      }
       messages.push(<Message message={message} current_user={this.props.current_user}
-        key={i} />);
+        key={i} newDay={newDay} />);
+      newDay = '';
     }.bind(this));
+
+    // Avatar
+    var avatar;
+    if (this.props.conversation[2].photo.url !== null) {
+      avatar = this.props.conversation[2].photo.url
+    } else if ( (this.props.conversation[2].linkedin_picture_url !== '') && (this.props.conversation[2].linkedin_picture_url !== null) ) {
+      avatar = this.props.conversation[2].linkedin_picture_url
+    } else {
+      avatar = '/assets/default-avatar.png'
+    }
 
     return (
       <div>
-        <div className="conversation-banner">
-          <img src={this.props.conversation[2].linkedin_picture_url} className="conversation-banner-avatar" />
-          <div className="conversation-banner-center">
-            <h4>Conversation with <span>{this.props.conversation[2].first_name} {this.props.conversation[2].last_name}</span></h4>
+        {/* Banner */}
+        <div className="conversation-banner flex">
+          <div className="flex-center" style={{flex: '0 0 10%'}}>
+            <img src={avatar} className="conversation-banner-avatar" />
           </div>
-          <div className="conversation-banner-right">
-            <p><span>Started on:</span> {this.props.conversation[0].started_on}</p>
-            </div>
+          <div className="flex-column flex-center" style={{height: '100%', alignItems: 'baseline'}}>
+            <h4 className="flex-center">{this.props.conversation[2].first_name + ' ' + this.props.conversation[2].last_name}</h4>
+            <p>Started on {this.props.conversation[0].started_on}</p>
+          </div>
         </div>
-        <div className="conversation" id="conversation">
+        {/* Conversation */}
+        <div className="conversation-content" id="conversation">
           {messages}
         </div>
-        <form className="reply-form" onSubmit={this.handleSubmit}>
-          <textarea id="reply" className="reply-input" onChange={this.handleChange} />
-          <div className="flex-center" style={{flex: '0 0 15%'}}>
-            <input type='submit' className="conversation-send-btn" value="SEND" />
-          </div>
+        {/* Form */}
+        <form className="conversation-form flex" onSubmit={this.handleSubmit}>
+          <textarea id="reply" className="reply-input" placeholder="Type something..." onChange={this.handleChange} />
+          <button><i className="fa fa-paper-plane"></i></button>
         </form>
       </div>
     )
