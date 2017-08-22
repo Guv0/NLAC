@@ -8,7 +8,7 @@ has_many :community_messages
 has_many :community_requests
 
 has_many :events
-validates_presence_of :name, :description, :photo
+validates_presence_of :name, :description #, :photo
 validates :description, length: { maximum: 200 }
 
 include PgSearch

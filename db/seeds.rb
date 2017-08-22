@@ -1,12 +1,21 @@
-User.destroy_all
-BusinessCard.destroy_all
-Tag.destroy_all
-TagRelation.destroy_all
-Connection.destroy_all
-Community.destroy_all
+require 'faker'
+
+# cleaning database
+puts 'Destroying all models...'
+EventAttendee.destroy_all
+Event.destroy_all
 CommunityMembership.destroy_all
-Conversation.destroy_all
+CommunityRequest.destroy_all
+Community.destroy_all
+ConnectionRequest.destroy_all
+Connection.destroy_all
 Message.destroy_all
+Conversation.destroy_all
+TagRelation.destroy_all
+Tag.destroy_all
+BusinessCard.destroy_all
+User.destroy_all
+puts 'Models are destroyed, database is clean.'
 
 User.create(email: 'barack.obama@gmail.com', password: '123456', provider: 'linkedin')
 BusinessCard.create(user_id: 1, first_name: 'Barack', last_name: 'Obama', email: 'barack.obama@gmail.com', location:'Washington, DC, US', phone: '+1 202 555 0147', industry: 'Politics', company_name: 'USA', description: 'I was better than Trump...', linkedin_picture_url: 'https://consequenceofsound.files.wordpress.com/2016/11/barack.png?w=1614', updates: [])
@@ -196,22 +205,7 @@ end
   conversation.save
 end
 
-# require 'faker'
 
-# # cleaning database
-# puts 'Destroying all models...'
-# CommunityMembership.destroy_all
-# CommunityRequest.destroy_all
-# Community.destroy_all
-# ConnectionRequest.destroy_all
-# Connection.destroy_all
-# Message.destroy_all
-# Conversation.destroy_all
-# TagRelation.destroy_all
-# Tag.destroy_all
-# BusinessCard.destroy_all
-# User.destroy_all
-# puts 'Models are destroyed, database is clean.'
 
 # creating users
 puts 'Creating 100 fake users and their fake business card...'
@@ -267,6 +261,12 @@ puts 'Creating 50 connections for each user with 1 "personal" tag...'
 end
 puts 'Connections with "personal" tag created.'
 
+(13..30).to_a.each do |x|
+  Connection.create(user_id: 1, contact_id: x)
+end
+
+puts 'Obama extra connections created.'
+
 # creating communities
 puts 'Creating 10 fake communities with 20 members each...'
 10.times do
@@ -284,39 +284,39 @@ puts 'Creating 10 fake communities with 20 members each...'
 end
 puts 'Fake communities created.'
 
-# # creating conversations with messages
-# puts 'Creating 10 conversation for each user with 10 messages in each of them...'
-# (1..100).to_a.each do |sender_id|
-#   (1..100).to_a.shuffle.take(10).each do |recipient_id|
-#     if sender_id != recipient_id
-#       conversation =  Conversation.create!(
-#                         sender_id: sender_id,
-#                         recipient_id: recipient_id
-#                       )
-#       conversation.update(started_on: conversation.started_on)
-#       conversation.save
-#       10.times do
-#         message_a =   Message.create!(
-#                         conversation_id: conversation.id,
-#                         body: Faker::Lorem.paragraph(2, false, 4),
-#                         user_id: sender_id
-#                       )
-#         message_a.sent_at = message_a.message_time
-#         message_a.sender = message_a.sender_name
-#         message_a.save
-#         message_b =   Message.create!(
-#                         conversation_id: conversation.id,
-#                         body: Faker::Lorem.paragraph(2, false, 4),
-#                         user_id: recipient_id
-#                       )
-#         message_b.sent_at = message_b.message_time
-#         message_b.sender = message_b.sender_name
-#         message_b.save
-#       end
-#     end
-#   end
-# end
-# puts 'Fake conversations created.'
+# creating conversations with messages
+puts 'Creating 10 conversation for each of first 50 users with 10 messages in each of them...'
+(1..50).to_a.each do |sender_id|
+  (51..100).to_a.shuffle.take(10).each do |recipient_id|
+    if sender_id != recipient_id
+      conversation =  Conversation.create!(
+                        sender_id: sender_id,
+                        recipient_id: recipient_id
+                      )
+      conversation.update(started_on: conversation.started_on)
+      conversation.save
+      10.times do
+        message_a =   Message.create!(
+                        conversation_id: conversation.id,
+                        body: Faker::Lorem.paragraph(2, false, 4),
+                        user_id: sender_id
+                      )
+        message_a.sent_at = message_a.message_time
+        message_a.sender = message_a.sender_name
+        message_a.save
+        message_b =   Message.create!(
+                        conversation_id: conversation.id,
+                        body: Faker::Lorem.paragraph(2, false, 4),
+                        user_id: recipient_id
+                      )
+        message_b.sent_at = message_b.message_time
+        message_b.sender = message_b.sender_name
+        message_b.save
+      end
+    end
+  end
+end
+puts 'Fake conversations created.'
 
 # # creating connection requests
 # puts 'Creating 3 connection requests received and 1 sent for each user...'
