@@ -9,8 +9,7 @@
   <!-- BANNER -->
   <div class="connections-banner flex">
     <div class="flex-column flex-center flex-start" style="height: 100%;">
-      <h6><%= @business_card.user == current_user ? "My contacts" : @business_card.full_name + "'s contacts" %></h6>
-      <p><%= @business_card.user.contacts.count %></p>
+      <h6><%= @business_card.user == current_user ? "My contacts" : @business_card.full_name + "'s contacts" %></h6><p>(<%= @business_card.user.contacts.count %>)</p>
     </div>
   </div>
 

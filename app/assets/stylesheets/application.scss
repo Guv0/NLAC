@@ -57,6 +57,11 @@
     height: 82%;
     width: 90%;
     overflow: scroll;
+    h2 {
+      color: $grey-one;
+      font-size: 22px;
+      font-weight: 400;
+    }
   }
 
   // MISC
